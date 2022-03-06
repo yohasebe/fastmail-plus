@@ -1,6 +1,17 @@
 # Fastmail Plus (Google Chrome Extension)
 
-Chrome extension to make Fastmail Chrome UI more usable and productive
+Chrome extension to make **Fastmail** (https://fastmail.com) Chrome UI more usable and productive
+
+## Functionarities
+
+- Faster Switch between Search Modes
+- Easier Button/Keyboard Operation in Conversation View
+- Change Focus Using Up/Down Cursor Keys
+- Change Focus Using Up/Down Cursor Keys
+- Alternative Shortcut Keys
+- Fix Problem with IME in Search Input Box
+
+## Installation
 
 ## Faster Switch between Search Modes
 
@@ -14,4 +25,14 @@ Chrome extension to make Fastmail Chrome UI more usable and productive
 
 ## Alternative Shortcut Keys
 
-## Fix for Problem with IME in Search Input Box
+## Fix Problem with IME in Search Input Box
+
+## Author
+
+Yoichiro Hasebe
+
+## Advertisement
+
+Sign up for Fastmail through this link and get **10% off** for one year.
+
+https://ref.fm/u27773408
