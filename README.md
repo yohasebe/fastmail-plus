@@ -6,11 +6,11 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 
 ## Functionality
 
-- [Badge notification for unread messages to Inbox]() \[optional\]
-- [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only) \[optional\]
+- [Badge notification for unread messages to Inbox](#badge-notification-for-unread-messages-to-inbox)
+- [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
 - [Easier button operation in conversation view](#easier-button-operation-in-conversation-view) 
-- [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys) \[optional\]
-- [Alternative shortcut keys](#alternative-shortcut-keys) \[optional\]
+- [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
+- [Alternative shortcut keys](#alternative-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-with-ime-in-search-input-box)
 
 ## Installation
