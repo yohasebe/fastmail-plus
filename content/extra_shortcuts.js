@@ -17,7 +17,7 @@ const toggleViewHTML = () => {
 
 // Handle extra shortcuts
 const shortcutHandler = (e) => {
-  if(!$("textarea, div.v-RichText-input").is(":focus")) {
+  if(!$("input, textarea, div.v-RichText-input").is(":focus")) {
     // Mail view
     if(regexMail.test(lastUrl)){
       // J and K are left untouched
@@ -100,6 +100,7 @@ const conversationShortcuts = (e) => {
     $btnExpand.click();
     // E or Enter => Toggle
   } else if (e.which === 69 || e.which === 13){
+
     e.preventDefault();
     e.stopImmediatePropagation();
     $btnToggle.click();
