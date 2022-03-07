@@ -92,6 +92,10 @@ https://ref.fm/u27773408
 
 Yoichiro Hasebe
 
+## License
+
+The MIT License
+
 ## Disclaimer
 
 Fastmail Plus Google Extension is not endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
