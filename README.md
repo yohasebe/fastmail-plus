@@ -1,5 +1,7 @@
 # Fastmail Plus (Google Chrome Extension)
 
+![](https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-128.png?raw=true)
+
 A Google Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
 ## Functionality
