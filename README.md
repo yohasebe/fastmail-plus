@@ -1,8 +1,8 @@
-# Fastmail Plus (Google Chrome Extension)
+# Fastmail Plus (Chrome Extension)
 
 ![](https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-128.png?raw=true)
 
-A Google Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
+A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
 ## Functionality
 
@@ -102,4 +102,4 @@ The MIT License
 
 ## Disclaimer
 
-Fastmail Plus Google Extension is not officially endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
+Fastmail Plus Chrome Extension is not officially endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
