@@ -2,7 +2,7 @@
 
 A Google Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
-## Functionarity
+## Functionality
 
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only) \[optional\]
 - [Easier button operation in conversation view](#easier-button-operation-in-conversation-view) 
@@ -26,7 +26,7 @@ In preparation
 
 ### Faster Switch between Search Modes
 
-Pressing the "repeat arrow" button cyclically switcheds three different search modes:
+Pressing the "repeat arrow" button cyclically switches three different search modes:
 
 - Search anywhere (default)
 - Search in subject and body
@@ -58,13 +58,13 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 When `Show reading pane` is selected in Fastmail Settings:
 
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in conversation panal in the right-hand side of the window.
+`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in conversation panel in the right-hand side of the window.
 
 When `Hide reading pane` is selected in Fastmail Settings:
 
-`↑` and `↓` cursor keys can be used (in addition to `J` and `K` )to move focus in messages panal.
+`↑` and `↓` cursor keys can be used (in addition to `J` and `K` )to move focus in messages panel.
 
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in conversation panal.
+`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in conversation panel.
 
 ### Alternative Shortcut Keys
 
