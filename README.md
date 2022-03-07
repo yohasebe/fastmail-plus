@@ -4,7 +4,7 @@ A Google Chrome extension to make **Fastmail** (https://fastmail.com) Chrome UI 
 
 ## Functionarity
 
-- [Faster switch between different search modes](faster-switch-between-search-modes) (anywhere/subject and body/subject only) \[optional\]
+- [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only) \[optional\]
 - [Easier button operation in conversation view](#easier-button-operation-in-conversation-view) 
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys) \[optional\]
 - [Alternative shortcut Keys](#alternative-shortcut-keys) \[optional\]
