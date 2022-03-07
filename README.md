@@ -4,11 +4,11 @@ A Google Chrome extension to make **Fastmail** (https://fastmail.com) Chrome UI 
 
 ## Functionarity
 
-- Faster switch between different search modes (anywhere/subject and body/subject only) \[optional\]
-- Easier button operation in conversation view 
-- Change focus using `↑` and `↓` cursor keys \[optional\]
-- Alternative shortcut Keys \[optional\]
-- Fix problem with IME in default search input 
+- [Faster switch between different search modes](#fix-problem-with-ime-in-search-input-box) (anywhere/subject and body/subject only) \[optional\]
+- [Easier button operation in conversation view](#easier-button-operation-in-conversation-view) 
+- [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys) \[optional\]
+- [Alternative shortcut Keys](#alternative-shortcut-keys) \[optional\]
+- [Fix problem with IME in default search input](#fix-problem-with-ime-in-search-input-box)
 
 ## Installation
 
@@ -32,6 +32,8 @@ Pressing the "repeat arrow" button cyclically switcheds three different search m
 - Search in subject and body
 - Search in subject only
 
+<br />
+
 ![fastmail-plus-alt-search](https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif)
 
 ### Easier Button Operation in Conversation View
@@ -47,6 +49,8 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 - Ungroup/Expand messages
 - Collapse messages
 - Toggle show/hide extra control
+
+<br />
 
 ![conversation-control](https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif)
 
