@@ -1,7 +1,8 @@
 let searchMode = "anywhere";
 
+const $searchToggleLabel = ($('<span id="searchToggleLabel" style="margin-right:8px;">Anywhere</span>'));
 const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
-const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="padding-left:4px; padding-right:4px; margin-right:4px; margin-left:4px;">'+
+const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="width:130px; padding:0;">'+
                          `<img src="${searchToggleImage}" /></button>`);
 
 const setAltSearch = () => {
@@ -20,11 +21,10 @@ const setAltSearch = () => {
     + '</svg>'
     + '</div>';
   const $altSearch = $(altSHTML);
-  const searchToggleLabel = ($('<span style="width:100px; text-align: center; margin-left:8px; margin-right:4px; padding-left:4px; padding-right:4px;" id="searchToggleLabel" class="label">Anywhere</span>'));
   $altSearch.insertAfter($searchBar);
   $searchBar.after($altSearch);
-  $altSearch.after(searchToggleLabel);
-  searchToggleLabel.after($searchToggle);
+  $searchToggle.prepend($searchToggleLabel);
+  $altSearch.after($searchToggle);
   $altSearch.hide();
 
   const $altSearchInput = $("#alt-search-input");
