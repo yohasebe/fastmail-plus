@@ -1,6 +1,6 @@
 # Fastmail Plus (Google Chrome Extension)
 
-A Google Chrome extension to make **Fastmail** (https://fastmail.com) Chrome UI more usable and productive
+A Google Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
 ## Functionarity
 
