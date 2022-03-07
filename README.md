@@ -98,4 +98,4 @@ The MIT License
 
 ## Disclaimer
 
-Fastmail Plus Google Extension is not endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
+Fastmail Plus Google Extension is not officially endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
