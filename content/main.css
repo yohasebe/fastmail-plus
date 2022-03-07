@@ -1,0 +1,31 @@
+div#allButtons {
+  position: absolute;
+  right: 20px;
+  bottom: 1em;
+  z-index: 99999;
+  display: flex;
+}
+
+div#conversationButtons{
+  position: relative;
+  text-align: right;
+}
+
+div#controllerButton{
+  position: relative;
+  text-align: right;
+}
+
+button.bfm-Button{
+  margin-left: 8px;
+  opacity: 1 !important;
+  background-color: #e0e2e3 !important;
+}
+
+div.ui-tooltip{
+  font-size: 12px;
+  font-weight: bold;
+  font-size: 12px;
+  box-shadow: 0px 0px 0px #aaaaaa;
+  padding: 4px;
+}

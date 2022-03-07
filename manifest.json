@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Fastmail Plus",
+  "version": "1.0",
+  "description": "Chrome extension to make Fastmail Chrome UI more usable and productive",
+  "icons": {
+    "16": "images/fastmail-plus-16.png",
+    "48": "images/fastmail-plus-48.png",
+    "128": "images/fastmail-plus-128.png"
+  },
+  "action": {
+    "default_icon": "images/fastmail-plus-128.png",
+    "default_popup": "options.html"
+  },
+  "background": {
+    "service_worker": "background-script.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.fastmail.com/*", "https://beta.fastmail.com/*"],
+      "js": [
+        "libraries/jquery-3.6.0.min.js",
+        "libraries/jquery-ui.min.js",
+        "content/parameters.js",
+        "content/quote_folding.js",
+        "content/plaintext_marker.js",
+        "content/move_focus.js",
+        "content/search_fix.js",
+        "content/alternative_search.js",
+        "content/conversation_control.js",
+        "content/extra_shortcuts.js",
+        "content/main.js"
+      ],
+      "css": [
+        "libraries/jquery-ui.min.css",
+        "content/main.css"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "permissions": ["storage"],
+  "web_accessible_resources": [{
+    "resources": ["svg/*"],
+    "matches": ["<all_urls>"]
+  }]
+}
+

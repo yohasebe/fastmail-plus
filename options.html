@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" />
+    <script src="libraries/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        width: 400px;
+      }
+      hr {
+        height: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-top: 1px solid #8c8b8b;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <img src='images/fastmail-plus-128.png' width='30px' /> -->
+    <!-- <h3>Fastmail Plus</h3> -->
+    <!-- <hr /> -->
+    <h4>Options</h3>
+    <div>
+      <div>
+        <input type="checkbox" id="alternative-search" name="alternative-search" checked />
+        <label for="alternative-search">Add button to search text in subject and body only</label>
+      </div>
+      <div>
+        <input type="checkbox" id="display-num-messages" name="display-num-messages" checked />
+        <label for="display-num-messages">Display number of new messages to Inbox</label>
+      </div>
+      <div>
+        <input type="checkbox" id="alternative-shortcut-keys" name="alternative-shortcut-keys" checked />
+        <label for="alternative-shortcut-keys">Add alternative shortcut keys</label>
+      </div>
+      <div>
+        <input type="checkbox" id="use-cusror-keys" name="use-cusror-keys" checked  />
+        <label for="use-cusror-keys">Use Up/Down keys to move focus</label>
+      </div>
+    </div>
+    <p><b>Reload page to reflect changes</b></p>
+    <hr />
+    <div>
+      <p>
+        Use this link to get 10% off for one year <br />
+        <a id="sign-up-with-fastmail" href='https://ref.fm/u27773408'>Fastmail Sign Up</a>
+      </p>
+    </div>
+    <div>
+      <button id="go-to-fastmail">Go to Fastmail</button>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>
