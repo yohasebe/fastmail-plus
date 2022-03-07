@@ -6,6 +6,7 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 
 ## Functionality
 
+- [Badge notification for unread messages to Inbox]() \[optional\]
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only) \[optional\]
 - [Easier button operation in conversation view](#easier-button-operation-in-conversation-view) 
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys) \[optional\]
@@ -24,7 +25,13 @@ In preparation
 2. Visit `chrome://extensions/` and turn on "Developer mode"
 3. Click "Load unpacked" button and specify the folder downloaded from GitHub
 
-## Usage
+## Description/Usage
+
+### Badge notification for unread messages to Inbox
+
+The number of unread messages to Inbox appears in icon badge and is updated when Chrome has a tab for Fastmail.
+
+<img width="36" alt="badge" src="https://user-images.githubusercontent.com/18207/157005260-ab05b20f-1751-42c5-ad63-afa4d5727db9.png">
 
 ### Faster Switch between Search Modes
 
