@@ -29,7 +29,10 @@ $("#go-to-fastmail").on("click", () => {
   chrome.tabs.create({ url: "http://www.fastmail.com/" });
 })
 
+$("#github-repo").on("click", () => {
+  chrome.tabs.create({ url: "https://github.com/yohasebe/fastmail-plus" });
+})
+
 $("#sign-up-with-fastmail").on("click", () => {
   chrome.tabs.create({ url: "https://ref.fm/u27773408" });
 })
-

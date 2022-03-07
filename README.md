@@ -77,6 +77,8 @@ If enabled, extra shortcut keys view will be added
 - Ungroup/Expand messages: `Shift + Enter` (in addition to the default `Shift + E`)
 - Collapse messages: `Shift + Option/Alt + Enter` (in addition to the default `Shift + Option/Alt + E`)
 - Show/hide right-hand side panel: `Shift + Control + I` (in addition to the default `Shift + Command + I`)
+- Prev in Calendar view: `Control + ↑` (in addition to `K`)
+- Next in Calendar view: `Control + ↓` (in addition to `J`)
 
 ### Fix Problem with IME in Search Input Box
 
