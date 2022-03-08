@@ -190,6 +190,7 @@ const toggleVisibility = (url) => {
 
     const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
+      showReadingPane = true;
       // hide concentrate view
       $btnMainMenu.hide();
       $btnMainMenu.click(false);
@@ -197,6 +198,8 @@ const toggleVisibility = (url) => {
       if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
         return true;
       }
+    } else {
+      showReadingPane = false;
     }
 
     $allButtons.appendTo("body");
@@ -208,7 +211,6 @@ const toggleVisibility = (url) => {
     if(mainMenuState === "hidden"){
       hidemainMenu();
     }
-
   } else {
     $allButtons.detach();
     showmainMenu();

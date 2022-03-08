@@ -4,6 +4,9 @@ let displayNumMessages;
 let useCusrorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
+
+let ShowReadingPane = true;
+
 let btnControlState = "shown";
 let mainMenuState = "shown";
 
