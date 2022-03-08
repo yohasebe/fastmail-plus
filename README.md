@@ -12,6 +12,7 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-with-ime-in-search-input-box)
+- [Others](#others)
 
 ## Installation
 
@@ -92,6 +93,11 @@ If enabled, extra shortcut keys view will be added
 ### Fix Problem with IME in Search Input Box
 
 When entering Japanese (or some other language) in Fastmail's search input, using the IME to enter text requires pressing the Enter key before completing the input. Fastmail's Web UI performs the search at the moment the Enter key is hit even though the search string is completed. Fastmail Plus fixes this problem.
+
+### Others
+
+- Visually show if the focused message is made in plain text (a gray vertical bar appears on the left border of the message) or not
+- Fold the "reply-to" part of a message (`appendonsend`)
 
 ## Advertisement
 
