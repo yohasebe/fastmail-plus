@@ -5,7 +5,7 @@ let useCusrorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 let btnControlState = "shown";
-let leftbarState = "shown";
+let mainMenuState = "shown";
 
 const keys = [
   "displayNumMessages",

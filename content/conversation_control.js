@@ -17,7 +17,7 @@ const createImageLabel = (imgPath, key) => {
          "</span>";
 }
 
-const btnLeftbarLabel = () => {
+const btnMainMenuLabel = () => {
   return createImageLabel("svg/fullscreen.svg", "^L");
 }
 
@@ -49,14 +49,14 @@ const btnControlLabel = () => {
   }
 }
 
-const $btnLeftbar = $(`<button>${btnLeftbarLabel()}</button>`).appendTo($conversationButtons);
-$btnLeftbar.attr('id', 'btnLeftbar');
-$btnLeftbar.attr('title', '^L');
-$btnLeftbar.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($conversationButtons);
+$btnMainMenu.attr('id', 'btnMainMenu');
+$btnMainMenu.attr('title', '^L');
+$btnMainMenu.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 // Left-hand menu toggle
-const toggleLeftBar = () => {
-  $btnLeftbar.click();
+const togglemainMenu = () => {
+  $btnMainMenu.click();
 }
 
 const $btnUp = $(`<button><span class='label'>${btnUpLabel()}</span></button>`).appendTo($conversationButtons);
@@ -92,13 +92,11 @@ $btnControl.attr('id', 'btnControl');
 $btnControl.attr('title', '^,');
 $btnControl.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-$btnLeftbar.on('click', () => {
-  if(leftbarState === "hidden"){
-    showLeftbar();
-    leftbarState = "shown";
+$btnMainMenu.on('click', () => {
+  if(mainMenuState === "hidden"){
+    showmainMenu();
   } else {
-    hideLeftbar();
-    leftbarState = "hidden";
+    hidemainMenu();
   }
 });
 
@@ -159,21 +157,26 @@ $btnControl.on('click', () => {
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
 });
 
-let originalLeftbarWidth1;
-let originalLeftbarWidth2;
-const showLeftbar = () => {
-  $("div.v-Toolbar, div.v-PageHeader").css("display", "");
+let originalmainMenuWidth1;
+let originalmainMenuWidth2;
+
+const showmainMenu = () => {
+  mainMenuState = "shown";
+  // $("div.v-Toolbar, div.v-PageHeader").css("display", "");
+  $("div.v-PageHeader").css("display", "");
   // application order is important
-  $("div.v-Split--right").css("left", originalLeftbarWidth1);
-  $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', originalLeftbarWidth2);
+  $("div.v-Split--right").css("left", originalmainMenuWidth1);
+  $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', originalmainMenuWidth2);
 }
 //
-const hideLeftbar = () => {
-  $("div.v-Toolbar, div.v-PageHeader").css("display", "none");
+const hidemainMenu = () => {
+  mainMenuState = "hidden";
+  // $("div.v-Toolbar, div.v-PageHeader").css("display", "none");
+  $("div.v-PageHeader").css("display", "none");
   // requesting order is important
-  originalLeftbarWidth2 = $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left');
+  originalmainMenuWidth2 = $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left');
   $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', '0px');
-  originalLeftbarWidth1 = $("div.v-Split--right").css("left");
+  originalmainMenuWidth1 = $("div.v-Split--right").css("left");
   $("div.v-Split--right").css("left", "0px");
 }
 
@@ -184,23 +187,31 @@ $(window).on('resize', () => {
 
 const toggleVisibility = (url) => {
   if(regexConversation.test(url)){
+
     const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
-    if(splitRight.length === 0 || parseInt(splitRight[0].getBoundingClientRect().width) > 400){
-      $allButtons.appendTo("body");
-      if(btnControlState === "hidden"){
-        $conversationButtons.hide();
-      } else {
-        $conversationButtons.show();
+    if(splitRight.length > 0) {
+      // hide concentrate view
+      $btnMainMenu.hide();
+      $btnMainMenu.click(false);
+      // hide control if width is not enough
+      if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
+        return true;
       }
-      if(leftbarState === "hidden"){
-        hideLeftbar();
-      }
-    } else {
-      $allButtons.detach();
     }
+
+    $allButtons.appendTo("body");
+    if(btnControlState === "hidden"){
+      $conversationButtons.hide();
+    } else {
+      $conversationButtons.show();
+    }
+    if(mainMenuState === "hidden"){
+      hidemainMenu();
+    }
+
   } else {
     $allButtons.detach();
-    showLeftbar();
+    showmainMenu();
   }
 };
 

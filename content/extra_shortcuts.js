@@ -85,9 +85,9 @@ const calendarShortcuts = (e) => {
 }
 
 const conversationShortcuts = (e) => {
-  // Control + S => Toggle Leftbar
+  // Control + S => Toggle mainMenu
   if (e.ctrlKey && e.which === 76){
-    toggleLeftBar();
+    togglemainMenu();
     // Shift + alt + (E or Enter) => Shrink
   } else if (e.shiftKey && e.altKey && (e.which === 69 || e.which === 13)){
     e.preventDefault();
@@ -111,7 +111,7 @@ const conversationShortcuts = (e) => {
   }
 };
 
-const buttons = [$btnLeftbar, $btnUp, $btnDown, $btnToggle, $btnExpand, $btnCollapse, $btnControl, $searchToggle]
+const buttons = [$btnMainMenu, $btnUp, $btnDown, $btnToggle, $btnExpand, $btnCollapse, $btnControl, $searchToggle]
 for (const button of buttons) {
   button.tooltip({
     position: {
