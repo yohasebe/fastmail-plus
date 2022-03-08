@@ -91,7 +91,7 @@ const calendarShortcuts = (e) => {
 
 const conversationShortcuts = (e) => {
   // Control + S => Toggle mainMenu
-  if (!showReadingPane && (e.ctrlKey && e.which === 76)){
+  if (e.ctrlKey && e.which === 76){
     togglemainMenu();
     // Shift + alt + (E or Enter) => Shrink
   } else if (e.shiftKey && e.altKey && (e.which === 69 || e.which === 13)){

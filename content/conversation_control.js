@@ -162,7 +162,7 @@ let originalmainMenuWidth2;
 
 const showmainMenu = () => {
   mainMenuState = "shown";
-  $("div.v-Toolbar, div.v-PageHeader").css("display", "");
+  $("#conversation div.v-Toolbar, div.v-PageHeader").css("display", "");
   // application order is important
   $("div.v-Split--right").css("left", originalmainMenuWidth1);
   $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', originalmainMenuWidth2);
@@ -170,7 +170,7 @@ const showmainMenu = () => {
 //
 const hidemainMenu = () => {
   mainMenuState = "hidden";
-  $("div.v-Toolbar, div.v-PageHeader").css("display", "none");
+  $("#conversation div.v-Toolbar, div.v-PageHeader").css("display", "none");
   // requesting order is important
   originalmainMenuWidth2 = $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left');
   $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', '0px');
@@ -185,13 +185,13 @@ $(window).on('resize', () => {
 
 const toggleVisibility = (url) => {
   if(regexConversation.test(url)){
-
+    showmainMenu();
     const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
       showReadingPane = true;
       // hide concentrate view
-      $btnMainMenu.hide();
-      $btnMainMenu.click(false);
+      // $btnMainMenu.hide();
+      // $btnMainMenu.click(false);
       // hide control if width is not enough
       if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
         return true;

@@ -52,7 +52,7 @@ Requirement: `Group messages with their replies` is enabled in Fastmail Settings
 
 An set of extra control buttons are presented on the right-bottom corner of the window. The following will be included (from left to right)
 
-- Toggle uncluttered-view mode (only when "Hide reading pane" is selected)
+- Add uncluttered-view mode
 - Focus previous message in conversation
 - Focus next message in conversation
 - Toggle currently focused message
@@ -81,7 +81,7 @@ When `Hide reading pane` is selected in Fastmail Settings:
 If enabled, extra shortcut keys view will be added
 
 - Switch between search modes: `Control + S`
-- Toggle uncluttered-view mode (when "Hide reading pane" is selected): `Control + L`
+- Toggle uncluttered-view mode: `Control + L`
 - Toggle show/hide extra control: `Control + ,`
 - Toggle currently focused message: `Enter` (in addition to the default `E`)
 - Ungroup/Expand messages: `Shift + Enter` (in addition to the default `Shift + E`)
