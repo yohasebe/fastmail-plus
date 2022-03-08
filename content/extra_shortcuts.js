@@ -20,9 +20,14 @@ const shortcutHandler = (e) => {
   if(!$("input, textarea, div.v-RichText-input").is(":focus")) {
     // Mail view
     if(regexMail.test(lastUrl)){
-      // J and K are left untouched
+      // J and K are basically left untouched
       if (e.which === 74 || e.which === 75){
-        return true;
+        if(mainMenuState === "shown"){
+          return true;
+        } else {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        }
       // Ctrl + i => toggle right panel
       } else if (e.ctrlKey && e.shiftKey && e.which === 73){
         e.preventDefault();

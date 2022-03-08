@@ -162,8 +162,7 @@ let originalmainMenuWidth2;
 
 const showmainMenu = () => {
   mainMenuState = "shown";
-  // $("div.v-Toolbar, div.v-PageHeader").css("display", "");
-  $("div.v-PageHeader").css("display", "");
+  $("div.v-Toolbar, div.v-PageHeader").css("display", "");
   // application order is important
   $("div.v-Split--right").css("left", originalmainMenuWidth1);
   $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', originalmainMenuWidth2);
@@ -171,8 +170,7 @@ const showmainMenu = () => {
 //
 const hidemainMenu = () => {
   mainMenuState = "hidden";
-  // $("div.v-Toolbar, div.v-PageHeader").css("display", "none");
-  $("div.v-PageHeader").css("display", "none");
+  $("div.v-Toolbar, div.v-PageHeader").css("display", "none");
   // requesting order is important
   originalmainMenuWidth2 = $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left');
   $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', '0px');
