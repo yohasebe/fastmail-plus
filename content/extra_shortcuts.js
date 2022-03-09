@@ -60,13 +60,13 @@ const shortcutHandler = (e) => {
       } else if (e.which === 27 || e.which === 0){
         hideTooltips();
       }
-      // Conversation view
-      if(regexConversation.test(lastUrl)){
+      // Reading pane is shown 
+      if(regexReadingPane.test(lastUrl)){
         if(alternativeShortcutKeys) {
-          conversationShortcuts(e);
+          readingPaneShortcuts(e);
         }
         if(useCusrorKeys){
-          conversationCursor(e);
+          readingPaneCursor(e);
         }
       // Compose view
       } else if (regexCompose.test(lastUrl)){
@@ -99,7 +99,7 @@ const calendarShortcuts = (e) => {
   }
 }
 
-const conversationShortcuts = (e) => {
+const readingPaneShortcuts = (e) => {
   // Control + S => Toggle mainMenu
   if (e.ctrlKey && e.which === 76){
     togglemainMenu();

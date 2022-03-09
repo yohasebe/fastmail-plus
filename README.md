@@ -8,7 +8,7 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 
 - [Badge notification for unread messages to Inbox](#badge-notification-for-unread-messages-to-inbox)
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
-- [Easier button operation in conversation view](#easier-button-operation-in-conversation-view)
+- [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-with-ime-in-search-input-box)
@@ -46,7 +46,7 @@ Pressing the "repeat arrow" button cyclically switches three different search mo
 
 ![fastmail-plus-alt-search](https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif)
 
-### Easier Button Operation in Conversation View
+### Easier Button Operation in Reading Pane
 
 Requirement: `Group messages with their replies` is enabled in Fastmail Settings
 
@@ -62,19 +62,19 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 <br />
 
-![conversation-control](https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif)
+![reading-pane-control](https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif)
 
 ### Change Focus Using Up/Down Cursor Keys
 
 When `Show reading pane` is selected in Fastmail Settings:
 
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in conversation panel in the right-hand side of the window.
+`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in reading pane in the right-hand side of the window.
 
 When `Hide reading pane` is selected in Fastmail Settings:
 
 `↑` and `↓` cursor keys can be used (in addition to `J` and `K` )to move focus in messages panel.
 
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in conversation panel.
+`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in reading pane.
 
 ### Extra Shortcut Keys
 
@@ -90,14 +90,14 @@ If enabled, extra shortcut keys view will be added
 - Prev in Calendar view: `Control + ↑` (in addition to `K`)
 - Next in Calendar view: `Control + ↓` (in addition to `J`)
 
-### Fix Problem with IME in Search Input Box
+### Fix Problem in Using IME inside Search Box
 
 When entering Japanese (or some other language) in Fastmail's search input, using the IME to enter text requires pressing the Enter key before completing the input. Fastmail's Web UI performs the search at the moment the Enter key is hit even though the search string is completed. Fastmail Plus fixes this problem.
 
 ### Others
 
-- Visually show if the focused message is made in plain text (a gray vertical bar appears on the left border of the message) or not
-- Fold the "reply-to" part of a message (`appendonsend`)
+- Visually show when the focused message is made in plain text (a gray vertical bar appears on the left border of the message box)
+- Fold the "reply-to" part of a message (when the div's `id` contains `appendonsend`)
 
 ## Advertisement
 

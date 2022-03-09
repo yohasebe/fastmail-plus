@@ -33,8 +33,8 @@ const messageCursor = (e) => {
   }
 }
 
-// Move focus via up/down cursor keys in conversation view
-const conversationCursor = (e) => {
+// Move focus via up/down cursor keys in reading pane 
+const readingPaneCursor = (e) => {
   if(useCusrorKeys){
     if(!$("input").is(":focus")) {
       // P or ↑ => Previous

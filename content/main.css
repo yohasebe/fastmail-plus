@@ -6,12 +6,7 @@ div#allButtons {
   display: flex;
 }
 
-div#conversationButtons{
-  position: relative;
-  text-align: right;
-}
-
-div#controllerButton{
+div#readingPaneButtons{
   position: relative;
   text-align: right;
 }

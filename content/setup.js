@@ -34,5 +34,5 @@ getSyncStorage()
 const regexMail = new RegExp('\/mail\/');
 const regexCalendar = new RegExp('\/calendar\/');
 const regexCompose = new RegExp('\/compose\/');
-const regexConversation = new RegExp('\/T.{16}\.M.{24}');
+const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 

@@ -3,13 +3,13 @@ const toggleRightbar = () => {
   $('button.v-Button--sidebar').first().click();
 }
 
-// Create conversation view controller
+// Create reading-pane control
 
 const $allButtons = $("<div />")
 $allButtons.attr('id', 'allButtons');
 
-const $conversationButtons = $("<div />")
-$conversationButtons.attr('id', 'conversationButtons');
+const $readingPaneButtons = $("<div />")
+$readingPaneButtons.attr('id', 'readingPaneButtons');
 
 const createImageLabel = (imgPath, key) => {
   return "<span class='label'>" +
@@ -49,7 +49,7 @@ const btnControlLabel = () => {
   }
 }
 
-const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($conversationButtons);
+const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($readingPaneButtons);
 $btnMainMenu.attr('id', 'btnMainMenu');
 $btnMainMenu.attr('title', '^L');
 $btnMainMenu.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
@@ -59,32 +59,32 @@ const togglemainMenu = () => {
   $btnMainMenu.click();
 }
 
-const $btnUp = $(`<button><span class='label'>${btnUpLabel()}</span></button>`).appendTo($conversationButtons);
+const $btnUp = $(`<button><span class='label'>${btnUpLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnUp.attr('id', 'btnUp');
 $btnUp.attr('title', '↑');
 $btnUp.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-const $btnDown = $(`<button><span class='label'>${btnDownLabel()}</span></button>`).appendTo($conversationButtons);
+const $btnDown = $(`<button><span class='label'>${btnDownLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnDown.attr('id', 'btnDown');
 $btnDown.attr('title', '↓');
 $btnDown.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-const $btnToggle = $(`<button><span class='label'>${btnToggleLabel()}</span></button>`).appendTo($conversationButtons);
+const $btnToggle = $(`<button><span class='label'>${btnToggleLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnToggle.attr('id', 'btnToggle');
 $btnToggle.attr('title', '⏎');
 $btnToggle.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-const $btnExpand = $(`<button><span class='label'>${btnExpandLabel()}</span></button>`).appendTo($conversationButtons);
+const $btnExpand = $(`<button><span class='label'>${btnExpandLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnExpand.attr('id', 'btnExpand');
 $btnExpand.attr('title', '⇧⏎');
 $btnExpand.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-const $btnCollapse = $(`<button><span class='label'>${btnCollapseLabel()}</span></button>`).appendTo($conversationButtons);
+const $btnCollapse = $(`<button><span class='label'>${btnCollapseLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnCollapse.attr('id', 'btnCollapse');
 $btnCollapse.attr('title', '⇧⌥⏎');
 $btnCollapse.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-$conversationButtons.appendTo($allButtons);
+$readingPaneButtons.appendTo($allButtons);
 $controlerButton = $("<div />").appendTo($allButtons);
 
 const $btnControl = $(`<button><span class='label'>${btnControlLabel()}</span></button>`).appendTo($controlerButton);
@@ -148,10 +148,10 @@ $btnDown.on('click', () => {
 
 $btnControl.on('click', () => {
   if(btnControlShown){
-    $conversationButtons.hide('slide', {direction: 'right'});
+    $readingPaneButtons.hide('slide', {direction: 'right'});
     btnControlShown = false;
   } else {
-    $conversationButtons.show('slide', {direction: 'right'});
+    $readingPaneButtons.show('slide', {direction: 'right'});
     btnControlShown = true;
   }
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);

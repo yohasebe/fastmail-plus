@@ -40,7 +40,7 @@ const runOnChange = (url) => {
   }
 
   // reading pane is currently shown
-  if(regexConversation.test(url)){
+  if(regexReadingPane.test(url)){
     showmainMenu();
     const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
@@ -58,9 +58,9 @@ const runOnChange = (url) => {
 
     $allButtons.appendTo("body");
     if(!btnControlShown){
-      $conversationButtons.hide();
+      $readingPaneButtons.hide();
     } else {
-      $conversationButtons.show();
+      $readingPaneButtons.show();
     }
     if(!mainMenuShown){
       hidemainMenu();
