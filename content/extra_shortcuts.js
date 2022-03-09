@@ -55,10 +55,14 @@ const shortcutHandler = (e) => {
         }
       // ? => Show tooltips
       } else if (e.key === "?" && e.which === 191){
-        showTooltips();
+        if(alternativeShortcutKeys){
+          showTooltips();
+        }
         // Esc => Hide tooltips
       } else if (e.which === 27 || e.which === 0){
-        hideTooltips();
+        if(alternativeShortcutKeys){
+          hideTooltips();
+        }
       }
       // Reading pane is shown 
       if(regexReadingPane.test(lastUrl)){

@@ -6,7 +6,7 @@ const checkCurrentURL = () => {
   }
 }
 
-const checkSidebar = () => {
+const checkReadingPaneControlPosition = () => {
   let right = 20;
   let sidebar = $("div.v-ContextualSidebar");
   if(sidebar.is(":visible")){
@@ -15,45 +15,38 @@ const checkSidebar = () => {
   $allButtons.css({
     "right": right + "px"
   });
+
+  const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
+  if(splitRight.length > 0) {
+    if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
+      $allButtons.hide();
+    } else {
+      $allButtons.show();
+    }
+  } else {
+  }
 }
 
 // Periodically execute functions
 setInterval(() => {
   runMiscActions();
   checkCurrentURL();
-  checkSidebar();
+  checkReadingPaneControlPosition();
   // show alternative search box if not yet
   if(alternativeSearch && !alternativeSearchShown){
     alternativeSearchShown = setAltSearch();
   }
 }, 300);
 
-$(window).on('resize', () => {
-  const currentURL = location.href;
-  runOnChange(currentURL);
-});
-
 const runOnChange = (url) => {
-  // in mail view do this regardless of reading pain shown or not
-  if(regexMail.test(url)){
-    ;
-  }
-
   // reading pane is currently shown
   if(regexReadingPane.test(url)){
+    // this might seem redundant but is necessary
+    // in case composition is started (and done) from uncluttered mode
     showmainMenu();
-    const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
-    if(splitRight.length > 0) {
-      showReadingPane = true;
-      // hide concentrate view
-      // $btnMainMenu.hide();
-      // $btnMainMenu.click(false);
-      // hide control if width is not enough
-      if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
-        return true;
-      }
-    } else {
-      showReadingPane = false;
+
+    if(!mainMenuShown){
+      hidemainMenu();
     }
 
     $allButtons.appendTo("body");
@@ -62,14 +55,17 @@ const runOnChange = (url) => {
     } else {
       $readingPaneButtons.show();
     }
-    if(!mainMenuShown){
-      hidemainMenu();
-    }
+
   } else {
     $allButtons.detach();
     showmainMenu();
   }
 };
+
+$(window).on('resize', () => {
+  checkReadingPaneControlPosition();
+});
+
 
 const setNewMessages = (msg) => {
   let newMessage;
@@ -87,11 +83,11 @@ const setNewMessages = (msg) => {
 };
 
 $(document).ready(() => {
-  runOnChange(lastUrl);
+  setTimeout(() => {runOnChange(lastUrl)}, 500);
 
-  // update icon badge with number of unread messages 
+  // update icon badge with number of unread messages
   if(displayNumMessages){
-    const timer = setInterval(setNewMessages, 5000);
+    const timer = setInterval(setNewMessages, 10000);
   } else {
     setNewMessages("");
   }

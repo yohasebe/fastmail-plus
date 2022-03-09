@@ -2,7 +2,7 @@ let searchMode = "anywhere";
 
 const $searchToggleLabel = ($('<span id="searchToggleLabel" style="margin-right:8px;">Anywhere</span>'));
 const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
-const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="width:130px; padding:0;">'+
+const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="width:130px; padding:0; margin-left:10px">'+
                          `<img src="${searchToggleImage}" /></button>`);
 
 const setAltSearch = () => {
@@ -37,20 +37,25 @@ const setAltSearch = () => {
       searchMode = "subject_body";
       $('#alt-search-input').css('background-color', '#e3edf7');
       $('#searchToggleLabel').text("Subject & Body");
-      $altSearchInput.val("");
+      const currentVal = $normalSearchInput.val();
+      if(currentVal.match(/\(.*?\)/)){
+        $altSearchInput.val("");
+      } else {
+        $altSearchInput.val(currentVal);
+      }
       $altSearchInput.focus();
     } else if (searchMode === "subject_body") {
       searchMode = "subject";
       $('#alt-search-input').css('background-color', '#f7e3e3');
       $('#searchToggleLabel').text("Subject Only");
-      $altSearchInput.val("");
       $altSearchInput.focus();
     } else  {
       $altSearch.hide();
       $searchBar.show();
       searchMode = "anywhere";
       $('#searchToggleLabel').text("Anywhere");
-      $normalSearchInput.val("");
+      const currentVal = $altSearchInput.val();
+      $normalSearchInput.val(currentVal);
       $normalSearchInput.focus();
     }
   });

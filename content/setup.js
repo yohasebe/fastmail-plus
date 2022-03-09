@@ -5,11 +5,10 @@ let useCusrorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 
-let ShowReadingPane = true;
-
 let btnControlShown = true;
 let mainMenuShown = true;
 let alternativeSearchShown = false;
+
 let lastUrl = location.href;
 
 const keys = [
@@ -23,8 +22,7 @@ const getSyncStorage = (keys) => new Promise(resolve => {
   chrome.storage.local.get(keys, resolve);
 });
 
-getSyncStorage()
-.then((vals) => {
+getSyncStorage().then((vals) => {
   displayNumMessages = vals.displayNumMessages === undefined ? true : vals.displayNumMessages;
   useCusrorKeys = vals.useCusrorKeys === undefined ? true : vals.useCusrorKeys;
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
