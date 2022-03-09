@@ -7,7 +7,7 @@ const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v
 
 const setAltSearch = () => {
   if($("div.v-SearchInput.v-MailToolbar-search").length === 0){
-    return true;
+    return false;
   }
   const $searchBar = $("div.v-SearchInput.v-MailToolbar-search").not('#alt-search');
   const altSHTML = '<div id="alt-search" class="v-SearchInput v-MailToolbar-search altSearch" style="position:relative;">'
@@ -87,5 +87,7 @@ const setAltSearch = () => {
       }
     }
   });
+
+  return true;
 };
 

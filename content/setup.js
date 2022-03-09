@@ -7,8 +7,10 @@ let alternativeSearch;
 
 let ShowReadingPane = true;
 
-let btnControlState = "shown";
-let mainMenuState = "shown";
+let btnControlShown = true;
+let mainMenuShown = true;
+let alternativeSearchShown = false;
+let lastUrl = location.href;
 
 const keys = [
   "displayNumMessages",

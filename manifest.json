@@ -21,7 +21,7 @@
       "js": [
         "libraries/jquery-3.6.0.min.js",
         "libraries/jquery-ui.min.js",
-        "content/parameters.js",
+        "content/setup.js",
         "content/quote_folding.js",
         "content/plaintext_marker.js",
         "content/move_focus.js",
@@ -29,6 +29,7 @@
         "content/alternative_search.js",
         "content/conversation_control.js",
         "content/extra_shortcuts.js",
+        "content/misc_actions.js",
         "content/main.js"
       ],
       "css": [

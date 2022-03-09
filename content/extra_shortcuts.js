@@ -1,4 +1,6 @@
+////////////////////
 // CURRENTLY UNUSED
+////////////////////
 // Switch between plain text / HTML via shortcut key of Ctrl + V
 const toggleViewHTML = () => {
   let focused = $("div.v-MessageCard.app-contentCard.is-focused.is-expanded");
@@ -17,27 +19,40 @@ const toggleViewHTML = () => {
 
 // Handle extra shortcuts
 const shortcutHandler = (e) => {
+
+  // These work even inside textbox/input
+  // Mail view
+  if(regexMail.test(lastUrl)){
+    // Ctrl + i => toggle right panel
+    if (e.ctrlKey && e.shiftKey && e.which === 73){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      toggleRightbar();
+      // Ctrl + S => toggle search modes
+    } else if (e.ctrlKey && e.which === 83){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $("#search-toggle").click();
+    }
+  // Calendar view
+  } else if(regexCalendar.test(lastUrl)){
+    if(alternativeShortcutKeys) {
+      calendarShortcuts(e);
+    }
+  }
+
+  // These work only outside textbox/input
   if(!$("input, textarea, div.v-RichText-input").is(":focus")) {
     // Mail view
     if(regexMail.test(lastUrl)){
       // J and K are basically left untouched
       if (e.which === 74 || e.which === 75){
-        if(mainMenuState === "shown"){
+        if(mainMenuShown){
           return true;
         } else {
         e.preventDefault();
         e.stopImmediatePropagation();
         }
-      // Ctrl + i => toggle right panel
-      } else if (e.ctrlKey && e.shiftKey && e.which === 73){
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        toggleRightbar();
-      // Ctrl + S => toggle search modes
-      } else if (e.ctrlKey && e.which === 83){
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        $("#search-toggle").click();
       // ? => Show tooltips
       } else if (e.key === "?" && e.which === 191){
         showTooltips();
@@ -61,11 +76,6 @@ const shortcutHandler = (e) => {
         if(useCusrorKeys){
           messageCursor(e);
         }
-      }
-      // Calendar view
-    } else if(regexCalendar.test(lastUrl)){
-      if(alternativeShortcutKeys) {
-        calendarShortcuts(e);
       }
     }
   }

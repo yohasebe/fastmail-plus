@@ -1,9 +1,8 @@
-let lastUrl = location.href;
 const checkCurrentURL = () => {
   let url = location.href;
   if (url !== lastUrl) {
     lastUrl = url;
-    toggleVisibility(url);
+    runOnChange(url);
   }
 }
 
@@ -20,11 +19,57 @@ const checkSidebar = () => {
 
 // Periodically execute functions
 setInterval(() => {
-  $('div[id*="appendonsend"]').each(foldQuote);
-  $('div.u-containSelection.v-Message-body pre').each(colorPlainText);
+  runMiscActions();
   checkCurrentURL();
   checkSidebar();
+  // show alternative search box if not yet
+  if(alternativeSearch && !alternativeSearchShown){
+    alternativeSearchShown = setAltSearch();
+  }
 }, 300);
+
+$(window).on('resize', () => {
+  const currentURL = location.href;
+  runOnChange(currentURL);
+});
+
+const runOnChange = (url) => {
+  // in mail view do this regardless of reading pain shown or not
+  if(regexMail.test(url)){
+    ;
+  }
+
+  // reading pane is currently shown
+  if(regexConversation.test(url)){
+    showmainMenu();
+    const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
+    if(splitRight.length > 0) {
+      showReadingPane = true;
+      // hide concentrate view
+      // $btnMainMenu.hide();
+      // $btnMainMenu.click(false);
+      // hide control if width is not enough
+      if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
+        return true;
+      }
+    } else {
+      showReadingPane = false;
+    }
+
+    $allButtons.appendTo("body");
+    if(!btnControlShown){
+      $conversationButtons.hide();
+    } else {
+      $conversationButtons.show();
+    }
+    if(!mainMenuShown){
+      hidemainMenu();
+    }
+  } else {
+    $allButtons.detach();
+    showmainMenu();
+  }
+};
 
 const setNewMessages = (msg) => {
   let newMessage;
@@ -42,18 +87,13 @@ const setNewMessages = (msg) => {
 };
 
 $(document).ready(() => {
-  if(alternativeSearch){
-    setTimeout(setAltSearch, 1500);
-  }
-  toggleVisibility(lastUrl);
+  runOnChange(lastUrl);
+
+  // update icon badge with number of unread messages 
   if(displayNumMessages){
     const timer = setInterval(setNewMessages, 5000);
   } else {
     setNewMessages("");
   }
-  // in case "show reading pane" is selected
-  // but right-hand side is invisible, conversation control
-  // should be disabled;
-  toggleVisibility();
 });
 

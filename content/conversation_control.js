@@ -42,7 +42,7 @@ const btnCollapseLabel = () => {
 }
 
 const btnControlLabel = () => {
-  if(btnControlState == "shown"){
+  if(btnControlShown){
     return createImageLabel("svg/arrow-right-square.svg", "^,");
   } else {
     return createImageLabel("svg/arrow-left-square.svg", "^,");
@@ -93,7 +93,7 @@ $btnControl.attr('title', '^,');
 $btnControl.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 $btnMainMenu.on('click', () => {
-  if(mainMenuState === "hidden"){
+  if(!mainMenuShown){
     showmainMenu();
   } else {
     hidemainMenu();
@@ -147,12 +147,12 @@ $btnDown.on('click', () => {
 });
 
 $btnControl.on('click', () => {
-  if(btnControlState === "shown"){
+  if(btnControlShown){
     $conversationButtons.hide('slide', {direction: 'right'});
-    btnControlState = "hidden";
+    btnControlShown = false;
   } else {
     $conversationButtons.show('slide', {direction: 'right'});
-    btnControlState = "shown";
+    btnControlShown = true;
   }
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
 });
@@ -161,7 +161,7 @@ let originalmainMenuWidth1;
 let originalmainMenuWidth2;
 
 const showmainMenu = () => {
-  mainMenuState = "shown";
+  mainMenuShown = true;
   $("#conversation div.v-Toolbar, div.v-PageHeader").css("display", "");
   // application order is important
   $("div.v-Split--right").css("left", originalmainMenuWidth1);
@@ -169,7 +169,7 @@ const showmainMenu = () => {
 }
 //
 const hidemainMenu = () => {
-  mainMenuState = "hidden";
+  mainMenuShown = false;
   $("#conversation div.v-Toolbar, div.v-PageHeader").css("display", "none");
   // requesting order is important
   originalmainMenuWidth2 = $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left');
@@ -177,41 +177,4 @@ const hidemainMenu = () => {
   originalmainMenuWidth1 = $("div.v-Split--right").css("left");
   $("div.v-Split--right").css("left", "0px");
 }
-
-$(window).on('resize', () => {
-  const currentURL = location.href;
-  toggleVisibility(currentURL);
-});
-
-const toggleVisibility = (url) => {
-  if(regexConversation.test(url)){
-    showmainMenu();
-    const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
-    if(splitRight.length > 0) {
-      showReadingPane = true;
-      // hide concentrate view
-      // $btnMainMenu.hide();
-      // $btnMainMenu.click(false);
-      // hide control if width is not enough
-      if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
-        return true;
-      }
-    } else {
-      showReadingPane = false;
-    }
-
-    $allButtons.appendTo("body");
-    if(btnControlState === "hidden"){
-      $conversationButtons.hide();
-    } else {
-      $conversationButtons.show();
-    }
-    if(mainMenuState === "hidden"){
-      hidemainMenu();
-    }
-  } else {
-    $allButtons.detach();
-    showmainMenu();
-  }
-};
 
