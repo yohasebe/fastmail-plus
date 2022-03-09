@@ -11,7 +11,7 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Extra shortcut keys](#extra-shortcut-keys)
-- [Fix problem with IME in default search input](#fastmail-plus#fix-problem-in-using-ime-inside-search-box)
+- [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Other](#other)
 
 ## Installation
