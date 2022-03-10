@@ -27,7 +27,7 @@ const runOnChange = (url) => {
     }
 
     // check whether it is "Show reading pane mode"
-    const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
+    splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
       showReadingPane = true;
     } else {
