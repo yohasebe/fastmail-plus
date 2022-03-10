@@ -12,7 +12,7 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
-- [Visual Marking of Messages in Plain Text](#visual-marking-of-messages-in-plain-text)
+- [Visual marking of messages in plain Text](#visual-marking-of-messages-in-plain-text)
 - [Extra Reply-to Folding](#extra-reply-to-folding)
 
 ## Installation
