@@ -1,5 +1,3 @@
-let cursorPosition;
-
 // Move focus via up/down cursor keys in messages view
 const messageCursor = (e) => {
   if(e.which == 75 || e.which == 38){

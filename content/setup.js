@@ -1,15 +1,24 @@
-// Set Parameters retrieved from Chrome storage
+const regexMail = new RegExp('\/mail\/');
+const regexCalendar = new RegExp('\/calendar\/');
+const regexCompose = new RegExp('\/compose\/');
+const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 
 let displayNumMessages;
 let useCusrorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 
+let altSearchBoxTimer = null;
+let readingPaneControlPositionTimer = null;
+let cursorPosition;
+
 let btnControlShown = true;
 let mainMenuShown = true;
 let alternativeSearchShown = false;
 
 let lastUrl = null;
+
+// Set Parameters retrieved from Chrome storage
 
 const keys = [
   "displayNumMessages",
@@ -28,9 +37,4 @@ getSyncStorage().then((vals) => {
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
 });
-
-const regexMail = new RegExp('\/mail\/');
-const regexCalendar = new RegExp('\/calendar\/');
-const regexCompose = new RegExp('\/compose\/');
-const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 

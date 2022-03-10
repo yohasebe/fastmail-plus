@@ -19,9 +19,6 @@ const checkReadingPaneControlPosition = () => {
   }
 }
 
-let altSearchBoxTimer = null;
-let readingPaneControlPositionTimer = null;
-
 const runOnChange = (url) => {
   // currently in mail mode
   if(regexMail.test(url)){
