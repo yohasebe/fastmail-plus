@@ -4,7 +4,7 @@
 
 A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
-## Functionality
+## Functions
 
 - [Badge notification for unread messages to Inbox](#badge-notification-for-unread-messages-to-inbox)
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
@@ -12,7 +12,8 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
-- [Other](#other)
+- [Visual Marking of Messages in Plain Text](#visual-marking-of-messages-in-plain-text)
+- [Extra Reply-to Folding](#extra-reply-to-folding)
 
 ## Installation
 
@@ -66,13 +67,13 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 ### Change Focus Using Up/Down Cursor Keys
 
-When `Show reading pane` is selected in Fastmail Settings:
+When **Show reading pane** is selected in Fastmail Settings:
 
 `↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in reading pane in the right-hand side of the window.
 
-When `Hide reading pane` is selected in Fastmail Settings:
+When **Hide reading pane** is selected in Fastmail Settings:
 
-`↑` and `↓` cursor keys can be used (in addition to `J` and `K` )to move focus in messages panel.
+`↑` and `↓` cursor keys can be used (in addition to `J` and `K` )to move focus in conversation pane
 
 `↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in reading pane.
 
@@ -104,7 +105,7 @@ Fold the "reply-to" part of messages (when the message's  div has an `id` contai
 
 ## Advertisement
 
-Sign up for Fastmail through this link and get **10% off** for one year.
+**Sign up for Fastmail via this link and get 10% off for one year.**
 
 https://ref.fm/u27773408
 
