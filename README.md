@@ -94,10 +94,13 @@ If enabled, extra shortcut keys view will be added
 
 When entering Japanese (or some other language) in Fastmail's search input, using the IME to enter text requires pressing the Enter key before completing the input. Fastmail's Web UI performs the search at the moment the Enter key is hit even though the search string is completed. Fastmail Plus fixes this problem.
 
-### Other
+### Visual Marking of Messages in Plain Text
 
-- Visually show when the focused message is made in plain text (a gray vertical bar appears on the left border of the message box)
-- Fold the "reply-to" part of a message (when the div's `id` contains `appendonsend`)
+Visually show when the focused message is made in plain text (a gray vertical bar appears on the left border of the message box)
+
+### Extra Reply-to Folding
+
+Fold the "reply-to" part of messages (when the message's  div has an `id` containing `appendonsend`)
 
 ## Advertisement
 

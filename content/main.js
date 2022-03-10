@@ -27,17 +27,6 @@ const checkReadingPaneControlPosition = () => {
   }
 }
 
-// Periodically execute functions
-setInterval(() => {
-  runMiscActions();
-  checkCurrentURL();
-  checkReadingPaneControlPosition();
-  // show alternative search box if not yet
-  if(alternativeSearch && !alternativeSearchShown){
-    alternativeSearchShown = setAltSearch();
-  }
-}, 300);
-
 const runOnChange = (url) => {
   // reading pane is currently shown
   if(regexReadingPane.test(url)){
@@ -62,34 +51,45 @@ const runOnChange = (url) => {
   }
 };
 
-$(window).on('resize', () => {
-  checkReadingPaneControlPosition();
-});
-
-
-const setNewMessages = (msg) => {
-  let newMessage;
+const setNumNewMessages = (msg) => {
+  let numNewMessages;
   if(msg != undefined){
-    numMessages = msg;
+    numNewMessages = msg;
   } else {
-    numMessages = $("li.v-MailboxSource.v-MailboxSource--inbox span.v-MailboxSource-badge").first().text();
+    numNewMessages = $("li.v-MailboxSource.v-MailboxSource--inbox span.v-MailboxSource-badge").first().text();
   }
   if (chrome.runtime?.id) {
     chrome.runtime.sendMessage({
       type: "number",
-      value: numMessages
+      value: numNewMessages
     });
   }
 };
+
+// Periodically execute these functions
+setInterval(() => {
+  checkCurrentURL();
+  checkReadingPaneControlPosition();
+  colorPlainText();
+  foldQuote();
+  // show alternative search box if not yet
+  if(alternativeSearch && !alternativeSearchShown){
+    alternativeSearchShown = setAltSearch();
+  }
+}, 300);
+
+$(window).on('resize', () => {
+  checkReadingPaneControlPosition();
+});
 
 $(document).ready(() => {
   setTimeout(() => {runOnChange(lastUrl)}, 500);
 
   // update icon badge with number of unread messages
   if(displayNumMessages){
-    const timer = setInterval(setNewMessages, 10000);
+    const timer = setInterval(setNumNewMessages, 10000);
   } else {
-    setNewMessages("");
+    setNumNewMessages("");
   }
 });
 

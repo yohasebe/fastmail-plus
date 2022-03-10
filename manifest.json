@@ -22,14 +22,13 @@
         "libraries/jquery-3.6.0.min.js",
         "libraries/jquery-ui.min.js",
         "content/setup.js",
-        "content/quote_folding.js",
-        "content/plaintext_marker.js",
         "content/move_focus.js",
         "content/search_fix.js",
         "content/alternative_search.js",
         "content/reading_pane_control.js",
         "content/extra_shortcuts.js",
-        "content/misc_actions.js",
+        "content/color_plaintext.js",
+        "content/fold_quote.js",
         "content/main.js"
       ],
       "css": [
