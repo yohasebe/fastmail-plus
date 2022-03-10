@@ -1,11 +1,3 @@
-const checkCurrentURL = () => {
-  let url = location.href;
-  if (url !== lastUrl) {
-    lastUrl = url;
-    runOnChange(url);
-  }
-}
-
 const checkReadingPaneControlPosition = () => {
   let right = 20;
   let sidebar = $("div.v-ContextualSidebar");
@@ -27,25 +19,50 @@ const checkReadingPaneControlPosition = () => {
   }
 }
 
+let altSearchBoxTimer = null;
+let readingPaneControlPositionTimer = null;
+
 const runOnChange = (url) => {
-  // reading pane is currently shown
-  if(regexReadingPane.test(url)){
-    // this might seem redundant but is necessary
-    // in case composition is started (and done) from uncluttered mode
-    showmainMenu();
-
-    if(!mainMenuShown){
-      hidemainMenu();
+  // currently in mail mode
+  if(regexMail.test(url)){
+    if(!altSearchBoxTimer){
+      altSearchBoxTimer = setInterval(setAltSearchBox, 300);
     }
 
-    $allButtons.appendTo("body");
-    if(!btnControlShown){
-      $readingPaneButtons.hide();
-    } else {
-      $readingPaneButtons.show();
+    // reading pane is currently shown
+    if(regexReadingPane.test(url)){
+
+      if(!readingPaneControlPositionTimer){
+        readingPaneControlPositionTimer = setInterval(checkReadingPaneControlPosition, 300);
+      }
+
+      // this might seem redundant but is necessary
+      // in case composition is started (and done) from uncluttered mode
+      showmainMenu();
+
+      colorPlainText();
+      foldQuote();
+
+      if(!mainMenuShown){
+        hidemainMenu();
+      }
+
+      $allButtons.appendTo("body");
+      if(!btnControlShown){
+        $readingPaneButtons.hide();
+      } else {
+        $readingPaneButtons.show();
+      }
     }
 
+  // currently not in mail mode (calendar, contacts, etc.)
   } else {
+    if(altSearchBoxTimer !== null){
+      clearInterval(altSearchBoxTimer);
+    }
+    if(readingPaneControlPositionTimer){
+      clearInterval(readingPaneControlPositionTimer);
+    }
     $allButtons.detach();
     showmainMenu();
   }
@@ -66,20 +83,26 @@ const setNumNewMessages = (msg) => {
   }
 };
 
-// Periodically execute these functions
-setInterval(() => {
-  checkCurrentURL();
-  checkReadingPaneControlPosition();
-  colorPlainText();
-  foldQuote();
+const setAltSearchBox = () => {
   // show alternative search box if not yet
   if(alternativeSearch && !alternativeSearchShown){
     alternativeSearchShown = setAltSearch();
   }
+}
+
+// check current URL;
+setInterval(() => {
+  let url = location.href;
+  if (url !== lastUrl) {
+    lastUrl = url;
+    runOnChange(url);
+  }
 }, 300);
 
 $(window).on('resize', () => {
-  checkReadingPaneControlPosition();
+  if(readingPaneControlPositionTimer){
+    checkReadingPaneControlPosition();
+  }
 });
 
 $(document).ready(() => {

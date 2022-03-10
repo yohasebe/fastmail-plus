@@ -9,7 +9,7 @@ let btnControlShown = true;
 let mainMenuShown = true;
 let alternativeSearchShown = false;
 
-let lastUrl = location.href;
+let lastUrl = null;
 
 const keys = [
   "displayNumMessages",
