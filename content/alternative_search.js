@@ -1,5 +1,3 @@
-let searchMode = "anywhere";
-
 const $searchToggleLabel = ($('<span id="searchToggleLabel" style="margin-right:8px;">Anywhere</span>'));
 const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
 const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="width:130px; padding:0; margin-left:10px">'+

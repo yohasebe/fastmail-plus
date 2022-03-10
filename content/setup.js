@@ -8,6 +8,7 @@ let useCusrorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 
+let searchMode = "anywhere";
 let altSearchBoxTimer = null;
 let readingPaneControlPositionTimer = null;
 let showReadingPane = false;
