@@ -10,6 +10,8 @@ let alternativeSearch;
 
 let altSearchBoxTimer = null;
 let readingPaneControlPositionTimer = null;
+let showReadingPane = false;
+let focusOnMessage = true;
 let cursorPosition;
 
 let btnControlShown = true;

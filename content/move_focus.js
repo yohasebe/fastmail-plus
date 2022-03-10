@@ -13,6 +13,7 @@ const messageCursor = (e) => {
       target = $("li.v-MailboxItem.u-list-item").first();
     }
     cursorPosition = target.attr('id');
+    // target.find("div.v-MailboxItem-from").first().click();
     target.find("label").first().click().click();
   } else if(e.which == 74 || e.which == 40) {
     e.preventDefault();
@@ -27,6 +28,7 @@ const messageCursor = (e) => {
       target = $("li.v-MailboxItem.u-list-item").first();
     }
     cursorPosition = target.attr("id");
+    // target.find("div.v-MailboxItem-from").first().click();
     target.find("label").first().click().click();
   }
 }

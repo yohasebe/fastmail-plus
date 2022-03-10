@@ -8,14 +8,14 @@ const checkReadingPaneControlPosition = () => {
     "right": right + "px"
   });
 
-  const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
-  if(splitRight.length > 0) {
+  if(showReadingPane) {
     if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
       $allButtons.hide();
     } else {
       $allButtons.show();
     }
   } else {
+    ;
   }
 }
 
@@ -24,6 +24,14 @@ const runOnChange = (url) => {
   if(regexMail.test(url)){
     if(!altSearchBoxTimer){
       altSearchBoxTimer = setInterval(setAltSearchBox, 300);
+    }
+
+    // check whether it is "Show reading pane mode"
+    const splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
+    if(splitRight.length > 0) {
+      showReadingPane = true;
+    } else {
+      showReadingPane = false;
     }
 
     // reading pane is currently shown
