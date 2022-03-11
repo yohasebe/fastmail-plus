@@ -65,19 +65,19 @@ const runOnChange = (url) => {
       } else {
         $readingPaneButtons.show();
       }
+      return true;
     }
-
-    // currently not in mail mode (calendar, contacts, etc.)
-  } else {
-    if(altSearchBoxTimer !== null){
-      clearInterval(altSearchBoxTimer);
-    }
-    if(readingPaneControlPositionTimer){
-      clearInterval(readingPaneControlPositionTimer);
-    }
-    $allButtons.detach();
-    showmainMenu();
   }
+
+  // if mailbox view or non-mail views
+  if(altSearchBoxTimer !== null){
+    clearInterval(altSearchBoxTimer);
+  }
+  if(readingPaneControlPositionTimer){
+    clearInterval(readingPaneControlPositionTimer);
+  }
+  $allButtons.detach();
+  showmainMenu();
 };
 
 const setNumNewMessages = (msg) => {
