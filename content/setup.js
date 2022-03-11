@@ -8,18 +8,17 @@ let useCusrorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 
-let splitRight;
+let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
 let readingPaneControlPositionTimer = null;
 let focusOnMessage = true;
-let showReadingPane;
-let cursorPosition;
-let leftOrRight;
 let firstTimeReady = false;
 let btnControlShown = true;
 let mainMenuShown = true;
-
-let lastUrl = "https://fastmail.com";
+let splitRight;
+let splitPanes;
+let cursorPosition;
+let leftOrRight;
 
 // Set Parameters retrieved from Chrome storage
 

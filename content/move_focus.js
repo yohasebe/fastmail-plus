@@ -1,22 +1,10 @@
-let leftRightTimer;
-
 const indicateLeftRight = (side) => {
-  if(leftRightTimer){
-    clearTimeout(leftRightTimer);
-  }
-
   if(leftOrRight === "left"){
     $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
     $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
-    // leftRightTimer = setTimeout(() => {
-    //   $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff", "transition": "box-shadow 0.4s ease-in-out"});
-    // }, 1000);
   } else {
     $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
     $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
-    // leftRightTimer = setTimeout(() => {
-    //   $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff", "transition": "box-shadow 0.4s ease-in-out"});
-    // }, 1000);
   }
 }
 
@@ -30,21 +18,21 @@ $("div#conversation div.v-MessageCard").on("click", () => {
 
 const moveCursor = (e) => {
   if(e.which === 13 || e.which === 39){
-    if(showReadingPane){
+    if(splitPanes){
       leftOrRight = "right";
       indicateLeftRight("right")
       e.preventDefault();
       e.stopImmediatePropagation();
     }
   } else if(e.which === 37){
-    if(showReadingPane){
+    if(splitPanes){
       leftOrRight = "left";
       indicateLeftRight("left");
       e.preventDefault();
       e.stopImmediatePropagation();
     }
   } else if(e.which === 75 || e.which === 38){
-    if(showReadingPane){
+    if(splitPanes){
       indicateLeftRight("left");
     }
     e.preventDefault();
@@ -61,7 +49,7 @@ const moveCursor = (e) => {
     cursorPosition = target.attr('id');
     target.click();
   } else if(e.which === 74 || e.which === 40) {
-    if(showReadingPane){
+    if(splitPanes){
       indicateLeftRight("left");
     }
     e.preventDefault();
@@ -120,14 +108,14 @@ const readingPaneCursor = (e) => {
   if(useCusrorKeys){
     if(!$("input").is(":focus")) {
       if(e.which === 39){
-        if(showReadingPane){
+        if(splitPanes){
           leftOrRight = "right";
           indicateLeftRight("right");
           e.preventDefault();
           e.stopImmediatePropagation();
         }
       } else if(e.which === 37){
-        if(showReadingPane){
+        if(splitPanes){
           leftOrRight = "left";
           indicateLeftRight("left");
           e.preventDefault();
@@ -135,7 +123,7 @@ const readingPaneCursor = (e) => {
         }
       // P or ↑ => Previous
       } else if (e.which === 80 || (e.which === 38)){
-        if(showReadingPane){
+        if(splitPanes){
           indicateLeftRight("right");
         }
         e.preventDefault();
@@ -143,7 +131,7 @@ const readingPaneCursor = (e) => {
         $btnUp.click();
         // N or ↓ => Next
       } else if (e.which === 78 || (e.which === 40)){
-        if(showReadingPane){
+        if(splitPanes){
           indicateLeftRight("right");
         }
         e.preventDefault();

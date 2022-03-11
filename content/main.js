@@ -8,24 +8,24 @@ const checkReadingPaneControlPosition = () => {
     "right": right + "px"
   });
 
-  if(showReadingPane) {
+  if(splitPanes) {
     if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
       $allButtons.hide();
     } else {
       $allButtons.show();
     }
   } else {
-    ;
+    if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
+      $allButtons.hide();
+    } else {
+      $allButtons.show();
+    }
   }
 }
 
 const runOnChange = (url) => {
   // currently in mail mode
   if(regexMail.test(url)){
-
-    if(leftOrRight == undefined){
-      leftOrRight = "left";
-    }
 
     const selected = $(`a.v-MailboxItem-link[href*='${url}']`);
     if(selected.length > 0){
@@ -35,7 +35,7 @@ const runOnChange = (url) => {
     // check whether it is "Show reading pane mode"
     splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
-      showReadingPane = true;
+      splitPanes = true;
 
       $("body").on("click", (e) => {
         if (e.target.id == "conversation" || $(e.target).parents("#conversation").length ||
@@ -48,8 +48,15 @@ const runOnChange = (url) => {
         }
       });
     } else {
-      showReadingPane = false;
+      splitPanes = false;
       $("body").off("click");
+    }
+
+    if(leftOrRight == undefined){
+      leftOrRight = "left";
+      if(splitPanes){
+        indicateLeftRight("left");
+      }
     }
 
     // reading pane is currently shown
@@ -141,5 +148,3 @@ const checkFirstTimeReady = () => {
 $(document).ready(() => {
   checkFirstTimeReady();
 });
-
-

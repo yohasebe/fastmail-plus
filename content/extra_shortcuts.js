@@ -67,7 +67,7 @@ const shortcutHandler = (e) => {
 
       if (regexCompose.test(lastUrl)){
         ;
-      } else if(showReadingPane) {
+      } else if(splitPanes) {
         // Control + L => Toggle non-clutter mode
         if (e.ctrlKey && e.which === 76){
           togglemainMenu();
