@@ -29,10 +29,7 @@ $("div#conversation div.v-MessageCard").on("click", () => {
 });
 
 const moveCursor = (e) => {
-  if(e.which === 13){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  } else if(e.which === 39){
+  if(e.which === 13 || e.which === 39){
     if(showReadingPane){
       leftOrRight = "right";
       changeLeftRight("right")
