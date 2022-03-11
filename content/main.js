@@ -36,8 +36,20 @@ const runOnChange = (url) => {
     splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
       showReadingPane = true;
+
+      $("body").on("click", (e) => {
+        if (e.target.id == "conversation" || $(e.target).parents("#conversation").length ||
+          e.target.id == "allButtons" || $(e.target).parents("#allButtons").length) {
+          leftOrRight = "right"
+          indicateLeftRight("right");
+        } else if (e.target.id == "mailbox" || $(e.target).parents("#mailbox").length) {
+          leftOrRight = "left"
+          indicateLeftRight("left");
+        }
+      });
     } else {
       showReadingPane = false;
+      $("body").off("click");
     }
 
     // reading pane is currently shown
@@ -68,17 +80,6 @@ const runOnChange = (url) => {
       $allButtons.detach();
       showmainMenu();
     }
-
-    $("body").on("click", (e) => {
-      if (e.target.id == "conversation" || $(e.target).parents("#conversation").length ||
-          e.target.id == "allButtons" || $(e.target).parents("#allButtons").length) {
-        leftOrRight = "right"
-        indicateLeftRight("right");
-      } else if (e.target.id == "mailbox" || $(e.target).parents("#mailbox").length) {
-        leftOrRight = "left"
-        indicateLeftRight("left");
-      }
-    });
   } else {
     $("body").off("click");
     if(readingPaneControlPositionTimer){
