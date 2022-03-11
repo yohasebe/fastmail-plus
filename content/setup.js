@@ -10,18 +10,14 @@ let alternativeSearch;
 
 let splitRight;
 let searchMode = "anywhere";
-let altSearchBoxTimer = null;
 let readingPaneControlPositionTimer = null;
-// let leftOrRightTimer = null;
 let focusOnMessage = true;
 let showReadingPane;
 let cursorPosition;
 let leftOrRight;
 let firstTimeReady = false;
-
 let btnControlShown = true;
 let mainMenuShown = true;
-let alternativeSearchShown = false;
 
 let lastUrl = "https://fastmail.com";
 

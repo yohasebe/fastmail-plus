@@ -27,9 +27,6 @@ const runOnChange = (url) => {
 
   // currently in mail mode
   if(regexMail.test(url)){
-    if(!altSearchBoxTimer){
-      altSearchBoxTimer = setInterval(setAltSearchBox, 300);
-    }
 
     const selected = $(`a.v-MailboxItem-link[href*='${url}']`);
     if(selected.length > 0){
@@ -69,10 +66,6 @@ const runOnChange = (url) => {
     }
   }
 
-  // if mailbox view or non-mail views
-  if(altSearchBoxTimer !== null){
-    clearInterval(altSearchBoxTimer);
-  }
   if(readingPaneControlPositionTimer){
     clearInterval(readingPaneControlPositionTimer);
   }
@@ -95,13 +88,6 @@ const setNumNewMessages = (msg) => {
   }
 };
 
-const setAltSearchBox = () => {
-  // show alternative search box if not yet
-  if(alternativeSearch && !alternativeSearchShown){
-    alternativeSearchShown = setAltSearch();
-  }
-}
-
 // check current URL;
 setInterval(() => {
   let url = location.href;
@@ -121,15 +107,17 @@ const checkFirstTimeReady = () => {
   let t1 = setInterval(() => {
     if($("div#mailbox").length > 0){
       runOnChange(lastUrl);
-
-      // update icon badge with number of unread messages
-      if(displayNumMessages){
-        const timer = setInterval(setNumNewMessages, 10000);
-      } else {
-        setNumNewMessages("");
+      if(alternativeSearch) {
+        setAltSearch();
       }
-      clearInterval(t1);
     }
+    // update icon badge with number of unread messages
+    if(displayNumMessages){
+      const timer = setInterval(setNumNewMessages, 10000);
+    } else {
+      setNumNewMessages("");
+    }
+    clearInterval(t1);
   }, 300);
 }
 
