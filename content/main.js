@@ -20,13 +20,12 @@ const checkReadingPaneControlPosition = () => {
 }
 
 const runOnChange = (url) => {
-
-  if(leftOrRight == undefined){
-    leftOrRight = "left";
-  }
-
   // currently in mail mode
   if(regexMail.test(url)){
+
+    if(leftOrRight == undefined){
+      leftOrRight = "left";
+    }
 
     const selected = $(`a.v-MailboxItem-link[href*='${url}']`);
     if(selected.length > 0){
@@ -62,15 +61,32 @@ const runOnChange = (url) => {
       } else {
         $readingPaneButtons.show();
       }
-      return true;
+    } else {
+      if(readingPaneControlPositionTimer){
+        clearInterval(readingPaneControlPositionTimer);
+      }
+      $allButtons.detach();
+      showmainMenu();
     }
-  }
 
-  if(readingPaneControlPositionTimer){
-    clearInterval(readingPaneControlPositionTimer);
+    $("body").on("click", (e) => {
+      if (e.target.id == "conversation" || $(e.target).parents("#conversation").length ||
+          e.target.id == "allButtons" || $(e.target).parents("#allButtons").length) {
+        leftOrRight = "right"
+        indicateLeftRight("right");
+      } else if (e.target.id == "mailbox" || $(e.target).parents("#mailbox").length) {
+        leftOrRight = "left"
+        indicateLeftRight("left");
+      }
+    });
+  } else {
+    $("body").off("click");
+    if(readingPaneControlPositionTimer){
+      clearInterval(readingPaneControlPositionTimer);
+    }
+    $allButtons.detach();
+    showmainMenu();
   }
-  $allButtons.detach();
-  showmainMenu();
 };
 
 const setNumNewMessages = (msg) => {
@@ -110,18 +126,19 @@ const checkFirstTimeReady = () => {
       if(alternativeSearch) {
         setAltSearch();
       }
+      clearInterval(t1);
+      // update icon badge with number of unread messages
+      if(displayNumMessages){
+        const timer = setInterval(setNumNewMessages, 10000);
+      } else {
+        setNumNewMessages("");
+      }
     }
-    // update icon badge with number of unread messages
-    if(displayNumMessages){
-      const timer = setInterval(setNumNewMessages, 10000);
-    } else {
-      setNumNewMessages("");
-    }
-    clearInterval(t1);
   }, 300);
 }
 
 $(document).ready(() => {
   checkFirstTimeReady();
 });
+
 
