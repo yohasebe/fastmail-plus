@@ -127,7 +127,10 @@ $btnUp.on('click', () => {
   if (focused.length == 0){
     $("div.v-MessageCard.app-contentCard").last().addClass("is-focused");
   } else {
-    if (focused.prev().length > 0){
+    if (focused.prev().length == 0) {
+     $("div#conversation div.v-Page-content").get(0).scrollTop = 0;
+     // $("h1.v-Thread-title").get(0).scrollIntoView({behavior: 'smooth', block: 'start'});
+    } else if (focused.prev().length > 0){
       let newFocus = focused.removeClass("is-focused").prev().addClass("is-focused");
       newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'nearest'});
     }

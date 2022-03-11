@@ -6,10 +6,10 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 
 ## Functions
 
+- [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Badge notification for unread messages to Inbox](#badge-notification-for-unread-messages-to-inbox)
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
-- [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Visual marking of messages in plain Text](#visual-marking-of-messages-in-plain-text)
@@ -28,6 +28,23 @@ In preparation
 3. Click "Load unpacked" button and specify the folder downloaded from GitHub
 
 ## Description/Usage
+
+### Change Focus Using Up/Down Cursor Keys
+
+When **Show reading pane** is selected in Fastmail Settings:
+
+Press `←` to select mailbox pane, and `→` to select reading pane.
+
+`↑` and `↓` cursor keys can be used (in addition to `J` and `K`) to change focus inside mailbox pane.
+
+`↑` and `↓` cursor keys can be used (in addition to `P` and `N`) to change focus inside reading pane.
+
+
+When **Hide reading pane** is selected in Fastmail Settings:
+
+`↑` and `↓` cursor keys can be used (in addition to `J` and `K`) to change focus inside mailbox pane. 
+
+`↑` and `↓` cursor keys can be used (in addition to `P` and `N`) to change focus inside reading pane.
 
 ### Badge notification for unread messages to Inbox
 
@@ -64,18 +81,6 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 <br />
 
 ![reading-pane-control](https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif)
-
-### Change Focus Using Up/Down Cursor Keys
-
-When **Show reading pane** is selected in Fastmail Settings:
-
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in reading pane in the right-hand side of the window.
-
-When **Hide reading pane** is selected in Fastmail Settings:
-
-`↑` and `↓` cursor keys can be used (in addition to `J` and `K` )to move focus in conversation pane
-
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N` )to move focus in reading pane.
 
 ### Extra Shortcut Keys
 

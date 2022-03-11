@@ -1,6 +1,6 @@
 let leftRightTimer;
 
-const changeLeftRight = (side) => {
+const indicateLeftRight = (side) => {
   if(leftRightTimer){
     clearTimeout(leftRightTimer);
   }
@@ -32,20 +32,20 @@ const moveCursor = (e) => {
   if(e.which === 13 || e.which === 39){
     if(showReadingPane){
       leftOrRight = "right";
-      changeLeftRight("right")
+      indicateLeftRight("right")
       e.preventDefault();
       e.stopImmediatePropagation();
     }
   } else if(e.which === 37){
     if(showReadingPane){
       leftOrRight = "left";
-      changeLeftRight("left");
+      indicateLeftRight("left");
       e.preventDefault();
       e.stopImmediatePropagation();
     }
   } else if(e.which === 75 || e.which === 38){
     if(showReadingPane){
-      changeLeftRight("left");
+      indicateLeftRight("left");
     }
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -62,7 +62,7 @@ const moveCursor = (e) => {
     target.click();
   } else if(e.which === 74 || e.which === 40) {
     if(showReadingPane){
-      changeLeftRight("left");
+      indicateLeftRight("left");
     }
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -122,21 +122,21 @@ const readingPaneCursor = (e) => {
       if(e.which === 39){
         if(showReadingPane){
           leftOrRight = "right";
-          changeLeftRight("right");
+          indicateLeftRight("right");
           e.preventDefault();
           e.stopImmediatePropagation();
         }
       } else if(e.which === 37){
         if(showReadingPane){
           leftOrRight = "left";
-          changeLeftRight("left");
+          indicateLeftRight("left");
           e.preventDefault();
           e.stopImmediatePropagation();
         }
       // P or ↑ => Previous
       } else if (e.which === 80 || (e.which === 38)){
         if(showReadingPane){
-          changeLeftRight("right");
+          indicateLeftRight("right");
         }
         e.preventDefault();
         e.stopImmediatePropagation();
@@ -144,7 +144,7 @@ const readingPaneCursor = (e) => {
         // N or ↓ => Next
       } else if (e.which === 78 || (e.which === 40)){
         if(showReadingPane){
-          changeLeftRight("right");
+          indicateLeftRight("right");
         }
         e.preventDefault();
         e.stopImmediatePropagation();
