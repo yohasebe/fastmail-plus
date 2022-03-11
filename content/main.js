@@ -20,10 +20,21 @@ const checkReadingPaneControlPosition = () => {
 }
 
 const runOnChange = (url) => {
+
+  if(leftOrRight == undefined){
+    leftOrRight = "left";
+  }
+  changeLeftRight(leftOrRight);
+
   // currently in mail mode
   if(regexMail.test(url)){
     if(!altSearchBoxTimer){
       altSearchBoxTimer = setInterval(setAltSearchBox, 300);
+    }
+
+    const selected = $(`a.v-MailboxItem-link[href*='${url}']`);
+    if(selected.length > 0){
+      cursorPosition = selected.parent().attr("id");
     }
 
     // check whether it is "Show reading pane mode"
@@ -36,7 +47,7 @@ const runOnChange = (url) => {
 
     // reading pane is currently shown
     if(regexReadingPane.test(url)){
-
+      
       if(!readingPaneControlPositionTimer){
         readingPaneControlPositionTimer = setInterval(checkReadingPaneControlPosition, 300);
       }
@@ -99,8 +110,8 @@ const setAltSearchBox = () => {
 setInterval(() => {
   let url = location.href;
   if (url !== lastUrl) {
-    lastUrl = url;
     runOnChange(url);
+    lastUrl = url;
   }
 }, 300);
 
@@ -119,5 +130,6 @@ $(document).ready(() => {
   } else {
     setNumNewMessages("");
   }
+
 });
 

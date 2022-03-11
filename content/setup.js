@@ -15,12 +15,13 @@ let readingPaneControlPositionTimer = null;
 let showReadingPane = false;
 let focusOnMessage = true;
 let cursorPosition;
+let leftOrRight;
 
 let btnControlShown = true;
 let mainMenuShown = true;
 let alternativeSearchShown = false;
 
-let lastUrl = null;
+let lastUrl = "https://fastmail.com";
 
 // Set Parameters retrieved from Chrome storage
 

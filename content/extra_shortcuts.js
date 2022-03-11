@@ -64,23 +64,28 @@ const shortcutHandler = (e) => {
           hideTooltips();
         }
       }
-      // Reading pane is shown 
-      if(regexReadingPane.test(lastUrl)){
-        if(alternativeShortcutKeys) {
-          readingPaneShortcuts(e);
-        }
-        if(useCusrorKeys){
-          readingPaneCursor(e);
-        }
-      // Compose view
-      } else if (regexCompose.test(lastUrl)){
+
+      if (regexCompose.test(lastUrl)){
         ;
-      // Message view
+      } else if(showReadingPane && leftOrRight == "left"){
+          if(useCusrorKeys){
+            moveCursor(e);
+          }
       } else {
-        if(useCusrorKeys){
-          messageCursor(e);
+        if(regexReadingPane.test(lastUrl)){
+          if(alternativeShortcutKeys) {
+            readingPaneShortcuts(e);
+          }
+          if(useCusrorKeys){
+            readingPaneCursor(e);
+          }
+        } else {
+          if(useCusrorKeys){
+            messageCursor(e);
+          }
         }
       }
+
     }
   }
 }
