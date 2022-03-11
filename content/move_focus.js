@@ -10,13 +10,13 @@ const indicateLeftRight = (side) => {
     $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
     leftRightTimer = setTimeout(() => {
       $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff", "transition": "box-shadow 0.4s ease-in-out"});
-    }, 1500);
+    }, 1000);
   } else {
     $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
     $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
     leftRightTimer = setTimeout(() => {
       $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff", "transition": "box-shadow 0.4s ease-in-out"});
-    }, 1500);
+    }, 1000);
   }
 }
 
