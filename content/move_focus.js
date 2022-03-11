@@ -9,11 +9,24 @@ const changeLeftRight = (side) => {
   } 
 }
 
+$("div#mailbox div.v-MailboxItem").on("click", () => {
+  changeleftright("left");
+});
+
+$("div#conversation div.v-MessageCard").on("click", () => {
+  changeleftright("right");
+});
+
 const moveCursor = (e) => {
-  if(e.which === 39){
-    changeLeftRight("right")
+  if(e.which === 13){
     e.preventDefault();
     e.stopImmediatePropagation();
+  } else if(e.which === 39){
+    if(showReadingPane){
+      changeLeftRight("right")
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
   } else if(e.which === 75 || e.which === 38){
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -85,9 +98,11 @@ const readingPaneCursor = (e) => {
   if(useCusrorKeys){
     if(!$("input").is(":focus")) {
       if(e.which === 37){
-        changeLeftRight("left");
-        e.preventDefault();
-        e.stopImmediatePropagation();
+        if(showReadingPane){
+          changeLeftRight("left");
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
       // P or ↑ => Previous
       } else if (e.which === 80 || (e.which === 38)){
         e.preventDefault();

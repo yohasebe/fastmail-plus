@@ -67,10 +67,19 @@ const shortcutHandler = (e) => {
 
       if (regexCompose.test(lastUrl)){
         ;
-      } else if(showReadingPane && leftOrRight == "left"){
-          if(useCusrorKeys){
-            moveCursor(e);
+      } else if(showReadingPane) {
+        if(leftOrRight == "right"){
+          if(alternativeShortcutKeys) {
+            readingPaneShortcuts(e);
           }
+          if(useCusrorKeys){
+            readingPaneCursor(e);
+          }
+        } else {
+          if(useCusrorKeys){
+             moveCursor(e);
+          }
+        }
       } else {
         if(regexReadingPane.test(lastUrl)){
           if(alternativeShortcutKeys) {
@@ -80,9 +89,7 @@ const shortcutHandler = (e) => {
             readingPaneCursor(e);
           }
         } else {
-          if(useCusrorKeys){
-            messageCursor(e);
-          }
+          messageCursor(e);
         }
       }
 

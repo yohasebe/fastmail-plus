@@ -24,7 +24,6 @@ const runOnChange = (url) => {
   if(leftOrRight == undefined){
     leftOrRight = "left";
   }
-  changeLeftRight(leftOrRight);
 
   // currently in mail mode
   if(regexMail.test(url)){
@@ -41,21 +40,19 @@ const runOnChange = (url) => {
     splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
       showReadingPane = true;
+      changeLeftRight(leftOrRight);
     } else {
       showReadingPane = false;
     }
 
     // reading pane is currently shown
     if(regexReadingPane.test(url)){
-      
+
       if(!readingPaneControlPositionTimer){
         readingPaneControlPositionTimer = setInterval(checkReadingPaneControlPosition, 300);
       }
 
-      // this might seem redundant but is necessary
-      // in case composition is started (and done) from uncluttered mode
       showmainMenu();
-
       colorPlainText();
       foldQuote();
 
@@ -71,7 +68,7 @@ const runOnChange = (url) => {
       }
     }
 
-  // currently not in mail mode (calendar, contacts, etc.)
+    // currently not in mail mode (calendar, contacts, etc.)
   } else {
     if(altSearchBoxTimer !== null){
       clearInterval(altSearchBoxTimer);
@@ -121,15 +118,23 @@ $(window).on('resize', () => {
   }
 });
 
+const checkFirstTimeReady = () => {
+  let t1 = setInterval(() => {
+    if($("div#mailbox").length > 0){
+      runOnChange(lastUrl);
+
+      // update icon badge with number of unread messages
+      if(displayNumMessages){
+        const timer = setInterval(setNumNewMessages, 10000);
+      } else {
+        setNumNewMessages("");
+      }
+      clearInterval(t1);
+    }
+  }, 300);
+}
+
 $(document).ready(() => {
-  setTimeout(() => {runOnChange(lastUrl)}, 500);
-
-  // update icon badge with number of unread messages
-  if(displayNumMessages){
-    const timer = setInterval(setNumNewMessages, 10000);
-  } else {
-    setNumNewMessages("");
-  }
-
+  checkFirstTimeReady();
 });
 
