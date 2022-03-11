@@ -40,7 +40,6 @@ const runOnChange = (url) => {
     splitRight = $("div.v-Hierarchy.v-Page-content div.v-Split--right");
     if(splitRight.length > 0) {
       showReadingPane = true;
-      changeLeftRight(leftOrRight);
     } else {
       showReadingPane = false;
     }
