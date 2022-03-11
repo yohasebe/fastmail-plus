@@ -23,7 +23,7 @@ const shortcutHandler = (e) => {
   // These work even inside textbox/input
   // Mail view
   if(regexMail.test(lastUrl)){
-    // Ctrl + i => toggle right panel
+    // Ctrl + I => toggle right panel
     if (e.ctrlKey && e.shiftKey && e.which === 73){
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -68,7 +68,10 @@ const shortcutHandler = (e) => {
       if (regexCompose.test(lastUrl)){
         ;
       } else if(showReadingPane) {
-        if(leftOrRight == "right"){
+        // Control + L => Toggle non-clutter mode
+        if (e.ctrlKey && e.which === 76){
+          togglemainMenu();
+        } else if(leftOrRight == "right"){
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
@@ -82,6 +85,10 @@ const shortcutHandler = (e) => {
         }
       } else {
         if(regexReadingPane.test(lastUrl)){
+          // Control + L => Toggle non-clutter mode
+          if (e.ctrlKey && e.which === 76){
+            togglemainMenu();
+          }
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
@@ -116,11 +123,8 @@ const calendarShortcuts = (e) => {
 }
 
 const readingPaneShortcuts = (e) => {
-  // Control + S => Toggle mainMenu
-  if (e.ctrlKey && e.which === 76){
-    togglemainMenu();
-    // Shift + alt + (E or Enter) => Shrink
-  } else if (e.shiftKey && e.altKey && (e.which === 69 || e.which === 13)){
+  // Shift + alt + (E or Enter) => Shrink
+  if (e.shiftKey && e.altKey && (e.which === 69 || e.which === 13)){
     e.preventDefault();
     e.stopImmediatePropagation();
     $btnCollapse.click();
