@@ -17,6 +17,7 @@ $("div#conversation div.v-MessageCard").on("click", () => {
 });
 
 const moveCursor = (e) => {
+  // Enter or →
   if(e.which === 13 || e.which === 39){
     if(splitPanes){
       leftOrRight = "right";
@@ -24,6 +25,7 @@ const moveCursor = (e) => {
       e.preventDefault();
       e.stopImmediatePropagation();
     }
+  // ←
   } else if(e.which === 37){
     if(splitPanes){
       leftOrRight = "left";
@@ -31,12 +33,19 @@ const moveCursor = (e) => {
       e.preventDefault();
       e.stopImmediatePropagation();
     }
+  // K or ↑
   } else if(e.which === 75 || e.which === 38){
     if(splitPanes){
       indicateLeftRight("left");
     }
     e.preventDefault();
     e.stopImmediatePropagation();
+
+    const focused = $("li.v-MailboxItem.u-list-item.is-focused");
+    if(focused){
+      cursorPosition = focused.attr("id");
+    }
+
     let target;
     if(cursorPosition){
       target = $('#' + cursorPosition).prev();
@@ -48,12 +57,19 @@ const moveCursor = (e) => {
     }
     cursorPosition = target.attr('id');
     target.click();
+  // J or ↓
   } else if(e.which === 74 || e.which === 40) {
     if(splitPanes){
       indicateLeftRight("left");
     }
     e.preventDefault();
     e.stopImmediatePropagation();
+
+    const focused = $("li.v-MailboxItem.u-list-item.is-focused");
+    if(focused){
+      cursorPosition = focused.attr("id");
+    }
+
     let target;
     if(cursorPosition){
       target = $('#' + cursorPosition).next();
@@ -70,6 +86,7 @@ const moveCursor = (e) => {
 
 // Move focus via up/down cursor keys in messages view
 const messageCursor = (e) => {
+  // K or ↑
   if(e.which === 75 || e.which === 38){
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -85,6 +102,7 @@ const messageCursor = (e) => {
     cursorPosition = target.attr('id');
     // target.find("div.v-MailboxItem-from").first().click();
     target.find("label").first().click().click();
+  // J or ↓
   } else if(e.which === 74 || e.which === 40) {
     e.preventDefault();
     e.stopImmediatePropagation();

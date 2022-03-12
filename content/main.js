@@ -9,7 +9,7 @@ const checkReadingPaneControlPosition = () => {
   });
 
   if(splitPanes) {
-    if(parseInt(splitRight[0].getBoundingClientRect().width) < 400){
+    if(parseInt($("div#mailbox")[0].getBoundingClientRect().width) < 400){
       $allButtons.hide();
     } else {
       $allButtons.show();
@@ -112,28 +112,16 @@ const setNumNewMessages = (msg) => {
   }
 };
 
-// check current URL;
-setInterval(() => {
-  let url = location.href;
-  if (url !== lastUrl) {
-    runOnChange(url);
-    lastUrl = url;
-  }
-}, 300);
-
-$(window).on('resize', () => {
-  if(readingPaneControlPositionTimer){
-    checkReadingPaneControlPosition();
-  }
-});
-
 const checkFirstTimeReady = () => {
   let t1 = setInterval(() => {
     if($("div#mailbox").length > 0){
+
       runOnChange(lastUrl);
+
       if(alternativeSearch) {
         setAltSearch();
       }
+
       clearInterval(t1);
       // update icon badge with number of unread messages
       if(displayNumMessages){
@@ -141,6 +129,22 @@ const checkFirstTimeReady = () => {
       } else {
         setNumNewMessages("");
       }
+
+      // check current URL;
+      setInterval(() => {
+        let url = location.href;
+        if (url !== lastUrl) {
+          runOnChange(url);
+          lastUrl = url;
+        }
+      }, 300);
+
+      $(window).on('resize', () => {
+        if(readingPaneControlPositionTimer){
+          checkReadingPaneControlPosition();
+        }
+      });
+
     }
   }, 300);
 }
