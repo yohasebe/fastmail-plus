@@ -54,9 +54,9 @@ const runOnChange = (url) => {
 
     if(leftOrRight == undefined){
       leftOrRight = "left";
-      if(splitPanes){
-        indicateLeftRight("left");
-      }
+    }
+    if(splitPanes){
+      indicateLeftRight("left");
     }
 
     // reading pane is currently shown
