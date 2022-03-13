@@ -7,4 +7,3 @@ if(ua.indexOf("mac os x") !== -1) {
     }
   });
 }
-

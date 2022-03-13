@@ -93,4 +93,3 @@ const setAltSearch = () => {
 
   return true;
 };
-
