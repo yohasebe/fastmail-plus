@@ -1,22 +1,3 @@
-////////////////////
-// CURRENTLY UNUSED
-////////////////////
-// Switch between plain text / HTML via shortcut key of Ctrl + V
-const toggleViewHTML = () => {
-  let focused = $("div.v-MessageCard.app-contentCard.is-focused.is-expanded");
-  if(focused.length >= 0){
-    focused.find("button.s-message-actions").first().click();
-    setTimeout(() => {
-      let viewAs = $('button:contains("View as")');
-      if(viewAs.length){
-        viewAs.click();
-      } else {
-        ;
-      }
-    }, 300)
-  }
-}
-
 // Handle extra shortcuts
 const shortcutHandler = (e) => {
 

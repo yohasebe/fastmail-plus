@@ -19,7 +19,7 @@ $("div#conversation div.v-MessageCard").on("click", () => {
 const moveCursor = (e) => {
   // Enter or →
   if(e.which === 13 || e.which === 39){
-    if(splitPanes){
+    if(splitPanes && $("div.v-Empty").length == 0){
       leftOrRight = "right";
       indicateLeftRight("right")
       e.preventDefault();
