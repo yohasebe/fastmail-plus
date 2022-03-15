@@ -2,7 +2,7 @@
 
 A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
-<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus.png?raw=true' width="800" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus.png?raw=true' width="680" />
 
 ## Features
 
