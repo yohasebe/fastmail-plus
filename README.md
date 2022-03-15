@@ -1,14 +1,12 @@
 # Fastmail Plus (Chrome Extension)
 
-![](https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-128.png?raw=true)
-
 A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
-<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus.png?raw=true' width="36" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus.png?raw=true' width="800" />
 
 ## Features
 
-- [Change focus using `↑` and `↓` cursor keys](#change-focus-using-updown-cursor-keys)
+- [Change focus using `↑` `↓` `←` `→` cursor keys](#change-focus-using-updown-cursor-keys)
 - [Badge notification for unread messages to Inbox](#badge-notification-for-unread-messages-to-inbox)
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
