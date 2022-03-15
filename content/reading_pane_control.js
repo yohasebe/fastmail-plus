@@ -180,4 +180,3 @@ const hidemainMenu = () => {
   originalmainMenuWidth1 = $("div.v-Split--right").css("left");
   $("div.v-Split--right").css("left", "0px");
 }
-
