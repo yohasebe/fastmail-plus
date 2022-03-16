@@ -102,17 +102,32 @@ const setNumNewMessages = (msg) => {
   if(msg != undefined){
     numNewMessages = msg;
   } else {
-    numNewMessages = $("li.v-MailboxSource.v-MailboxSource--inbox span.v-MailboxSource-badge").first().text();
+    const inbox = $("li.v-MailboxSource.v-MailboxSource--inbox");
+    const badge = inbox.find("span.v-MailboxSource-badge").first().text();
+    if(inbox){
+      numNewMessages = badge ? parseInt(badge) : 0;
+    } else {
+      numNewMessages = "need login"
+    }
   }
   if (chrome.runtime?.id) {
-    chrome.runtime.sendMessage({
-      type: "number",
-      value: numNewMessages
-    });
+    if (typeof numNewMessages === "number"){
+      console.log(numNewMessages);
+      chrome.runtime.sendMessage({
+        type: "number",
+        value: numNewMessages
+      });
+    } else {
+      chrome.runtime.sendMessage({
+        type: "string",
+        value: numNewMessages
+      });
+    }
   }
 };
 
 const checkFirstTimeReady = () => {
+
   let t1 = setInterval(() => {
     if($("div#mailbox").length > 0){
 
@@ -123,12 +138,6 @@ const checkFirstTimeReady = () => {
       }
 
       clearInterval(t1);
-      // update icon badge with number of unread messages
-      if(displayNumMessages){
-        const timer = setInterval(setNumNewMessages, 10000);
-      } else {
-        setNumNewMessages("");
-      }
 
       // check current URL;
       setInterval(() => {
@@ -138,6 +147,14 @@ const checkFirstTimeReady = () => {
           lastUrl = url;
         }
       }, 300);
+
+      // update icon badge with number of unread messages
+      if(displayNumMessages){
+        setNumNewMessages
+        const timer = setInterval(setNumNewMessages, 10000);
+      } else {
+        setNumNewMessages(0);
+      }
 
       $(window).on('resize', () => {
         if(readingPaneControlPositionTimer){

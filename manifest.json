@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Fastmail Plus",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "A Chrome extension to make Fastmail web UI more usable and productive",
   "icons": {
     "16": "images/fastmail-plus-16.png",
