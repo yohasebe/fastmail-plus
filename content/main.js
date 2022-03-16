@@ -112,7 +112,6 @@ const setNumNewMessages = (msg) => {
   }
   if (chrome.runtime?.id) {
     if (typeof numNewMessages === "number"){
-      console.log(numNewMessages);
       chrome.runtime.sendMessage({
         type: "number",
         value: numNewMessages
