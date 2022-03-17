@@ -2,7 +2,7 @@
 
 A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
-<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-screenshot.png?raw=true' width="680" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fast-mail-plus-screenshot-1280.png?raw=true' width="680" />
 
 ## Features
 
@@ -23,9 +23,9 @@ In preparation
 
 ### Manual Installation
 
-1. Clone this repository or download Zip
+1. Clone this repository or download [zip file](https://github.com/yohasebe/fastmail-plus/archive/refs/heads/main.zip)
 2. Visit `chrome://extensions/` and turn on "Developer mode"
-3. Click "Load unpacked" button and specify the folder downloaded from GitHub
+3. Click "Load unpacked" button and specify the (unzipped) folder downloaded from GitHub
 
 ## Description/Usage
 
@@ -50,7 +50,14 @@ When **Hide reading pane** is selected in Fastmail Settings:
 
 The number of unread messages to Inbox appears in icon badge and is updated when Chrome has a tab for Fastmail.
 
-<img width="36" alt="badge" src="https://user-images.githubusercontent.com/18207/157005260-ab05b20f-1751-42c5-ad63-afa4d5727db9.png">
+<img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inactive.png?raw=true">
+When the browser tab is inactive or not logged-in
+
+<img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inbox-zero.png?raw=true">
+No unread messages in Inbox
+
+<img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inbox-one.png?raw=true">
+One unread message in Inbox
 
 ### Faster Switch between Search Modes
 
@@ -62,7 +69,8 @@ Pressing the "repeat arrow" button cyclically switches three different search mo
 
 <br />
 
-![fastmail-plus-alt-search](https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif)
+
+<img src='https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif' width="680" />
 
 ### Easier Button Operation in Reading Pane
 
@@ -80,7 +88,7 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 <br />
 
-![reading-pane-control](https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif)
+<img src='https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif' width="680" />
 
 ### Extra Shortcut Keys
 
@@ -112,7 +120,7 @@ Fold the "reply-to" part of messages (when the message's  div has an `id` contai
 
 **Sign up for Fastmail via this link and get 10% off for one year.**
 
-https://ref.fm/u27773408
+[https://ref.fm/u27773408](https://ref.fm/u27773408)
 
 ## Author
 
