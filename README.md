@@ -118,7 +118,7 @@ Fold the "reply-to" part of messages (when the message's  div has an `id` contai
 
 ## Advertisement
 
-**Sign up for Fastmail via this link and get 10% off for one year.**
+Sign up for Fastmail via this link and get 10% off for 1 year.
 
 [https://ref.fm/u27773408](https://ref.fm/u27773408)
 
