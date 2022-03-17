@@ -14,7 +14,7 @@ const checkReadingPaneControlPosition = () => {
     } else {
       $allButtons.show();
     }
-  } else {
+  } else if ($("div#conversation")) {
     if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
       $allButtons.hide();
     } else {
