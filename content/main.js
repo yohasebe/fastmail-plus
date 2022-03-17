@@ -149,7 +149,7 @@ const checkFirstTimeReady = () => {
 
       // update icon badge with number of unread messages
       if(displayNumMessages){
-        setNumNewMessages
+        setNumNewMessages()
         const timer = setInterval(setNumNewMessages, 5000);
       } else {
         setNumNewMessages(0);

@@ -1,12 +1,9 @@
-// To avoid "Uncaught (in promise) Error"
-// https://stackoverflow.com/questions/54017163
-
 const asyncFunctionWithAwait = async (message, sender, sendResponse) => {
   const badgeText = chrome.action.getBadgeText({});
   badgeText.then(current => {
     if(message.type === "string"){
       if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
+        chrome.action.setBadgeText({text: "?" });
       }
     } else if(message.value == 0){
       if(current !== "0"){
@@ -24,7 +21,9 @@ const asyncFunctionWithAwait = async (message, sender, sendResponse) => {
   });
 }
 
+let tabId;
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  tabId = sender.tab.id;
   asyncFunctionWithAwait(message, sender, sendResponse)
   return true;
 });

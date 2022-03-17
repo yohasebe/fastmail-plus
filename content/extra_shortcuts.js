@@ -51,7 +51,9 @@ const shortcutHandler = (e) => {
       } else if(splitPanes) {
         // Control + L => Toggle non-clutter mode
         if (e.ctrlKey && e.which === 76){
-          togglemainMenu();
+          if(alternativeShortcutKeys && $("div.v-Empty").length == 0){
+            togglemainMenu();
+          }
         } else if(leftOrRight == "right"){
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
