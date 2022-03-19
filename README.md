@@ -2,7 +2,7 @@
 
 A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
-<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fast-mail-plus-screenshot-1280.png?raw=true' width="800" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-700.png?raw=true?raw=true' width="700" />
 
 ## Features
 
@@ -12,8 +12,8 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
-- [Visual marking of messages in plain Text](#visual-marking-of-messages-in-plain-text)
-- [Extra Reply-to Folding](#extra-reply-to-folding)
+- [Visual marking of messages in plain text](#visual-marking-of-messages-in-plain-text)
+- [Extra "reply-to" folding](#extra-reply-to-folding)
 
 ## Installation
 
@@ -70,7 +70,7 @@ Pressing the "repeat arrow" button cyclically switches three different search mo
 <br />
 
 
-<img src='https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif' width="800" />
+<img src='https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif' width="700" />
 
 ### Easier Button Operation in Reading Pane
 
@@ -88,7 +88,7 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 <br />
 
-<img src='https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif' width="800" />
+<img src='https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif' width="700" />
 
 ### Extra Shortcut Keys
 
