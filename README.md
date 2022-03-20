@@ -19,7 +19,7 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 
 ### Chrome Web Store
 
-In preparation
+https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeodcaijmfm
 
 ### Manual Installation
 
