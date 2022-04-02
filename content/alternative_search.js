@@ -2,7 +2,7 @@ const $searchToggleLabel = $('<span id="searchToggleLabel" style="margin-right:8
 const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
 const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="width:130px; padding:0; margin-right:10px; margin-left:10px">'+
                          `<img src="${searchToggleImage}" /></button>`);
-const $altSearchExecuteButton = $('<button id="searchExecute" style="margin:0;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
+const $searchExecuteButton = $('<button id="searchExecute" style="margin: 0; background-color: darkgray;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
 
 const setAltSearch = () => {
   if($("div.v-SearchInput.v-MailToolbar-search").length === 0){
@@ -20,26 +20,22 @@ const setAltSearch = () => {
     + '</svg>'
     + '</div>';
   const $altSearch = $(altSHTML);
+  $altSearch.hide();
   $altSearch.insertAfter($searchBar);
   $searchBar.after($altSearch);
   $searchToggle.prepend($searchToggleLabel);
   $altSearch.after($searchToggle);
-  $searchToggle.after($altSearchExecuteButton);
-  $altSearch.hide();
-  $altSearchExecuteButton.hide();
+  $searchToggle.after($searchExecuteButton);
 
   const $altSearchInput = $("#alt-search-input");
   const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input.v-SearchInput-input").not($altSearchInput);
-
-  $altSearchExecuteButton.on('click', (e) => {
-  });
 
   $searchToggle.on('click', (e) => {
     if(searchMode === "anywhere"){
       $searchBar.hide();
       $altSearch.show();
-      $altSearchExecuteButton.css('background-color','#80aedb');
-      $altSearchExecuteButton.show();
+      $searchExecuteButton.css('background-color','#80aedb');
+      $searchExecuteButton.show();
       searchMode = "subject_body";
       $('#alt-search-input').css('background-color', '#e3edf7');
       $('#searchToggleLabel').text("Subject & Body");
@@ -52,13 +48,13 @@ const setAltSearch = () => {
       $altSearchInput.focus();
     } else if (searchMode === "subject_body") {
       searchMode = "subject";
-      $altSearchExecuteButton.css('background-color','#e6a8a8');
+      $searchExecuteButton.css('background-color','#e6a8a8');
       $('#alt-search-input').css('background-color', '#f7e3e3');
       $('#searchToggleLabel').text("Subject Only");
       $altSearchInput.focus();
     } else  {
       $altSearch.hide();
-      $altSearchExecuteButton.hide();
+      $searchExecuteButton.css('background-color','darkgray');
       $searchBar.show();
       searchMode = "anywhere";
       $('#searchToggleLabel').text("Anywhere");
@@ -68,37 +64,49 @@ const setAltSearch = () => {
     }
   });
 
-  const executeAltSearch = () => {
-    const text = $altSearchInput.val();
-    let keys;
-    const quoteRegex = /"[^"\\]*(?:\\[\s\S][^"\\]*)*"/g;
-    const quoted = text.match(quoteRegex);
-    const unquoted = text.replace(quoteRegex, '').split(/\s+/);
-    if(quoted){
-      keys = quoted.concat(unquoted);
-    } else {
-      keys = unquoted;
-    }
-
-    const query = keys.filter((e) => {return !(e === null || e === undefined || e === "");}).map((v, i, k) => {
-      if(searchMode === "subject_body"){
-        return `(suject:${v} OR body:${v})`;
-      } else {
-        return `subject:${v}`;
+  const executeSearch = () => {
+    let url;
+    if(searchMode === "anywhere"){
+      const text = $normalSearchInput.val();
+      if(text.match(/^[\(\)\s]*$/)){
+        return false;
       }
-    })
-    const url = `https://www.fastmail.com/mail/search:(${query.join('%20')})`;
+      url = `https://www.fastmail.com/mail/search:${text}`;
+    } else {
+      const text = $altSearchInput.val();
+      if(text.match(/^[\(\)\s]*$/)){
+        return false;
+      }
+      let keys;
+      const quoteRegex = /"[^"\\]*(?:\\[\s\S][^"\\]*)*"/g;
+      const quoted = text.match(quoteRegex);
+      const unquoted = text.replace(quoteRegex, '').split(/\s+/);
+      if(quoted){
+        keys = quoted.concat(unquoted);
+      } else {
+        keys = unquoted;
+      }
+
+      const query = keys.filter((e) => {return !(e === null || e === undefined || e === "");}).map((v, i, k) => {
+        if(searchMode === "subject_body"){
+          return `(suject:${v} OR body:${v})`;
+        } else {
+          return `subject:${v}`;
+        }
+      })
+      url = `https://www.fastmail.com/mail/search:(${query.join('%20')})`;
+    }
     window.location = url;
   }
 
   $altSearchInput.on('keydown', (e) => {
     if(e.keyCode == 13){
-      executeAltSearch()
+      executeSearch()
     }
   });
 
-  $altSearchExecuteButton.on('click', (e) => {
-    executeAltSearch()
+  $searchExecuteButton.on('click', (e) => {
+    executeSearch()
   });
 
   document.addEventListener('keydown', (e) => {
