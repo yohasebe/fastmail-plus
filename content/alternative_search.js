@@ -1,8 +1,8 @@
-const $searchToggleLabel = $('<span id="searchToggleLabel" style="margin-right:8px;">Anywhere</span>');
+// const $searchToggleLabel = $('<span id="searchToggleLabel" style="margin-right:8px;">Anywhere</span>');
 const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
-const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="background-color: #c1c5c8; width:130px; padding:0; margin-right:10px; margin-left:10px">'+
+const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="background-color: #c1c5c8; width:50px; padding:0; margin-right:10px; margin-left:10px">'+
                          `<img src="${searchToggleImage}" /></button>`);
-const $searchExecuteButton = $('<button id="searchExecute" style="margin-left: 10px; margin-right: 0; background-color: darkgray;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
+const $searchExecuteButton = $('<button id="searchExecute" style="margin-left: 10px; margin-right: 0; background-color: darkgray; width:50px;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
 
 const setAltSearch = () => {
   if($("div.v-SearchInput.v-MailToolbar-search").length === 0){
@@ -23,12 +23,13 @@ const setAltSearch = () => {
   $altSearch.hide();
   $altSearch.insertAfter($searchBar);
   $searchBar.after($altSearch);
-  $searchToggle.prepend($searchToggleLabel);
+  // $searchToggle.prepend($searchToggleLabel);
   $altSearch.after($searchToggle);
   $searchToggle.before($searchExecuteButton);
 
   const $altSearchInput = $("#alt-search-input");
   const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input.v-SearchInput-input").not($altSearchInput);
+  $normalSearchInput.attr("placeholder", "Search Mail (Default)")
 
   $searchToggle.on('click', (e) => {
     if(searchMode === "anywhere"){
@@ -38,7 +39,8 @@ const setAltSearch = () => {
       $searchExecuteButton.show();
       searchMode = "subject_body";
       $('#alt-search-input').css('background-color', '#e3edf7');
-      $('#searchToggleLabel').text("Subject & Body");
+      $('#alt-search-input').attr('placeholder', 'Search Mail (Subject & Body)');
+      // $('#searchToggleLabel').text("Subject & Body");
       const currentVal = $normalSearchInput.val();
       if(currentVal.match(/\(.*?\)/)){
         $altSearchInput.val("");
@@ -50,14 +52,15 @@ const setAltSearch = () => {
       searchMode = "subject";
       $searchExecuteButton.css('background-color','#e6a8a8');
       $('#alt-search-input').css('background-color', '#f7e3e3');
-      $('#searchToggleLabel').text("Subject Only");
+      $('#alt-search-input').attr('placeholder', 'Search Mail (Subject Only)');
+      // $('#searchToggleLabel').text("Subject Only");
       $altSearchInput.focus();
     } else  {
       $altSearch.hide();
       $searchExecuteButton.css('background-color','darkgray');
       $searchBar.show();
       searchMode = "anywhere";
-      $('#searchToggleLabel').text("Anywhere");
+      // $('#searchToggleLabel').text("Anywhere");
       const currentVal = $altSearchInput.val();
       $normalSearchInput.val(currentVal);
       $normalSearchInput.focus();

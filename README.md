@@ -67,10 +67,11 @@ Pressing the "repeat arrow" button cyclically switches three different search mo
 - Search in subject and body
 - Search in subject only
 
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/search-input-01.png?raw=true' width="700" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/search-input-02.png?raw=true' width="700" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/search-input-03.png?raw=true' width="700" />
+
 <br />
-
-
-<img src='https://user-images.githubusercontent.com/18207/156918109-aeef285c-1f15-4bd6-9cfe-c22a2b954a36.gif' width="700" />
 
 ### Easier Button Operation in Reading Pane
 
