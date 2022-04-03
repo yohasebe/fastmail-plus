@@ -15,10 +15,14 @@ const checkReadingPaneControlPosition = () => {
       $allButtons.show();
     }
   } else if ($("div#conversation")) {
-    if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
-      $allButtons.hide();
-    } else {
-      $allButtons.show();
+    try{
+      if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
+        $allButtons.hide();
+      } else {
+        $allButtons.show();
+      }
+    } catch(error){
+      ;
     }
   }
 }
