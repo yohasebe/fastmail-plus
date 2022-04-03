@@ -1,8 +1,8 @@
 const $searchToggleLabel = $('<span id="searchToggleLabel" style="margin-right:8px;">Anywhere</span>');
 const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
-const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="width:130px; padding:0; margin-right:10px; margin-left:10px">'+
+const $searchToggle = $('<button id="search-toggle" title="^S" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="background-color: #c1c5c8; width:130px; padding:0; margin-right:10px; margin-left:10px">'+
                          `<img src="${searchToggleImage}" /></button>`);
-const $searchExecuteButton = $('<button id="searchExecute" style="margin: 0; background-color: darkgray;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
+const $searchExecuteButton = $('<button id="searchExecute" style="margin-left: 10px; margin-right: 0; background-color: darkgray;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
 
 const setAltSearch = () => {
   if($("div.v-SearchInput.v-MailToolbar-search").length === 0){
@@ -25,7 +25,7 @@ const setAltSearch = () => {
   $searchBar.after($altSearch);
   $searchToggle.prepend($searchToggleLabel);
   $altSearch.after($searchToggle);
-  $searchToggle.after($searchExecuteButton);
+  $searchToggle.before($searchExecuteButton);
 
   const $altSearchInput = $("#alt-search-input");
   const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input.v-SearchInput-input").not($altSearchInput);
