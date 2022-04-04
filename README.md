@@ -87,7 +87,7 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 - Collapse messages
 - Toggle show/hide extra control
 
-<br />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/reading-pane-buttons.png?raw=true' width="500" />
 
 <img src='https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif' width="700" />
 
