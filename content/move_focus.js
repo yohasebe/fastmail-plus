@@ -84,10 +84,16 @@ const moveCursor = (e) => {
   }
 }
 
+const doubleClick = async (lb) => {
+  await lb.click();
+  lb.click();
+};
+
 // Move focus via up/down cursor keys in messages view
 const messageCursor = (e) => {
   // K or ↑
   if(e.which === 75 || e.which === 38){
+    console.log(e);
     e.preventDefault();
     e.stopImmediatePropagation();
     let target;
@@ -101,7 +107,10 @@ const messageCursor = (e) => {
     }
     cursorPosition = target.attr('id');
     // target.find("div.v-MailboxItem-from").first().click();
-    target.find("label").first().click().click();
+    // target.find("label").first().click().click();
+    const lb = target.find("label").first()
+    doubleClick(lb);
+
   // J or ↓
   } else if(e.which === 74 || e.which === 40) {
     e.preventDefault();
@@ -117,7 +126,9 @@ const messageCursor = (e) => {
     }
     cursorPosition = target.attr("id");
     // target.find("div.v-MailboxItem-from").first().click();
-    target.find("label").first().click().click();
+    // target.find("label").first().click().click();
+    const lb = target.find("label").first()
+    doubleClick(lb);
   }
 }
 
