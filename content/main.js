@@ -132,7 +132,7 @@ const setNumNewMessages = (msg) => {
 const checkFirstTimeReady = () => {
 
   let t1 = setInterval(() => {
-    if($("div#mailbox").length > 0){
+    if($("div#mailbox").length > 0 || $("div#conversation").length > 0){
 
       runOnChange(lastUrl);
 

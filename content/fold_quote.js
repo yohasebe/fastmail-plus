@@ -4,7 +4,7 @@ const managed = []
 const foldQuote = () => {
   $('div[id*="appendonsend"]').each((index, element) => {
     let quote = $(element).nextAll();
-    let btId  = $(element).attr('id') + '-bt';
+    let btId  = $(element).attr('id') + '-foldbtn';
     if(!managed.includes(btId)){
       managed.push(btId);
       let btTag = '<br /><div class="u-quote-topPostToggle">'
