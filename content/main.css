@@ -24,3 +24,7 @@ div.ui-tooltip{
   box-shadow: 0px 0px 0px #aaaaaa;
   padding: 4px;
 }
+
+.v-Page--sidebar {
+    background-image: none !important;
+}
