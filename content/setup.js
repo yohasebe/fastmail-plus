@@ -38,6 +38,5 @@ getSyncStorage().then((vals) => {
   useCusrorKeys = vals.useCusrorKeys === undefined ? true : vals.useCusrorKeys;
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
-  // searchMode = vals.searchMode === undefined ? "anywhere" : vals.searchMode;
 });
 

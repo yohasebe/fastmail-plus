@@ -1,14 +1,15 @@
-const asyncFunctionWithAwait = async (message, sender, sendResponse) => {
+let badgeTimer;
+const asyncFunctionWithAwait = (message, sender, sendResponse) => {
   const badgeText = chrome.action.getBadgeText({});
   badgeText.then(current => {
+    if(badgeTimer) clearInterval(badgeTimer);
     if(message.type === "string"){
       if(current !== ""){
-        chrome.action.setBadgeText({text: "?" });
+        chrome.action.setBadgeText({text: "" });
       }
     } else if(message.value == 0){
-      if(current !== "0"){
-        chrome.action.setBadgeBackgroundColor({color: "#0167b9"});
-        chrome.action.setBadgeText({text: "0" });
+      if(current !== ""){
+        chrome.action.setBadgeText({text: "" });
       }
     } else if(message.value > 0) {
       const messageValue = String(message.value);
@@ -17,28 +18,14 @@ const asyncFunctionWithAwait = async (message, sender, sendResponse) => {
         chrome.action.setBadgeText({text: messageValue });
       }
     }
-    resetBadge();
+    badgeTimer = setInterval(() => {
+      chrome.action.setBadgeText({text: "" });
+    },6000);
   });
 }
 
-let tabId;
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  tabId = sender.tab.id;
   asyncFunctionWithAwait(message, sender, sendResponse)
   return true;
 });
 
-let badgeTimer;
-const resetBadge = () => {
-  if(badgeTimer){
-    clearInterval(badgeTimer);
-  }
-  badgeTimer = setInterval(() => {
-    const badgeText = chrome.action.getBadgeText({});
-    badgeText.then(current => {
-      if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
-      }
-    });
-  },10000);
-}

@@ -8,23 +8,23 @@ const checkReadingPaneControlPosition = () => {
     "right": right + "px"
   });
 
-  // if(splitPanes) {
-  //   if(parseInt($("div#mailbox")[0].getBoundingClientRect().width) < 400){
-  //     $allButtons.hide();
-  //   } else {
-  //     $allButtons.show();
-  //   }
-  // } else if ($("div#conversation")) {
-  //   try{
-  //     if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
-  //       $allButtons.hide();
-  //     } else {
-  //       $allButtons.show();
-  //     }
-  //   } catch(error){
-  //     ;
-  //   }
-  // }
+  if(splitPanes) {
+    if(parseInt($("div#mailbox")[0].getBoundingClientRect().width) < 400){
+      $allButtons.hide();
+    } else {
+      $allButtons.show();
+    }
+  } else if ($("div#conversation")) {
+    try{
+      if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
+        $allButtons.hide();
+      } else {
+        $allButtons.show();
+      }
+    } catch(error){
+      ;
+    }
+  }
 }
 
 const runOnChange = (url) => {
@@ -101,35 +101,33 @@ const runOnChange = (url) => {
   }
 };
 
-const setNumNewMessages = (msg) => {
+const setNumNewMessages = () => {
+  console.log("x");
   let numNewMessages;
-  if(msg != undefined){
-    numNewMessages = msg;
+  const inbox = $("li.v-MailboxSource.v-MailboxSource--inbox");
+  const badge = inbox.find("span.v-MailboxSource-badge").first().text();
+  numNewMessages = badge ? parseInt(badge) : 0;
+
+  if (chrome.runtime?.id && regexMail.test(location.href)){
+    chrome.runtime.sendMessage({
+      type: "number",
+      value: numNewMessages
+    });
   } else {
-    const inbox = $("li.v-MailboxSource.v-MailboxSource--inbox");
-    const badge = inbox.find("span.v-MailboxSource-badge").first().text();
-    if(inbox){
-      numNewMessages = badge ? parseInt(badge) : 0;
-    } else {
-      numNewMessages = "need login"
-    }
-  }
-  if (chrome.runtime?.id) {
-    if (typeof numNewMessages === "number"){
-      chrome.runtime.sendMessage({
-        type: "number",
-        value: numNewMessages
-      });
-    } else {
-      chrome.runtime.sendMessage({
-        type: "string",
-        value: numNewMessages
-      });
-    }
+    chrome.runtime.sendMessage({
+      type: "string",
+      value: ""
+    });
   }
 };
 
 const checkFirstTimeReady = () => {
+
+  // update icon badge with number of unread messages
+  if(displayNumMessages){
+    setNumNewMessages()
+    const timer = setInterval(setNumNewMessages, 5000);
+  }
 
   let t1 = setInterval(() => {
     if($("div#mailbox").length > 0 || $("div#conversation").length > 0){
@@ -150,14 +148,6 @@ const checkFirstTimeReady = () => {
           lastUrl = url;
         }
       }, 300);
-
-      // update icon badge with number of unread messages
-      if(displayNumMessages){
-        setNumNewMessages()
-        const timer = setInterval(setNumNewMessages, 5000);
-      } else {
-        setNumNewMessages(0);
-      }
 
       $(window).on('resize', () => {
         if(readingPaneControlPositionTimer){

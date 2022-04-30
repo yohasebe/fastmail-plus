@@ -1,8 +1,5 @@
 {
   "extensionName": {
     "message": "Fastmail Plus"
-  },
-  "extensionDescription": {
-    "message": "Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅に使いやすくするChrome拡張です。"
   }
 }
