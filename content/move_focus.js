@@ -1,10 +1,12 @@
 const indicateLeftRight = (side) => {
-  if(leftOrRight === "left"){
-    $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
-    $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
-  } else {
-    $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
-    $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
+  if(useCursorKeys){
+    if(leftOrRight === "left"){
+      $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
+      $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
+    } else {
+      $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
+      $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
+    }
   }
 }
 
@@ -134,7 +136,7 @@ const messageCursor = (e) => {
 
 // Move focus via up/down cursor keys in reading pane
 const readingPaneCursor = (e) => {
-  if(useCusrorKeys){
+  if(useCursorKeys){
     if(!$("input").is(":focus")) {
       if(e.which === 39){
         if(splitPanes){

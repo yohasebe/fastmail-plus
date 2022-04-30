@@ -4,7 +4,7 @@ const regexCompose = new RegExp('\/compose\/');
 const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 
 let displayNumMessages;
-let useCusrorKeys;
+let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 
@@ -24,7 +24,7 @@ let leftOrRight;
 
 const keys = [
   "displayNumMessages",
-  "useCusrorKeys",
+  "useCursorKeys",
   "alternativeShortcutKeys",
   "alternativeSearch"
 ]
@@ -35,7 +35,7 @@ const getSyncStorage = (keys) => new Promise(resolve => {
 
 getSyncStorage().then((vals) => {
   displayNumMessages = vals.displayNumMessages === undefined ? true : vals.displayNumMessages;
-  useCusrorKeys = vals.useCusrorKeys === undefined ? true : vals.useCusrorKeys;
+  useCursorKeys = vals.useCursorKeys === undefined ? true : vals.useCursorKeys;
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
 });

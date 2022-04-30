@@ -58,11 +58,11 @@ const shortcutHandler = (e) => {
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
-          if(useCusrorKeys){
+          if(useCursorKeys){
             readingPaneCursor(e);
           }
         } else {
-          if(useCusrorKeys){
+          if(useCursorKeys){
              moveCursor(e);
           }
         }
@@ -75,7 +75,7 @@ const shortcutHandler = (e) => {
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
-          if(useCusrorKeys){
+          if(useCursorKeys){
             readingPaneCursor(e);
           }
         } else {
