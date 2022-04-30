@@ -56,10 +56,7 @@ When **Hide reading pane** is selected in Fastmail Settings:
 The number of unread messages to Inbox appears in icon badge and is updated when Chrome has a tab for Fastmail.
 
 <img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inactive.png?raw=true"> <br />
-The browser tab is inactive or not logged-in
-
-<img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inbox-zero.png?raw=true"><br />
-No unread messages in Inbox
+Inactive / No unread messages
 
 <img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inbox-one.png?raw=true"><br />
 One unread message in Inbox
