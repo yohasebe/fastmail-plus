@@ -1,9 +1,6 @@
 {
   "extensionName": {
     "message": "Fastmail Plus"
-  },
-  "extensionDescription": {
-    "message": "A Chrome extension to make Fastmail (https://fastmail.com) web UI more usable and productive"
   }
 }
 
