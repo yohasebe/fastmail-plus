@@ -14,7 +14,7 @@ const asyncFunctionWithAwait = (message, sender, sendResponse) => {
     } else if(message.value > 0) {
       const messageValue = String(message.value);
       if(current !== messageValue){
-        chrome.action.setBadgeBackgroundColor({color: "#e84545"});
+        // chrome.action.setBadgeBackgroundColor({color: "#e84545"});
         chrome.action.setBadgeText({text: messageValue });
       }
     }
@@ -28,4 +28,3 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   asyncFunctionWithAwait(message, sender, sendResponse)
   return true;
 });
-
