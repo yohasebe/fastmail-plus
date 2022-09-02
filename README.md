@@ -14,7 +14,6 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Visual marking of messages in plain text](#visual-marking-of-messages-in-plain-text)
 - [Extra "reply-to" folding](#extra-reply-to-folding)
-- [Remove BETA background image](#remove-BETA-background-image)
 
 ## Installation
 
@@ -118,10 +117,6 @@ Visually show when the focused message is made in plain text (a gray vertical ba
 ### Extra Reply-to Folding
 
 Fold the "reply-to" part of messages (when the message's  div has an `id` containing `appendonsend`)
-
-### Remove BETA background image
-
-Remove the large "BETA" sign that appears in the sidebar of Fastmail Beta (https://beta.fastmail.com).
 
 ## Advertisement
 

@@ -71,7 +71,6 @@ const runOnChange = (url) => {
       }
 
       showmainMenu();
-      colorPlainText();
       foldQuote();
 
       if(!mainMenuShown){
