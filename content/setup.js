@@ -30,7 +30,7 @@ const keys = [
 ]
 
 const getSyncStorage = (keys) => new Promise(resolve => {
-  chrome.storage.local.get(keys, resolve);
+  browser.storage.local.get(keys, resolve);
 });
 
 getSyncStorage().then((vals) => {

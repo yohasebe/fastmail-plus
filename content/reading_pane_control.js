@@ -13,7 +13,7 @@ $readingPaneButtons.attr('id', 'readingPaneButtons');
 
 const createImageLabel = (imgPath, key) => {
   return "<span class='label'>" +
-         `<img style='vertical-align:text-top' src='${chrome.runtime.getURL(imgPath)}' />` +
+         `<img style='vertical-align:text-top' src='${browser.runtime.getURL(imgPath)}' />` +
          "</span>";
 }
 
