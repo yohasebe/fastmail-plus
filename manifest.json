@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Fastmail Plus",
   "default_locale": "en",
   "version": "0.2.8.0",
@@ -9,12 +9,12 @@
     "48": "images/fastmail-plus-48.png",
     "128": "images/fastmail-plus-128.png"
   },
-  "action": {
+  "browser_action": {
     "default_icon": "images/fastmail-plus-128.png",
     "default_popup": "options.html"
   },
   "background": {
-    "service_worker": "background-script.js"
+    "scripts": ["background-script.js"]
   },
   "content_scripts": [
     {
@@ -42,8 +42,11 @@
     "open_in_tab": false
   },
   "permissions": ["storage"],
-  "web_accessible_resources": [{
-    "resources": ["svg/*"],
-    "matches": ["<all_urls>"]
-  }]
+  "web_accessible_resources": ["svg/*"],
+
+  "applications": {
+    "gecko": {
+      "id": "firefox@skatkov.com"
+    }
+   }
 }

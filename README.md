@@ -51,6 +51,7 @@ When **Hide reading pane** is selected in Fastmail Settings:
 `↑` and `↓` cursor keys can be used (in addition to `P` and `N`) to change focus inside reading pane.
 
 ### Badge notification for unread messages to Inbox
+(doesn't work on Firefox... yeat)
 
 The number of unread messages to Inbox appears in icon badge and is updated when Chrome has a tab for Fastmail.
 

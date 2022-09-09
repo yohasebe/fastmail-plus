@@ -5,21 +5,21 @@ const asyncFunctionWithAwait = (message, sender, sendResponse) => {
     if(badgeTimer) clearInterval(badgeTimer);
     if(message.type === "string"){
       if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
+        chrome.browserAction.setBadgeText({text: "" });
       }
     } else if(message.value == 0){
       if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
+        chrome.browserAction.setBadgeText({text: "" });
       }
     } else if(message.value > 0) {
       const messageValue = String(message.value);
       if(current !== messageValue){
         // chrome.action.setBadgeBackgroundColor({color: "#e84545"});
-        chrome.action.setBadgeText({text: messageValue });
+        chrome.browserAction.setBadgeText({text: messageValue });
       }
     }
     badgeTimer = setInterval(() => {
-      chrome.action.setBadgeText({text: "" });
+      chrome.browserAction.setBadgeText({text: "" });
     },6000);
   });
 }
