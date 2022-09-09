@@ -10,6 +10,7 @@ let alternativeSearch;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
+let themeType = "light"; // could be "light" or "dark"
 let readingPaneControlPositionTimer = null;
 let focusOnMessage = true;
 let firstTimeReady = false;
