@@ -98,7 +98,7 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 If enabled, extra shortcut keys view will be added
 
 - Switch between search modes: `Control + S`
-- Toggle uncluttered-view mode: `Shift + L`
+- Toggle uncluttered-view mode: `Control + Shift + L`
 - Toggle show/hide extra control: `Control + ,`
 - Toggle currently focused message: `Enter` (in addition to the default `E`)
 - Ungroup/Expand messages: `Shift + Enter` (in addition to the default `Shift + E`)
