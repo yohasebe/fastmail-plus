@@ -95,7 +95,6 @@ const doubleClick = async (lb) => {
 const messageCursor = (e) => {
   // K or ↑
   if(e.which === 75 || e.which === 38){
-    console.log(e);
     e.preventDefault();
     e.stopImmediatePropagation();
     let target;
