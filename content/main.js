@@ -127,6 +127,10 @@ const checkFirstTimeReady = () => {
     const timer = setInterval(setNumNewMessages, 5000);
   }
 
+  if($("html.t-dark") != null ){
+    themeType = 'dark'
+  }
+
   let t1 = setInterval(() => {
     if($("div#mailbox").length > 0 || $("div#conversation").length > 0){
 
