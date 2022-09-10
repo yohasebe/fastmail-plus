@@ -49,8 +49,8 @@ const shortcutHandler = (e) => {
       if (regexCompose.test(lastUrl)){
         ;
       } else if(splitPanes) {
-        // Control + L => Toggle non-clutter mode
-        if (e.ctrlKey && e.which === 76){
+        // Shift + L => Toggle non-clutter mode
+        if (e.shiftKey && e.which === 76){
           if(alternativeShortcutKeys && $("div.v-Empty").length == 0){
             togglemainMenu();
           }
@@ -68,8 +68,8 @@ const shortcutHandler = (e) => {
         }
       } else {
         if(regexReadingPane.test(lastUrl)){
-          // Control + L => Toggle non-clutter mode
-          if (e.ctrlKey && e.which === 76){
+          // Shift + L => Toggle non-clutter mode
+          if (e.shiftKey && e.which === 76){
             togglemainMenu();
           }
           if(alternativeShortcutKeys) {

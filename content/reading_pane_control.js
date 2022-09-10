@@ -18,7 +18,7 @@ const createImageLabel = (imgPath, key) => {
 }
 
 const btnMainMenuLabel = () => {
-  return createImageLabel("svg/fullscreen.svg", "^L");
+  return createImageLabel("svg/fullscreen.svg", "⇧L");
 }
 
 const btnUpLabel = () => {
@@ -51,7 +51,7 @@ const btnControlLabel = () => {
 
 const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($readingPaneButtons);
 $btnMainMenu.attr('id', 'btnMainMenu');
-$btnMainMenu.attr('title', '^L');
+$btnMainMenu.attr('title', '⇧L');
 $btnMainMenu.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 // Left-hand menu toggle

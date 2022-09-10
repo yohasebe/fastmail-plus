@@ -23,9 +23,10 @@ https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeo
 
 ### Manual Installation
 
-1. Clone this repository or download [zip file](https://github.com/yohasebe/fastmail-plus/archive/refs/heads/main.zip)
-2. Visit `chrome://extensions/` and turn on "Developer mode"
-3. Click "Load unpacked" button and specify the (unzipped) folder downloaded from GitHub
+1. Clone this repository
+2. Build the package with `$ rake build`
+3. Open `chrome://extensions/` and turn on "Developer mode"
+4. Drag and drop `fastmail-plus-chrome.zip to the extensions page
 
 ## Options
 
@@ -97,7 +98,7 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 If enabled, extra shortcut keys view will be added
 
 - Switch between search modes: `Control + S`
-- Toggle uncluttered-view mode: `Control + L`
+- Toggle uncluttered-view mode: `Shift + L`
 - Toggle show/hide extra control: `Control + ,`
 - Toggle currently focused message: `Enter` (in addition to the default `E`)
 - Ungroup/Expand messages: `Shift + Enter` (in addition to the default `Shift + E`)
