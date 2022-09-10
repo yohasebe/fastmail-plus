@@ -26,7 +26,9 @@ task :build do
       `zip -r fastmail-plus-chrome.zip #{components.join(" ")}`
       `rm #{manifest}`
     when /\.v2\.json\z/
-      ;
+      `ln #{m} #{manifest}`
+      `zip -r fastmail-plus-firefox.zip #{components.join(" ")}`
+      `rm #{manifest}`
     end
   end
 end
