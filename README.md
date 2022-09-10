@@ -26,7 +26,7 @@ https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeo
 1. Clone this repository
 2. Build the package with `$ rake build`
 3. Open `chrome://extensions/` and turn on "Developer mode"
-4. Drag and drop `fastmail-plus-chrome.zip to the extensions page
+4. Drag and drop `fastmail-plus-chrome.zip` to the extensions page
 
 ## Options
 
