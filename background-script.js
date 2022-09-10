@@ -1,30 +1,31 @@
+importScripts("libraries/browser-polyfill.js")
+
 let badgeTimer;
 const asyncFunctionWithAwait = (message, sender, sendResponse) => {
-  const badgeText = chrome.action.getBadgeText({});
+  const badgeText = browser.browserAction.getBadgeText({});
   badgeText.then(current => {
     if(badgeTimer) clearInterval(badgeTimer);
     if(message.type === "string"){
       if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
+        browser.browserAction.setBadgeText({text: "" });
       }
     } else if(message.value == 0){
       if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
+        browser.browserAction.setBadgeText({text: "" });
       }
     } else if(message.value > 0) {
       const messageValue = String(message.value);
       if(current !== messageValue){
-        // chrome.action.setBadgeBackgroundColor({color: "#e84545"});
-        chrome.action.setBadgeText({text: messageValue });
+        browser.browserAction.setBadgeText({text: messageValue });
       }
     }
     badgeTimer = setInterval(() => {
-      chrome.action.setBadgeText({text: "" });
+      browser.browserAction.setBadgeText({text: "" });
     },6000);
   });
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   asyncFunctionWithAwait(message, sender, sendResponse)
   return true;
 });
