@@ -1,4 +1,4 @@
-importScripts("libraries/browser-polyfill.js")
+importScripts("libraries/browser-polyfill.min.js")
 
 let badgeTimer;
 const asyncFunctionWithAwait = (message, sender, sendResponse) => {
