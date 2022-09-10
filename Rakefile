@@ -21,7 +21,7 @@ task :build do
 
   Dir.glob(manifests).each do |m|
     case m
-    when /\.v\d\.json\z/
+    when /\.v3\.json\z/
       `ln #{m} #{manifest}`
       `zip -r fastmail-plus-chrome.zip #{components.join(" ")}`
       `rm #{manifest}`
