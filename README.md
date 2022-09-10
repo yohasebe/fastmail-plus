@@ -1,6 +1,6 @@
-# Fastmail Plus (Chrome Extension)
+# Fastmail Plus (Browser Extension)
 
-A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
+A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-1400.png?raw=true?raw=true' width="700" />
 
@@ -12,8 +12,8 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
-- [Visual marking of messages in plain text](#visual-marking-of-messages-in-plain-text)
 - [Extra "reply-to" folding](#extra-reply-to-folding)
+- Light/Dark theme support
 
 ## Installation
 
@@ -21,12 +21,16 @@ A Chrome extension to make **Fastmail** (https://fastmail.com) web UI more usabl
 
 https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeodcaijmfm
 
-### Manual Installation
+### Firefox Browser Add-ons
+
+https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
+
+### Manual Installation (Chrome)
 
 1. Clone this repository
 2. Build the package with `$ rake build`
 3. Open `chrome://extensions/` and turn on "Developer mode"
-4. Drag and drop `fastmail-plus-chrome.zip` to the extensions page
+4. Drag and drop `fastmail-plus-chrome.zip` or  to the extensions page
 
 ## Options
 
@@ -53,7 +57,7 @@ When **Hide reading pane** is selected in Fastmail Settings:
 
 ### Badge notification for unread messages to Inbox
 
-The number of unread messages to Inbox appears in icon badge and is updated when Chrome has a tab for Fastmail.
+The number of unread messages to Inbox appears in icon badge and is updated when the browser is having a tab for Fastmail.
 
 <img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inactive.png?raw=true"> <br />
 Inactive / No unread messages
@@ -129,10 +133,14 @@ Sign up for Fastmail via this link and get 10% off for 1 year.
 
 Yoichiro Hasebe
 
+## Contributor
+
+Stanislav (Stas) Katkov
+
 ## License
 
 The MIT License
 
 ## Disclaimer
 
-Fastmail Plus Chrome Extension is not officially endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
+Fastmail Plus Browser Extension is not officially endorsed by Fastmail. Use this open source software at your own risk and do not contact Fastmail for support.
