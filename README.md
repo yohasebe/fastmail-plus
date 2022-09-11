@@ -33,7 +33,7 @@ https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
 4. Drag and drop `fastmail-plus-chrome.zip` or  to the extensions page
 
 
-### Manual Installation (Chrome)
+### Manual Installation (Firefox)
 
 1. Clone this repository
 2. Build the package with `$ rake build`
