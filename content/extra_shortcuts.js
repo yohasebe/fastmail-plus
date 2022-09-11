@@ -9,8 +9,8 @@ const shortcutHandler = (e) => {
       e.preventDefault();
       e.stopImmediatePropagation();
       toggleRightbar();
-      // Ctrl + S => toggle search modes
-    } else if (e.ctrlKey && e.which === 83){
+      // Ctrl + M => toggle search modes
+    } else if (e.ctrlKey && e.shiftKey && e.which === 77){
       e.preventDefault();
       e.stopImmediatePropagation();
       $("#search-toggle").click();
@@ -50,7 +50,7 @@ const shortcutHandler = (e) => {
         ;
       } else if(splitPanes) {
         // Ctrl + Shift + L => Toggle non-clutter mode
-        if (e.shiftKey && e.ctrlKey && e.which === 76){
+        if (e.ctrlKey && e.shiftKey && e.which === 76){
           if(alternativeShortcutKeys && $("div.v-Empty").length == 0){
             togglemainMenu();
           }
