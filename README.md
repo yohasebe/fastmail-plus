@@ -32,6 +32,14 @@ https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
 3. Open `chrome://extensions/` and turn on "Developer mode"
 4. Drag and drop `fastmail-plus-chrome.zip` or  to the extensions page
 
+
+### Manual Installation (Chrome)
+
+1. Clone this repository
+2. Build the package with `$ rake build`
+3. Open `about:debugging` and click on "Load Temporary Add-on..."
+4. Load `fastmail-plus-firefox.zip` 
+
 ## Options
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-screenshot-05.png?raw=true' width="700" />
@@ -101,7 +109,7 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 If enabled, extra shortcut keys view will be added
 
-- Switch between search modes: `Control + S`
+- Switch between search modes: `Control + Shift + M`
 - Toggle uncluttered-view mode: `Control + Shift + L`
 - Toggle show/hide extra control: `Control + ,`
 - Toggle currently focused message: `Enter` (in addition to the default `E`)
