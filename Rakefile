@@ -32,3 +32,13 @@ task :build do
     end
   end
 end
+
+desc "switches to Firefox as main manifest"
+task :firefox do
+  `ln --force --symbolic manifests/manifest.v2.json manifest.json`
+end
+
+desc "switches to Chrome as main manifest"
+task :chrome do
+  `ln --force --symbolic manifests/manifest.v3.json manifest.json`
+end
