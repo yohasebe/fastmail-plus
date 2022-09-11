@@ -106,13 +106,13 @@ const setNumNewMessages = () => {
   const badge = inbox.find("span.v-MailboxSource-badge").first().text();
   numNewMessages = badge ? parseInt(badge) : 0;
 
-  if (chrome.runtime?.id && regexMail.test(location.href)){
-    chrome.runtime.sendMessage({
+  if (browser.runtime?.id && regexMail.test(location.href)){
+    browser.runtime.sendMessage({
       type: "number",
       value: numNewMessages
     });
   } else {
-    chrome.runtime.sendMessage({
+    browser.runtime.sendMessage({
       type: "string",
       value: ""
     });
@@ -127,6 +127,7 @@ const checkFirstTimeReady = () => {
     const timer = setInterval(setNumNewMessages, 5000);
   }
 
+  // Detects if dark theme is enabled.
   if($("html.t-dark") != null ){
     themeType = 'dark'
   }
