@@ -8,26 +8,10 @@ const checkReadingPaneControlPosition = () => {
     "right": right + "px"
   });
 
-  // if(splitPanes) {
-  //   if(parseInt($("div#mailbox")[0].getBoundingClientRect().width) < 400){
-  //     $allButtons.hide();
-  //   } else {
-  //     $allButtons.show();
-  //   }
-  // } else if ($("div#conversation")) {
-  //   try{
-  //     if(parseInt($("div#conversation")[0].getBoundingClientRect().width) < 400){
-  //       $allButtons.hide();
-  //     } else {
-  //       $allButtons.show();
-  //     }
-  //   } catch(error){
-  //     ;
-  //   }
-  // }
 }
 
 const runOnChange = (url) => {
+  
   // currently in mail mode
   if(regexMail.test(url)){
 
@@ -133,6 +117,7 @@ const checkFirstTimeReady = () => {
   }
 
   let t1 = setInterval(() => {
+
     if($("div#mailbox").length > 0 || $("div#conversation").length > 0){
 
       runOnChange(lastUrl);
@@ -163,5 +148,15 @@ const checkFirstTimeReady = () => {
 }
 
 $(document).ready(() => {
+  if(maxMessageWidth) {
+    let max_width = `
+      <style>
+        div.v-MessageCard.app-contentCard {
+          max-width: 100% !important;
+        }
+      </style>
+      `; 
+    $('head').append($(max_width));
+  }
   checkFirstTimeReady();
 });

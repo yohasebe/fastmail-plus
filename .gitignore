@@ -29,3 +29,5 @@ Temporary Items
 
 *.zip
 manifest.json
+background-script.js
+content/main.js

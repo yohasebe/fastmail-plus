@@ -7,6 +7,7 @@ let displayNumMessages;
 let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
+let maxMessageWidth;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
@@ -27,7 +28,8 @@ const keys = [
   "displayNumMessages",
   "useCursorKeys",
   "alternativeShortcutKeys",
-  "alternativeSearch"
+  "alternativeSearch",
+  "maxMessageWidth"
 ]
 
 const getSyncStorage = (keys) => new Promise(resolve => {
@@ -39,5 +41,6 @@ getSyncStorage().then((vals) => {
   useCursorKeys = vals.useCursorKeys === undefined ? true : vals.useCursorKeys;
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
+  maxMessageWidth = vals.maxMessageWidth === undefined ? true : vals.maxMessageWidth;
 });
 

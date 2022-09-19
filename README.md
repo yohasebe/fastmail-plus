@@ -14,6 +14,7 @@ A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI mo
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Extra "reply-to" folding](#extra-reply-to-folding)
 - Light/Dark theme support
+- Maximize message width (default: disabled)
 
 ## Installation
 
@@ -31,7 +32,6 @@ https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
 2. Build the package with `$ rake build`
 3. Open `chrome://extensions/` and turn on "Developer mode"
 4. Drag and drop `fastmail-plus-chrome.zip` or  to the extensions page
-
 
 ### Manual Installation (Firefox)
 

@@ -2,19 +2,19 @@ const indicateLeftRight = (side) => {
   if(useCursorKeys){
     if(leftOrRight === "left"){
       if(themeType === "light"){
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
+        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #ffffff"});
+        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #f7e3e3", "transition": ""});
       } else {
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #1b1e20"});
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #dc818f", "transition": ""});
+        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #1b1e20"});
+        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #dc818f", "transition": ""});
       }
     } else {
       if(themeType === "light"){
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #ffffff"});
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #f7e3e3", "transition": ""});
+        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #ffffff"});
+        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #f7e3e3", "transition": ""});
       } else {
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #1b1e20"});
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -5px 0 #dc818f", "transition": ""});
+        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #1b1e20"});
+        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #dc818f", "transition": ""});
       }
     }
   }
