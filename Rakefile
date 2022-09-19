@@ -23,31 +23,31 @@ task :build do
     case m
     when /\.v3\.json\z/
       `ln #{m} manifest.json`
-      `ln background-scripts/background-script.chrome.js background-script.js`
-      `ln content/main.chrome.js content/main.js`
+      `ln browsers/chrome/background-script.js background-script.js`
+      `ln browsers/chrome/content/display_num_messages.js content/display_num_messages.js`
       `zip -r fastmail-plus-chrome.zip #{components.join(" ")}`
     when /\.v2\.json\z/
       `ln #{m} manifest.json`
-      `ln background-scripts/background-script.firefox.js background-script.js`
-      `ln content/main.firefox.js content/main.js`
+      `ln browsers/firefox/background-script.js background-script.js`
+      `ln browsers/firefox/content/display_num_messages.js content/display_num_messages.js`
       `zip -r fastmail-plus-firefox.zip #{components.join(" ")}`
     end
     `rm manifest.json`
     `rm background-script.js`
-    `rm content/main.js`
+    `rm content/display_num_messages.js`
   end
 end
 
 desc "switches to Firefox as main manifest"
 task :firefox do
   `ln --force --symbolic manifests/manifest.v2.json manifest.json`
-  `ln --force --symbolic background-scripts/background-script.firefox.js background-script.js`
-  `ln --force --symbolic content/main.firefox.js content/main.js`
+  `ln --force --symbolic browsers/firefox/background-script.js background-script.js`
+  `ln --force --symbolic browsers/firefox/content/display_num_messages.js content/display_num_messages.js`
 end
 
 desc "switches to Chrome as main manifest"
 task :chrome do
   `ln --force --symbolic manifests/manifest.v3.json manifest.json`
-  `ln --force --symbolic background-scripts/background-script.chrome.js background-script.js`
-  `ln --force --symbolic content/main.chrome.js content/main.js`
+  `ln --force --symbolic browsers/chrome/background-script.js background-script.js`
+  `ln --force --symbolic browsers/chrome/content/display_num_messages.js content/display_num_messages.js`
 end

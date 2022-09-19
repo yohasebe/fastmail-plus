@@ -30,6 +30,7 @@
           "content/reading_pane_control.js",
           "content/extra_shortcuts.js",
           "content/fold_quote.js",
+          "content/display_num_messages.js",
           "content/main.js"
         ],
         "css": [
