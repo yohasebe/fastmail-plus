@@ -28,6 +28,6 @@ Temporary Items
 .apdisk
 
 *.zip
-manifest.json
-background-script.js
-content/main.js
+./manifest.json
+./background-script.js
+./content/main.js
