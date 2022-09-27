@@ -69,7 +69,7 @@ const setAltSearch = () => {
       if(text.match(/^[\(\)\s]*$/)){
         return false;
       }
-      url = `https://www.fastmail.com/mail/search:${text}`;
+      url = `https://fastmail.com/mail/search:${text}`;
     } else {
       const text = $altSearchInput.val();
       if(text.match(/^[\(\)\s]*$/)){
@@ -92,7 +92,7 @@ const setAltSearch = () => {
           return `subject:${v}`;
         }
       })
-      url = `https://www.fastmail.com/mail/search:(${query.join('%20')})`;
+      url = `https://fastmail.com/mail/search:(${query.join('%20')})`;
     }
     window.location = url;
   }

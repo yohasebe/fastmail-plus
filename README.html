@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://yohasebe.github.io/mdpresenter/mdpresenter.css?ts=20210121_073746">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://yohasebe.github.io/mdpresenter/mdpresenter.js?ts=20210121_073746"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="fastmail-plus-browser-extension">Fastmail Plus (Browser
+Extension)</h1>
+<p>A Chrome/Firefox extension to make <strong>Fastmail</strong>
+(https://fastmail.com) web UI more usable and productive</p>
+<p><img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-1400.png?raw=true?raw=true' width="700" /></p>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="#change-focus-using-updown-cursor-keys">Change focus using
+<code>↑</code> <code>↓</code> <code>←</code> <code>→</code> cursor
+keys</a></li>
+<li><a href="#badge-notification-for-unread-messages-to-inbox">Badge
+notification for unread messages to Inbox</a></li>
+<li><a href="#faster-switch-between-search-modes">Faster switch between
+different search modes</a> (anywhere/subject and body/subject only)</li>
+<li><a href="#easier-button-operation-in-reading-pane">Easier button
+operation in reading pane</a></li>
+<li><a href="#extra-shortcut-keys">Extra shortcut keys</a></li>
+<li><a href="#fix-problem-in-using-ime-inside-search-box">Fix problem
+with IME in default search input</a></li>
+<li><a href="#extra-reply-to-folding">Extra “reply-to” folding</a></li>
+<li><a href="#maximize-message-width">Maximize message width</a>
+(default: disabled)</li>
+<li>Light/Dark theme support</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="chrome-web-store">Chrome Web Store</h3>
+<p>https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeodcaijmfm</p>
+<h3 id="firefox-browser-add-ons">Firefox Browser Add-ons</h3>
+<p>https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/</p>
+<h3 id="manual-installation-chrome">Manual Installation (Chrome)</h3>
+<ol type="1">
+<li>Clone this repository</li>
+<li>Build the package with <code>$ rake build</code></li>
+<li>Open <code>chrome://extensions/</code> and turn on “Developer
+mode”</li>
+<li>Drag and drop <code>fastmail-plus-chrome.zip</code> or to the
+extensions page</li>
+</ol>
+<h3 id="manual-installation-firefox">Manual Installation (Firefox)</h3>
+<ol type="1">
+<li>Clone this repository</li>
+<li>Build the package with <code>$ rake build</code></li>
+<li>Open <code>about:debugging</code> and click on “Load Temporary
+Add-on…”</li>
+<li>Load <code>fastmail-plus-firefox.zip</code></li>
+</ol>
+<h2 id="options">Options</h2>
+<p><img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-screenshot-05.png?raw=true' width="700" /></p>
+<h2 id="descriptionusage">Description/Usage</h2>
+<h3 id="change-focus-using-updown-cursor-keys">Change Focus Using
+Up/Down Cursor Keys</h3>
+<p>When <strong>Show reading pane</strong> is selected in Fastmail
+Settings:</p>
+<p>Press <code>←</code> to select mailbox pane, and <code>→</code> to
+select reading pane.</p>
+<p><code>↑</code> and <code>↓</code> cursor keys can be used (in
+addition to <code>J</code> and <code>K</code>) to change focus inside
+mailbox pane.</p>
+<p><code>↑</code> and <code>↓</code> cursor keys can be used (in
+addition to <code>P</code> and <code>N</code>) to change focus inside
+reading pane.</p>
+<p>When <strong>Hide reading pane</strong> is selected in Fastmail
+Settings:</p>
+<p><code>↑</code> and <code>↓</code> cursor keys can be used (in
+addition to <code>J</code> and <code>K</code>) to change focus inside
+mailbox pane.</p>
+<p><code>↑</code> and <code>↓</code> cursor keys can be used (in
+addition to <code>P</code> and <code>N</code>) to change focus inside
+reading pane.</p>
+<h3 id="badge-notification-for-unread-messages-to-inbox">Badge
+notification for unread messages to Inbox</h3>
+<p>The number of unread messages to Inbox appears in icon badge and is
+updated when the browser is having a tab for Fastmail.</p>
+<p><img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inactive.png?raw=true">
+<br /> Inactive / No unread messages</p>
+<p><img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inbox-one.png?raw=true"><br />
+One unread message in Inbox</p>
+<h3 id="faster-switch-between-search-modes">Faster Switch between Search
+Modes</h3>
+<p>Pressing the “repeat arrow” button cyclically switches three
+different search modes:</p>
+<ul>
+<li>Search anywhere (default)</li>
+<li>Search in subject and body</li>
+<li>Search in subject only</li>
+</ul>
+<p><img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/search-input-01.png?raw=true' width="700" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/search-input-02.png?raw=true' width="700" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/search-input-03.png?raw=true' width="700" /></p>
+<p><br /></p>
+<h3 id="easier-button-operation-in-reading-pane">Easier Button Operation
+in Reading Pane</h3>
+<p>Requirement: <code>Group messages with their replies</code> is
+enabled in Fastmail Settings</p>
+<p>An set of extra control buttons are presented on the right-bottom
+corner of the window. The following will be included (from left to
+right)</p>
+<ul>
+<li>Add uncluttered-view mode</li>
+<li>Focus previous message in conversation</li>
+<li>Focus next message in conversation</li>
+<li>Toggle currently focused message</li>
+<li>Ungroup/Expand messages</li>
+<li>Collapse messages</li>
+<li>Toggle show/hide extra control</li>
+</ul>
+<p><img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/reading-pane-buttons.png?raw=true' width="500" /></p>
+<p><img src='https://user-images.githubusercontent.com/18207/156918099-274bb6ea-aa2f-4202-9ce9-7923e3ca0c61.gif' width="700" /></p>
+<h3 id="extra-shortcut-keys">Extra Shortcut Keys</h3>
+<p>If enabled, extra shortcut keys view will be added</p>
+<ul>
+<li>Switch between search modes: <code>Control + Shift + M</code></li>
+<li>Toggle uncluttered-view mode: <code>Control + Shift + L</code></li>
+<li>Toggle show/hide extra control: <code>Control + ,</code></li>
+<li>Toggle currently focused message: <code>Enter</code> (in addition to
+the default <code>E</code>)</li>
+<li>Ungroup/Expand messages: <code>Shift + Enter</code> (in addition to
+the default <code>Shift + E</code>)</li>
+<li>Collapse messages: <code>Shift + Option/Alt + Enter</code> (in
+addition to the default <code>Shift + Option/Alt + E</code>)</li>
+<li>Show/hide right-hand side panel: <code>Shift + Control + I</code>
+(in addition to the default <code>Shift + Command + I</code>)</li>
+<li>Prev in Calendar view: <code>Control + ↑</code> (in addition to
+<code>K</code>)</li>
+<li>Next in Calendar view: <code>Control + ↓</code> (in addition to
+<code>J</code>)</li>
+</ul>
+<h3 id="fix-problem-in-using-ime-inside-search-box">Fix Problem in Using
+IME inside Search Box</h3>
+<p>When entering Japanese (or some other language) in Fastmail’s search
+input, using the IME to enter text requires pressing the Enter key
+before completing the input. Fastmail’s Web UI performs the search at
+the moment the Enter key is hit even though the search string is
+completed. Fastmail Plus fixes this problem.</p>
+<h3 id="extra-reply-to-folding">Extra Reply-to Folding</h3>
+<p>Fold the “reply-to” part of messages (when the message’s div has an
+<code>id</code> containing <code>appendonsend</code>)</p>
+<h3 id="maximize-message-width">Maximize Message Width</h3>
+<p>When enabled, the width of the messages in the reading pane is
+maximized to the actual window width. This option is disabled by
+default.</p>
+<p><img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/max-width.png?raw=true?raw=true' width="700" /></p>
+<h2 id="advertisement">Advertisement</h2>
+<p>Sign up for Fastmail via this link and get 10% off for 1 year.</p>
+<p><a href="https://ref.fm/u27773408">https://ref.fm/u27773408</a></p>
+<h2 id="author">Author</h2>
+<p>Yoichiro Hasebe</p>
+<h2 id="contributor">Contributor</h2>
+<p>Stanislav (Stas) Katkov</p>
+<h2 id="license">License</h2>
+<p>The MIT License</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>Fastmail Plus Browser Extension is not officially endorsed by
+Fastmail. Use this open source software at your own risk and do not
+contact Fastmail for support.</p>
+</body>
+</html>
