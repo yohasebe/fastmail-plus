@@ -129,7 +129,6 @@ $btnUp.on('click', () => {
   } else {
     if (focused.prev().length == 0) {
      $("div#conversation div.v-Page-content").get(0).scrollTop = 0;
-     // $("h1.v-Thread-title").get(0).scrollIntoView({behavior: 'smooth', block: 'start'});
     } else if (focused.prev().length > 0){
       let newFocus = focused.removeClass("is-focused").prev().addClass("is-focused");
       newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'nearest'});
@@ -141,6 +140,10 @@ $btnDown.on('click', () => {
   let focused = $("div.v-MessageCard.app-contentCard.is-focused");
   if (focused.length == 0){
     $("div.v-MessageCard.app-contentCard").first().addClass("is-focused");
+  } else if (focused.next().length == 0) {
+    let pageContent = $(".v-Page-content").not(".v-Split--left .v-Page-content");
+    // pageContent.scrollTop($(document).height() * 10);
+    pageContent.animate({ scrollTop: $(document).height() * 100 }, 2000);
   } else {
     if (focused.next().length > 0){
       let newFocus = focused.removeClass("is-focused").next().addClass("is-focused");
