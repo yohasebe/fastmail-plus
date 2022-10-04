@@ -130,7 +130,7 @@ Fold the "reply-to" part of messages (when the message's  div has an `id` contai
 
 ### Maximize Width
 
-When enabled, the width of the message/compose/note/settigs pane is maximized to the actual window width. This option is disabled by default.
+When enabled, the message and notes panes are maximized to the actual window width, while the settings and composition panes are centered. This option is disabled by default.
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/max-width.png?raw=true?raw=true' width="700" />
 
