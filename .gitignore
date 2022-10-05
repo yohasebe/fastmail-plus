@@ -31,3 +31,4 @@ Temporary Items
 ./manifest.json
 ./background-script.js
 ./content/main.js
+./unused/*
