@@ -1,3 +1,5 @@
+require 'json'
+
 desc "Build packages"
 task :build do
   components = [
@@ -20,6 +22,18 @@ task :build do
   manifest = File.join(base, "manifest.json")
 
   Dir.glob(manifests).each do |m|
+
+    version = JSON.parse(File.read(m))["version"]
+    updated = ""
+
+    File.open("options.html", "r") do |f|
+      updated = f.read.sub(/<span class='version'>.*?<\/span>/){"<span class='version'>#{version}</span>"}
+    end
+
+    File.open("options.html", "w") do |f|
+      f.write(updated)
+    end
+
     case m
     when /\.v3\.json\z/
       `ln #{m} manifest.json`
