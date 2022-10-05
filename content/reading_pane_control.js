@@ -131,7 +131,7 @@ $btnUp.on('click', () => {
      $("div#conversation div.v-Page-content").get(0).scrollTop = 0;
     } else if (focused.prev().length > 0){
       let newFocus = focused.removeClass("is-focused").prev().addClass("is-focused");
-      newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'start'});
     }
   }
 });
@@ -142,12 +142,13 @@ $btnDown.on('click', () => {
     $("div.v-MessageCard.app-contentCard").first().addClass("is-focused");
   } else if (focused.next().length == 0) {
     let pageContent = $(".v-Page-content").not(".v-Split--left .v-Page-content");
-    // pageContent.scrollTop($(document).height() * 10);
-    pageContent.animate({ scrollTop: $(document).height() * 100 }, 2000);
+    pageContent.get(0).scrollIntoView({behavior: 'smooth', block: 'end'});
+    // If the message in focus is already the last one, scroll further to the bottom of the message.
+    pageContent.animate({ scrollTop: $(document).height() * 100 }, 0);
   } else {
     if (focused.next().length > 0){
       let newFocus = focused.removeClass("is-focused").next().addClass("is-focused");
-      newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'start'});
     }
   }
 });
