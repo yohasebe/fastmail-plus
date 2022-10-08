@@ -33,8 +33,24 @@ div.ui-tooltip{
   max-width: 726px;
 }
 
+.v-Page-content
+{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .v-Compose.app-contentCard {
+  margin-right: 0;
+  margin-left: 0;
   min-width: 480px;
-  max-width: calc(100% - 80px);
   width: 780px;
+  max-width: calc(100% - 40px);
+}
+
+.app-contentCard:has(.v-EditNote) {
+  margin-right: 0;
+  margin-left: 0;
+  min-width: 480px;
+  width: 780px;
+  max-width: 100%;
 }

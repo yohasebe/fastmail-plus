@@ -1,15 +1,23 @@
 const maximizeMessageWidth = () => {
   let max_width = `
       <style>
-        div.v-SettingsPane {
-          margin: auto !important;
+        .v-SettingsPane,
+        .app-contentCard:has(.v-Contact),
+        .app-contentCard:has(.v-EditContact)
+        {
+          margin: 0 auto !important;
+          margin-top: 20px !important;
+          margin-bottom: 20px !important;
         }
 
-        div.v-MessageCard.app-contentCard {
+        .v-MessageCard.app-contentCard
+        {
           max-width: 100% !important;
         }
 
-        div.v-Compose.app-contentCard {
+        .v-Compose.app-contentCard,
+        .app-contentCard:has(.v-EditNote) 
+        {
           width: 100%;
           margin-top: 20px !important;
           margin-bottom: 20px !important;

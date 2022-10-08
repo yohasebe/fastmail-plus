@@ -1,5 +1,6 @@
 const regexMail = new RegExp('\/mail\/');
 const regexCalendar = new RegExp('\/calendar\/');
+const regexNotes = new RegExp('\/notes\/');
 const regexCompose = new RegExp('\/compose');
 const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 
@@ -13,6 +14,7 @@ let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
 let themeType = "light"; // could be "light" or "dark"
 let readingPaneControlPositionTimer = null;
+let composePaneControlPositionTimer = null;
 let focusOnMessage = true;
 let firstTimeReady = false;
 let btnControlShown = true;

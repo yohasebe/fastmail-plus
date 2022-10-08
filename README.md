@@ -15,7 +15,7 @@ A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI mo
 - [Extra "reply-to" folding](#extra-reply-to-folding)
 - [Maximize reading pane width](#maximize-reading-pane-width) (default: disabled)
 - Light/Dark theme support
-- Resizable compose textbox
+- Resizable compose/note panes
 
 ## Installation
 

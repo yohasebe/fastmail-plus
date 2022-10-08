@@ -11,6 +11,19 @@ const checkReadingPaneControlPosition = () => {
 
 const runOnChange = (url) => {
   
+  // currently in compose/note mode
+  if (regexCompose.test(url) || regexNotes.test(url)) {
+    composePaneControlPositionTimer = setInterval(() => {
+      $(".v-Compose.app-contentCard, .app-contentCard:has(.v-EditNote)").resizable({
+        handles: 'e'
+      });
+    }, 300);
+  } else {
+    if (composePaneControlPositionTimer) {
+      clearInterval(composePaneControlPositionTimer);
+    }
+  }
+
   // currently in mail mode
   if(regexMail.test(url)){
 
@@ -46,20 +59,8 @@ const runOnChange = (url) => {
       indicateLeftRight("left");
     }
 
-    if (regexCompose.test(url)) {
-      // compose pain is currently shown
-      $(".v-Compose.app-contentCard").resizable({
-        handles: 'e'
-      });
-
-      if(readingPaneControlPositionTimer){
-        clearInterval(readingPaneControlPositionTimer);
-      }
-      $allButtons.detach();
-      showmainMenu();
-
       // reading pane is currently shown
-    } else if(regexReadingPane.test(url)){
+    if(regexReadingPane.test(url)){
 
       if(!readingPaneControlPositionTimer){
         readingPaneControlPositionTimer = setInterval(checkReadingPaneControlPosition, 300);
@@ -103,36 +104,28 @@ const checkFirstTimeReady = () => {
   }
 
   let t1 = setInterval(() => {
+    runOnChange(lastUrl);
 
-    $(".v-Compose.app-contentCard").resizable({
-      handles: 'e'
-    });
-
-    if($("div#mailbox").length > 0 || $("div#conversation").length > 0){
-
-      runOnChange(lastUrl);
-
-      if(alternativeSearch) {
-        setAltSearch();
-      }
-
-      clearInterval(t1);
-
-      // check current URL;
-      setInterval(() => {
-        let url = location.href;
-        if (url !== lastUrl) {
-          runOnChange(url);
-          lastUrl = url;
-        }
-      }, 300);
-
-      $(window).on('resize', () => {
-        if(readingPaneControlPositionTimer){
-          checkReadingPaneControlPosition();
-        }
-      });
+    if(alternativeSearch) {
+      setAltSearch();
     }
+
+    clearInterval(t1);
+
+    // check current URL;
+    setInterval(() => {
+      let url = location.href;
+      if (url !== lastUrl) {
+        runOnChange(url);
+        lastUrl = url;
+      }
+    }, 300);
+
+    $(window).on('resize', () => {
+      if(readingPaneControlPositionTimer){
+        checkReadingPaneControlPosition();
+      }
+    });
   }, 300);
 }
 
