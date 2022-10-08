@@ -26,6 +26,15 @@ div.ui-tooltip{
 }
 
 .v-Page--sidebar {
-    background-image: none !important;
+  background-image: none !important;
 }
 
+.v-Compose-section .v-TextInput--standard {
+  max-width: 726px;
+}
+
+.v-Compose.app-contentCard {
+  min-width: 480px;
+  max-width: calc(100% - 80px);
+  width: 780px;
+}

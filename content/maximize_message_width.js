@@ -10,7 +10,7 @@ const maximizeMessageWidth = () => {
         }
 
         div.v-Compose.app-contentCard {
-          margin: auto !important;
+          width: 100%;
           margin-top: 20px !important;
           margin-bottom: 20px !important;
         }

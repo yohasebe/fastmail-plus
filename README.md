@@ -13,8 +13,9 @@ A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI mo
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Extra "reply-to" folding](#extra-reply-to-folding)
-- [Maximize width](#maximize-width) (default: disabled)
+- [Maximize reading pane width](#maximize-reading-pane-width) (default: disabled)
 - Light/Dark theme support
+- Resizable compose textbox
 
 ## Installation
 
@@ -128,9 +129,9 @@ When entering Japanese (or some other language) in Fastmail's search input, usin
 Fold the "reply-to" part of messages (when the message's  div has an `id` containing `appendonsend`)
 
 
-### Maximize Width
+### Maximize Reading-pane Width
 
-When enabled, the message and notes panes are maximized to the actual window width, while the settings and composition panes are centered. This option is disabled by default.
+When enabled, the message/compose/notes panes are maximized to the actual window width. This option is disabled by default.
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/max-width.png?raw=true?raw=true' width="700" />
 

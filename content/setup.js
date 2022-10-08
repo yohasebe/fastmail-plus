@@ -1,6 +1,6 @@
 const regexMail = new RegExp('\/mail\/');
 const regexCalendar = new RegExp('\/calendar\/');
-const regexCompose = new RegExp('\/compose\/');
+const regexCompose = new RegExp('\/compose');
 const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 
 let displayNumMessages;

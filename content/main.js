@@ -7,7 +7,6 @@ const checkReadingPaneControlPosition = () => {
   $allButtons.css({
     "right": right + "px"
   });
-
 }
 
 const runOnChange = (url) => {
@@ -47,8 +46,20 @@ const runOnChange = (url) => {
       indicateLeftRight("left");
     }
 
-    // reading pane is currently shown
-    if(regexReadingPane.test(url)){
+    if (regexCompose.test(url)) {
+      // compose pain is currently shown
+      $(".v-Compose.app-contentCard").resizable({
+        handles: 'e'
+      });
+
+      if(readingPaneControlPositionTimer){
+        clearInterval(readingPaneControlPositionTimer);
+      }
+      $allButtons.detach();
+      showmainMenu();
+
+      // reading pane is currently shown
+    } else if(regexReadingPane.test(url)){
 
       if(!readingPaneControlPositionTimer){
         readingPaneControlPositionTimer = setInterval(checkReadingPaneControlPosition, 300);
@@ -86,18 +97,16 @@ const runOnChange = (url) => {
 
 const checkFirstTimeReady = () => {
 
-  // update icon badge with number of unread messages
-  if(displayNumMessages){
-    setNumNewMessages()
-    const timer = setInterval(setNumNewMessages, 5000);
-  }
-
   // Detects if dark theme is enabled.
   if($("html.t-dark") != null ){
     themeType = 'dark'
   }
 
   let t1 = setInterval(() => {
+
+    $(".v-Compose.app-contentCard").resizable({
+      handles: 'e'
+    });
 
     if($("div#mailbox").length > 0 || $("div#conversation").length > 0){
 
@@ -123,7 +132,6 @@ const checkFirstTimeReady = () => {
           checkReadingPaneControlPosition();
         }
       });
-
     }
   }, 300);
 }
