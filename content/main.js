@@ -9,8 +9,7 @@ const checkReadingPaneControlPosition = () => {
   });
 }
 
-const runOnChange = (url) => {
-  
+const makeResizable = (url) => {
   // currently in compose/note mode
   if (regexCompose.test(url) || regexNotes.test(url)) {
     composePaneControlPositionTimer = setInterval(() => {
@@ -23,6 +22,15 @@ const runOnChange = (url) => {
       clearInterval(composePaneControlPositionTimer);
     }
   }
+}
+
+const runOnChange = (url) => {
+  
+  if(alternativeSearch && $("#alt-search").length == 0) {
+    setAltSearch();
+  }
+
+  makeResizable(url);
 
   // currently in mail mode
   if(regexMail.test(url)){
@@ -104,28 +112,26 @@ const checkFirstTimeReady = () => {
   }
 
   let t1 = setInterval(() => {
-    runOnChange(lastUrl);
+    if($(".v-SearchInput").length > 0){
+      runOnChange(lastUrl);
 
-    if(alternativeSearch) {
-      setAltSearch();
+      clearInterval(t1);
+
+      // check current URL;
+      setInterval(() => {
+        let url = location.href;
+        if (url !== lastUrl) {
+          runOnChange(url);
+          lastUrl = url;
+        }
+      }, 300);
+
+      $(window).on('resize', () => {
+        if(readingPaneControlPositionTimer){
+          checkReadingPaneControlPosition();
+        }
+      });
     }
-
-    clearInterval(t1);
-
-    // check current URL;
-    setInterval(() => {
-      let url = location.href;
-      if (url !== lastUrl) {
-        runOnChange(url);
-        lastUrl = url;
-      }
-    }, 300);
-
-    $(window).on('resize', () => {
-      if(readingPaneControlPositionTimer){
-        checkReadingPaneControlPosition();
-      }
-    });
   }, 300);
 }
 

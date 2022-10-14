@@ -29,7 +29,7 @@ const setAltSearch = () => {
   const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input.v-SearchInput-input").not($altSearchInput);
   $normalSearchInput.attr("placeholder", "Search Mail (Default)")
 
-  $searchToggle.on('click', (e) => {
+  $searchToggle.on('click', () => {
     if(searchMode === "anywhere"){
       $searchBar.hide();
       $altSearch.show();

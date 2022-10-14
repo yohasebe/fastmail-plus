@@ -30,7 +30,11 @@ div.ui-tooltip{
 }
 
 .v-Compose-section .v-TextInput--standard {
-  max-width: 726px;
+  max-width: 728px;
+}
+
+.v-EditNote .v-TextInput--standard {
+  max-width: 738px;
 }
 
 .v-Page-content
