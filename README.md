@@ -137,7 +137,7 @@ When enabled, the message/compose/note panes are maximized to the actual window 
 
 ### Resizable Textarea
 
-<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/resizable-textare.png?raw=true?raw=true' width="700" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/resizable-textarea.png?raw=true?raw=true' width="700" />
 
 ## Advertisement
 
