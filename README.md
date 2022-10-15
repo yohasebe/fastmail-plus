@@ -14,8 +14,8 @@ A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI mo
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Extra "reply-to" folding](#extra-reply-to-folding)
 - [Maximize reading pane width](#maximize-reading-pane-width) (default: disabled)
+- [Resizable compose/note textarea](#resizable-textarea)
 - Light/Dark theme support
-- Resizable compose/note textarea
 
 ## Installation
 
@@ -134,6 +134,10 @@ Fold the "reply-to" part of messages (when the message's  div has an `id` contai
 When enabled, the message/compose/note panes are maximized to the actual window width. This option is disabled by default.
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/max-width.png?raw=true?raw=true' width="700" />
+
+### Resizable Textarea
+
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/resizable-textare.png?raw=true?raw=true' width="700" />
 
 ## Advertisement
 
