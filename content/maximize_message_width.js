@@ -16,7 +16,7 @@ const maximizeMessageWidth = () => {
         }
 
         .v-Compose.app-contentCard,
-        .app-contentCard:has(.v-EditNote) 
+        .app-contentCard:has(.v-EditNote)
         {
           width: 100%;
           margin-top: 20px !important;
@@ -24,7 +24,6 @@ const maximizeMessageWidth = () => {
         }
 
       </style>
-      `; 
+      `;
   $('head').append($(max_width));
 }
-

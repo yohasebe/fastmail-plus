@@ -1,4 +1,4 @@
-const indicateLeftRight = (side) => {
+const indicateLeftRight = () => {
   if(useCursorKeys){
     if(leftOrRight === "left"){
       if(themeType === "light"){

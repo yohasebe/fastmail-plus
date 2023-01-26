@@ -1,19 +1,19 @@
-chrome.storage.local.get(["alternativeSearch", "displayNumMessages", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth"], (val) => {
+chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth", "justUpdated"], (val) => {
   $('[name="alternative-search"]').prop('checked', val.alternativeSearch);
-  $('[name="display-num-messages"]').prop('checked', val.displayNumMessages);
   $('[name="alternative-shortcut-keys"]').prop('checked', val.alternativeShortcutKeys);
   $('[name="use-cusror-keys"]').prop('checked', val.useCursorKeys);
   $('[name="max-message-width"]').prop('checked', val.maxMessageWidth);
+  if (val.justUpdated){
+    $('.updated').show();
+    chrome.storage.local.set({'justUpdated': false}, () => {});
+  } else {
+    $('span.updated').hide();
+  }
 });
 
 $("#alternative-search").on("click", () => {
   let alternativeSearch = $('[name="alternative-search"]').prop('checked');
   chrome.storage.local.set({'alternativeSearch': alternativeSearch}, () => {});
-})
-
-$("#display-num-messages").on("click", () => {
-  let displayNumMessages = $('[name="display-num-messages"]').prop('checked');
-  chrome.storage.local.set({'displayNumMessages': displayNumMessages}, () => {});
 })
 
 $("#alternative-shortcut-keys").on("click", () => {

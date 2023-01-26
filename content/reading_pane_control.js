@@ -11,10 +11,14 @@ $allButtons.attr('id', 'allButtons');
 const $readingPaneButtons = $("<div />")
 $readingPaneButtons.attr('id', 'readingPaneButtons');
 
-const createImageLabel = (imgPath, key) => {
+const createImageLabel = (imgPath) => {
   return "<span class='label'>" +
          `<img style='vertical-align:text-top' src='${chrome.runtime.getURL(imgPath)}' />` +
          "</span>";
+}
+
+const btnReloadLabel = () => {
+  return createImageLabel("svg/arrow-repeat.svg", "^R");
 }
 
 const btnMainMenuLabel = () => {
@@ -47,6 +51,16 @@ const btnControlLabel = () => {
   } else {
     return createImageLabel("svg/arrow-left-square.svg", "^,");
   }
+}
+
+const $btnReload = $(`<button>${btnReloadLabel()}</button>`).appendTo($readingPaneButtons);
+$btnReload.attr('id', 'btnReloadMenu');
+$btnReload.attr('title', '^R');
+$btnReload.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+
+// Reload message
+const relad = () => {
+  $btnRelaod.click();
 }
 
 const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($readingPaneButtons);
@@ -91,6 +105,10 @@ const $btnControl = $(`<button><span class='label'>${btnControlLabel()}</span></
 $btnControl.attr('id', 'btnControl');
 $btnControl.attr('title', '^,');
 $btnControl.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+
+$btnReload.on('click', () => {
+  window.location.reload();
+});
 
 $btnMainMenu.on('click', () => {
   if(!mainMenuShown){

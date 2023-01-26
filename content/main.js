@@ -25,7 +25,6 @@ const makeResizable = (url) => {
 }
 
 const runOnChange = (url) => {
-  
   if(alternativeSearch && $("#alt-search").length == 0) {
     setAltSearch();
   }

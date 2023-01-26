@@ -4,7 +4,6 @@ const regexNotes = new RegExp('\/notes\/');
 const regexCompose = new RegExp('\/compose');
 const regexReadingPane = new RegExp('\/T.{16}\.M.{24}');
 
-let displayNumMessages;
 let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
@@ -27,7 +26,6 @@ let leftOrRight;
 // Set Parameters retrieved from Chrome storage
 
 const keys = [
-  "displayNumMessages",
   "useCursorKeys",
   "alternativeShortcutKeys",
   "alternativeSearch",
@@ -39,10 +37,8 @@ const getSyncStorage = (keys) => new Promise(resolve => {
 });
 
 getSyncStorage().then((vals) => {
-  displayNumMessages = vals.displayNumMessages === undefined ? true : vals.displayNumMessages;
   useCursorKeys = vals.useCursorKeys === undefined ? true : vals.useCursorKeys;
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
   maxMessageWidth = vals.maxMessageWidth === undefined ? true : vals.maxMessageWidth;
 });
-

@@ -7,7 +7,6 @@ A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI mo
 ## Features
 
 - [Change focus using `↑` `↓` `←` `→` cursor keys](#change-focus-using-updown-cursor-keys)
-- [Badge notification for unread messages to Inbox](#badge-notification-for-unread-messages-to-inbox)
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
 - [Extra shortcut keys](#extra-shortcut-keys)
@@ -63,16 +62,6 @@ When **Hide reading pane** is selected in Fastmail Settings:
 `↑` and `↓` cursor keys can be used (in addition to `J` and `K`) to change focus inside mailbox pane. 
 
 `↑` and `↓` cursor keys can be used (in addition to `P` and `N`) to change focus inside reading pane.
-
-### Badge notification for unread messages to Inbox
-
-The number of unread messages to Inbox appears in icon badge and is updated when the browser is having a tab for Fastmail.
-
-<img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inactive.png?raw=true"> <br />
-Inactive / No unread messages
-
-<img width="36" alt="badge" src="https://github.com/yohasebe/fastmail-plus/blob/main/images/badge-inbox-one.png?raw=true"><br />
-One unread message in Inbox
 
 ### Faster Switch between Search Modes
 

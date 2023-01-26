@@ -1,13 +1,10 @@
 let badgeTimer;
-const asyncFunctionWithAwait = (message, sender, sendResponse) => {
+
+const asyncFunctionWithAwait = (message) => {
   const badgeText = chrome.action.getBadgeText({});
   badgeText.then(current => {
     if(badgeTimer) clearInterval(badgeTimer);
-    if(message.type === "string"){
-      if(current !== ""){
-        chrome.action.setBadgeText({text: "" });
-      }
-    } else if(message.value == 0){
+    if(message.value == 0){
       if(current !== ""){
         chrome.action.setBadgeText({text: "" });
       }
@@ -26,4 +23,10 @@ const asyncFunctionWithAwait = (message, sender, sendResponse) => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   asyncFunctionWithAwait(message, sender, sendResponse)
   return true;
+});
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if(details.reason == "update" || details.reason == "install"){
+    chrome.storage.local.set({'justUpdated': true}, () => {});
+  }
 });

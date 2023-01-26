@@ -1,4 +1,4 @@
-const searchToggleImage = chrome.runtime.getURL("svg/arrow-repeat.svg");
+const searchToggleImage = chrome.runtime.getURL("svg/repeat.svg");
 const $searchToggle = $('<button id="search-toggle" title="^⇧M" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="background-color: #c1c5c8; width:50px; padding:0; margin-right:10px; margin-left:10px">'+
                          `<img src="${searchToggleImage}" /></button>`);
 const $searchExecuteButton = $('<button id="searchExecute" style="margin-left: 10px; margin-right: 0; background-color: darkgray; width:50px;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
@@ -85,7 +85,7 @@ const setAltSearch = () => {
         keys = unquoted;
       }
 
-      const query = keys.filter((e) => {return !(e === null || e === undefined || e === "");}).map((v, i, k) => {
+      const query = keys.filter((e) => {return !(e === null || e === undefined || e === "");}).map(v => {
         if(searchMode === "subject_body"){
           return `(suject:${v} OR body:${v})`;
         } else {
@@ -103,13 +103,13 @@ const setAltSearch = () => {
     }
   });
 
-  $searchExecuteButton.on('click', (e) => {
+  $searchExecuteButton.on('click', (_e) => {
     executeSearch()
   });
 
   document.addEventListener('keydown', (e) => {
     if(searchMode === "alt" && !$("input, textarea").is(":focus")) {
-      if (!e.shiftKey && e.which === 191){
+      if (!e.shiftKey && e.code === 191){
         $altSearchInput.focus();
       }
     }

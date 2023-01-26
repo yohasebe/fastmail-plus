@@ -1,0 +1,9 @@
+{
+  "env": {
+    "es6": true,
+    "es2022": true,
+    "browser": true,
+    "node": true,
+    "jquery": true
+  }
+}

@@ -26,8 +26,15 @@ const shortcutHandler = (e) => {
   if(!$("input, textarea, div.v-RichText-input").is(":focus")) {
     // Mail view
     if(regexMail.test(lastUrl)){
+      if (e.ctrlKey && e.which === 82){
+        reload();
+      // Command + right (for mac) is ignored because the original behavior of going forward could make some users confused
+      } else if(e.metaKey && e.which == 39) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return true;
       // J and K are basically left untouched
-      if (e.which === 74 || e.which === 75){
+      } else if (e.which === 74 || e.which === 75){
         if(mainMenuShown){
           return true;
         } else {
@@ -129,7 +136,8 @@ const readingPaneShortcuts = (e) => {
   }
 };
 
-const buttons = [$btnMainMenu, $btnUp, $btnDown, $btnToggle, $btnExpand, $btnCollapse, $btnControl, $searchToggle]
+const buttons = [$btnReload, $btnMainMenu, $btnUp, $btnDown, $btnToggle, $btnExpand, $btnCollapse, $btnControl, $searchToggle]
+
 for (const button of buttons) {
   button.tooltip({
     position: {

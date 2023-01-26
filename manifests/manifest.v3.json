@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Fastmail Plus",
   "default_locale": "en",
-  "version": "0.2.14.1",
+  "version": "0.2.16.0",
   "description": "A Chrome extension to make Fastmail web UI more usable and productive",
   "icons": {
     "16": "images/fastmail-plus-16.png",
@@ -12,9 +12,6 @@
   "action": {
     "default_icon": "images/fastmail-plus-128.png",
     "default_popup": "options.html"
-  },
-  "background": {
-    "service_worker": "background-script.js"
   },
   "content_scripts": [
     {
@@ -29,7 +26,6 @@
         "content/reading_pane_control.js",
         "content/extra_shortcuts.js",
         "content/fold_quote.js",
-        "content/display_num_messages.js",
         "content/maximize_message_width.js",
         "content/main.js"
       ],
