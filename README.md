@@ -1,6 +1,6 @@
 # Fastmail Plus (Browser Extension)
 
-A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
+A Chrome/Edge/Firefox extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-1400.png?raw=true?raw=true' width="700" />
 
@@ -18,15 +18,15 @@ A Chrome/Firefox extension to make **Fastmail** (https://fastmail.com) web UI mo
 
 ## Installation
 
-### Chrome Web Store
+### For Google Chrome and Microsoft Edge
 
 https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeodcaijmfm
 
-### Firefox Browser Add-ons
+### For Mozilla Firefox
 
 https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
 
-### Manual Installation (Chrome)
+### Manual Installation (Chrome/Edge)
 
 1. Clone this repository
 2. Build the package with `$ rake build`
