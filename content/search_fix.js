@@ -2,7 +2,7 @@
 const ua = window.navigator.userAgent.toLowerCase();
 if(ua.indexOf("mac os x") !== -1) {
   document.addEventListener('keydown', (e) => {
-    if ($("input.v-SearchInput-input").is(":focus") && e.isComposing) {
+    if ($(".v-TextInput-input").is(":focus") && e.isComposing) {
       e.stopImmediatePropagation();
     }
   });

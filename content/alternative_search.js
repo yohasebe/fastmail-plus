@@ -8,16 +8,12 @@ const setAltSearch = () => {
     return false;
   }
   const $searchBar = $("div.v-SearchInput.v-MailToolbar-search").not('#alt-search');
-  const altSHTML = '<div id="alt-search" class="v-SearchInput v-MailToolbar-search altSearch" style="position:relative;">'
-    + '<input id="alt-search-input" class="v-SearchInput-input" name="alt-searchSubjectBody" '
-    + 'style="background-color: #e3edf7;" '
-    + 'placeholder="Search Mail" '
-    + 'autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" tabindex="0" />'
-    + '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="u-standardicon v-Icon i-search" role="presentation">'
-    + '<circle cx="10.5" cy="10.5" r="5.75"></circle>'
-    + '<line x1="19.25" y1="19.25" x2="14.57" y2="14.57"></line>'
-    + '</svg>'
-    + '</div>';
+  const altSHTML = '<div id="alt-search" class="v-TextInput v-SearchInput v-MailToolbar-search" style="position:relative;">'
+    + '<div class="v-TextInput-control">'
+    + '<input id="alt-search-input" class="v-TextInput-input" name = "alt-search" type = "text" tabindex = "0" placeholder = "Search Mail" autocapitalize = "off" autocomplete = "off" autocorrect = "off" spellcheck = "false" title = "Shortcut: /" >'
+    + '</div >'
+    + '<svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 24 24" class="u-standardicon v-Icon i-search" role = "presentation" ><circle cx="10.5" cy="10.5" r="5.75"></circle><line x1="19.25" y1="19.25" x2="14.57" y2="14.57"></line></svg>';
+  
   const $altSearch = $(altSHTML);
   $altSearch.hide();
   $altSearch.insertAfter($searchBar);
@@ -26,7 +22,7 @@ const setAltSearch = () => {
   $searchToggle.before($searchExecuteButton);
 
   const $altSearchInput = $("#alt-search-input");
-  const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input.v-SearchInput-input").not($altSearchInput);
+  const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input").not($altSearchInput);
   $normalSearchInput.attr("placeholder", "Search Mail (Default)")
 
   $searchToggle.on('click', () => {
