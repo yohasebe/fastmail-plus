@@ -42,7 +42,7 @@ https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
 
 ## Options
 
-<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-screenshot-05.png?raw=true' width="700" />
+<img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-screenshot-05.png?raw=true' width="500" />
 
 ## Description/Usage
 
