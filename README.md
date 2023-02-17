@@ -83,7 +83,8 @@ Requirement: `Group messages with their replies` is enabled in Fastmail Settings
 
 An set of extra control buttons are presented on the right-bottom corner of the window. The following will be included (from left to right)
 
-- Add uncluttered-view mode
+- Reload page
+- Toggle uncluttered-view mode
 - Focus previous message in conversation
 - Focus next message in conversation
 - Toggle currently focused message
