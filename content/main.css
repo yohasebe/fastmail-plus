@@ -2,7 +2,7 @@ div#allButtons {
   position: absolute;
   right: 20px;
   bottom: 1em;
-  z-index: 99999;
+  z-index: 49;
   display: flex;
 }
 
