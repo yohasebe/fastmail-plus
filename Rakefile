@@ -47,10 +47,11 @@ end
 
 desc "switches to Firefox as main manifest"
 task :firefox do
-  `ln --force --symbolic manifests/manifest.v2.json manifest.json`
+  # -sf works on both GNU and BSD (macOS); the old `--force --symbolic` fails with macOS ln
+  `ln -sf manifests/manifest.v2.json manifest.json`
 end
 
 desc "switches to Chrome as main manifest"
 task :chrome do
-  `ln --force --symbolic manifests/manifest.v3.json manifest.json`
+  `ln -sf manifests/manifest.v3.json manifest.json`
 end

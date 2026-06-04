@@ -15,7 +15,7 @@ const maximizeMessageWidth = () => {
           max-width: 100% !important;
         }
 
-        .v-Compose.app-contentCard,
+        .app-contentCard:has(.v-Compose),
         .app-contentCard:has(.v-EditNote)
         {
           width: 100%;

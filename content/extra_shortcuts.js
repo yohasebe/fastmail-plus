@@ -23,11 +23,11 @@ const shortcutHandler = (e) => {
   }
 
   // These work only outside textbox/input
-  if(!$("input, textarea, div.v-RichText-input").is(":focus")) {
+  if(!$(`input, textarea, ${SEL.richTextInput}`).is(":focus")) {
     // Mail view
     if(regexMail.test(lastUrl)){
       if (e.ctrlKey && e.which === 82){
-        reload();
+        window.location.reload();
       // Command + right (for mac) is ignored because the original behavior of going forward could make some users confused
       } else if(e.metaKey && e.which == 39) {
         e.preventDefault();
@@ -53,12 +53,15 @@ const shortcutHandler = (e) => {
         }
       }
 
-      if (regexCompose.test(lastUrl)){
+      // Detect compose by DOM too: inline replies keep the conversation URL, so
+      // a URL-only check would let reading-pane shortcuts (e.g. Enter) hijack the
+      // editor.
+      if (regexCompose.test(lastUrl) || isComposing()){
         ;
       } else if(splitPanes) {
         // Ctrl + Shift + L => Toggle non-clutter mode
         if (e.ctrlKey && e.shiftKey && e.which === 76){
-          if(alternativeShortcutKeys && $("div.v-Empty").length == 0){
+          if(alternativeShortcutKeys && $(SEL.empty).length == 0){
             togglemainMenu();
           }
         } else if(leftOrRight == "right"){
@@ -74,7 +77,7 @@ const shortcutHandler = (e) => {
           }
         }
       } else {
-        if(regexReadingPane.test(lastUrl)){
+        if(isReadingPaneShown()){
           // Shift + L => Toggle non-clutter mode
           if (e.shiftKey && e.ctrlKey && e.which === 76){
             togglemainMenu();
@@ -173,4 +176,3 @@ $(document).on('click', () => {
     hideTooltips();
   }
 });
-

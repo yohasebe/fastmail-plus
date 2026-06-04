@@ -1,19 +1,33 @@
-const searchToggleImage = chrome.runtime.getURL("svg/repeat.svg");
-const $searchToggle = $('<button id="search-toggle" title="^⇧M" class="v-Button v-Button--subtle v-Button--sizeM has-icon" style="background-color: #c1c5c8; width:50px; padding:0; margin-right:10px; margin-left:10px">'+
-                         `<img src="${searchToggleImage}" /></button>`);
-const $searchExecuteButton = $('<button id="searchExecute" style="margin-left: 10px; margin-right: 0; background-color: darkgray; width:50px;" class="v-Button v-Button--cta v-Button--sizeM"><span class="label">Go</span></button>');
+// Match Fastmail's native icon buttons (iconOnly). Like the magnifier to the
+// left of the search box, use a self-contained inline SVG (following
+// currentColor) so size and color adapt to the theme automatically.
+const iconSvg = (inner) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" ` +
+  `fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" ` +
+  `stroke-linejoin="round" role="presentation" style="vertical-align:middle;">${inner}</svg>`;
+// Send (->) icon: run the search
+const sendIcon = iconSvg('<line x1="4" y1="12" x2="18" y2="12"></line><polyline points="12 5.5 18.5 12 12 18.5"></polyline>');
+// Repeat icon: cycle through search modes
+const repeatIcon = iconSvg('<polyline points="17 2 21 6 17 10"></polyline><path d="M3 11.5V10a4 4 0 0 1 4-4h14"></path><polyline points="7 22 3 18 7 14"></polyline><path d="M21 12.5V14a4 4 0 0 1-4 4H3"></path>');
+
+// Match Fastmail's native "standard button" style (v-Button--standard) so the
+// buttons look consistent with the others in the UI. The search button gets a
+// mode color (blue/red) layered on top, and returns to the native standard color
+// in anywhere mode.
+const $searchToggle = $(`<button id="search-toggle" title="^⇧M" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${repeatIcon}</button>`);
+const $searchExecuteButton = $(`<button id="searchExecute" title="Search" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${sendIcon}</button>`);
 
 const setAltSearch = () => {
-  if($("div.v-SearchInput.v-MailToolbar-search").length === 0){
+  if($(SEL.searchInput).length === 0){
     return false;
   }
-  const $searchBar = $("div.v-SearchInput.v-MailToolbar-search").not('#alt-search');
+  const $searchBar = $(SEL.searchInput).not('#alt-search');
   const altSHTML = '<div id="alt-search" class="v-TextInput v-SearchInput v-MailToolbar-search" style="position:relative;">'
     + '<div class="v-TextInput-control">'
     + '<input id="alt-search-input" class="v-TextInput-input" name = "alt-search" type = "text" tabindex = "0" placeholder = "Search Mail" autocapitalize = "off" autocomplete = "off" autocorrect = "off" spellcheck = "false" title = "Shortcut: /" >'
     + '</div >'
     + '<svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 24 24" class="u-standardicon v-Icon i-search" role = "presentation" ><circle cx="10.5" cy="10.5" r="5.75"></circle><line x1="19.25" y1="19.25" x2="14.57" y2="14.57"></line></svg>';
-  
+
   const $altSearch = $(altSHTML);
   $altSearch.hide();
   $altSearch.insertAfter($searchBar);
@@ -22,14 +36,15 @@ const setAltSearch = () => {
   $searchToggle.before($searchExecuteButton);
 
   const $altSearchInput = $("#alt-search-input");
-  const $normalSearchInput = $("div.v-SearchInput.v-MailToolbar-search input").not($altSearchInput);
+  const $normalSearchInput = $(`${SEL.searchInput} input`).not($altSearchInput);
   $normalSearchInput.attr("placeholder", "Search Mail (Default)")
 
   $searchToggle.on('click', () => {
     if(searchMode === "anywhere"){
       $searchBar.hide();
       $altSearch.show();
-      $searchExecuteButton.css('background-color','#80aedb');
+      // On the light mode color, force a dark icon regardless of theme for contrast
+      $searchExecuteButton.css({'background-color': '#80aedb', 'color': '#1b1e20'});
       $searchExecuteButton.show();
       searchMode = "subject_body";
       $('#alt-search-input').css('background-color', '#e3edf7');
@@ -43,13 +58,14 @@ const setAltSearch = () => {
       $altSearchInput.focus();
     } else if (searchMode === "subject_body") {
       searchMode = "subject";
-      $searchExecuteButton.css('background-color','#e6a8a8');
+      $searchExecuteButton.css({'background-color': '#e6a8a8', 'color': '#1b1e20'});
       $('#alt-search-input').css('background-color', '#f7e3e3');
       $('#alt-search-input').attr('placeholder', 'Search Mail (Subject Only)');
       $altSearchInput.focus();
     } else  {
       $altSearch.hide();
-      $searchExecuteButton.css('background-color','darkgray');
+      // back to the native standard background and text color
+      $searchExecuteButton.css({'background-color': '', 'color': ''});
       $searchBar.show();
       searchMode = "anywhere";
       const currentVal = $altSearchInput.val();
@@ -65,7 +81,7 @@ const setAltSearch = () => {
       if(text.match(/^[\(\)\s]*$/)){
         return false;
       }
-      url = `https://fastmail.com/mail/search:${text}`;
+      url = `${location.origin}/mail/search:${text}`;
     } else {
       const text = $altSearchInput.val();
       if(text.match(/^[\(\)\s]*$/)){
@@ -83,12 +99,12 @@ const setAltSearch = () => {
 
       const query = keys.filter((e) => {return !(e === null || e === undefined || e === "");}).map(v => {
         if(searchMode === "subject_body"){
-          return `(suject:${v} OR body:${v})`;
+          return `(subject:${v} OR body:${v})`;
         } else {
           return `subject:${v}`;
         }
       })
-      url = `https://fastmail.com/mail/search:(${query.join('%20')})`;
+      url = `${location.origin}/mail/search:(${query.join('%20')})`;
     }
     window.location = url;
   }

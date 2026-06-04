@@ -8,7 +8,7 @@ const foldQuote = () => {
     if(!managed.includes(btId)){
       managed.push(btId);
       let btTag = '<br /><div class="u-quote-topPostToggle">'
-        + '<input type="button" id="${btId}" class="u-quote-link v-Button v-Button--standard v-Button--iconOnly" value="..." />'
+        + `<input type="button" id="${btId}" class="u-quote-link v-Button v-Button--standard v-Button--iconOnly" value="..." />`
         + '</div>';
       $(btTag).insertBefore($(element)).click((_event) => {
         quote.nextAll().toggle('show');

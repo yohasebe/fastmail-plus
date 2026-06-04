@@ -1,37 +1,43 @@
+// When using the cursor keys, indicate which pane (list / message) has focus with
+// a thin accent line at the bottom of its toolbar. The inactive side just clears
+// the line (none), so this does not depend on light/dark theme detection. The
+// color matches the other UI tweaks (blue).
+const PANE_ACCENT = '#5b9bd5';
 const indicateLeftRight = () => {
-  if(useCursorKeys){
-    if(leftOrRight === "left"){
-      if(themeType === "light"){
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #ffffff"});
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #f7e3e3", "transition": ""});
-      } else {
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #1b1e20"});
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #dc818f", "transition": ""});
-      }
-    } else {
-      if(themeType === "light"){
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #ffffff"});
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #f7e3e3", "transition": ""});
-      } else {
-        $("div#mailbox div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #1b1e20"});
-        $("div#conversation div.v-Toolbar").css({"box-shadow": "inset 0 -2px 0 #dc818f", "transition": ""});
-      }
-    }
+  if(!useCursorKeys){
+    return;
+  }
+  const $list = $(`${SEL.mailboxPane} ${SEL.toolbar}`);
+  const $conv = $(`${SEL.conversationPane} ${SEL.toolbar}`);
+  // A compose/reply editor lives inside #conversation, so painting the indicator
+  // would leave a stray blue bar on its toolbar. Clear and skip while composing.
+  if(isComposing()){
+    $list.css({"box-shadow": "none"});
+    $conv.css({"box-shadow": "none"});
+    return;
+  }
+  const activeShadow = `inset 0 -2px 0 ${PANE_ACCENT}`;
+  if(leftOrRight === "left"){
+    $list.css({"box-shadow": activeShadow, "transition": ""});
+    $conv.css({"box-shadow": "none"});
+  } else {
+    $conv.css({"box-shadow": activeShadow, "transition": ""});
+    $list.css({"box-shadow": "none"});
   }
 }
 
-$("div#mailbox div.v-MailboxItem").on("click", () => {
+$(`${SEL.mailboxPane} ${SEL.mailboxItemAny}`).on("click", () => {
   changeleftright("left");
 });
 
-$("div#conversation div.v-MessageCard").on("click", () => {
+$(`${SEL.conversationPane} ${SEL.messageCardAny}`).on("click", () => {
   changeleftright("right");
 });
 
 const moveCursor = (e) => {
   // Enter or →
   if(e.which === 13 || e.which === 39){
-    if(splitPanes && $("div.v-Empty").length == 0){
+    if(splitPanes && $(SEL.empty).length == 0){
       leftOrRight = "right";
       indicateLeftRight("right")
       e.preventDefault();
@@ -53,7 +59,7 @@ const moveCursor = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const focused = $("li.v-MailboxItem.u-list-item.is-focused");
+    const focused = $(SEL.mailboxItemFocused);
     if(focused){
       cursorPosition = focused.attr("id");
     }
@@ -65,7 +71,7 @@ const moveCursor = (e) => {
         target = $('#' + cursorPosition)
       }
     } else {
-      target = $("li.v-MailboxItem.u-list-item").first();
+      target = $(SEL.mailboxItem).first();
     }
     cursorPosition = target.attr('id');
     target.click();
@@ -77,7 +83,7 @@ const moveCursor = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const focused = $("li.v-MailboxItem.u-list-item.is-focused");
+    const focused = $(SEL.mailboxItemFocused);
     if(focused){
       cursorPosition = focused.attr("id");
     }
@@ -89,7 +95,7 @@ const moveCursor = (e) => {
         target = $('#' + cursorPosition)
       }
     } else {
-      target = $("li.v-MailboxItem.u-list-item").first();
+      target = $(SEL.mailboxItem).first();
     }
     cursorPosition = target.attr("id");
     target.click();
@@ -114,7 +120,7 @@ const messageCursor = (e) => {
         target = $('#' + cursorPosition)
       }
     } else {
-      target = $("li.v-MailboxItem.u-list-item").first();
+      target = $(SEL.mailboxItem).first();
     }
     cursorPosition = target.attr('id');
     // target.find("div.v-MailboxItem-from").first().click();
@@ -133,7 +139,7 @@ const messageCursor = (e) => {
         target = $('#' + cursorPosition)
       }
     } else {
-      target = $("li.v-MailboxItem.u-list-item").first();
+      target = $(SEL.mailboxItem).first();
     }
     cursorPosition = target.attr("id");
     // target.find("div.v-MailboxItem-from").first().click();

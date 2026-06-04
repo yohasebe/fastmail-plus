@@ -4,6 +4,17 @@ A Chrome/Edge/Firefox extension to make **Fastmail** (https://fastmail.com) web 
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/fastmail-plus-1400.png?raw=true?raw=true' width="700" />
 
+## Compatibility
+
+Updated to work with the **redesigned Fastmail web UI** (`app.fastmail.com`). All the DOM
+selectors the extension depends on are centralized in
+[`content/selectors.js`](content/selectors.js); if a future Fastmail UI change breaks a
+feature, that file is usually the only place that needs updating. The diagnosis helpers
+under [`dev/`](dev/) (paste them into the browser console) can pinpoint which selectors changed.
+
+> Note: Fastmail's own search has improved considerably, so the built-in "alternative
+> search" modes are now optional. The other features below remain useful.
+
 ## Features
 
 - [Change focus using `↑` `↓` `←` `→` cursor keys](#change-focus-using-updown-cursor-keys)

@@ -28,7 +28,8 @@ Temporary Items
 .apdisk
 
 *.zip
-./manifest.json
+# manifest.json is a local symlink created by the build / `rake chrome` (not tracked)
+/manifest.json
 ./background-script.js
 ./content/main.js
 ./unused/*

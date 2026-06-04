@@ -17,6 +17,7 @@ button.bfm-Button{
   background-color: #e0e2e3 !important;
 }
 
+
 div.ui-tooltip{
   font-size: 12px;
   font-weight: bold;
@@ -43,7 +44,7 @@ div.ui-tooltip{
   padding-right: 20px;
 }
 
-.v-Compose.app-contentCard {
+.app-contentCard:has(.v-Compose) {
   margin-right: 0;
   margin-left: 0;
   min-width: 480px;
@@ -57,4 +58,34 @@ div.ui-tooltip{
   min-width: 480px;
   width: 780px;
   max-width: 100%;
+}
+
+/* Compose / Note resize handle (east edge). Keep a 10px-wide hit area while
+   showing only a single short grip bar in the center to keep it unobtrusive.
+   It tints on hover but does not flicker (re-init is suppressed in main.js). */
+.app-contentCard:has(.v-Compose) .ui-resizable-e,
+.app-contentCard:has(.v-EditNote) .ui-resizable-e {
+  width: 10px;
+  right: 0;
+  cursor: ew-resize;
+  background: transparent;
+}
+
+.app-contentCard:has(.v-Compose) .ui-resizable-e::after,
+.app-contentCard:has(.v-EditNote) .ui-resizable-e::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 36px;
+  border-radius: 2px;
+  background-color: rgba(127, 127, 127, 0.45);
+  transition: background-color 0.15s ease;
+}
+
+.app-contentCard:has(.v-Compose) .ui-resizable-e:hover::after,
+.app-contentCard:has(.v-EditNote) .ui-resizable-e:hover::after {
+  background-color: rgba(91, 155, 213, 0.9);
 }

@@ -1,6 +1,20 @@
-// Right-hand menu toggle
+// Right-hand menu toggle (open/close the right contextual panel).
+// The toggle button swaps its icon by state, so branch on the state:
+//  - closed -> click the toolbar's i-sidebar button to open
+//  - open (v-ContextualSidebar exists) -> click the close (i-close) inside the panel
+//    (i-close is generic, so always scope it under the panel to avoid hitting
+//     other close buttons)
 const toggleRightbar = () => {
-  $('button.v-Button--sidebar').first().click();
+  const $sb = $(SEL.contextualSidebar);
+  if($sb.length > 0){
+    let $close = $sb.find(SEL.closeButton);
+    if($close.length === 0){
+      $close = $sb.parent().find(SEL.closeButton);
+    }
+    $close.first().click();
+  } else {
+    $(SEL.sidebarOpenToggle).first().click();
+  }
 }
 
 // Create reading-pane control
@@ -119,54 +133,60 @@ $btnMainMenu.on('click', () => {
 });
 
 $btnToggle.on('click', () => {
-  let focused = $("div.v-MessageCard.app-contentCard.is-focused")
+  let focused = $(SEL.messageCardFocused)
   let current;
   if(focused.length > 0){
     current = focused.first();
   } else {
-    current = $("div.v-MessageCard.app-contentCard").first();
+    current = $(SEL.messageCard).first();
   }
-  current.find("div.v-MessageCard-header").click()
+  current.find(SEL.messageCardHeader).click()
   setTimeout(() => {
     current.addClass("is-focused");
   }, 100);
 });
 
 $btnExpand.on('click', () => {
-  $("div.v-MessageCard.app-contentCard.is-collapsed div.v-MessageCard-header").click();
+  $(SEL.messageCardCollapsedHeader).click();
 });
 
 $btnCollapse.on('click', () => {
-  $("div.v-MessageCard.app-contentCard.is-expanded div.v-MessageCard-header").click();
+  $(SEL.messageCardExpandedHeader).click();
 });
 
 $btnUp.on('click', () => {
-  let focused = $("div.v-MessageCard.app-contentCard.is-focused");
+  let focused = $(SEL.messageCardFocused);
   if (focused.length == 0){
-    $("div.v-MessageCard.app-contentCard").last().addClass("is-focused");
+    $(SEL.messageCard).last().addClass("is-focused");
   } else {
     if (focused.prev().length == 0) {
-     $("div#conversation div.v-Page-content").get(0).scrollTop = 0;
+     const top = $(`${SEL.conversationPane} ${SEL.pageContent}`).get(0);
+     if (top) { top.scrollTop = 0; }
     } else if (focused.prev().length > 0){
       let newFocus = focused.removeClass("is-focused").prev().addClass("is-focused");
-      newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'start'});
+      const el = newFocus.get(0);
+      if (el) { el.scrollIntoView({behavior: 'smooth', block: 'start'}); }
     }
   }
 });
 
 $btnDown.on('click', () => {
-  let focused = $("div.v-MessageCard.app-contentCard.is-focused");
+  let focused = $(SEL.messageCardFocused);
   if (focused.length == 0){
-    $("div.v-MessageCard.app-contentCard").first().addClass("is-focused");
+    $(SEL.messageCard).first().addClass("is-focused");
   } else if (focused.next().length == 0) {
-    let pageContent = $(".v-Page-content").not(".v-Split--left .v-Page-content");
-    pageContent.get(0).scrollIntoView({behavior: 'smooth', block: 'end'});
-    // If the message in focus is already the last one, scroll further to the bottom of the message.
-    pageContent.animate({ scrollTop: $(document).height() * 100 }, 0);
+    let pageContent = $(SEL.pageContent).not(`${SEL.splitLeft} ${SEL.pageContent}`);
+    const pc = pageContent.get(0);
+    if (pc) {
+      pc.scrollIntoView({behavior: 'smooth', block: 'end'});
+      // If the message in focus is already the last one, scroll further to the bottom of the message.
+      pageContent.animate({ scrollTop: $(document).height() * 100 }, 0);
+    }
   } else {
     if (focused.next().length > 0){
       let newFocus = focused.removeClass("is-focused").next().addClass("is-focused");
-      newFocus.get(0).scrollIntoView({behavior: 'smooth', block: 'start'});
+      const el = newFocus.get(0);
+      if (el) { el.scrollIntoView({behavior: 'smooth', block: 'start'}); }
     }
   }
 });
@@ -187,18 +207,18 @@ let originalmainMenuWidth2;
 
 const showmainMenu = () => {
   mainMenuShown = true;
-  $("#conversation div.v-Toolbar, div.v-PageHeader").css("display", "");
+  $(`${SEL.conversationPane} ${SEL.toolbar}, ${SEL.pageHeader}`).css("display", "");
   // application order is important
-  $("div.v-Split--right").css("left", originalmainMenuWidth1);
-  $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', originalmainMenuWidth2);
+  $(SEL.splitRight).css("left", originalmainMenuWidth1);
+  $(SEL.splitRightInHierarchy).css('left', originalmainMenuWidth2);
 }
 //
 const hidemainMenu = () => {
   mainMenuShown = false;
-  $("#conversation div.v-Toolbar, div.v-PageHeader").css("display", "none");
+  $(`${SEL.conversationPane} ${SEL.toolbar}, ${SEL.pageHeader}`).css("display", "none");
   // requesting order is important
-  originalmainMenuWidth2 = $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left');
-  $("div.v-Hierarchy.v-Page-content div.v-Split--right").css('left', '0px');
-  originalmainMenuWidth1 = $("div.v-Split--right").css("left");
-  $("div.v-Split--right").css("left", "0px");
+  originalmainMenuWidth2 = $(SEL.splitRightInHierarchy).css('left');
+  $(SEL.splitRightInHierarchy).css('left', '0px');
+  originalmainMenuWidth1 = $(SEL.splitRight).css("left");
+  $(SEL.splitRight).css("left", "0px");
 }
