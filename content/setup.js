@@ -15,6 +15,21 @@ const isReadingPaneShown = () => $(SEL.messageCardAny).length > 0;
 // (e.g. Enter getting hijacked instead of inserting a newline).
 const isComposing = () => $(SEL.composeActive).length > 0;
 
+// True when the user is typing in any editable field: an input, a textarea, or any
+// contenteditable region (the rich-text body, subject, etc.). Used to avoid
+// hijacking keys (arrows, Cmd+arrows, Enter, ...) while editing. Checking
+// document.activeElement + isContentEditable is far more reliable than matching a
+// fixed set of element classes — rich-text editors focus a nested node whose tag
+// and classes vary, but isContentEditable is true for anything inside the region.
+const isEditingText = () => {
+  const el = document.activeElement;
+  if (!el) {
+    return false;
+  }
+  const tag = el.tagName;
+  return tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable === true;
+};
+
 let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;

@@ -36,7 +36,13 @@ const btnReloadLabel = () => {
 }
 
 const btnMainMenuLabel = () => {
-  return createImageLabel("svg/fullscreen.svg", "^⇧L");
+  // Reflect state: fullscreen icon in the normal view (click to enter the
+  // uncluttered view), exit-fullscreen icon while the uncluttered view is active.
+  if(mainMenuShown){
+    return createImageLabel("svg/fullscreen.svg", "^⇧L");
+  } else {
+    return createImageLabel("svg/fullscreen-exit.svg", "^⇧L");
+  }
 }
 
 const btnUpLabel = () => {
@@ -202,23 +208,20 @@ $btnControl.on('click', () => {
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
 });
 
-let originalmainMenuWidth1;
-let originalmainMenuWidth2;
+// The uncluttered (near-fullscreen) view is driven by a body class + CSS with
+// !important (see main.css). An author-stylesheet !important rule beats Fastmail's
+// inline `left`, so the collapse survives Fastmail re-laying out the split on zoom /
+// text-size changes — no flicker and no need to re-assert on a timer.
+const UNCLUTTERED_CLASS = 'fmp-uncluttered';
 
 const showmainMenu = () => {
   mainMenuShown = true;
-  $(`${SEL.conversationPane} ${SEL.toolbar}, ${SEL.pageHeader}`).css("display", "");
-  // application order is important
-  $(SEL.splitRight).css("left", originalmainMenuWidth1);
-  $(SEL.splitRightInHierarchy).css('left', originalmainMenuWidth2);
+  $('body').removeClass(UNCLUTTERED_CLASS);
+  $btnMainMenu.html(btnMainMenuLabel());
 }
-//
+
 const hidemainMenu = () => {
   mainMenuShown = false;
-  $(`${SEL.conversationPane} ${SEL.toolbar}, ${SEL.pageHeader}`).css("display", "none");
-  // requesting order is important
-  originalmainMenuWidth2 = $(SEL.splitRightInHierarchy).css('left');
-  $(SEL.splitRightInHierarchy).css('left', '0px');
-  originalmainMenuWidth1 = $(SEL.splitRight).css("left");
-  $(SEL.splitRight).css("left", "0px");
+  $('body').addClass(UNCLUTTERED_CLASS);
+  $btnMainMenu.html(btnMainMenuLabel());
 }

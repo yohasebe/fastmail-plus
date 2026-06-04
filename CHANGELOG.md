@@ -31,6 +31,15 @@ Catch-up release for the redesigned Fastmail web UI (`app.fastmail.com`).
 - `Rakefile`: `rake chrome` / `rake firefox` now use `ln -sf` (works on macOS too).
 
 ### Fixed
+- Text-editing keys are no longer hijacked: `Cmd+Right` / `Cmd+Shift+Right` (and other
+  keys) now work while typing in the compose body, subject, etc. Editing is detected
+  from `document.activeElement` (including `isContentEditable`) instead of matching a
+  fixed set of element classes, which missed nested rich-text editor nodes.
+- Uncluttered (near-fullscreen) view no longer reopens the mail list column when the
+  browser zoom / text size changes. It is now driven by a body class + a CSS
+  `!important` rule (which beats Fastmail's inline layout) instead of an inline width,
+  so there is no flicker. The toggle button icon now reflects state
+  (fullscreen / exit-fullscreen).
 - Compose/reply editor no longer has the pane-focus indicator (a stray blue bar on
   its toolbar) and `Enter` now inserts a newline instead of being hijacked by a
   reading-pane shortcut. Inline replies keep the conversation URL, so compose is now

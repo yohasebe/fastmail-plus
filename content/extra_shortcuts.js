@@ -22,8 +22,11 @@ const shortcutHandler = (e) => {
     }
   }
 
-  // These work only outside textbox/input
-  if(!$(`input, textarea, ${SEL.richTextInput}`).is(":focus")) {
+  // These work only outside any editable field (input/textarea/contenteditable).
+  // Using document.activeElement + isContentEditable reliably covers rich-text
+  // editors where focus lands on a nested node, so we never hijack keys like
+  // Cmd+Right / Cmd+Shift+Right (move/select to end of line) while editing.
+  if(!isEditingText()) {
     // Mail view
     if(regexMail.test(lastUrl)){
       if (e.ctrlKey && e.which === 82){
