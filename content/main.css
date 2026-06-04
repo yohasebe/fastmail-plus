@@ -17,22 +17,6 @@ button.bfm-Button{
   background-color: #e0e2e3 !important;
 }
 
-/* Uncluttered (near-fullscreen) view: collapse the mail-list column and hide the
-   toolbars/header. Driven by a body class toggled in reading_pane_control.js.
-   Using !important here beats Fastmail's inline `left`, so the collapse survives a
-   re-layout on zoom / text-size changes (no flicker).
-   NOTE: these selectors mirror SEL.splitRight / splitRightInHierarchy / pageHeader
-   in content/selectors.js — keep them in sync. */
-body.fmp-uncluttered #conversation div.v-Toolbar,
-body.fmp-uncluttered div.v-PageHeader {
-  display: none !important;
-}
-
-body.fmp-uncluttered div.v-Split--right,
-body.fmp-uncluttered div.v-Hierarchy.v-Page-content div.v-Split--right {
-  left: 0 !important;
-}
-
 
 div.ui-tooltip{
   font-size: 12px;

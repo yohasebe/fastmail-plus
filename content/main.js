@@ -43,9 +43,6 @@ const isConversationShown = () =>
   isReadingPaneShown();
 
 const enterReadingPane = () => {
-  if(!readingPaneControlPositionTimer){
-    readingPaneControlPositionTimer = setInterval(checkReadingPaneControlPosition, 300);
-  }
   showmainMenu();
   foldQuote();
   if(!mainMenuShown){
@@ -57,13 +54,12 @@ const enterReadingPane = () => {
   } else {
     $readingPaneButtons.show();
   }
+  // Position the buttons immediately; the main poll keeps them in place after that
+  // (no dedicated interval — see checkFirstTimeReady).
+  checkReadingPaneControlPosition();
 };
 
 const exitReadingPane = () => {
-  if(readingPaneControlPositionTimer){
-    clearInterval(readingPaneControlPositionTimer);
-    readingPaneControlPositionTimer = null;
-  }
   $allButtons.detach();
   showmainMenu();
 };
@@ -182,10 +178,15 @@ const checkFirstTimeReady = () => {
         // than relying on URL changes (the card may be unrendered at the moment
         // the URL changes).
         applyReadingPaneState();
+        // Keep the floating buttons positioned while the reading pane is shown
+        // (folded into this single poll instead of a separate interval).
+        if(readingPaneShown){
+          checkReadingPaneControlPosition();
+        }
       }, 300);
 
       $(window).on('resize', () => {
-        if(readingPaneControlPositionTimer){
+        if(readingPaneShown){
           checkReadingPaneControlPosition();
         }
       });

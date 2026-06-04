@@ -26,13 +26,9 @@ const indicateLeftRight = () => {
   }
 }
 
-$(`${SEL.mailboxPane} ${SEL.mailboxItemAny}`).on("click", () => {
-  changeleftright("left");
-});
-
-$(`${SEL.conversationPane} ${SEL.messageCardAny}`).on("click", () => {
-  changeleftright("right");
-});
+// (Pane focus on click is handled by the delegated body "click.fmp" handler in
+//  main.js. The previous direct handlers here called an undefined function and
+//  were bound at load time, so they were both broken and redundant.)
 
 const moveCursor = (e) => {
   // Enter or →
@@ -152,7 +148,7 @@ const messageCursor = (e) => {
 // Move focus via up/down cursor keys in reading pane
 const readingPaneCursor = (e) => {
   if(useCursorKeys){
-    if(!$("input").is(":focus")) {
+    if(!isEditingText()) {
       if(e.which === 39){
         if(splitPanes){
           leftOrRight = "right";

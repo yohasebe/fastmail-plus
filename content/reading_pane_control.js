@@ -208,11 +208,19 @@ $btnControl.on('click', () => {
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
 });
 
-// The uncluttered (near-fullscreen) view is driven by a body class + CSS with
-// !important (see main.css). An author-stylesheet !important rule beats Fastmail's
+// The uncluttered (near-fullscreen) view is driven by a body class + an injected
+// stylesheet with !important. An author-stylesheet !important rule beats Fastmail's
 // inline `left`, so the collapse survives Fastmail re-laying out the split on zoom /
-// text-size changes — no flicker and no need to re-assert on a timer.
+// text-size changes — no flicker and no need to re-assert on a timer. The CSS is
+// generated from SEL so the selectors live only in selectors.js (no duplication).
 const UNCLUTTERED_CLASS = 'fmp-uncluttered';
+
+$('<style>').attr('id', 'fmp-uncluttered-style').text(
+  `body.${UNCLUTTERED_CLASS} ${SEL.conversationPane} ${SEL.toolbar},\n` +
+  `body.${UNCLUTTERED_CLASS} ${SEL.pageHeader} { display: none !important; }\n` +
+  `body.${UNCLUTTERED_CLASS} ${SEL.splitRight},\n` +
+  `body.${UNCLUTTERED_CLASS} ${SEL.splitRightInHierarchy} { left: 0 !important; }`
+).appendTo('head');
 
 const showmainMenu = () => {
   mainMenuShown = true;

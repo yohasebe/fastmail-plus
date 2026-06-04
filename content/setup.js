@@ -37,7 +37,6 @@ let maxMessageWidth;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
-let readingPaneControlPositionTimer = null;
 let composePaneControlPositionTimer = null;
 let focusOnMessage = true;
 let firstTimeReady = false;

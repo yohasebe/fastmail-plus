@@ -31,6 +31,8 @@ Catch-up release for the redesigned Fastmail web UI (`app.fastmail.com`).
 - `Rakefile`: `rake chrome` / `rake firefox` now use `ln -sf` (works on macOS too).
 
 ### Fixed
+- Removed a leftover click handler that called an undefined function, which threw a
+  console error when clicking a mail-list item or message.
 - Text-editing keys are no longer hijacked: `Cmd+Right` / `Cmd+Shift+Right` (and other
   keys) now work while typing in the compose body, subject, etc. Editing is detected
   from `document.activeElement` (including `isContentEditable`) instead of matching a
