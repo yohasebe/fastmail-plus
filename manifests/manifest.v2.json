@@ -3,7 +3,7 @@
   "name": "Fastmail Plus",
   "default_locale": "en",
   "version": "0.3.0",
-  "description": "A Firefox extension to make Fastmail web UI more usable and productive",
+  "description": "Makes the Fastmail web UI easier to use and more productive.",
   "icons": {
     "16": "images/fastmail-plus-16.png",
     "48": "images/fastmail-plus-48.png",
