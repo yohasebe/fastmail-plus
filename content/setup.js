@@ -38,6 +38,7 @@ let maxMessageWidth;
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
 let composePaneControlPositionTimer = null;
+let composeWidth = null; // remembered width (px) of the resizable compose/note pane
 let btnControlShown = true;
 let mainMenuShown = true;
 let splitRight;
@@ -46,9 +47,10 @@ let cursorPosition;
 let leftOrRight;
 
 // --- Body-only text zoom ---------------------------------------------------
-// Scales the font size of the message body (not the whole UI). Uses font-size
-// (not zoom/transform) so text reflows within the pane — no horizontal overflow.
-// Applied via an injected stylesheet generated from SEL, and persisted.
+// Scales the message body only (not the whole browser UI) via CSS `zoom`, so even
+// emails with hard-coded px font sizes enlarge (a container font-size can't override
+// explicit px). Applied via an injected stylesheet generated from SEL, and persisted.
+// Trade-off: fixed-width content (e.g. wide tables) may get a horizontal scrollbar.
 let bodyFontScale = 1.0;
 const BODY_ZOOM_MIN = 0.7;
 const BODY_ZOOM_MAX = 2.5;
@@ -62,7 +64,7 @@ const applyBodyFontScale = () => {
     style.id = "fmp-body-zoom";
     document.head.appendChild(style);
   }
-  style.textContent = `${SEL.messageBody} { font-size: ${pct}% !important; }`;
+  style.textContent = `${SEL.messageBody} { zoom: ${bodyFontScale} !important; }`;
   // Keep the main button label showing the current setting (by id, so this stays
   // decoupled from the button's jQuery object defined in reading_pane_control.js).
   const label = document.querySelector("#btnFontSize .label");
@@ -100,5 +102,6 @@ getSyncStorage().then((vals) => {
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
   maxMessageWidth = vals.maxMessageWidth === undefined ? true : vals.maxMessageWidth;
   bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
+  composeWidth = vals.composeWidth === undefined ? null : vals.composeWidth;
   applyBodyFontScale();
 });

@@ -140,15 +140,18 @@ When enabled, the message/compose/note panes are maximized to the actual window 
 
 ### Resizable Textarea
 
+Drag the right edge of the compose/note pane to resize it. The chosen width is
+remembered and applied to the next compose/note window.
+
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/resizable-textarea.png?raw=true?raw=true' width="700" />
 
 ### Adjustable Message Body Text Size
 
-Zoom the **message body only** — not the whole browser UI — so the text reflows
-within the reading pane without horizontal scrolling. A reading-pane button shows
-the current size (e.g. `100%`); click it to expand a small `A+` / reset / `A-`
-group, or use `Control + Shift + +` / `Control + Shift + -` / `Control + Shift + 0`.
-The chosen size is remembered.
+Zoom the **message body only** — not the whole browser UI — so even emails with
+fixed (px) font sizes enlarge. A reading-pane button shows the current size
+(e.g. `100%`); click it to expand a small `A+` / reset / `A-` group, or use
+`Control + Shift + +` / `Control + Shift + -` / `Control + Shift + 0`. The chosen
+size is remembered. (Very wide, fixed-width emails may show a horizontal scrollbar.)
 
 ## Advertisement
 

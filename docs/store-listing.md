@@ -18,7 +18,7 @@ Change it there and re-run `rake upload`.
 Fastmail Plus makes the Fastmail (https://fastmail.com) web UI easier to use and more productive. Updated for the latest redesigned interface.
 
 Changelog:
-0.4.0 Adjustable message body text size; hover help (descriptions) on the reading-pane buttons
+0.4.0 Adjustable message body text size (zoom); the compose pane remembers its size; hover help on the reading-pane buttons
 0.3.0 Caught up with the redesigned Fastmail UI (app.fastmail.com); restored cursor-key focus, reading-pane buttons, resizable compose, and the right-side panel toggle, plus several fixes
 0.2.17.2 Extra buttons overlapping problem fixed
 0.2.17 Issues related to the search bar fixed
@@ -33,7 +33,7 @@ Features:
 - Fix the problem with Japanese IME in the default search input
 - Extra "reply-to" folding
 - Maximize the width of message/compose/note panes (default: disabled)
-- Resizable compose/note textarea
+- Resizable compose/note textarea (remembers its size)
 - Adjustable message body text size (zoom the body only, not the whole UI)
 
 See README at https://github.com/yohasebe/fastmail-plus
@@ -45,7 +45,7 @@ See README at https://github.com/yohasebe/fastmail-plus
 Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅に使いやすくするChrome拡張です。刷新された新しいUIに対応しました。
 
 変更履歴：
-0.4.0 メール本文の文字サイズ調整機能を追加；閲覧画面のボタンにホバーで説明を表示
+0.4.0 メール本文の文字サイズ調整（zoom）を追加；作成欄のサイズを記憶；閲覧画面のボタンにホバーで説明を表示
 0.3.0 刷新されたFastmailの新UI（app.fastmail.com）に対応。カーソルキーでのメッセージ選択、閲覧画面のボタン群、作成欄のリサイズ、右パネルの開閉などを復活し、各種不具合を修正
 0.2.17.2 追加ボタンがUndo操作通知の下に来るように変更
 0.2.17 検索ボックスまわりの問題を解消
@@ -60,7 +60,7 @@ Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅
 - 検索ボックスで日本語IMEを使用する際に生じる不具合解消
 - メール本文の返信部分の折りたたみ機能改善
 - メール閲覧ボックスとノート作成ボックスの表示幅を画面の最大幅に変更可能（デフォルトはOFF）
-- メール／ノート編集テキストエリアの幅を調整可能
+- メール／ノート編集テキストエリアの幅を調整可能（サイズを記憶）
 - メール本文だけの文字サイズ調整（UI全体ではなく本文のみ拡大/縮小）
 
 Github README

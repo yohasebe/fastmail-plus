@@ -7,9 +7,11 @@ Earlier history (before 0.3.0) is available in the git commit log.
 
 ### Added
 - Adjustable message body text size: zoom the message body only (not the whole
-  browser UI), so text reflows within the pane without horizontal overflow. A
-  reading-pane button shows the current size and expands a small [A+ / ↺ / A-]
-  group upward; shortcuts are `^⇧+` / `^⇧-` / `^⇧0`. The setting is remembered.
+  browser UI) using CSS `zoom`, so even emails with hard-coded px font sizes
+  enlarge. A reading-pane button shows the current size and expands a small
+  [A+ / ↺ / A-] group upward; shortcuts are `^⇧+` / `^⇧-` / `^⇧0`. The setting is
+  remembered. (Wide fixed-width content may get a horizontal scrollbar.)
+- The compose/note pane now remembers its resized width and reopens at that size.
 
 ### Changed
 - Reading-pane button hover help now uses the browser's native tooltip (subtle and

@@ -18,9 +18,20 @@ const makeResizable = (url) => {
     composePaneControlPositionTimer = setInterval(() => {
       // Skip elements already made resizable (.ui-resizable). Re-initializing
       // every tick recreates the handle and causes it to flicker.
-      $(`${SEL.composeCard}, ${SEL.noteCard}`).not('.ui-resizable').resizable({
-        handles: 'e'
+      const $fresh = $(`${SEL.composeCard}, ${SEL.noteCard}`).not('.ui-resizable');
+      $fresh.resizable({
+        handles: 'e',
+        // Remember the dragged width so the next compose/note opens at that size.
+        stop: (_e, ui) => {
+          composeWidth = Math.round(ui.size.width);
+          chrome.storage.local.set({ composeWidth });
+        }
       });
+      // Apply the remembered width to each freshly-initialized pane (once; later
+      // ticks skip it via .not('.ui-resizable'), so a live drag is never overridden).
+      if (composeWidth) {
+        $fresh.css('width', composeWidth + 'px');
+      }
       // The reply quote (appendonsend) appears inside compose, so fold it here.
       foldQuote();
     }, 300);
