@@ -65,6 +65,8 @@ const enterReadingPane = () => {
   } else {
     $readingPaneButtons.show();
   }
+  // Sync the toggle icon with the (possibly persisted) collapsed/expanded state.
+  $btnControl.html(btnControlLabel());
   // Position the buttons immediately; the main poll keeps them in place after that
   // (no dedicated interval — see checkFirstTimeReady).
   checkReadingPaneControlPosition();

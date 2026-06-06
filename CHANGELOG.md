@@ -12,6 +12,7 @@ Earlier history (before 0.3.0) is available in the git commit log.
   [A+ / ↺ / A-] group upward; shortcuts are `^⇧+` / `^⇧-` / `^⇧0`. The setting is
   remembered. (Wide fixed-width content may get a horizontal scrollbar.)
 - The compose/note pane now remembers its resized width and reopens at that size.
+- The reading-pane button group remembers whether it is collapsed or expanded.
 
 ### Changed
 - Reading-pane button hover help now uses the browser's native tooltip (subtle and

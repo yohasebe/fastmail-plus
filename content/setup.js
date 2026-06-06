@@ -103,5 +103,6 @@ getSyncStorage().then((vals) => {
   maxMessageWidth = vals.maxMessageWidth === undefined ? true : vals.maxMessageWidth;
   bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
   composeWidth = vals.composeWidth === undefined ? null : vals.composeWidth;
+  btnControlShown = vals.btnControlShown === undefined ? true : vals.btnControlShown;
   applyBodyFontScale();
 });

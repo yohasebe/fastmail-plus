@@ -255,6 +255,7 @@ $btnControl.on('click', () => {
     $readingPaneButtons.show('slide', {direction: 'right'});
     btnControlShown = true;
   }
+  chrome.storage.local.set({ btnControlShown }); // remember collapsed/expanded
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
 });
 
