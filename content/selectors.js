@@ -29,6 +29,9 @@ const SEL = {
   messageCard: 'div.v-MessageCard.app-contentCard',
   messageCardAny: 'div.v-MessageCard',
   messageCardHeader: 'div.v-MessageCard-header',
+  // Received message body content. Scoped to v-Message-body so it does NOT match
+  // the compose editor (which is also .u-article but not inside v-Message-body).
+  messageBody: 'div.v-Message-body',
   messageCardFocused: 'div.v-MessageCard.app-contentCard.is-focused',
   messageCardCollapsed: 'div.v-MessageCard.app-contentCard.is-collapsed',
   messageCardExpanded: 'div.v-MessageCard.app-contentCard.is-expanded',

@@ -45,6 +45,42 @@ let splitPanes;
 let cursorPosition;
 let leftOrRight;
 
+// --- Body-only text zoom ---------------------------------------------------
+// Scales the font size of the message body (not the whole UI). Uses font-size
+// (not zoom/transform) so text reflows within the pane — no horizontal overflow.
+// Applied via an injected stylesheet generated from SEL, and persisted.
+let bodyFontScale = 1.0;
+const BODY_ZOOM_MIN = 0.7;
+const BODY_ZOOM_MAX = 2.5;
+const BODY_ZOOM_STEP = 0.1;
+
+const applyBodyFontScale = () => {
+  const pct = Math.round(bodyFontScale * 100);
+  let style = document.getElementById("fmp-body-zoom");
+  if (!style) {
+    style = document.createElement("style");
+    style.id = "fmp-body-zoom";
+    document.head.appendChild(style);
+  }
+  style.textContent = `${SEL.messageBody} { font-size: ${pct}% !important; }`;
+  // Keep the main button label showing the current setting (by id, so this stays
+  // decoupled from the button's jQuery object defined in reading_pane_control.js).
+  const label = document.querySelector("#btnFontSize .label");
+  if (label) {
+    label.textContent = `${pct}%`;
+  }
+};
+
+const setBodyFontScale = (scale) => {
+  const clamped = Math.min(BODY_ZOOM_MAX, Math.max(BODY_ZOOM_MIN, Math.round(scale * 10) / 10));
+  bodyFontScale = clamped;
+  applyBodyFontScale();
+  chrome.storage.local.set({ bodyFontScale: clamped });
+};
+
+const bumpBodyFontScale = (delta) => setBodyFontScale(bodyFontScale + delta);
+const resetBodyFontScale = () => setBodyFontScale(1.0);
+
 // Set Parameters retrieved from Chrome storage
 
 const keys = [
@@ -63,4 +99,6 @@ getSyncStorage().then((vals) => {
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
   maxMessageWidth = vals.maxMessageWidth === undefined ? true : vals.maxMessageWidth;
+  bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
+  applyBodyFontScale();
 });

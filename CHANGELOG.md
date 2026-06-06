@@ -3,6 +3,20 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [0.4.0] - 2026-06-06
+
+### Added
+- Adjustable message body text size: zoom the message body only (not the whole
+  browser UI), so text reflows within the pane without horizontal overflow. A
+  reading-pane button shows the current size and expands a small [A+ / ↺ / A-]
+  group upward; shortcuts are `^⇧+` / `^⇧-` / `^⇧0`. The setting is remembered.
+
+### Changed
+- Reading-pane button hover help now uses the browser's native tooltip (subtle and
+  delayed) showing a short description of each button. The extension's own `?`
+  tooltip overlay was removed — Fastmail's built-in `?` shortcut help is used for
+  keys instead.
+
 ## [0.3.0] - 2026-06-04
 
 Catch-up release for the redesigned Fastmail web UI (`app.fastmail.com`).

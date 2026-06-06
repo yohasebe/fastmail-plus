@@ -44,16 +44,19 @@ const shortcutHandler = (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
         }
-      // ? => Show tooltips
-      } else if (e.key === "?" && e.which === 191){
-        if(alternativeShortcutKeys){
-          showTooltips();
-        }
-        // Esc => Hide tooltips
-      } else if (e.which === 27 || e.which === 0){
-        if(alternativeShortcutKeys){
-          hideTooltips();
-        }
+      // ^⇧+ / ^⇧- / ^⇧0 => body text size: larger / smaller / reset
+      } else if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 187){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        bumpBodyFontScale(BODY_ZOOM_STEP);
+      } else if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 189){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        bumpBodyFontScale(-BODY_ZOOM_STEP);
+      } else if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 48){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        resetBodyFontScale();
       }
 
       // Detect compose by DOM too: inline replies keep the conversation URL, so
@@ -142,40 +145,9 @@ const readingPaneShortcuts = (e) => {
   }
 };
 
-const buttons = [$btnReload, $btnMainMenu, $btnUp, $btnDown, $btnToggle, $btnExpand, $btnCollapse, $btnControl, $searchToggle]
-
-for (const button of buttons) {
-  button.tooltip({
-    position: {
-      my: "center bottom",
-      at: "center top"
-    }
-  });
-}
-
-const showTooltips = () => {
-  for (const button of buttons) {
-    if(button.is(":visible")){
-      button.tooltip("enable");
-      button.tooltip("open");
-    }
-  }
-}
-
-const hideTooltips = () => {
-  for (const button of buttons) {
-    if(button.is(":visible")){
-      button.tooltip("close");
-      button.tooltip("disable");
-    }
-  }
-}
+// Hover help is provided by each button's native `title` attribute (the browser
+// tooltip): subtle, delayed, and shown near the cursor — unobtrusive. No jQuery UI
+// tooltip is used. Fastmail's own `?` overlay still lists the shortcut keys.
 
 // set extra shortcut keys
 document.addEventListener('keydown', shortcutHandler);
-
-$(document).on('click', () => {
-  if(hideTooltips !== undefined){
-    hideTooltips();
-  }
-});

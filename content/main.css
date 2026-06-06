@@ -8,13 +8,37 @@ div#allButtons {
 
 div#readingPaneButtons{
   position: relative;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;   /* keep all buttons (incl. the wrapped "A%") vertically aligned */
 }
 
 button.bfm-Button{
   margin-left: 8px;
   opacity: 1 !important;
   background-color: #e0e2e3 !important;
+}
+
+/* Body text-size control: the sub-group expands upward from the main button.
+   #readingPaneButtons is a flex row (align-items:center), so the wrap just needs
+   to be the positioning context for the popover. */
+#fontSizeWrap{
+  position: relative;
+}
+
+#fontSizeButtons{
+  position: absolute;
+  right: 0;
+  bottom: 100%;          /* sit above the main button */
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column-reverse;   /* A+ on top, A- at the bottom */
+  gap: 6px;
+  z-index: 50;
+}
+
+#fontSizeButtons button.bfm-Button{
+  margin-left: 0 !important;   /* vertical stack: no left offset */
 }
 
 

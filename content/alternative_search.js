@@ -22,7 +22,7 @@ const SEARCH_MODE_COLORS = {
 // buttons look consistent with the others in the UI. The search button gets a
 // mode color (blue/red) layered on top, and returns to the native standard color
 // in anywhere mode.
-const $searchToggle = $(`<button id="search-toggle" title="^⇧M" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${repeatIcon}</button>`);
+const $searchToggle = $(`<button id="search-toggle" title="Switch search mode" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${repeatIcon}</button>`);
 const $searchExecuteButton = $(`<button id="searchExecute" title="Search" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${sendIcon}</button>`);
 
 const setAltSearch = () => {

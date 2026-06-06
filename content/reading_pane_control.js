@@ -75,7 +75,7 @@ const btnControlLabel = () => {
 
 const $btnReload = $(`<button>${btnReloadLabel()}</button>`).appendTo($readingPaneButtons);
 $btnReload.attr('id', 'btnReloadMenu');
-$btnReload.attr('title', '^R');
+$btnReload.attr('title', 'Reload page');
 $btnReload.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 // Reload message
@@ -85,7 +85,7 @@ const relad = () => {
 
 const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($readingPaneButtons);
 $btnMainMenu.attr('id', 'btnMainMenu');
-$btnMainMenu.attr('title', '^⇧L');
+$btnMainMenu.attr('title', 'Toggle uncluttered view');
 $btnMainMenu.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 // Left-hand menu toggle
@@ -95,35 +95,85 @@ const togglemainMenu = () => {
 
 const $btnUp = $(`<button><span class='label'>${btnUpLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnUp.attr('id', 'btnUp');
-$btnUp.attr('title', '↑');
+$btnUp.attr('title', 'Previous message');
 $btnUp.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 const $btnDown = $(`<button><span class='label'>${btnDownLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnDown.attr('id', 'btnDown');
-$btnDown.attr('title', '↓');
+$btnDown.attr('title', 'Next message');
 $btnDown.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 const $btnToggle = $(`<button><span class='label'>${btnToggleLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnToggle.attr('id', 'btnToggle');
-$btnToggle.attr('title', '⏎');
+$btnToggle.attr('title', 'Toggle this message');
 $btnToggle.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 const $btnExpand = $(`<button><span class='label'>${btnExpandLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnExpand.attr('id', 'btnExpand');
-$btnExpand.attr('title', '⇧⏎');
+$btnExpand.attr('title', 'Expand all');
 $btnExpand.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 const $btnCollapse = $(`<button><span class='label'>${btnCollapseLabel()}</span></button>`).appendTo($readingPaneButtons);
 $btnCollapse.attr('id', 'btnCollapse');
-$btnCollapse.attr('title', '⇧⌥⏎');
+$btnCollapse.attr('title', 'Collapse all');
 $btnCollapse.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+
+// --- Body text size: a main button that shows the current % and expands a
+//     vertical sub-group [A+ / ↺ / A-] upward when clicked. ---
+const fontBtnClass = 'v-Button v-Button--standard v-Button--sizeM bfm-Button';
+
+// Wrapper provides the positioning context for the upward popover.
+const $fontSizeWrap = $("<span id='fontSizeWrap'></span>").appendTo($readingPaneButtons);
+
+// Main button: its label shows the current scale (kept in sync by applyBodyFontScale).
+const $btnFontSize = $("<button><span class='label'>100%</span></button>").appendTo($fontSizeWrap);
+$btnFontSize.attr('id', 'btnFontSize');
+$btnFontSize.attr('title', 'Body text size — click to adjust');
+$btnFontSize.attr('class', fontBtnClass);
+
+// Sub-group (hidden until expanded). DOM order A-, ↺, A+ ; CSS column-reverse puts
+// A+ on top and A- at the bottom.
+const $fontSizeButtons = $("<span id='fontSizeButtons'></span>").appendTo($fontSizeWrap);
+$fontSizeButtons.hide();
+
+const $btnFontDown = $("<button><span class='label'>A-</span></button>").appendTo($fontSizeButtons);
+$btnFontDown.attr('id', 'btnFontDown');
+$btnFontDown.attr('title', 'Smaller');
+$btnFontDown.attr('class', fontBtnClass);
+
+const $btnFontReset = $("<button><span class='label'>↺</span></button>").appendTo($fontSizeButtons);
+$btnFontReset.attr('id', 'btnFontReset');
+$btnFontReset.attr('title', 'Reset to 100%');
+$btnFontReset.attr('class', fontBtnClass);
+
+const $btnFontUp = $("<button><span class='label'>A+</span></button>").appendTo($fontSizeButtons);
+$btnFontUp.attr('id', 'btnFontUp');
+$btnFontUp.attr('title', 'Larger');
+$btnFontUp.attr('class', fontBtnClass);
+
+// Expand upward: the group is anchored bottom:100% (above the button), so a height
+// reveal (slideToggle) grows it upward.
+$btnFontSize.on('click', () => { $fontSizeButtons.slideToggle(150); });
+$btnFontDown.on('click', () => { bumpBodyFontScale(-BODY_ZOOM_STEP); });
+$btnFontUp.on('click', () => { bumpBodyFontScale(BODY_ZOOM_STEP); });
+$btnFontReset.on('click', () => { resetBodyFontScale(); });
+
+// Collapse the sub-group when clicking anywhere outside the control (another
+// button or the page). Clicks inside #fontSizeWrap (the toggle and A+/↺/A-) are
+// ignored so the group stays open while adjusting. The toggle's own handler runs
+// first, so opening is not immediately undone.
+$(document).on('click.fmpFontSize', (e) => {
+  if ($fontSizeButtons.is(':visible') && $(e.target).closest('#fontSizeWrap').length === 0) {
+    $fontSizeButtons.slideUp(150);
+  }
+});
 
 $readingPaneButtons.appendTo($allButtons);
 $controlerButton = $("<div />").appendTo($allButtons);
 
 const $btnControl = $(`<button><span class='label'>${btnControlLabel()}</span></button>`).appendTo($controlerButton);
 $btnControl.attr('id', 'btnControl');
-$btnControl.attr('title', '^,');
+$btnControl.attr('title', 'Show / hide these buttons');
 $btnControl.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
 $btnReload.on('click', () => {

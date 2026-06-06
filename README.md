@@ -25,6 +25,7 @@ under [`dev/`](dev/) (paste them into the browser console) can pinpoint which se
 - [Extra "reply-to" folding](#extra-reply-to-folding)
 - [Maximize reading pane width](#maximize-reading-pane-width) (default: disabled)
 - [Resizable compose/note textarea](#resizable-textarea)
+- [Adjustable message body text size](#adjustable-message-body-text-size)
 - Light/Dark theme support
 
 ## Installation
@@ -114,6 +115,7 @@ If enabled, extra shortcut keys view will be added
 - Switch between search modes: `Control + Shift + M`
 - Toggle uncluttered-view mode: `Control + Shift + L`
 - Toggle show/hide extra control: `Control + ,`
+- Message body text size — larger / smaller / reset: `Control + Shift + +` / `Control + Shift + -` / `Control + Shift + 0`
 - Toggle currently focused message: `Enter` (in addition to the default `E`)
 - Ungroup/Expand messages: `Shift + Enter` (in addition to the default `Shift + E`)
 - Collapse messages: `Shift + Option/Alt + Enter` (in addition to the default `Shift + Option/Alt + E`)
@@ -139,6 +141,14 @@ When enabled, the message/compose/note panes are maximized to the actual window 
 ### Resizable Textarea
 
 <img src='https://github.com/yohasebe/fastmail-plus/blob/main/images/resizable-textarea.png?raw=true?raw=true' width="700" />
+
+### Adjustable Message Body Text Size
+
+Zoom the **message body only** — not the whole browser UI — so the text reflows
+within the reading pane without horizontal scrolling. A reading-pane button shows
+the current size (e.g. `100%`); click it to expand a small `A+` / reset / `A-`
+group, or use `Control + Shift + +` / `Control + Shift + -` / `Control + Shift + 0`.
+The chosen size is remembered.
 
 ## Advertisement
 
