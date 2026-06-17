@@ -1,9 +1,11 @@
 /* Shared colors for the extension's injected UI. (PANE_ACCENT in
    content/move_focus.js mirrors --fmp-accent; keep them in sync.) */
 :root {
-  --fmp-accent: #5b9bd5;                 /* accent: pane indicator, resize-handle hover */
-  --fmp-btn-bg: #e0e2e3;                  /* injected button background */
-  --fmp-grip: rgba(127, 127, 127, 0.45); /* resize-handle grip bar */
+  --fmp-accent: #5b9bd5;                  /* accent: pane indicator, resize-handle hover */
+  --fmp-btn-bg: rgba(127, 127, 127, 0.18); /* translucent button fill: reads as light gray on
+                                             the white message area (≈ the search buttons in
+                                             their gray bar) and as subtle dark in dark mode */
+  --fmp-grip: rgba(127, 127, 127, 0.45);  /* resize-handle grip bar */
 }
 
 div#allButtons {
@@ -24,6 +26,9 @@ div#readingPaneButtons{
 button.bfm-Button{
   margin-left: 8px;
   opacity: 1 !important;
+  /* Translucent gray fill so the buttons read consistently on the white message area
+     (light) and the dark page (dark), approximating the search buttons. The icon/text
+     color is left to currentColor (theme-aware), so it stays legible in both modes. */
   background-color: var(--fmp-btn-bg) !important;
 }
 
