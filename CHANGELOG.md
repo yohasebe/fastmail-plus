@@ -11,9 +11,9 @@ Earlier history (before 0.3.0) is available in the git commit log.
   via a MutationObserver (before paint, so no flicker), with a poll as backup.
 - Reading-pane button icons are inlined as SVG instead of being loaded via
   `chrome.runtime.getURL`, so they can no longer blank out or throw "Extension
-  context invalidated" when the extension is reloaded/updated. The buttons now use
-  Fastmail's native theme-aware styling (matching the search buttons), so the icons
-  stay legible in dark mode.
+  context invalidated" when the extension is reloaded/updated. The buttons use a
+  translucent gray fill and currentColor icons, so they stay legible (and close to
+  the search buttons) in both light and dark mode.
 - A stale content script (after the extension is reloaded/updated) no longer throws
   "Extension context invalidated": the poll stops gracefully and all chrome.storage
   writes are guarded, so button clicks / resize / zoom on an old tab stay quiet.
