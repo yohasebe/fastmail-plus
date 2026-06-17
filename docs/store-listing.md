@@ -18,6 +18,7 @@ Change it there and re-run `rake upload`.
 Fastmail Plus makes the Fastmail (https://fastmail.com) web UI easier to use and more productive. Updated for the latest redesigned interface.
 
 Changelog:
+0.4.1 Reliability fixes for the uncluttered view and the reading-pane button icons
 0.4.0 Adjustable message body text size (zoom); the compose pane remembers its size; hover help on the reading-pane buttons
 0.3.0 Caught up with the redesigned Fastmail UI (app.fastmail.com); restored cursor-key focus, reading-pane buttons, resizable compose, and the right-side panel toggle, plus several fixes
 0.2.17.2 Extra buttons overlapping problem fixed
@@ -45,6 +46,7 @@ See README at https://github.com/yohasebe/fastmail-plus
 Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅に使いやすくするChrome拡張です。刷新された新しいUIに対応しました。
 
 変更履歴：
+0.4.1 集中表示と閲覧ペインのボタンアイコンの信頼性を改善
 0.4.0 メール本文の文字サイズ調整（zoom）を追加；作成欄のサイズを記憶；閲覧画面のボタンにホバーで説明を表示
 0.3.0 刷新されたFastmailの新UI（app.fastmail.com）に対応。カーソルキーでのメッセージ選択、閲覧画面のボタン群、作成欄のリサイズ、右パネルの開閉などを復活し、各種不具合を修正
 0.2.17.2 追加ボタンがUndo操作通知の下に来るように変更

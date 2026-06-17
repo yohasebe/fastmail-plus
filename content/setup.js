@@ -9,6 +9,13 @@ const regexCompose = new RegExp('\/compose');
 // presence of v-MessageCard in the DOM instead (also resilient to future URL changes).
 const isReadingPaneShown = () => $(SEL.messageCardAny).length > 0;
 
+// False once the extension is reloaded/updated and this content script is stale.
+// Accessing chrome.runtime.id can itself throw "Extension context invalidated" in
+// some Chrome versions, so it is wrapped in try/catch.
+const isExtensionAlive = () => {
+  try { return !!(chrome.runtime && chrome.runtime.id); } catch (_e) { return false; }
+};
+
 // True while a compose/reply or note editor is open. Inline replies do NOT change
 // the URL to /compose, so detect them from the DOM rather than the URL — otherwise
 // the pane-focus indicator and reading-pane key handlers leak into the editor

@@ -181,7 +181,15 @@ const checkFirstTimeReady = () => {
       clearInterval(t1);
 
       // check current URL;
-      setInterval(() => {
+      const mainPoll = setInterval(() => {
+        // When the extension is reloaded or auto-updated, this (now stale) content
+        // script keeps running but chrome.* APIs throw "Extension context
+        // invalidated". Stop the poll gracefully instead of spamming errors; the
+        // tab picks up the new script on its next reload.
+        if (!isExtensionAlive()) {
+          clearInterval(mainPoll);
+          return;
+        }
         let url = location.href;
         if (url !== lastUrl) {
           runOnChange(url);
@@ -196,6 +204,11 @@ const checkFirstTimeReady = () => {
         if(readingPaneShown){
           checkReadingPaneControlPosition();
         }
+        // Keep the uncluttered body class in sync with our state. Fastmail can
+        // overwrite body.className (e.g. when double-clicking the mail pane), which
+        // would silently wipe the class and un-collapse the panes while the toggle
+        // still says it is on. Re-asserting here heals that within one tick.
+        $('body').toggleClass(UNCLUTTERED_CLASS, !mainMenuShown);
       }, 300);
 
       $(window).on('resize', () => {

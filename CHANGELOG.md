@@ -3,6 +3,19 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [0.4.1] - 2026-06-17
+
+### Fixed
+- Uncluttered view stays collapsed when double-clicking the mail pane. Fastmail
+  overwrites `body.className`, which wiped the class; it is now re-asserted instantly
+  via a MutationObserver (before paint, so no flicker), with a poll as backup.
+- Reading-pane button icons are inlined as SVG instead of being loaded via
+  `chrome.runtime.getURL`, so they can no longer blank out or throw "Extension
+  context invalidated" when the extension is reloaded/updated. (Also makes the icons
+  follow the theme color, improving visibility in dark mode.)
+- The polling loop now stops gracefully when the extension context is invalidated
+  (on reload/update) instead of throwing repeatedly.
+
 ## [0.4.0] - 2026-06-06
 
 ### Added
