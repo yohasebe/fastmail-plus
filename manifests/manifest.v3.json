@@ -40,9 +40,5 @@
     "page": "options.html",
     "open_in_tab": false
   },
-  "permissions": ["storage"],
-  "web_accessible_resources": [{
-    "resources": ["svg/*"],
-    "matches": ["<all_urls>"]
-  }]
+  "permissions": ["storage"]
 }

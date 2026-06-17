@@ -65,11 +65,6 @@ $btnReload.attr('id', 'btnReloadMenu');
 $btnReload.attr('title', 'Reload page');
 $btnReload.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
 
-// Reload message
-const relad = () => {
-  $btnRelaod.click();
-}
-
 const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($readingPaneButtons);
 $btnMainMenu.attr('id', 'btnMainMenu');
 $btnMainMenu.attr('title', 'Toggle uncluttered view');
@@ -242,7 +237,7 @@ $btnControl.on('click', () => {
     $readingPaneButtons.show('slide', {direction: 'right'});
     btnControlShown = true;
   }
-  chrome.storage.local.set({ btnControlShown }); // remember collapsed/expanded
+  safeStorageSet({ btnControlShown }); // remember collapsed/expanded
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
 });
 
@@ -264,11 +259,14 @@ $('<style>').attr('id', 'fmp-uncluttered-style').text(
 // mail pane), wiping our uncluttered class. Re-assert it the instant the class
 // attribute changes — the observer callback runs before the browser paints, so the
 // panes never visibly flash open. (A 300ms poll in main.js is the backup.)
-new MutationObserver(() => {
+const unclutteredObserver = new MutationObserver(() => {
+  // Detach once the extension is reloaded/updated (stale script).
+  if(!isExtensionAlive()){ unclutteredObserver.disconnect(); return; }
   if(!mainMenuShown && !document.body.classList.contains(UNCLUTTERED_CLASS)){
     document.body.classList.add(UNCLUTTERED_CLASS);
   }
-}).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+});
+unclutteredObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
 const showmainMenu = () => {
   mainMenuShown = true;

@@ -2,7 +2,7 @@
 // a thin accent line at the bottom of its toolbar. The inactive side just clears
 // the line (none), so this does not depend on light/dark theme detection. The
 // color matches the other UI tweaks (blue).
-const PANE_ACCENT = '#5b9bd5';
+const PANE_ACCENT = '#5b9bd5'; // mirrors --fmp-accent in content/main.css
 const indicateLeftRight = () => {
   if(!useCursorKeys){
     return;

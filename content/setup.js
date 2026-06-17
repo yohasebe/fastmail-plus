@@ -16,6 +16,12 @@ const isExtensionAlive = () => {
   try { return !!(chrome.runtime && chrome.runtime.id); } catch (_e) { return false; }
 };
 
+// Persist to chrome.storage without throwing if the extension context has been
+// invalidated (a stale content script after reload/update). Used for all writes.
+const safeStorageSet = (obj) => {
+  try { if (isExtensionAlive()) { chrome.storage.local.set(obj); } } catch (_e) { /* stale context */ }
+};
+
 // True while a compose/reply or note editor is open. Inline replies do NOT change
 // the URL to /compose, so detect them from the DOM rather than the URL — otherwise
 // the pane-focus indicator and reading-pane key handlers leak into the editor
@@ -84,7 +90,7 @@ const setBodyFontScale = (scale) => {
   const clamped = Math.min(BODY_ZOOM_MAX, Math.max(BODY_ZOOM_MIN, Math.round(scale * 10) / 10));
   bodyFontScale = clamped;
   applyBodyFontScale();
-  chrome.storage.local.set({ bodyFontScale: clamped });
+  safeStorageSet({ bodyFontScale: clamped });
 };
 
 const bumpBodyFontScale = (delta) => setBodyFontScale(bodyFontScale + delta);

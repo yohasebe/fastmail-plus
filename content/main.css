@@ -1,3 +1,11 @@
+/* Shared colors for the extension's injected UI. (PANE_ACCENT in
+   content/move_focus.js mirrors --fmp-accent; keep them in sync.) */
+:root {
+  --fmp-accent: #5b9bd5;                 /* accent: pane indicator, resize-handle hover */
+  --fmp-btn-bg: #e0e2e3;                  /* injected button background */
+  --fmp-grip: rgba(127, 127, 127, 0.45); /* resize-handle grip bar */
+}
+
 div#allButtons {
   position: absolute;
   right: 20px;
@@ -16,7 +24,7 @@ div#readingPaneButtons{
 button.bfm-Button{
   margin-left: 8px;
   opacity: 1 !important;
-  background-color: #e0e2e3 !important;
+  background-color: var(--fmp-btn-bg) !important;
 }
 
 /* Body text-size control: the sub-group expands upward from the main button.
@@ -41,14 +49,6 @@ button.bfm-Button{
   margin-left: 0 !important;   /* vertical stack: no left offset */
 }
 
-
-div.ui-tooltip{
-  font-size: 12px;
-  font-weight: bold;
-  font-size: 12px;
-  box-shadow: 0px 0px 0px #aaaaaa;
-  padding: 4px;
-}
 
 .v-Page--sidebar {
   background-image: none !important;
@@ -105,11 +105,11 @@ div.ui-tooltip{
   width: 3px;
   height: 36px;
   border-radius: 2px;
-  background-color: rgba(127, 127, 127, 0.45);
+  background-color: var(--fmp-grip);
   transition: background-color 0.15s ease;
 }
 
 .app-contentCard:has(.v-Compose) .ui-resizable-e:hover::after,
 .app-contentCard:has(.v-EditNote) .ui-resizable-e:hover::after {
-  background-color: rgba(91, 155, 213, 0.9);
+  background-color: var(--fmp-accent);
 }

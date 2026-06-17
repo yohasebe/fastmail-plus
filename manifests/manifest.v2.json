@@ -42,7 +42,6 @@
     "open_in_tab": false
   },
   "permissions": ["storage"],
-  "web_accessible_resources": ["svg/*"],
 
   "applications": {
     "gecko": {

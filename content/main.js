@@ -24,7 +24,7 @@ const makeResizable = (url) => {
         // Remember the dragged width so the next compose/note opens at that size.
         stop: (_e, ui) => {
           composeWidth = Math.round(ui.size.width);
-          chrome.storage.local.set({ composeWidth });
+          safeStorageSet({ composeWidth });
         }
       });
       // Apply the remembered width to each freshly-initialized pane (once; later
