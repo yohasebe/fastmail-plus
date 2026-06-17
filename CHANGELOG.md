@@ -13,8 +13,9 @@ Earlier history (before 0.3.0) is available in the git commit log.
   `chrome.runtime.getURL`, so they can no longer blank out or throw "Extension
   context invalidated" when the extension is reloaded/updated. (Also makes the icons
   follow the theme color, improving visibility in dark mode.)
-- The polling loop now stops gracefully when the extension context is invalidated
-  (on reload/update) instead of throwing repeatedly.
+- A stale content script (after the extension is reloaded/updated) no longer throws
+  "Extension context invalidated": the poll stops gracefully and all chrome.storage
+  writes are guarded, so button clicks / resize / zoom on an old tab stay quiet.
 
 ## [0.4.0] - 2026-06-06
 

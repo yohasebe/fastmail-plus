@@ -14,6 +14,7 @@ they report only structure (tag names, ids, classes, attributes).
 | `diagnose.js` | First, broad survey (mail list + reading pane visible) | Whether known selectors still match, the class naming convention, the current URL, and a structural outline of the key regions |
 | `probe-buttons.js` | A message is open | Every icon button with its icon class and rough screen position — used to find toolbar/header toggles |
 | `probe-sidebar.js` | The right contextual panel is open | Sidebar-related classes and buttons near `v-ContextualSidebar` |
+| `probe-uncluttered.js` | The uncluttered view visually broke (e.g. after double-clicking the mail pane) | The body class, the injected style rule, and the split panes' computed `left`/`position` — to see why the collapse stopped applying |
 
 ## How to run
 
