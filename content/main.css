@@ -9,11 +9,23 @@
 }
 
 div#allButtons {
-  position: absolute;
+  /* fixed (not absolute) so the cluster always pins to the viewport's bottom-right,
+     regardless of whatever positioned/transformed ancestor Fastmail may introduce.
+     This avoids the rare case where the buttons flashed at the top-left (e.g. when a
+     background tab was brought to the foreground before layout had settled). */
+  position: fixed;
   right: 20px;
   bottom: 1em;
   z-index: 49;
   display: flex;
+  padding: 6px;          /* symmetric inset around the buttons in both states */
+  border-radius: 12px;
+  /* Frosted backdrop: the cluster stays light and translucent, but the message text
+     behind it is blurred instead of bleeding through sharply (which looked messy when
+     the buttons overlapped the body). Theme-agnostic — blur works on any background. */
+  background-color: rgba(127, 127, 127, 0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 div#readingPaneButtons{
@@ -21,14 +33,36 @@ div#readingPaneButtons{
   display: flex;
   justify-content: flex-end;
   align-items: center;   /* keep all buttons (incl. the wrapped "A%") vertically aligned */
+  gap: 8px;              /* inter-button spacing */
+  margin-right: 8px;     /* separation from the toggle; collapses to 0 with the group */
+  min-width: 0;          /* allow the flex item to shrink past its content width to 0 */
+  max-width: 480px;      /* wide enough for the full group; animates to 0 when collapsed */
+  /* The frosted panel (#allButtons) is the flex parent, so animating this group's
+     width/margin shrinks the panel frame in lockstep — no "frame leads/lingers" gap
+     like the old jQuery slide (which wrapped the group and animated outside the frame). */
+  transition: max-width 0.25s ease, opacity 0.2s ease, margin-right 0.25s ease;
+}
+
+/* Clip the buttons only while sliding. Left off otherwise so the upward font-size
+   popover (which overflows the top edge) is not cut off when the group is expanded. */
+div#readingPaneButtons.fmp-anim{
+  overflow: hidden;
+}
+
+div#allButtons.fmp-collapsed #readingPaneButtons{
+  max-width: 0;
+  margin-right: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 button.bfm-Button{
-  margin-left: 8px;
   opacity: 1 !important;
   /* Translucent gray fill so the buttons read consistently on the white message area
      (light) and the dark page (dark), approximating the search buttons. The icon/text
-     color is left to currentColor (theme-aware), so it stays legible in both modes. */
+     color is left to currentColor (theme-aware), so it stays legible in both modes.
+     Inter-button spacing comes from the flex gap (not margins), so the frosted panel's
+     left/right insets stay symmetric whether the group is expanded or collapsed. */
   background-color: var(--fmp-btn-bg) !important;
 }
 
@@ -46,14 +80,16 @@ button.bfm-Button{
   margin-bottom: 6px;
   display: flex;
   flex-direction: column-reverse;   /* A+ on top, A- at the bottom */
-  gap: 6px;
+  gap: 8px;
   z-index: 50;
+  /* Same frosted panel as the main cluster, so this floating popover doesn't let the
+     message text bleed through its translucent buttons. */
+  padding: 6px;
+  border-radius: 12px;
+  background-color: rgba(127, 127, 127, 0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
-
-#fontSizeButtons button.bfm-Button{
-  margin-left: 0 !important;   /* vertical stack: no left offset */
-}
-
 
 .v-Page--sidebar {
   background-image: none !important;

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Fastmail Plus",
   "default_locale": "en",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Makes the Fastmail web UI easier to use and more productive.",
   "icons": {
     "16": "images/fastmail-plus-16.png",

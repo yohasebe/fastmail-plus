@@ -229,13 +229,32 @@ $btnDown.on('click', () => {
   }
 });
 
+let expandClipTimer = null;
 $btnControl.on('click', () => {
+  // Collapse/expand by toggling classes that drive a CSS transition on the group's
+  // width (see main.css). The frosted panel is the flex parent, so its frame shrinks
+  // in lockstep with the buttons — no "frame leads/lingers" like the old jQuery slide.
+  $readingPaneButtons.addClass('fmp-anim');  // clip while sliding
+  clearTimeout(expandClipTimer);
+  $readingPaneButtons.off('transitionend.fmpExpand');
   if(btnControlShown){
-    $readingPaneButtons.hide('slide', {direction: 'right'});
+    $allButtons.addClass('fmp-collapsed');
     btnControlShown = false;
   } else {
-    $readingPaneButtons.show('slide', {direction: 'right'});
+    $allButtons.removeClass('fmp-collapsed');
     btnControlShown = true;
+    // Drop the clip once expansion finishes so the upward font-size popover isn't cut.
+    // Listen for the transition's end, but also fall back to a timer: if the transition
+    // is skipped (e.g. prefers-reduced-motion), transitionend never fires and the clip
+    // would otherwise stay and cut off the popover.
+    const dropClip = () => {
+      clearTimeout(expandClipTimer);
+      $readingPaneButtons.removeClass('fmp-anim').off('transitionend.fmpExpand');
+    };
+    $readingPaneButtons.on('transitionend.fmpExpand', (e) => {
+      if(e.originalEvent.propertyName === 'max-width'){ dropClip(); }
+    });
+    expandClipTimer = setTimeout(dropClip, 400);
   }
   safeStorageSet({ btnControlShown }); // remember collapsed/expanded
   setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);

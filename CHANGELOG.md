@@ -3,6 +3,21 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [0.4.2] - 2026-06-27
+
+### Changed
+- The floating reading-pane buttons now sit on a frosted (blurred) translucent panel,
+  so they stay legible over the message body instead of letting the text bleed through.
+  The upward font-size popover (A+ / ↺ / A-) gets the same frosted panel.
+- The button cluster is pinned to the viewport's bottom-right with `position: fixed`,
+  avoiding a rare case where it briefly appeared at the top-left when a background tab
+  was brought to the foreground.
+- The collapse/expand animation now shrinks the frosted frame and the buttons together
+  (a CSS width transition) instead of the old jQuery slide, which let the frame lead or
+  linger out of sync with the buttons. The clip used during the slide is released on
+  `transitionend` (with a timer fallback for `prefers-reduced-motion`) so the font-size
+  popover is never cut off.
+
 ## [0.4.1] - 2026-06-17
 
 ### Fixed

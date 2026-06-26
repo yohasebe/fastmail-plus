@@ -59,12 +59,16 @@ const enterReadingPane = () => {
   if(!mainMenuShown){
     hidemainMenu();
   }
-  $allButtons.appendTo("body");
+  // Apply the persisted collapsed/expanded state BEFORE attaching, so the cluster
+  // renders directly in that state with no initial slide animation.
   if(!btnControlShown){
-    $readingPaneButtons.hide();
+    $readingPaneButtons.addClass('fmp-anim');   // collapsed stays clipped
+    $allButtons.addClass('fmp-collapsed');
   } else {
-    $readingPaneButtons.show();
+    $allButtons.removeClass('fmp-collapsed');
+    $readingPaneButtons.removeClass('fmp-anim');
   }
+  $allButtons.appendTo("body");
   // Sync the toggle icon with the (possibly persisted) collapsed/expanded state.
   $btnControl.html(btnControlLabel());
   // Position the buttons immediately; the main poll keeps them in place after that
