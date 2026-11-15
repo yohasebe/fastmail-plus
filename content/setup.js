@@ -7,7 +7,7 @@ const regexCompose = new RegExp('\/compose');
 // and a message can also be shown while the URL stays at /mail/Inbox/, so the URL
 // can't reliably tell whether the reading pane is shown. Detect it from the
 // presence of v-MessageCard in the DOM instead (also resilient to future URL changes).
-const isReadingPaneShown = () => $(SEL.messageCardAny).length > 0;
+const isReadingPaneShown = () => $(SEL.messageCard).length > 0;
 
 // False once the extension is reloaded/updated and this content script is stale.
 // Accessing chrome.runtime.id can itself throw "Extension context invalidated" in

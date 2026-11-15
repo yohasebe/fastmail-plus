@@ -9,7 +9,7 @@
  * js array, so the `const SEL` defined in this first-loaded file is visible to
  * every subsequent file.
  *
- * Last verified: 2026-06-04 (app.fastmail.com redesigned UI)
+ * Last verified: 2026-11-15 (app.fastmail.com)
  */
 const SEL = {
   // --- Startup detection / search ---
@@ -26,17 +26,18 @@ const SEL = {
 
   // --- Conversation / reading pane ---
   conversationPane: '#conversation',
-  messageCard: 'div.v-MessageCard.app-contentCard',
-  messageCardAny: 'div.v-MessageCard',
+  // Anchor on component (v-*) class names only. Layout/utility classes (app-*, u-*)
+  // change between Fastmail releases.
+  messageCard: 'div.v-MessageCard',
   messageCardHeader: 'div.v-MessageCard-header',
   // Received message body content. Scoped to v-Message-body so it does NOT match
   // the compose editor (which is also .u-article but not inside v-Message-body).
   messageBody: 'div.v-Message-body',
-  messageCardFocused: 'div.v-MessageCard.app-contentCard.is-focused',
-  messageCardCollapsed: 'div.v-MessageCard.app-contentCard.is-collapsed',
-  messageCardExpanded: 'div.v-MessageCard.app-contentCard.is-expanded',
-  messageCardCollapsedHeader: 'div.v-MessageCard.app-contentCard.is-collapsed div.v-MessageCard-header',
-  messageCardExpandedHeader: 'div.v-MessageCard.app-contentCard.is-expanded div.v-MessageCard-header',
+  messageCardFocused: 'div.v-MessageCard.is-focused',
+  messageCardCollapsed: 'div.v-MessageCard.is-collapsed',
+  messageCardExpanded: 'div.v-MessageCard.is-expanded',
+  messageCardCollapsedHeader: 'div.v-MessageCard.is-collapsed div.v-MessageCard-header',
+  messageCardExpandedHeader: 'div.v-MessageCard.is-expanded div.v-MessageCard-header',
 
   // --- Layout ---
   splitRight: 'div.v-Split--right',
@@ -48,10 +49,10 @@ const SEL = {
   empty: 'div.v-Empty',
 
   // --- Compose / Note ---
-  // In the 2026 UI, v-Compose became a *child* of app-contentCard, so the old
-  // '.v-Compose.app-contentCard' (same element) no longer matches.
-  composeCard: '.app-contentCard:has(.v-Compose)',
-  noteCard: '.app-contentCard:has(.v-EditNote)',
+  // The card wrapping the compose/note editor, matched as the editor's direct
+  // parent so it does not depend on the wrapper's own (utility) class names.
+  composeCard: 'div.v-MessageCard:has(> .v-Compose)',
+  noteCard: ':has(> .v-EditNote)',
   composeActive: '.v-Compose, .v-EditNote', // a compose/reply or note editor is open
   richTextInput: 'div.v-RichText-input',
 

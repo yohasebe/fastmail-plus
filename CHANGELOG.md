@@ -3,6 +3,12 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [Unreleased]
+
+### Fixed
+- Reading-pane buttons, compose/note resizing, and the message-width option work again
+  with Fastmail's current web UI.
+
 ## [0.4.2] - 2026-06-27
 
 ### Changed
