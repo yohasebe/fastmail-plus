@@ -68,8 +68,6 @@ const shortcutHandler = (e) => {
           if(alternativeShortcutKeys && qs(SEL.empty) === null){
             togglemainMenu();
           }
-        } else if(spaceToggleShortcut(e)){
-          // Handled: Space opened/closed a message (from either pane).
         } else if(leftOrRight == "right"){
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
@@ -88,7 +86,6 @@ const shortcutHandler = (e) => {
           if (e.shiftKey && e.ctrlKey && e.which === 76){
             togglemainMenu();
           }
-          spaceToggleShortcut(e);
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
@@ -123,15 +120,22 @@ const calendarShortcuts = (e) => {
 }
 
 // Space => Toggle the current message, when the "spaceToggle" option is on and a
-// conversation is shown, whichever pane is active. This replaces scrolling the
-// reading pane with Space. In the split view it also makes the reading pane the
-// active one, so J / K continue inside the conversation. Returns true if handled.
-// Space on a focused button, link or similar control keeps its own action.
+// conversation is shown, whichever pane is active. This replaces Fastmail's own
+// Space (scrolling the conversation), so it listens in the capture phase on window
+// (see the bottom of this file) to run before Fastmail's handlers. In the split
+// view it also makes the reading pane the active one, so J / K continue inside
+// the conversation.
+// Space on a focused button, link or similar control keeps its own action. The
+// mailbox list items are links too, and clicking one leaves it focused, so they
+// do not count: Space right after opening a message must still toggle it.
 const INTERACTIVE_TARGETS = 'button, a[href], select, summary, [role="button"], [role="link"], [role="checkbox"], [role="menuitem"], [role="tab"]';
+const isOnControl = (target) =>
+  target instanceof Element && !!target.closest(INTERACTIVE_TARGETS) && !target.closest(SEL.mailboxItem);
 const spaceToggleShortcut = (e) => {
-  const onControl = e.target instanceof Element && e.target.closest(INTERACTIVE_TARGETS);
-  if (!(spaceToggle && e.key === ' ' && isPlainKey(e) && !onControl && isConversationShown())){
-    return false;
+  const onControl = isOnControl(e.target);
+  if (!(spaceToggle && e.key === ' ' && isPlainKey(e) && !onControl) ||
+      isEditingText() || isComposing() || !isConversationShown()){
+    return;
   }
   e.preventDefault();
   e.stopImmediatePropagation();
@@ -140,7 +144,6 @@ const spaceToggleShortcut = (e) => {
     leftOrRight = "right";
     indicateLeftRight("right");
   }
-  return true;
 };
 
 const readingPaneShortcuts = (e) => {
@@ -173,3 +176,4 @@ const readingPaneShortcuts = (e) => {
 
 // set extra shortcut keys
 document.addEventListener('keydown', shortcutHandler);
+window.addEventListener('keydown', spaceToggleShortcut, true);
