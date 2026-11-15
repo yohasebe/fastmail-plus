@@ -17,7 +17,7 @@ const maximizeMessageWidth = () => {
         }
 
         div.v-MessageCard:has(> .v-Compose),
-        :has(> .v-EditNote)
+        .fmp-note-card
         {
           width: 100%;
           margin-top: 20px !important;

@@ -49,11 +49,11 @@ const SEL = {
   empty: 'div.v-Empty',
 
   // --- Compose / Note ---
-  // The card wrapping the compose/note editor, matched as the editor's direct
-  // parent so it does not depend on the wrapper's own (utility) class names.
-  composeCard: 'div.v-MessageCard:has(> .v-Compose)',
-  noteCard: ':has(> .v-EditNote)',
-  composeActive: '.v-Compose, .v-EditNote', // a compose/reply or note editor is open
+  // Class names (not selectors) of the compose/reply and note editors. They are
+  // watched through live getElementsByClassName collections, which cost almost
+  // nothing to check on every poll tick. The card around an editor is its parent.
+  composeEditorClass: 'v-Compose',
+  noteEditorClass: 'v-EditNote',
   richTextInput: 'div.v-RichText-input',
 
   // --- Right contextual sidebar ---

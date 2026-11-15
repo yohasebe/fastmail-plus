@@ -112,7 +112,7 @@ div.v-MessageCard:has(> .v-Compose) {
   max-width: 100%;
 }
 
-:has(> .v-EditNote) {
+.fmp-note-card {
   margin-right: 0;
   margin-left: 0;
   min-width: 480px;

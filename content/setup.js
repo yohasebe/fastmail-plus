@@ -38,7 +38,9 @@ const safeStorageSet = (obj) => {
 // the URL to /compose, so detect them from the DOM rather than the URL — otherwise
 // the pane-focus indicator and reading-pane key handlers leak into the editor
 // (e.g. Enter getting hijacked instead of inserting a newline).
-const isComposing = () => qs(SEL.composeActive) !== null;
+const composeEditors = document.getElementsByClassName(SEL.composeEditorClass);
+const noteEditors = document.getElementsByClassName(SEL.noteEditorClass);
+const isComposing = () => composeEditors.length > 0 || noteEditors.length > 0;
 
 // True when the user is typing in any editable field: an input, a textarea, or any
 // contenteditable region (the rich-text body, subject, etc.). Used to avoid

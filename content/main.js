@@ -7,7 +7,11 @@ const checkReadingPaneControlPosition = () => {
   if(isVisible(sidebar)){
     right += Math.round(sidebar.getBoundingClientRect().width);
   }
-  allButtons.style.right = right + "px";
+  // This runs on every poll tick; write only when the value changes.
+  const value = right + "px";
+  if(allButtons.style.right !== value){
+    allButtons.style.right = value;
+  }
 }
 
 // Make a compose/note pane resizable from its right edge. The dragged width is
@@ -50,10 +54,18 @@ const makePaneResizable = (pane) => {
 
 // Make every open compose/note pane resizable, including inline replies (which
 // open inside the conversation without changing the URL). Called on each poll
-// tick; panes already set up are skipped so the handle never flickers.
+// tick; it returns at once when no editor is open, and panes already set up are
+// skipped so the handle never flickers. Note cards are also tagged with
+// NOTE_CARD_CLASS for main.css (their wrapper has no stable class of its own).
+const NOTE_CARD_CLASS = 'fmp-note-card';
 const initResizablePanes = () => {
-  qsa(`${SEL.composeCard}, ${SEL.noteCard}`)
-    .filter((pane) => !pane.classList.contains(RESIZABLE_CLASS))
+  if(!isComposing()){
+    return;
+  }
+  const notePanes = [...noteEditors].map((editor) => editor.parentElement);
+  notePanes.forEach((pane) => pane && pane.classList.add(NOTE_CARD_CLASS));
+  [...composeEditors].map((editor) => editor.parentElement).concat(notePanes)
+    .filter((pane) => pane && !pane.classList.contains(RESIZABLE_CLASS))
     .forEach((pane) => {
       makePaneResizable(pane);
       // Apply the remembered width once, on initialization, so a live drag is

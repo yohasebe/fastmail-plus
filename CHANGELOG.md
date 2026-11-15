@@ -13,6 +13,7 @@ Earlier history (before 0.3.0) is available in the git commit log.
 ### Changed
 - jQuery and jQuery UI are no longer bundled; the extension now uses only its own code.
 - The package contains only the files the extension uses, so it is much smaller.
+- Lighter background checks while Fastmail is open.
 - The font-size buttons (A+ / ↺ / A-) open and close without the slide animation.
 
 ### Removed
