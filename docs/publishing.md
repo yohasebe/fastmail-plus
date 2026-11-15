@@ -45,14 +45,18 @@ fiddly part, but it is only done once.
 ## Releasing an update
 
 1. Bump the version in **both** `manifests/manifest.v3.json` and
-   `manifests/manifest.v2.json` (and `options.html` is synced by the build). The
-   new version must be higher than what is currently published.
-2. Upload a fresh, clean build as a draft:
+   `manifests/manifest.v2.json`, run `rake build` (it writes the version into
+   `options.html`), and commit. The new version must be higher than what is
+   currently published.
+2. Upload a fresh build as a draft:
    ```
    rake upload
    ```
-   This runs `rake build` first (clean zip, `.DS_Store` excluded), then uploads
-   `fastmail-plus-chrome.zip` to the store as a draft.
+   This runs `rake build`, then checks the zip (`rake verify`) before uploading
+   `fastmail-plus-chrome.zip` to the store as a draft. The check opens the zip and
+   stops the upload unless its entries are exactly the allowlisted files
+   (`PACKAGE_PATTERNS` in the `Rakefile`) plus `manifest.json`, each identical to
+   the committed version. Commit everything before uploading.
 3. Review and publish:
    - Open <https://chrome.google.com/webstore/devconsole>, select *Fastmail Plus*,
      confirm the draft looks right, then click **Publish** (submits for review).

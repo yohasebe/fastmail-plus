@@ -38,8 +38,7 @@ div#readingPaneButtons{
   min-width: 0;          /* allow the flex item to shrink past its content width to 0 */
   max-width: 480px;      /* wide enough for the full group; animates to 0 when collapsed */
   /* The frosted panel (#allButtons) is the flex parent, so animating this group's
-     width/margin shrinks the panel frame in lockstep — no "frame leads/lingers" gap
-     like the old jQuery slide (which wrapped the group and animated outside the frame). */
+     width/margin shrinks the panel frame in lockstep with the buttons. */
   transition: max-width 0.25s ease, opacity 0.2s ease, margin-right 0.25s ease;
 }
 
@@ -110,7 +109,7 @@ div.v-MessageCard:has(> .v-Compose) {
   margin-left: 0;
   min-width: 480px;
   width: 780px;
-  max-width: calc(100% - 40px);
+  max-width: 100%;
 }
 
 :has(> .v-EditNote) {
@@ -121,19 +120,26 @@ div.v-MessageCard:has(> .v-Compose) {
   max-width: 100%;
 }
 
-/* Compose / Note resize handle (east edge). Keep a 10px-wide hit area while
-   showing only a single short grip bar in the center to keep it unobtrusive.
-   It tints on hover but does not flicker (re-init is suppressed in main.js). */
-div.v-MessageCard:has(> .v-Compose) .ui-resizable-e,
-:has(> .v-EditNote) .ui-resizable-e {
-  width: 10px;
+/* Compose / Note resize handle (east edge), added by makePaneResizable in main.js.
+   Keep a 10px-wide hit area while showing only a single short grip bar in the
+   center to keep it unobtrusive. It tints on hover. */
+.fmp-resizable {
+  position: relative;
+}
+
+.fmp-resize-handle {
+  position: absolute;
+  top: 0;
   right: 0;
+  z-index: 90;
+  width: 10px;
+  height: 100%;
   cursor: ew-resize;
+  touch-action: none;
   background: transparent;
 }
 
-div.v-MessageCard:has(> .v-Compose) .ui-resizable-e::after,
-:has(> .v-EditNote) .ui-resizable-e::after {
+.fmp-resize-handle::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -146,7 +152,6 @@ div.v-MessageCard:has(> .v-Compose) .ui-resizable-e::after,
   transition: background-color 0.15s ease;
 }
 
-div.v-MessageCard:has(> .v-Compose) .ui-resizable-e:hover::after,
-:has(> .v-EditNote) .ui-resizable-e:hover::after {
+.fmp-resize-handle:hover::after {
   background-color: var(--fmp-accent);
 }

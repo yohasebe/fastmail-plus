@@ -1,6 +1,7 @@
 const maximizeMessageWidth = () => {
-  let max_width = `
-      <style>
+  const style = document.createElement('style');
+  style.id = 'fmp-max-width';
+  style.textContent = `
         .v-SettingsPane,
         :has(> .v-Contact),
         :has(> .v-EditContact)
@@ -22,8 +23,6 @@ const maximizeMessageWidth = () => {
           margin-top: 20px !important;
           margin-bottom: 20px !important;
         }
-
-      </style>
       `;
-  $('head').append($(max_width));
+  document.head.appendChild(style);
 }

@@ -3,11 +3,27 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
-## [Unreleased]
+## [0.5.0] - 2026-11-15
+
+### Added
+- Option "Use H/L keys to switch panes" (off by default). It replaces Fastmail's own `H` and `L` shortcuts.
+- Option "Use Space to open/close messages" (off by default). It replaces scrolling the message with Space.
+- `J` / `K` move to the next / previous message in the reading pane.
+
+### Changed
+- jQuery and jQuery UI are no longer bundled; the extension now uses only its own code.
+- The package contains only the files the extension uses, so it is much smaller.
+- The font-size buttons (A+ / ↺ / A-) open and close without the slide animation.
+
+### Removed
+- Reply-to quote folding. Fastmail's own "..." toggle folds quoted text.
 
 ### Fixed
 - Reading-pane buttons, compose/note resizing, and the message-width option work again
   with Fastmail's current web UI.
+- `J` / `K` move through the mailbox list again.
+- Inline replies can be resized like the compose pane, up to the full width of the conversation.
+- "Maximize message/compose pane width" is off by default, as the options page shows.
 
 ## [0.4.2] - 2026-06-27
 

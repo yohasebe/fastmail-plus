@@ -13,7 +13,8 @@ const shortcutHandler = (e) => {
     } else if (e.ctrlKey && e.shiftKey && e.which === 77){
       e.preventDefault();
       e.stopImmediatePropagation();
-      $("#search-toggle").click();
+      const searchToggle = document.getElementById("search-toggle");
+      if(searchToggle){ searchToggle.click(); }
     }
   // Calendar view
   } else if(regexCalendar.test(lastUrl)){
@@ -36,14 +37,11 @@ const shortcutHandler = (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
         return true;
-      // J and K are basically left untouched
-      } else if (e.which === 74 || e.which === 75){
-        if(mainMenuShown){
-          return true;
-        } else {
+      // J / K are handled below like ↓ / ↑ (moveCursor, messageCursor). In the
+      // uncluttered view, also keep Fastmail's own J / K away from the hidden list.
+      } else if ((isLetterKey(e, 74) || isLetterKey(e, 75)) && !mainMenuShown){
         e.preventDefault();
         e.stopImmediatePropagation();
-        }
       // ^⇧+ / ^⇧- / ^⇧0 => body text size: larger / smaller / reset
       } else if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 187){
         e.preventDefault();
@@ -67,10 +65,11 @@ const shortcutHandler = (e) => {
       } else if(splitPanes) {
         // Ctrl + Shift + L => Toggle non-clutter mode
         if (e.ctrlKey && e.shiftKey && e.which === 76){
-          if(alternativeShortcutKeys && $(SEL.empty).length == 0){
+          if(alternativeShortcutKeys && qs(SEL.empty) === null){
             togglemainMenu();
           }
         } else if(leftOrRight == "right"){
+          spaceToggleShortcut(e);
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
@@ -88,13 +87,14 @@ const shortcutHandler = (e) => {
           if (e.shiftKey && e.ctrlKey && e.which === 76){
             togglemainMenu();
           }
+          spaceToggleShortcut(e);
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
           if(useCursorKeys){
             readingPaneCursor(e);
           }
-        } else {
+        } else if(useCursorKeys){
           messageCursor(e);
         }
       }
@@ -112,36 +112,49 @@ const calendarShortcuts = (e) => {
   } else if (e.ctrlKey && e.which === 38){
     e.preventDefault();
     e.stopImmediatePropagation();
-    $('button[title="Shortcut: K"]').click();
+    qsa('button[title="Shortcut: K"]').forEach((b) => b.click());
     // Ctrl + ↓ => Next Month
   } else if (e.ctrlKey && e.which === 40){
     e.preventDefault();
     e.stopImmediatePropagation();
-    $('button[title="Shortcut: J"]').click();
+    qsa('button[title="Shortcut: J"]').forEach((b) => b.click());
   }
 }
+
+// Space => Toggle the current message, when the "spaceToggle" option is on. This
+// replaces scrolling the reading pane with Space.
+// Space on a focused button, link or similar control keeps its own action.
+const INTERACTIVE_TARGETS = 'button, a[href], select, summary, [role="button"], [role="link"], [role="checkbox"], [role="menuitem"], [role="tab"]';
+const spaceToggleShortcut = (e) => {
+  const onControl = e.target instanceof Element && e.target.closest(INTERACTIVE_TARGETS);
+  if (spaceToggle && e.key === ' ' && isPlainKey(e) && !onControl){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    btnToggle.click();
+  }
+};
 
 const readingPaneShortcuts = (e) => {
   // Shift + alt + (E or Enter) => Shrink
   if (e.shiftKey && e.altKey && (e.which === 69 || e.which === 13)){
     e.preventDefault();
     e.stopImmediatePropagation();
-    $btnCollapse.click();
+    btnCollapse.click();
     // Shift + (E or Enter) => Expand
   } else if (e.shiftKey && (e.which === 69 || e.which === 13)){
     e.preventDefault();
     e.stopImmediatePropagation();
-    $btnExpand.click();
+    btnExpand.click();
     // E or Enter => Toggle
   } else if (e.which === 69 || e.which === 13){
 
     e.preventDefault();
     e.stopImmediatePropagation();
-    $btnToggle.click();
+    btnToggle.click();
   } else if (e.ctrlKey && e.which === 188){
     e.preventDefault();
     e.stopImmediatePropagation();
-    $btnControl.click();
+    btnControl.click();
   }
 };
 

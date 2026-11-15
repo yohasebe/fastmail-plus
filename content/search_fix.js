@@ -2,7 +2,8 @@
 const ua = window.navigator.userAgent.toLowerCase();
 if(ua.indexOf("mac os x") !== -1) {
   document.addEventListener('keydown', (e) => {
-    if ($(".v-TextInput-input").is(":focus") && e.isComposing) {
+    const active = document.activeElement;
+    if (active && active.matches(SEL.textInput) && e.isComposing) {
       e.stopImmediatePropagation();
     }
   });

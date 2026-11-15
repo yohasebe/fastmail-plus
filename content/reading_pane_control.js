@@ -5,25 +5,23 @@
 //    (i-close is generic, so always scope it under the panel to avoid hitting
 //     other close buttons)
 const toggleRightbar = () => {
-  const $sb = $(SEL.contextualSidebar);
-  if($sb.length > 0){
-    let $close = $sb.find(SEL.closeButton);
-    if($close.length === 0){
-      $close = $sb.parent().find(SEL.closeButton);
-    }
-    $close.first().click();
+  const sb = qs(SEL.contextualSidebar);
+  if(sb){
+    const close = qs(SEL.closeButton, sb) || (sb.parentElement && qs(SEL.closeButton, sb.parentElement));
+    if(close){ close.click(); }
   } else {
-    $(SEL.sidebarOpenToggle).first().click();
+    const open = qs(SEL.sidebarOpenToggle);
+    if(open){ open.click(); }
   }
 }
 
 // Create reading-pane control
 
-const $allButtons = $("<div />")
-$allButtons.attr('id', 'allButtons');
+const allButtons = document.createElement('div');
+allButtons.id = 'allButtons';
 
-const $readingPaneButtons = $("<div />")
-$readingPaneButtons.attr('id', 'readingPaneButtons');
+const readingPaneButtons = document.createElement('div');
+readingPaneButtons.id = 'readingPaneButtons';
 
 // Icons are inlined as SVG (Bootstrap Icons) rather than loaded via
 // chrome.runtime.getURL(svg file). This removes the dependency on the extension
@@ -53,116 +51,87 @@ const btnReloadLabel = () => iconLabel(ICONS.reload);
 // fullscreen icon in the normal view (click to enter uncluttered), exit-fullscreen
 // while the uncluttered view is active.
 const btnMainMenuLabel = () => iconLabel(mainMenuShown ? ICONS.fullscreen : ICONS.fullscreenExit);
-const btnUpLabel = () => iconLabel(ICONS.up);
-const btnDownLabel = () => iconLabel(ICONS.down);
-const btnToggleLabel = () => iconLabel(ICONS.viewList);
-const btnExpandLabel = () => iconLabel(ICONS.expand);
-const btnCollapseLabel = () => iconLabel(ICONS.collapse);
 const btnControlLabel = () => iconLabel(btnControlShown ? ICONS.rightSquare : ICONS.leftSquare);
 
-const $btnReload = $(`<button>${btnReloadLabel()}</button>`).appendTo($readingPaneButtons);
-$btnReload.attr('id', 'btnReloadMenu');
-$btnReload.attr('title', 'Reload page');
-$btnReload.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+const BUTTON_CLASS = 'v-Button v-Button--standard v-Button--sizeM bfm-Button';
 
-const $btnMainMenu = $(`<button>${btnMainMenuLabel()}</button>`).appendTo($readingPaneButtons);
-$btnMainMenu.attr('id', 'btnMainMenu');
-$btnMainMenu.attr('title', 'Toggle uncluttered view');
-$btnMainMenu.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+// Create a button with the extension's own label markup and append it to parent.
+const addButton = (parent, id, title, labelHtml) => {
+  const button = document.createElement('button');
+  button.id = id;
+  button.title = title;
+  button.className = BUTTON_CLASS;
+  button.innerHTML = labelHtml;
+  parent.appendChild(button);
+  return button;
+};
+
+const btnReload = addButton(readingPaneButtons, 'btnReloadMenu', 'Reload page', btnReloadLabel());
+const btnMainMenu = addButton(readingPaneButtons, 'btnMainMenu', 'Toggle uncluttered view', btnMainMenuLabel());
 
 // Left-hand menu toggle
 const togglemainMenu = () => {
-  $btnMainMenu.click();
+  btnMainMenu.click();
 }
 
-const $btnUp = $(`<button><span class='label'>${btnUpLabel()}</span></button>`).appendTo($readingPaneButtons);
-$btnUp.attr('id', 'btnUp');
-$btnUp.attr('title', 'Previous message');
-$btnUp.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
-
-const $btnDown = $(`<button><span class='label'>${btnDownLabel()}</span></button>`).appendTo($readingPaneButtons);
-$btnDown.attr('id', 'btnDown');
-$btnDown.attr('title', 'Next message');
-$btnDown.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
-
-const $btnToggle = $(`<button><span class='label'>${btnToggleLabel()}</span></button>`).appendTo($readingPaneButtons);
-$btnToggle.attr('id', 'btnToggle');
-$btnToggle.attr('title', 'Toggle this message');
-$btnToggle.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
-
-const $btnExpand = $(`<button><span class='label'>${btnExpandLabel()}</span></button>`).appendTo($readingPaneButtons);
-$btnExpand.attr('id', 'btnExpand');
-$btnExpand.attr('title', 'Expand all');
-$btnExpand.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
-
-const $btnCollapse = $(`<button><span class='label'>${btnCollapseLabel()}</span></button>`).appendTo($readingPaneButtons);
-$btnCollapse.attr('id', 'btnCollapse');
-$btnCollapse.attr('title', 'Collapse all');
-$btnCollapse.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+const btnUp = addButton(readingPaneButtons, 'btnUp', 'Previous message', iconLabel(ICONS.up));
+const btnDown = addButton(readingPaneButtons, 'btnDown', 'Next message', iconLabel(ICONS.down));
+const btnToggle = addButton(readingPaneButtons, 'btnToggle', 'Toggle this message', iconLabel(ICONS.viewList));
+const btnExpand = addButton(readingPaneButtons, 'btnExpand', 'Expand all', iconLabel(ICONS.expand));
+const btnCollapse = addButton(readingPaneButtons, 'btnCollapse', 'Collapse all', iconLabel(ICONS.collapse));
 
 // --- Body text size: a main button that shows the current % and expands a
 //     vertical sub-group [A+ / ↺ / A-] upward when clicked. ---
-const fontBtnClass = 'v-Button v-Button--standard v-Button--sizeM bfm-Button';
 
 // Wrapper provides the positioning context for the upward popover.
-const $fontSizeWrap = $("<span id='fontSizeWrap'></span>").appendTo($readingPaneButtons);
+const fontSizeWrap = document.createElement('span');
+fontSizeWrap.id = 'fontSizeWrap';
+readingPaneButtons.appendChild(fontSizeWrap);
 
 // Main button: its label shows the current scale (kept in sync by applyBodyFontScale).
-const $btnFontSize = $("<button><span class='label'>100%</span></button>").appendTo($fontSizeWrap);
-$btnFontSize.attr('id', 'btnFontSize');
-$btnFontSize.attr('title', 'Body text size — click to adjust');
-$btnFontSize.attr('class', fontBtnClass);
+const btnFontSize = addButton(fontSizeWrap, 'btnFontSize', 'Body text size — click to adjust', "<span class='label'>100%</span>");
 
 // Sub-group (hidden until expanded). DOM order A-, ↺, A+ ; CSS column-reverse puts
 // A+ on top and A- at the bottom.
-const $fontSizeButtons = $("<span id='fontSizeButtons'></span>").appendTo($fontSizeWrap);
-$fontSizeButtons.hide();
+const fontSizeButtons = document.createElement('span');
+fontSizeButtons.id = 'fontSizeButtons';
+fontSizeButtons.style.display = 'none';
+fontSizeWrap.appendChild(fontSizeButtons);
 
-const $btnFontDown = $("<button><span class='label'>A-</span></button>").appendTo($fontSizeButtons);
-$btnFontDown.attr('id', 'btnFontDown');
-$btnFontDown.attr('title', 'Smaller');
-$btnFontDown.attr('class', fontBtnClass);
+const btnFontDown = addButton(fontSizeButtons, 'btnFontDown', 'Smaller', "<span class='label'>A-</span>");
+const btnFontReset = addButton(fontSizeButtons, 'btnFontReset', 'Reset to 100%', "<span class='label'>↺</span>");
+const btnFontUp = addButton(fontSizeButtons, 'btnFontUp', 'Larger', "<span class='label'>A+</span>");
 
-const $btnFontReset = $("<button><span class='label'>↺</span></button>").appendTo($fontSizeButtons);
-$btnFontReset.attr('id', 'btnFontReset');
-$btnFontReset.attr('title', 'Reset to 100%');
-$btnFontReset.attr('class', fontBtnClass);
+const isFontSizeOpen = () => fontSizeButtons.style.display !== 'none';
+const setFontSizeOpen = (open) => {
+  fontSizeButtons.style.display = open ? '' : 'none';
+};
 
-const $btnFontUp = $("<button><span class='label'>A+</span></button>").appendTo($fontSizeButtons);
-$btnFontUp.attr('id', 'btnFontUp');
-$btnFontUp.attr('title', 'Larger');
-$btnFontUp.attr('class', fontBtnClass);
-
-// Expand upward: the group is anchored bottom:100% (above the button), so a height
-// reveal (slideToggle) grows it upward.
-$btnFontSize.on('click', () => { $fontSizeButtons.slideToggle(150); });
-$btnFontDown.on('click', () => { bumpBodyFontScale(-BODY_ZOOM_STEP); });
-$btnFontUp.on('click', () => { bumpBodyFontScale(BODY_ZOOM_STEP); });
-$btnFontReset.on('click', () => { resetBodyFontScale(); });
+btnFontSize.addEventListener('click', () => { setFontSizeOpen(!isFontSizeOpen()); });
+btnFontDown.addEventListener('click', () => { bumpBodyFontScale(-BODY_ZOOM_STEP); });
+btnFontUp.addEventListener('click', () => { bumpBodyFontScale(BODY_ZOOM_STEP); });
+btnFontReset.addEventListener('click', () => { resetBodyFontScale(); });
 
 // Collapse the sub-group when clicking anywhere outside the control (another
 // button or the page). Clicks inside #fontSizeWrap (the toggle and A+/↺/A-) are
-// ignored so the group stays open while adjusting. The toggle's own handler runs
-// first, so opening is not immediately undone.
-$(document).on('click.fmpFontSize', (e) => {
-  if ($fontSizeButtons.is(':visible') && $(e.target).closest('#fontSizeWrap').length === 0) {
-    $fontSizeButtons.slideUp(150);
+// ignored so the group stays open while adjusting.
+document.addEventListener('click', (e) => {
+  if (isFontSizeOpen() && !fontSizeWrap.contains(e.target)) {
+    setFontSizeOpen(false);
   }
 });
 
-$readingPaneButtons.appendTo($allButtons);
-$controlerButton = $("<div />").appendTo($allButtons);
+allButtons.appendChild(readingPaneButtons);
+const controllerButton = document.createElement('div');
+allButtons.appendChild(controllerButton);
 
-const $btnControl = $(`<button><span class='label'>${btnControlLabel()}</span></button>`).appendTo($controlerButton);
-$btnControl.attr('id', 'btnControl');
-$btnControl.attr('title', 'Show / hide these buttons');
-$btnControl.attr('class', 'v-Button v-Button--standard v-Button--sizeM bfm-Button');
+const btnControl = addButton(controllerButton, 'btnControl', 'Show / hide these buttons', btnControlLabel());
 
-$btnReload.on('click', () => {
+btnReload.addEventListener('click', () => {
   window.location.reload();
 });
 
-$btnMainMenu.on('click', () => {
+btnMainMenu.addEventListener('click', () => {
   if(!mainMenuShown){
     showmainMenu();
   } else {
@@ -170,78 +139,80 @@ $btnMainMenu.on('click', () => {
   }
 });
 
-$btnToggle.on('click', () => {
-  let focused = $(SEL.messageCardFocused)
-  let current;
-  if(focused.length > 0){
-    current = focused.first();
-  } else {
-    current = $(SEL.messageCard).first();
+btnToggle.addEventListener('click', () => {
+  const current = qs(SEL.messageCardFocused) || qs(SEL.messageCard);
+  if(!current){
+    return;
   }
-  current.find(SEL.messageCardHeader).click()
+  const header = qs(SEL.messageCardHeader, current);
+  if(header){ header.click(); }
   setTimeout(() => {
-    current.addClass("is-focused");
+    current.classList.add("is-focused");
   }, 100);
 });
 
-$btnExpand.on('click', () => {
-  $(SEL.messageCardCollapsedHeader).click();
+btnExpand.addEventListener('click', () => {
+  qsa(SEL.messageCardCollapsedHeader).forEach((header) => header.click());
 });
 
-$btnCollapse.on('click', () => {
-  $(SEL.messageCardExpandedHeader).click();
+btnCollapse.addEventListener('click', () => {
+  qsa(SEL.messageCardExpandedHeader).forEach((header) => header.click());
 });
 
-$btnUp.on('click', () => {
-  let focused = $(SEL.messageCardFocused);
-  if (focused.length == 0){
-    $(SEL.messageCard).last().addClass("is-focused");
+// Move the is-focused marker from one message card to another and scroll to it.
+const moveCardFocus = (from, to) => {
+  from.classList.remove("is-focused");
+  to.classList.add("is-focused");
+  to.scrollIntoView({behavior: 'smooth', block: 'start'});
+};
+
+btnUp.addEventListener('click', () => {
+  const focused = qs(SEL.messageCardFocused);
+  if (!focused){
+    const cards = qsa(SEL.messageCard);
+    if (cards.length > 0) { cards[cards.length - 1].classList.add("is-focused"); }
+  } else if (!focused.previousElementSibling) {
+    const top = qs(`${SEL.conversationPane} ${SEL.pageContent}`);
+    if (top) { top.scrollTop = 0; }
   } else {
-    if (focused.prev().length == 0) {
-     const top = $(`${SEL.conversationPane} ${SEL.pageContent}`).get(0);
-     if (top) { top.scrollTop = 0; }
-    } else if (focused.prev().length > 0){
-      let newFocus = focused.removeClass("is-focused").prev().addClass("is-focused");
-      const el = newFocus.get(0);
-      if (el) { el.scrollIntoView({behavior: 'smooth', block: 'start'}); }
-    }
+    moveCardFocus(focused, focused.previousElementSibling);
   }
 });
 
-$btnDown.on('click', () => {
-  let focused = $(SEL.messageCardFocused);
-  if (focused.length == 0){
-    $(SEL.messageCard).first().addClass("is-focused");
-  } else if (focused.next().length == 0) {
-    let pageContent = $(SEL.pageContent).not(`${SEL.splitLeft} ${SEL.pageContent}`);
-    const pc = pageContent.get(0);
-    if (pc) {
-      pc.scrollIntoView({behavior: 'smooth', block: 'end'});
+btnDown.addEventListener('click', () => {
+  const focused = qs(SEL.messageCardFocused);
+  if (!focused){
+    const first = qs(SEL.messageCard);
+    if (first) { first.classList.add("is-focused"); }
+  } else if (!focused.nextElementSibling) {
+    const pageContents = qsa(SEL.pageContent).filter((el) => !el.closest(SEL.splitLeft));
+    if (pageContents.length > 0) {
+      pageContents[0].scrollIntoView({behavior: 'smooth', block: 'end'});
       // If the message in focus is already the last one, scroll further to the bottom of the message.
-      pageContent.animate({ scrollTop: $(document).height() * 100 }, 0);
+      pageContents.forEach((el) => { el.scrollTop = el.scrollHeight; });
     }
   } else {
-    if (focused.next().length > 0){
-      let newFocus = focused.removeClass("is-focused").next().addClass("is-focused");
-      const el = newFocus.get(0);
-      if (el) { el.scrollIntoView({behavior: 'smooth', block: 'start'}); }
-    }
+    moveCardFocus(focused, focused.nextElementSibling);
   }
 });
 
 let expandClipTimer = null;
-$btnControl.on('click', () => {
+let expandClipListener = null;
+btnControl.addEventListener('click', () => {
   // Collapse/expand by toggling classes that drive a CSS transition on the group's
   // width (see main.css). The frosted panel is the flex parent, so its frame shrinks
-  // in lockstep with the buttons — no "frame leads/lingers" like the old jQuery slide.
-  $readingPaneButtons.addClass('fmp-anim');  // clip while sliding
+  // in lockstep with the buttons.
+  readingPaneButtons.classList.add('fmp-anim');  // clip while sliding
   clearTimeout(expandClipTimer);
-  $readingPaneButtons.off('transitionend.fmpExpand');
+  if(expandClipListener){
+    readingPaneButtons.removeEventListener('transitionend', expandClipListener);
+    expandClipListener = null;
+  }
   if(btnControlShown){
-    $allButtons.addClass('fmp-collapsed');
+    allButtons.classList.add('fmp-collapsed');
     btnControlShown = false;
   } else {
-    $allButtons.removeClass('fmp-collapsed');
+    allButtons.classList.remove('fmp-collapsed');
     btnControlShown = true;
     // Drop the clip once expansion finishes so the upward font-size popover isn't cut.
     // Listen for the transition's end, but also fall back to a timer: if the transition
@@ -249,15 +220,20 @@ $btnControl.on('click', () => {
     // would otherwise stay and cut off the popover.
     const dropClip = () => {
       clearTimeout(expandClipTimer);
-      $readingPaneButtons.removeClass('fmp-anim').off('transitionend.fmpExpand');
+      readingPaneButtons.classList.remove('fmp-anim');
+      if(expandClipListener){
+        readingPaneButtons.removeEventListener('transitionend', expandClipListener);
+        expandClipListener = null;
+      }
     };
-    $readingPaneButtons.on('transitionend.fmpExpand', (e) => {
-      if(e.originalEvent.propertyName === 'max-width'){ dropClip(); }
-    });
+    expandClipListener = (e) => {
+      if(e.propertyName === 'max-width'){ dropClip(); }
+    };
+    readingPaneButtons.addEventListener('transitionend', expandClipListener);
     expandClipTimer = setTimeout(dropClip, 400);
   }
   safeStorageSet({ btnControlShown }); // remember collapsed/expanded
-  setTimeout(() => {$btnControl.html(btnControlLabel())}, 200);
+  setTimeout(() => { btnControl.innerHTML = btnControlLabel(); }, 200);
 });
 
 // The uncluttered (near-fullscreen) view is driven by a body class + an injected
@@ -267,12 +243,14 @@ $btnControl.on('click', () => {
 // generated from SEL so the selectors live only in selectors.js (no duplication).
 const UNCLUTTERED_CLASS = 'fmp-uncluttered';
 
-$('<style>').attr('id', 'fmp-uncluttered-style').text(
+const unclutteredStyle = document.createElement('style');
+unclutteredStyle.id = 'fmp-uncluttered-style';
+unclutteredStyle.textContent =
   `body.${UNCLUTTERED_CLASS} ${SEL.conversationPane} ${SEL.toolbar},\n` +
   `body.${UNCLUTTERED_CLASS} ${SEL.pageHeader} { display: none !important; }\n` +
   `body.${UNCLUTTERED_CLASS} ${SEL.splitRight},\n` +
-  `body.${UNCLUTTERED_CLASS} ${SEL.splitRightInHierarchy} { left: 0 !important; }`
-).appendTo('head');
+  `body.${UNCLUTTERED_CLASS} ${SEL.splitRightInHierarchy} { left: 0 !important; }`;
+document.head.appendChild(unclutteredStyle);
 
 // Fastmail can overwrite body.className wholesale (e.g. when double-clicking the
 // mail pane), wiping our uncluttered class. Re-assert it the instant the class
@@ -289,12 +267,12 @@ unclutteredObserver.observe(document.body, { attributes: true, attributeFilter: 
 
 const showmainMenu = () => {
   mainMenuShown = true;
-  $('body').removeClass(UNCLUTTERED_CLASS);
-  $btnMainMenu.html(btnMainMenuLabel());
+  document.body.classList.remove(UNCLUTTERED_CLASS);
+  btnMainMenu.innerHTML = btnMainMenuLabel();
 }
 
 const hidemainMenu = () => {
   mainMenuShown = false;
-  $('body').addClass(UNCLUTTERED_CLASS);
-  $btnMainMenu.html(btnMainMenuLabel());
+  document.body.classList.add(UNCLUTTERED_CLASS);
+  btnMainMenu.innerHTML = btnMainMenuLabel();
 }

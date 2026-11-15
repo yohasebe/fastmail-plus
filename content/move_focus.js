@@ -7,40 +7,69 @@ const indicateLeftRight = () => {
   if(!useCursorKeys){
     return;
   }
-  const $list = $(`${SEL.mailboxPane} ${SEL.toolbar}`);
-  const $conv = $(`${SEL.conversationPane} ${SEL.toolbar}`);
+  const list = qsa(`${SEL.mailboxPane} ${SEL.toolbar}`);
+  const conv = qsa(`${SEL.conversationPane} ${SEL.toolbar}`);
+  const paint = (els, shadow) => els.forEach((el) => {
+    el.style.boxShadow = shadow;
+    el.style.transition = '';
+  });
   // A compose/reply editor lives inside #conversation, so painting the indicator
   // would leave a stray blue bar on its toolbar. Clear and skip while composing.
   if(isComposing()){
-    $list.css({"box-shadow": "none"});
-    $conv.css({"box-shadow": "none"});
+    paint(list, 'none');
+    paint(conv, 'none');
     return;
   }
   const activeShadow = `inset 0 -2px 0 ${PANE_ACCENT}`;
-  if(leftOrRight === "left"){
-    $list.css({"box-shadow": activeShadow, "transition": ""});
-    $conv.css({"box-shadow": "none"});
-  } else {
-    $conv.css({"box-shadow": activeShadow, "transition": ""});
-    $list.css({"box-shadow": "none"});
-  }
+  paint(list, leftOrRight === "left" ? activeShadow : 'none');
+  paint(conv, leftOrRight === "left" ? 'none' : activeShadow);
 }
+
+// The mailbox item next to the remembered cursor position ('prev' or 'next'),
+// staying on the current item at either end. Falls back to the first item when
+// there is no remembered position. May return null (e.g. an empty list).
+const neighborItem = (direction) => {
+  if(!cursorPosition){
+    return qs(SEL.mailboxItem);
+  }
+  const current = document.getElementById(cursorPosition);
+  if(!current){
+    return null;
+  }
+  const sibling = direction === 'prev' ? current.previousElementSibling : current.nextElementSibling;
+  return sibling || current;
+};
+
+// Read the focused list item (if any) into cursorPosition.
+const syncCursorFromFocus = () => {
+  const focused = qs(SEL.mailboxItemFocused);
+  cursorPosition = focused ? (focused.id || undefined) : undefined;
+};
 
 // (Pane focus on click is handled by the delegated body "click.fmp" handler in
 //  main.js. The previous direct handlers here called an undefined function and
 //  were bound at load time, so they were both broken and redundant.)
 
+// H / L move to the left / right pane when the "hlPaneKeys" option is on. Only
+// plain key presses count, so shortcuts such as Ctrl + Shift + L are unaffected.
+const isPlainKey = (e) => !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && !e.isComposing;
+// A letter shortcut (e.g. J) pressed on its own, so Ctrl/Cmd/Shift combinations
+// (Cmd + P to print, Ctrl + J, ...) keep their usual meaning.
+const isLetterKey = (e, code) => e.which === code && isPlainKey(e);
+const isPaneLeftKey = (e) => e.which === 37 || (hlPaneKeys && e.which === 72 && isPlainKey(e));
+const isPaneRightKey = (e) => e.which === 39 || (hlPaneKeys && e.which === 76 && isPlainKey(e));
+
 const moveCursor = (e) => {
-  // Enter or →
-  if(e.which === 13 || e.which === 39){
-    if(splitPanes && $(SEL.empty).length == 0){
+  // Enter, → or L
+  if(e.which === 13 || isPaneRightKey(e)){
+    if(splitPanes && qs(SEL.empty) === null){
       leftOrRight = "right";
       indicateLeftRight("right")
       e.preventDefault();
       e.stopImmediatePropagation();
     }
-  // ←
-  } else if(e.which === 37){
+  // ← or H
+  } else if(isPaneLeftKey(e)){
     if(splitPanes){
       leftOrRight = "left";
       indicateLeftRight("left");
@@ -48,100 +77,60 @@ const moveCursor = (e) => {
       e.stopImmediatePropagation();
     }
   // K or ↑
-  } else if(e.which === 75 || e.which === 38){
+  } else if(isLetterKey(e, 75) || e.which === 38){
     if(splitPanes){
       indicateLeftRight("left");
     }
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const focused = $(SEL.mailboxItemFocused);
-    if(focused){
-      cursorPosition = focused.attr("id");
-    }
-
-    let target;
-    if(cursorPosition){
-      target = $('#' + cursorPosition).prev();
-      if(target.length === 0){
-        target = $('#' + cursorPosition)
-      }
-    } else {
-      target = $(SEL.mailboxItem).first();
-    }
-    cursorPosition = target.attr('id');
-    target.click();
+    syncCursorFromFocus();
+    const target = neighborItem('prev');
+    cursorPosition = target ? (target.id || undefined) : undefined;
+    if(target){ target.click(); }
   // J or ↓
-  } else if(e.which === 74 || e.which === 40) {
+  } else if(isLetterKey(e, 74) || e.which === 40) {
     if(splitPanes){
       indicateLeftRight("left");
     }
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const focused = $(SEL.mailboxItemFocused);
-    if(focused){
-      cursorPosition = focused.attr("id");
-    }
-
-    let target;
-    if(cursorPosition){
-      target = $('#' + cursorPosition).next();
-      if(target.length === 0){
-        target = $('#' + cursorPosition)
-      }
-    } else {
-      target = $(SEL.mailboxItem).first();
-    }
-    cursorPosition = target.attr("id");
-    target.click();
+    syncCursorFromFocus();
+    const target = neighborItem('next');
+    cursorPosition = target ? (target.id || undefined) : undefined;
+    if(target){ target.click(); }
   }
 }
 
-const doubleClick = async (lb) => {
-  await lb.click();
-  lb.click();
+// Click the item's label twice (a single click does not open the message here),
+// yielding once in between so Fastmail can apply the first click.
+const clickItemLabel = async (target) => {
+  const lb = target ? qs('label', target) : null;
+  if(lb){
+    lb.click();
+    await Promise.resolve();
+    lb.click();
+  }
 };
 
 // Move focus via up/down cursor keys in messages view
 const messageCursor = (e) => {
   // K or ↑
-  if(e.which === 75 || e.which === 38){
+  if(isLetterKey(e, 75) || e.which === 38){
     e.preventDefault();
     e.stopImmediatePropagation();
-    let target;
-    if(cursorPosition){
-      target = $('#' + cursorPosition).prev();
-      if(target.length === 0){
-        target = $('#' + cursorPosition)
-      }
-    } else {
-      target = $(SEL.mailboxItem).first();
-    }
-    cursorPosition = target.attr('id');
-    // target.find("div.v-MailboxItem-from").first().click();
-    // target.find("label").first().click().click();
-    const lb = target.find("label").first()
-    doubleClick(lb);
+    const target = neighborItem('prev');
+    cursorPosition = target ? (target.id || undefined) : undefined;
+    clickItemLabel(target);
 
   // J or ↓
-  } else if(e.which === 74 || e.which === 40) {
+  } else if(isLetterKey(e, 74) || e.which === 40) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    let target;
-    if(cursorPosition){
-      target = $('#' + cursorPosition).next();
-      if(target.length === 0){
-        target = $('#' + cursorPosition)
-      }
-    } else {
-      target = $(SEL.mailboxItem).first();
-    }
-    cursorPosition = target.attr("id");
-    // target.find("div.v-MailboxItem-from").first().click();
-    // target.find("label").first().click().click();
-    const lb = target.find("label").first()
-    doubleClick(lb);
+    const target = neighborItem('next');
+    cursorPosition = target ? (target.id || undefined) : undefined;
+    clickItemLabel(target);
   }
 }
 
@@ -149,36 +138,36 @@ const messageCursor = (e) => {
 const readingPaneCursor = (e) => {
   if(useCursorKeys){
     if(!isEditingText()) {
-      if(e.which === 39){
+      if(isPaneRightKey(e)){
         if(splitPanes){
           leftOrRight = "right";
           indicateLeftRight("right");
           e.preventDefault();
           e.stopImmediatePropagation();
         }
-      } else if(e.which === 37){
+      } else if(isPaneLeftKey(e)){
         if(splitPanes){
           leftOrRight = "left";
           indicateLeftRight("left");
           e.preventDefault();
           e.stopImmediatePropagation();
         }
-      // P or ↑ => Previous
-      } else if (e.which === 80 || (e.which === 38)){
+      // P, K or ↑ => Previous
+      } else if (isLetterKey(e, 80) || isLetterKey(e, 75) || e.which === 38){
         if(splitPanes){
           indicateLeftRight("right");
         }
         e.preventDefault();
         e.stopImmediatePropagation();
-        $btnUp.click();
-        // N or ↓ => Next
-      } else if (e.which === 78 || (e.which === 40)){
+        btnUp.click();
+        // N, J or ↓ => Next
+      } else if (isLetterKey(e, 78) || isLetterKey(e, 74) || e.which === 40){
         if(splitPanes){
           indicateLeftRight("right");
         }
         e.preventDefault();
         e.stopImmediatePropagation();
-        $btnDown.click();
+        btnDown.click();
       }
     }
   }

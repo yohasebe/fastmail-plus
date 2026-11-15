@@ -3,11 +3,23 @@ const regexCalendar = new RegExp('\/calendar\/');
 const regexNotes = new RegExp('\/notes\/');
 const regexCompose = new RegExp('\/compose');
 
+// Small DOM helpers shared by all content scripts.
+const qs = (selector, root = document) => root.querySelector(selector);
+const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+// Build a single element from an HTML string (only used with the extension's own markup).
+const htmlToElement = (html) => {
+  const t = document.createElement('template');
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+};
+// True if the element is rendered (the equivalent of jQuery's :visible).
+const isVisible = (el) => !!el && el.getClientRects().length > 0;
+
 // In the 2026 UI the message URL changed from /T<16>.M<24> to /mail/<folder>/<id>,
 // and a message can also be shown while the URL stays at /mail/Inbox/, so the URL
 // can't reliably tell whether the reading pane is shown. Detect it from the
 // presence of v-MessageCard in the DOM instead (also resilient to future URL changes).
-const isReadingPaneShown = () => $(SEL.messageCard).length > 0;
+const isReadingPaneShown = () => qs(SEL.messageCard) !== null;
 
 // False once the extension is reloaded/updated and this content script is stale.
 // Accessing chrome.runtime.id can itself throw "Extension context invalidated" in
@@ -26,7 +38,7 @@ const safeStorageSet = (obj) => {
 // the URL to /compose, so detect them from the DOM rather than the URL — otherwise
 // the pane-focus indicator and reading-pane key handlers leak into the editor
 // (e.g. Enter getting hijacked instead of inserting a newline).
-const isComposing = () => $(SEL.composeActive).length > 0;
+const isComposing = () => qs(SEL.composeActive) !== null;
 
 // True when the user is typing in any editable field: an input, a textarea, or any
 // contenteditable region (the rich-text body, subject, etc.). Used to avoid
@@ -47,10 +59,11 @@ let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 let maxMessageWidth;
+let hlPaneKeys;
+let spaceToggle;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
-let composePaneControlPositionTimer = null;
 let composeWidth = null; // remembered width (px) of the resizable compose/note pane
 let btnControlShown = true;
 let mainMenuShown = true;
@@ -79,7 +92,7 @@ const applyBodyFontScale = () => {
   }
   style.textContent = `${SEL.messageBody} { zoom: ${bodyFontScale} !important; }`;
   // Keep the main button label showing the current setting (by id, so this stays
-  // decoupled from the button's jQuery object defined in reading_pane_control.js).
+  // decoupled from the button element defined in reading_pane_control.js).
   const label = document.querySelector("#btnFontSize .label");
   if (label) {
     label.textContent = `${pct}%`;
@@ -102,18 +115,23 @@ const keys = [
   "useCursorKeys",
   "alternativeShortcutKeys",
   "alternativeSearch",
-  "maxMessageWidth"
+  "maxMessageWidth",
+  "hlPaneKeys",
+  "spaceToggle"
 ]
 
 const getSyncStorage = (keys) => new Promise(resolve => {
   chrome.storage.local.get(keys, resolve);
 });
 
-getSyncStorage().then((vals) => {
+// Resolves once the settings are loaded; main.js starts the extension after it.
+const settingsLoaded = getSyncStorage().then((vals) => {
   useCursorKeys = vals.useCursorKeys === undefined ? true : vals.useCursorKeys;
   alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
-  maxMessageWidth = vals.maxMessageWidth === undefined ? true : vals.maxMessageWidth;
+  maxMessageWidth = vals.maxMessageWidth === true;
+  hlPaneKeys = vals.hlPaneKeys === true;
+  spaceToggle = vals.spaceToggle === true;
   bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
   composeWidth = vals.composeWidth === undefined ? null : vals.composeWidth;
   btnControlShown = vals.btnControlShown === undefined ? true : vals.btnControlShown;

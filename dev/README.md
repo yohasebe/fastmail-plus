@@ -1,4 +1,4 @@
-# dev/ — diagnostic helpers
+# dev/ — diagnostic and image helpers
 
 Console scripts used to keep Fastmail Plus in sync with Fastmail's web UI. They are
 **not** part of the shipped extension (the `Rakefile` build does not include `dev/`).
@@ -21,3 +21,14 @@ they report only structure (tag names, ids, classes, attributes).
 1. Open Fastmail and put it in the state noted above.
 2. Open DevTools → Console.
 3. Paste the whole script and press Enter (the result is copied to the clipboard).
+
+## Mockup images
+
+`mockups.py` generates the SVG mockups in [`../images/mockups/`](../images/mockups/)
+used by the README and the Chrome Web Store listing. They are drawn, not captured, so
+they never contain real mail. Edit `mockups.py` rather than the SVGs, then run:
+
+```
+python3 dev/mockups.py
+rake store_images   # PNGs for the store listing, written to build/store/
+```

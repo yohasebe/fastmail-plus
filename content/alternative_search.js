@@ -22,76 +22,76 @@ const SEARCH_MODE_COLORS = {
 // buttons look consistent with the others in the UI. The search button gets a
 // mode color (blue/red) layered on top, and returns to the native standard color
 // in anywhere mode.
-const $searchToggle = $(`<button id="search-toggle" title="Switch search mode" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${repeatIcon}</button>`);
-const $searchExecuteButton = $(`<button id="searchExecute" title="Search" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${sendIcon}</button>`);
+const searchToggle = htmlToElement(`<button id="search-toggle" title="Switch search mode" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${repeatIcon}</button>`);
+const searchExecuteButton = htmlToElement(`<button id="searchExecute" title="Search" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;">${sendIcon}</button>`);
 
 const setAltSearch = () => {
-  if($(SEL.searchInput).length === 0){
+  const searchBar = qs(`${SEL.searchInput}:not(#alt-search)`);
+  if(!searchBar){
     return false;
   }
-  const $searchBar = $(SEL.searchInput).not('#alt-search');
   const altSHTML = '<div id="alt-search" class="v-TextInput v-SearchInput v-MailToolbar-search" style="position:relative;">'
     + '<div class="v-TextInput-control">'
     + '<input id="alt-search-input" class="v-TextInput-input" name = "alt-search" type = "text" tabindex = "0" placeholder = "Search Mail" autocapitalize = "off" autocomplete = "off" autocorrect = "off" spellcheck = "false" title = "Shortcut: /" >'
     + '</div >'
     + '<svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 24 24" class="u-standardicon v-Icon i-search" role = "presentation" ><circle cx="10.5" cy="10.5" r="5.75"></circle><line x1="19.25" y1="19.25" x2="14.57" y2="14.57"></line></svg>';
 
-  const $altSearch = $(altSHTML);
-  $altSearch.hide();
-  $altSearch.insertAfter($searchBar);
-  $searchBar.after($altSearch);
-  $altSearch.after($searchToggle);
-  $searchToggle.before($searchExecuteButton);
+  const altSearch = htmlToElement(altSHTML);
+  altSearch.style.display = 'none';
+  // Order after the native search box: alt search, execute button, mode toggle.
+  searchBar.after(altSearch, searchExecuteButton, searchToggle);
 
-  const $altSearchInput = $("#alt-search-input");
-  const $normalSearchInput = $(`${SEL.searchInput} input`).not($altSearchInput);
-  $normalSearchInput.attr("placeholder", "Search Mail (Default)")
+  const altSearchInput = qs('#alt-search-input', altSearch);
+  const normalSearchInput = qs('input', searchBar);
+  if(normalSearchInput){
+    normalSearchInput.placeholder = "Search Mail (Default)";
+  }
+  const normalValue = () => (normalSearchInput ? normalSearchInput.value : "");
 
-  $searchToggle.on('click', () => {
+  searchToggle.addEventListener('click', () => {
     if(searchMode === "anywhere"){
-      $searchBar.hide();
-      $altSearch.show();
+      searchBar.style.display = 'none';
+      altSearch.style.display = '';
       // On the light mode color, force a dark icon regardless of theme for contrast
-      $searchExecuteButton.css({'background-color': SEARCH_MODE_COLORS.subjectBody.button, 'color': SEARCH_MODE_COLORS.iconOnTint});
-      $searchExecuteButton.show();
+      searchExecuteButton.style.backgroundColor = SEARCH_MODE_COLORS.subjectBody.button;
+      searchExecuteButton.style.color = SEARCH_MODE_COLORS.iconOnTint;
       searchMode = "subject_body";
-      $('#alt-search-input').css('background-color', SEARCH_MODE_COLORS.subjectBody.input);
-      $('#alt-search-input').attr('placeholder', 'Search Mail (Subject & Body)');
-      const currentVal = $normalSearchInput.val();
-      if(currentVal.match(/\(.*?\)/)){
-        $altSearchInput.val("");
-      } else {
-        $altSearchInput.val(currentVal);
-      }
-      $altSearchInput.focus();
+      altSearchInput.style.backgroundColor = SEARCH_MODE_COLORS.subjectBody.input;
+      altSearchInput.placeholder = 'Search Mail (Subject & Body)';
+      const currentVal = normalValue();
+      altSearchInput.value = currentVal.match(/\(.*?\)/) ? "" : currentVal;
+      altSearchInput.focus();
     } else if (searchMode === "subject_body") {
       searchMode = "subject";
-      $searchExecuteButton.css({'background-color': SEARCH_MODE_COLORS.subject.button, 'color': SEARCH_MODE_COLORS.iconOnTint});
-      $('#alt-search-input').css('background-color', SEARCH_MODE_COLORS.subject.input);
-      $('#alt-search-input').attr('placeholder', 'Search Mail (Subject Only)');
-      $altSearchInput.focus();
+      searchExecuteButton.style.backgroundColor = SEARCH_MODE_COLORS.subject.button;
+      searchExecuteButton.style.color = SEARCH_MODE_COLORS.iconOnTint;
+      altSearchInput.style.backgroundColor = SEARCH_MODE_COLORS.subject.input;
+      altSearchInput.placeholder = 'Search Mail (Subject Only)';
+      altSearchInput.focus();
     } else  {
-      $altSearch.hide();
+      altSearch.style.display = 'none';
       // back to the native standard background and text color
-      $searchExecuteButton.css({'background-color': '', 'color': ''});
-      $searchBar.show();
+      searchExecuteButton.style.backgroundColor = '';
+      searchExecuteButton.style.color = '';
+      searchBar.style.display = '';
       searchMode = "anywhere";
-      const currentVal = $altSearchInput.val();
-      $normalSearchInput.val(currentVal);
-      $normalSearchInput.focus();
+      if(normalSearchInput){
+        normalSearchInput.value = altSearchInput.value;
+        normalSearchInput.focus();
+      }
     }
   });
 
   const executeSearch = () => {
     let url;
     if(searchMode === "anywhere"){
-      const text = $normalSearchInput.val();
+      const text = normalValue();
       if(text.match(/^[\(\)\s]*$/)){
         return false;
       }
       url = `${location.origin}/mail/search:${text}`;
     } else {
-      const text = $altSearchInput.val();
+      const text = altSearchInput.value;
       if(text.match(/^[\(\)\s]*$/)){
         return false;
       }
@@ -117,13 +117,14 @@ const setAltSearch = () => {
     window.location = url;
   }
 
-  $altSearchInput.on('keydown', (e) => {
-    if(e.keyCode == 13){
+  altSearchInput.addEventListener('keydown', (e) => {
+    // Ignore the Enter that confirms an IME conversion.
+    if(e.key === 'Enter' && !e.isComposing){
       executeSearch()
     }
   });
 
-  $searchExecuteButton.on('click', (_e) => {
+  searchExecuteButton.addEventListener('click', () => {
     executeSearch()
   });
 

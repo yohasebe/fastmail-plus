@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="492" height="214" viewBox="0 0 492 214" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
+  <title>Reading-pane buttons</title>
+  <defs>
+    <symbol id="i-reload" viewBox="0 0 16 16"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></symbol>
+    <symbol id="i-fullscreen" viewBox="0 0 16 16"><path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z"/></symbol>
+    <symbol id="i-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/></symbol>
+    <symbol id="i-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/></symbol>
+    <symbol id="i-viewList" viewBox="0 0 16 16"><path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/></symbol>
+    <symbol id="i-collapse" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/></symbol>
+    <symbol id="i-rightSquare" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/></symbol>
+  </defs>
+  <rect width="492" height="214" fill="#f3f4f5"/>
+  <g transform="translate(20 150) scale(1.0)">
+    <rect width="452" height="44" rx="12" fill="#7f7f7f" fill-opacity="0.12"/>
+    <rect x="6" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-reload" x="18.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="54" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-fullscreen" x="66.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="102" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-up" x="114.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="150" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-down" x="162.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="198" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-viewList" x="210.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="246" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-expand" x="258.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="294" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-collapse" x="306.0" y="14" width="16" height="16" fill="#1b1e20"/>
+    <rect x="342" y="6" width="56" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <text x="370.0" y="27" font-size="13" text-anchor="middle" fill="#1b1e20">100%</text>
+    <rect x="336" y="-128" width="68" height="124" rx="12" fill="#7f7f7f" fill-opacity="0.12"/>
+    <rect x="342" y="-122" width="56" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <text x="370.0" y="-101" font-size="14" text-anchor="middle" fill="#1b1e20">A+</text>
+    <rect x="342" y="-82" width="56" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <text x="370.0" y="-61" font-size="14" text-anchor="middle" fill="#1b1e20">↺</text>
+    <rect x="342" y="-42" width="56" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <text x="370.0" y="-21" font-size="14" text-anchor="middle" fill="#1b1e20">A-</text>
+    <rect x="406" y="6" width="40" height="32" rx="6" fill="#7f7f7f" fill-opacity="0.18"/>
+    <use href="#i-rightSquare" x="418.0" y="14" width="16" height="16" fill="#1b1e20"/>
+  </g>
+</svg>

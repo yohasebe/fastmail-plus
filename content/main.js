@@ -3,45 +3,66 @@ const checkReadingPaneControlPosition = () => {
   // Shift the buttons left by the width of the right contextual sidebar (present
   // in the DOM only while open). When closed there is no element, so :visible is
   // false and no offset is applied.
-  let sidebar = $(SEL.contextualSidebar);
-  if(sidebar.is(":visible")){
-    right += parseInt(sidebar.width());
+  const sidebar = qs(SEL.contextualSidebar);
+  if(isVisible(sidebar)){
+    right += Math.round(sidebar.getBoundingClientRect().width);
   }
-  $allButtons.css({
-    "right": right + "px"
-  });
+  allButtons.style.right = right + "px";
 }
 
-const makeResizable = (url) => {
-  // currently in compose/note mode
-  if (regexCompose.test(url) || regexNotes.test(url)) {
-    composePaneControlPositionTimer = setInterval(() => {
-      // Skip elements already made resizable (.ui-resizable). Re-initializing
-      // every tick recreates the handle and causes it to flicker.
-      const $fresh = $(`${SEL.composeCard}, ${SEL.noteCard}`).not('.ui-resizable');
-      $fresh.resizable({
-        handles: 'e',
-        // Remember the dragged width so the next compose/note opens at that size.
-        stop: (_e, ui) => {
-          composeWidth = Math.round(ui.size.width);
-          safeStorageSet({ composeWidth });
-        }
-      });
-      // Apply the remembered width to each freshly-initialized pane (once; later
-      // ticks skip it via .not('.ui-resizable'), so a live drag is never overridden).
-      if (composeWidth) {
-        $fresh.css('width', composeWidth + 'px');
-      }
-      // The reply quote (appendonsend) appears inside compose, so fold it here.
-      foldQuote();
-    }, 300);
-  } else {
-    if (composePaneControlPositionTimer) {
-      clearInterval(composePaneControlPositionTimer);
-      composePaneControlPositionTimer = null;
+// Make a compose/note pane resizable from its right edge. The dragged width is
+// remembered so the next compose/note opens at that size.
+const RESIZABLE_CLASS = 'fmp-resizable';
+const makePaneResizable = (pane) => {
+  pane.classList.add(RESIZABLE_CLASS);
+  const handle = document.createElement('div');
+  handle.className = 'fmp-resize-handle';
+  pane.appendChild(handle);
+
+  handle.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) {
+      return;
     }
-  }
-}
+    e.preventDefault(); // no text selection while dragging
+    const startX = e.clientX;
+    // Computed width follows the pane's box-sizing, so it can be written back as is.
+    const startWidth = parseFloat(getComputedStyle(pane).width);
+    handle.setPointerCapture(e.pointerId);
+
+    const onMove = (ev) => {
+      pane.style.width = Math.max(0, startWidth + ev.clientX - startX) + 'px';
+    };
+    const onEnd = () => {
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onEnd);
+      handle.removeEventListener('pointercancel', onEnd);
+      if (pane.style.width) {
+        // Save the rendered width, which CSS min-/max-width have already clamped.
+        composeWidth = Math.round(parseFloat(getComputedStyle(pane).width));
+        safeStorageSet({ composeWidth });
+      }
+    };
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onEnd);
+    handle.addEventListener('pointercancel', onEnd);
+  });
+};
+
+// Make every open compose/note pane resizable, including inline replies (which
+// open inside the conversation without changing the URL). Called on each poll
+// tick; panes already set up are skipped so the handle never flickers.
+const initResizablePanes = () => {
+  qsa(`${SEL.composeCard}, ${SEL.noteCard}`)
+    .filter((pane) => !pane.classList.contains(RESIZABLE_CLASS))
+    .forEach((pane) => {
+      makePaneResizable(pane);
+      // Apply the remembered width once, on initialization, so a live drag is
+      // never overridden by later ticks.
+      if (composeWidth) {
+        pane.style.width = composeWidth + 'px';
+      }
+    });
+};
 
 // Whether a conversation (reading pane) is shown. Compose/note are excluded
 // (compose also has a v-MessageCard, so without the URL exclusion the buttons
@@ -55,29 +76,28 @@ const isConversationShown = () =>
 
 const enterReadingPane = () => {
   showmainMenu();
-  foldQuote();
   if(!mainMenuShown){
     hidemainMenu();
   }
   // Apply the persisted collapsed/expanded state BEFORE attaching, so the cluster
   // renders directly in that state with no initial slide animation.
   if(!btnControlShown){
-    $readingPaneButtons.addClass('fmp-anim');   // collapsed stays clipped
-    $allButtons.addClass('fmp-collapsed');
+    readingPaneButtons.classList.add('fmp-anim');   // collapsed stays clipped
+    allButtons.classList.add('fmp-collapsed');
   } else {
-    $allButtons.removeClass('fmp-collapsed');
-    $readingPaneButtons.removeClass('fmp-anim');
+    allButtons.classList.remove('fmp-collapsed');
+    readingPaneButtons.classList.remove('fmp-anim');
   }
-  $allButtons.appendTo("body");
+  document.body.appendChild(allButtons);
   // Sync the toggle icon with the (possibly persisted) collapsed/expanded state.
-  $btnControl.html(btnControlLabel());
+  btnControl.innerHTML = btnControlLabel();
   // Position the buttons immediately; the main poll keeps them in place after that
   // (no dedicated interval — see checkFirstTimeReady).
   checkReadingPaneControlPosition();
 };
 
 const exitReadingPane = () => {
-  $allButtons.detach();
+  allButtons.remove();
   showmainMenu();
 };
 
@@ -119,12 +139,24 @@ const applyReadingPaneState = () => {
   exitReadingPane();
 };
 
+// In the split view, track which pane (list / message) was clicked last.
+const paneClickHandler = (e) => {
+  if (!(e.target instanceof Element)) {
+    return;
+  }
+  if (e.target.closest("#conversation, #allButtons")) {
+    leftOrRight = "right"
+    indicateLeftRight("right");
+  } else if (e.target.closest("#mailbox")) {
+    leftOrRight = "left"
+    indicateLeftRight("left");
+  }
+};
+
 const runOnChange = (url) => {
-  if(alternativeSearch && $("#alt-search").length == 0) {
+  if(alternativeSearch && !document.getElementById("alt-search")) {
     setAltSearch();
   }
-
-  makeResizable(url);
 
   // currently in mail mode
   if(regexMail.test(url)){
@@ -132,31 +164,21 @@ const runOnChange = (url) => {
     // Reflect the currently focused list item into cursorPosition.
     // (The old URL match via a.v-MailboxItem-link[href] no longer works in the
     //  new UI, so read it directly from the is-focused class.)
-    const focusedItem = $(SEL.mailboxItemFocused);
-    if(focusedItem.length > 0){
-      cursorPosition = focusedItem.attr("id");
+    const focusedItem = qs(SEL.mailboxItemFocused);
+    if(focusedItem){
+      cursorPosition = focusedItem.id || undefined;
     }
 
     // check whether it is "Show reading pane mode"
-    splitRight = $(SEL.splitRightInHierarchy);
-    if(splitRight.length > 0) {
+    splitRight = qs(SEL.splitRightInHierarchy);
+    if(splitRight) {
       splitPanes = true;
-
-      // Rebind with a namespace each time to prevent the handler from being
-      // registered multiple times across navigation.
-      $("body").off("click.fmp").on("click.fmp", (e) => {
-        if (e.target.id == "conversation" || $(e.target).parents("#conversation").length ||
-          e.target.id == "allButtons" || $(e.target).parents("#allButtons").length) {
-          leftOrRight = "right"
-          indicateLeftRight("right");
-        } else if (e.target.id == "mailbox" || $(e.target).parents("#mailbox").length) {
-          leftOrRight = "left"
-          indicateLeftRight("left");
-        }
-      });
+      // addEventListener ignores a second registration of the same function, so
+      // this never stacks up across navigation.
+      document.body.addEventListener("click", paneClickHandler);
     } else {
       splitPanes = false;
-      $("body").off("click.fmp");
+      document.body.removeEventListener("click", paneClickHandler);
     }
 
     if(leftOrRight == undefined){
@@ -166,7 +188,7 @@ const runOnChange = (url) => {
       indicateLeftRight("left");
     }
   } else {
-    $("body").off("click.fmp");
+    document.body.removeEventListener("click", paneClickHandler);
   }
 
   // Reading-pane button visibility is decided from the DOM (v-MessageCard).
@@ -179,7 +201,7 @@ const checkFirstTimeReady = () => {
   // is now theme-independent).
 
   let t1 = setInterval(() => {
-    if($(SEL.searchInputAny).length > 0){
+    if(qs(SEL.searchInputAny)){
       runOnChange(lastUrl);
 
       clearInterval(t1);
@@ -203,6 +225,7 @@ const checkFirstTimeReady = () => {
         // than relying on URL changes (the card may be unrendered at the moment
         // the URL changes).
         applyReadingPaneState();
+        initResizablePanes();
         // Keep the floating buttons positioned while the reading pane is shown
         // (folded into this single poll instead of a separate interval).
         if(readingPaneShown){
@@ -212,10 +235,10 @@ const checkFirstTimeReady = () => {
         // overwrite body.className (e.g. when double-clicking the mail pane), which
         // would silently wipe the class and un-collapse the panes while the toggle
         // still says it is on. Re-asserting here heals that within one tick.
-        $('body').toggleClass(UNCLUTTERED_CLASS, !mainMenuShown);
+        document.body.classList.toggle(UNCLUTTERED_CLASS, !mainMenuShown);
       }, 300);
 
-      $(window).on('resize', () => {
+      window.addEventListener('resize', () => {
         if(readingPaneShown){
           checkReadingPaneControlPosition();
         }
@@ -224,7 +247,9 @@ const checkFirstTimeReady = () => {
   }, 300);
 }
 
-$(document).ready(() => {
+// Content scripts run after the DOM is ready (document_idle); wait only for the
+// settings so that the options below are known before starting.
+settingsLoaded.then(() => {
   if(maxMessageWidth) {
     maximizeMessageWidth();
   }

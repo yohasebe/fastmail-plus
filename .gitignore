@@ -28,6 +28,8 @@ Temporary Items
 .apdisk
 
 *.zip
+# PNGs rendered from images/mockups by `rake store_images`
+/build/
 # Chrome Web Store credentials — real secrets, never commit (the .example is tracked)
 .env.webstore
 # manifest.json is a local symlink created by the build / `rake chrome` (not tracked)

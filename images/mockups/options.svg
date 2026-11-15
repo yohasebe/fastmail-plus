@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="330" viewBox="0 0 480 330" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
+  <title>Options</title>
+  <rect width="480" height="330" fill="#ffffff" stroke="#d9dde1"/>
+  <text x="24" y="44" font-size="20" font-weight="700" fill="#1b1e20">Fastmail Plus Options</text>
+  <rect x="24" y="76" width="18" height="18" rx="4" fill="#2f6fde"/>
+  <path d="M28 85 l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="90" font-size="16" fill="#1b1e20">Use switchable search box</text>
+  <rect x="24" y="110" width="18" height="18" rx="4" fill="#2f6fde"/>
+  <path d="M28 119 l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="124" font-size="16" fill="#1b1e20">Use ↑/↓/←/→ keys to move focus</text>
+  <rect x="24" y="144" width="18" height="18" rx="4" fill="#2f6fde"/>
+  <path d="M28 153 l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="158" font-size="16" fill="#1b1e20">Use alternative shortcut keys</text>
+  <rect x="24.5" y="178.5" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>
+  <text x="54" y="192" font-size="16" fill="#1b1e20">Maximize message/compose pane width</text>
+  <rect x="24.5" y="212.5" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>
+  <text x="54" y="226" font-size="16" fill="#1b1e20">Use H/L keys to switch panes</text>
+  <rect x="24.5" y="246.5" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>
+  <text x="54" y="260" font-size="16" fill="#1b1e20">Use Space to open/close messages</text>
+  <text x="24" y="300" font-size="14" font-style="italic" fill="#5f6b76">Reload page to reflect changes</text>
+</svg>

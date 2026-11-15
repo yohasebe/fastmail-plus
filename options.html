@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" />
-    <script src="libraries/jquery-3.6.0.min.js"></script>
     <style>
       body {
         width: 400px;
@@ -52,6 +51,14 @@
         <input type="checkbox" id="max-message-width" name="max-message-width" />
         <label for="max-message-width">Maximize message/compose pane width </label>
       </div>
+      <div>
+        <input type="checkbox" id="hl-pane-keys" name="hl-pane-keys" />
+        <label for="hl-pane-keys" title="Replaces Fastmail's own H and L shortcuts">Use H/L keys to switch panes</label>
+      </div>
+      <div>
+        <input type="checkbox" id="space-toggle" name="space-toggle" />
+        <label for="space-toggle" title="Replaces scrolling the message with Space">Use Space to open/close messages</label>
+      </div>
     </div>
     <p>Press <code>?</code> key to show available shortcut keys</p>
     <p><i>Reload page to reflect changes</i></p>
@@ -72,7 +79,7 @@
     </div>
     <hr />
     <div>
-      <p>Fastmail Plus Version: <span class='version'>0.4.2</span> <span class='updated'>New</span></p>
+      <p>Fastmail Plus Version: <span class='version'>0.5.0</span> <span class='updated'>New</span></p>
     </div>
     <script src="options.js"></script>
   </body>

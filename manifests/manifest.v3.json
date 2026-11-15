@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Fastmail Plus",
   "default_locale": "en",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Makes the Fastmail web UI easier to use and more productive.",
   "icons": {
     "16": "images/fastmail-plus-16.png",
@@ -17,8 +17,6 @@
     {
       "matches": ["https://*.fastmail.com/*"],
       "js": [
-        "libraries/jquery-3.6.0.min.js",
-        "libraries/jquery-ui.min.js",
         "content/selectors.js",
         "content/setup.js",
         "content/move_focus.js",
@@ -26,12 +24,10 @@
         "content/alternative_search.js",
         "content/reading_pane_control.js",
         "content/extra_shortcuts.js",
-        "content/fold_quote.js",
         "content/maximize_message_width.js",
         "content/main.js"
       ],
       "css": [
-        "libraries/jquery-ui.min.css",
         "content/main.css"
       ]
     }
