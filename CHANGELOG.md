@@ -16,6 +16,7 @@ Earlier history (before 0.3.0) is available in the git commit log.
 - The font-size buttons (A+ / ↺ / A-) open and close without the slide animation.
 
 ### Removed
+- Firefox build files. The extension supports Chrome and Edge.
 - Reply-to quote folding. Fastmail's own "..." toggle folds quoted text.
 
 ### Fixed

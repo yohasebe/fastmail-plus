@@ -9,7 +9,7 @@ Update both the version number in the changelog block **and** the feature list w
 the extension changes.
 
 The short **"Summary from package"** shown in the dashboard is not edited here — it
-comes from the `description` field in `manifests/manifest.v3.json` (and `.v2.json`).
+comes from the `description` field in `manifests/manifest.v3.json`.
 Change it there and re-run `rake upload`.
 
 The listing images (screenshot 1280×800, marquee 1400×560, small promo tile 440×280)

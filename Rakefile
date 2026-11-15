@@ -17,11 +17,8 @@ PACKAGE_PATTERNS = %w[
   LICENSE
 ].freeze
 
-# Extra files for the Firefox (Manifest V2) package only.
-FIREFOX_PATTERNS = %w[libraries/browser-polyfill.min.js].freeze
-
+MANIFEST = "manifests/manifest.v3.json"
 CHROME_ZIP = "fastmail-plus-chrome.zip"
-FIREFOX_ZIP = "fastmail-plus-firefox.zip"
 
 def package_files(patterns)
   tracked = `git ls-files -z`.split("\0")
@@ -35,40 +32,19 @@ def write_zip(zip, files)
   abort "zip failed for #{zip}" unless $?.success?
 end
 
-desc "Build packages"
+desc "Build the Chrome package"
 task :build do
-  base = File.dirname(__FILE__)
-  manifests = File.join(base, "manifests", "*")
+  version = JSON.parse(File.read(MANIFEST))["version"]
+  html = File.read("options.html")
+  File.write("options.html", html.sub(%r{<span class='version'>.*?</span>}) { "<span class='version'>#{version}</span>" })
 
-  Dir.glob(manifests).each do |m|
-    version = JSON.parse(File.read(m))["version"]
-    updated = ""
-
-    File.open("options.html", "r") do |f|
-      updated = f.read.sub(%r{<span class='version'>.*?</span>}) { "<span class='version'>#{version}</span>" }
-    end
-
-    File.open("options.html", "w") do |f|
-      f.write(updated)
-    end
-
-    # Clear any leftover manifest.json (e.g. the `rake chrome` symlink) so `ln`
-    # below doesn't fail with "File exists".
-    `rm -f manifest.json`
-    case m
-    when /\.v3\.json\z/
-      `ln #{m} manifest.json`
-      write_zip(CHROME_ZIP, package_files(PACKAGE_PATTERNS))
-    when /\.v2\.json\z/
-      `ln #{m} manifest.json`
-      write_zip(FIREFOX_ZIP, package_files(PACKAGE_PATTERNS + FIREFOX_PATTERNS))
-    end
-    `rm -f manifest.json`
-  end
-
-  # Leave a Chrome manifest.json symlink so the unpacked extension stays loadable
-  # for local dogfooding (manifest.json is gitignored).
-  `ln -sf manifests/manifest.v3.json manifest.json`
+  # Zip a real copy of the manifest (not the dogfooding symlink), then restore
+  # the symlink so the unpacked extension stays loadable (manifest.json is gitignored).
+  `rm -f manifest.json`
+  `cp #{MANIFEST} manifest.json`
+  write_zip(CHROME_ZIP, package_files(PACKAGE_PATTERNS))
+  `rm -f manifest.json`
+  `ln -sf #{MANIFEST} manifest.json`
 end
 
 # Check a built package by opening it: its entries must be exactly the
@@ -95,11 +71,7 @@ def verify_package(zip, patterns, manifest_source)
 end
 
 def verify_chrome_package
-  verify_package(CHROME_ZIP, PACKAGE_PATTERNS, "manifests/manifest.v3.json")
-end
-
-def verify_firefox_package
-  verify_package(FIREFOX_ZIP, PACKAGE_PATTERNS + FIREFOX_PATTERNS, "manifests/manifest.v2.json")
+  verify_package(CHROME_ZIP, PACKAGE_PATTERNS, MANIFEST)
 end
 
 desc "Render the SVG mockups to PNG for the Chrome Web Store listing (build/store/)"
@@ -110,21 +82,14 @@ task :store_images do
   end
 end
 
-desc "Check the built packages against the allowlist and HEAD (run before publishing)"
+desc "Check the built package against the allowlist and HEAD (run before publishing)"
 task :verify do
   verify_chrome_package
-  verify_firefox_package
 end
 
-desc "switches to Firefox as main manifest"
-task :firefox do
-  # -sf works on both GNU and BSD (macOS); the old `--force --symbolic` fails with macOS ln
-  `ln -sf manifests/manifest.v2.json manifest.json`
-end
-
-desc "switches to Chrome as main manifest"
+desc "Link manifest.json for loading the unpacked extension"
 task :chrome do
-  `ln -sf manifests/manifest.v3.json manifest.json`
+  `ln -sf #{MANIFEST} manifest.json`
 end
 
 # --- Chrome Web Store publishing -------------------------------------------

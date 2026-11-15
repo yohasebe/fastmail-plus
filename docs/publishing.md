@@ -44,8 +44,7 @@ fiddly part, but it is only done once.
 
 ## Releasing an update
 
-1. Bump the version in **both** `manifests/manifest.v3.json` and
-   `manifests/manifest.v2.json`, run `rake build` (it writes the version into
+1. Bump the version in `manifests/manifest.v3.json`, run `rake build` (it writes the version into
    `options.html`), and commit. The new version must be higher than what is
    currently published.
 2. Upload a fresh build as a draft:
@@ -64,7 +63,7 @@ fiddly part, but it is only done once.
 ## Notes
 
 - Only Chrome is supported. Edge users can install from the Chrome Web Store, so no
-  separate Edge listing is required. The Firefox (`manifest.v2`) path is dormant.
+  separate Edge listing is required.
 - To enable one-command publish later (skip the manual click), add `--auto-publish`
   to the `upload` task's CLI call in the `Rakefile`. Left off intentionally for safety.
 - A future option is a GitHub Actions workflow that uploads on a version tag; that

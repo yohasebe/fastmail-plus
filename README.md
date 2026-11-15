@@ -1,6 +1,6 @@
 # Fastmail Plus (Browser Extension)
 
-A Chrome/Edge/Firefox extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
+A Chrome/Edge extension to make **Fastmail** (https://fastmail.com) web UI more usable and productive
 
 <img src='images/mockups/banner.svg' width="700" />
 
@@ -33,23 +33,12 @@ under [`dev/`](dev/) (paste them into the browser console) can pinpoint which se
 
 https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeodcaijmfm
 
-### For Mozilla Firefox
-
-https://addons.mozilla.org/en-US/firefox/addon/fastmail-plus/
-
 ### Manual Installation (Chrome/Edge)
 
 1. Clone this repository
-2. Build the package with `$ rake build`
+2. Run `$ rake chrome` (links `manifest.json`)
 3. Open `chrome://extensions/` and turn on "Developer mode"
-4. Drag and drop `fastmail-plus-chrome.zip` or  to the extensions page
-
-### Manual Installation (Firefox)
-
-1. Clone this repository
-2. Build the package with `$ rake build`
-3. Open `about:debugging` and click on "Load Temporary Add-on..."
-4. Load `fastmail-plus-firefox.zip` 
+4. Click "Load unpacked" and select the repository folder
 
 ## Options
 
