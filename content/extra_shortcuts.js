@@ -68,8 +68,9 @@ const shortcutHandler = (e) => {
           if(alternativeShortcutKeys && qs(SEL.empty) === null){
             togglemainMenu();
           }
+        } else if(spaceToggleShortcut(e)){
+          // Handled: Space opened/closed a message (from either pane).
         } else if(leftOrRight == "right"){
-          spaceToggleShortcut(e);
           if(alternativeShortcutKeys) {
             readingPaneShortcuts(e);
           }
@@ -121,17 +122,25 @@ const calendarShortcuts = (e) => {
   }
 }
 
-// Space => Toggle the current message, when the "spaceToggle" option is on. This
-// replaces scrolling the reading pane with Space.
+// Space => Toggle the current message, when the "spaceToggle" option is on and a
+// conversation is shown, whichever pane is active. This replaces scrolling the
+// reading pane with Space. In the split view it also makes the reading pane the
+// active one, so J / K continue inside the conversation. Returns true if handled.
 // Space on a focused button, link or similar control keeps its own action.
 const INTERACTIVE_TARGETS = 'button, a[href], select, summary, [role="button"], [role="link"], [role="checkbox"], [role="menuitem"], [role="tab"]';
 const spaceToggleShortcut = (e) => {
   const onControl = e.target instanceof Element && e.target.closest(INTERACTIVE_TARGETS);
-  if (spaceToggle && e.key === ' ' && isPlainKey(e) && !onControl){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    btnToggle.click();
+  if (!(spaceToggle && e.key === ' ' && isPlainKey(e) && !onControl && isConversationShown())){
+    return false;
   }
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  btnToggle.click();
+  if (splitPanes && leftOrRight !== "right"){
+    leftOrRight = "right";
+    indicateLeftRight("right");
+  }
+  return true;
 };
 
 const readingPaneShortcuts = (e) => {
