@@ -3,12 +3,13 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
-## [0.5.0] - 2026-11-15
+## [0.5.0] - 2026-11-16
 
 ### Added
 - In the reading pane, `→` opens the focused message and `←` closes it; `←` on a closed message goes back to the list.
 - Option "Use H/L keys like ←/→" (off by default). It replaces Fastmail's own `H` and `L` shortcuts.
 - `J` / `K` move to the next / previous message in the reading pane.
+- A warning in the browser console when parts of Fastmail's page that the extension relies on are not found.
 - While Fastmail's own keyboard shortcuts are on, the keys both use (`J`, `K`, `N`, `P`, `E`, `Enter` in the reading pane, `H`, `L`) do what Fastmail says, and the H/L option cannot be turned on.
 
 ### Changed

@@ -165,7 +165,41 @@ const paneClickHandler = (e) => {
   }
 };
 
+// Warn in the console (once per selector) when a selector the extension relies on
+// stops matching, so a Fastmail UI change shows up early, e.g. on
+// app.beta.fastmail.com. Checked a few seconds after each page change, once the
+// page has rendered (a newer page change restarts the wait). Message cards are
+// expected only while a conversation is open.
+const SELECTOR_CHECK_DELAY = 3000;
+const missingSelectors = new Set();
+let selectorCheckTimer = null;
+const warnMissing = (name) => {
+  if (!missingSelectors.has(name)) {
+    missingSelectors.add(name);
+    console.warn(`[Fastmail Plus] "${name}" (${SEL[name]}) matches nothing; some features may not work.`);
+  }
+};
+const checkSelectors = () => {
+  if (!regexMail.test(location.href) || regexCompose.test(location.href)) {
+    return;
+  }
+  const expected = ['searchInputAny', 'toolbar', 'pageContent'];
+  // The conversation pane can hold just the "nothing selected" placeholder.
+  const conversationOpen = qs(SEL.conversationPane) !== null &&
+    qs(`${SEL.conversationPane} ${SEL.empty}`) === null;
+  if (conversationOpen) {
+    expected.push('messageCard', 'messageCardHeader');
+  }
+  // With the reading pane hidden, an open conversation replaces the list.
+  if (!conversationOpen || splitPanes) {
+    expected.push('mailboxPane');
+  }
+  expected.filter((name) => qs(SEL[name]) === null).forEach(warnMissing);
+};
+
 const runOnChange = (url) => {
+  clearTimeout(selectorCheckTimer);
+  selectorCheckTimer = setTimeout(checkSelectors, SELECTOR_CHECK_DELAY);
   if(alternativeSearch && !document.getElementById("alt-search")) {
     setAltSearch();
   }
@@ -207,7 +241,15 @@ const runOnChange = (url) => {
   applyReadingPaneState();
 };
 
+const STARTUP_WARNING_DELAY = 30000;
 const checkFirstTimeReady = () => {
+  // Everything starts from the search box; if it never appears in mail, say so.
+  // (Other fastmail.com pages, such as the sign-in page, have no search box.)
+  const startupWarning = setTimeout(() => {
+    if (regexMail.test(location.href)) {
+      warnMissing('searchInputAny');
+    }
+  }, STARTUP_WARNING_DELAY);
 
   // Theme detection is no longer needed (the pane indicator in indicateLeftRight
   // is now theme-independent).
@@ -217,6 +259,7 @@ const checkFirstTimeReady = () => {
       runOnChange(lastUrl);
 
       clearInterval(t1);
+      clearTimeout(startupWarning);
 
       // check current URL;
       const mainPoll = setInterval(() => {

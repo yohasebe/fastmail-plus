@@ -44,6 +44,12 @@ fiddly part, but it is only done once.
 
 ## Releasing an update
 
+Fastmail rolls out web UI changes on <https://app.beta.fastmail.com/> first, and the
+extension runs there too. Before releasing, load the unpacked build and try the
+features on both the beta and the regular site. Fastmail Plus warns in the DevTools
+console (`[Fastmail Plus] … matches nothing`) when a selector it relies on stops
+matching.
+
 1. Bump the version in `manifests/manifest.v3.json`, run `rake build` (it writes the version into
    `options.html`), and commit. The new version must be higher than what is
    currently published.

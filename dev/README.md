@@ -3,6 +3,10 @@
 Console scripts used to keep Fastmail Plus in sync with Fastmail's web UI. They are
 **not** part of the shipped extension (the `Rakefile` build does not include `dev/`).
 
+Fastmail rolls out UI changes on <https://app.beta.fastmail.com/> first. The extension
+warns in the DevTools console (`[Fastmail Plus] … matches nothing`) when a selector it
+relies on stops matching; that is usually the first sign of a change.
+
 When a Fastmail UI change breaks a feature, run the relevant script in the browser
 DevTools console on an open Fastmail tab, then update the selectors in
 [`../content/selectors.js`](../content/selectors.js) accordingly. Each script copies its
