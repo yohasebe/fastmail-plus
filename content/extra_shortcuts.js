@@ -4,13 +4,13 @@ const shortcutHandler = (e) => {
   // These work even inside textbox/input
   // Mail view
   if(regexMail.test(lastUrl)){
-    // Ctrl + I => toggle right panel
-    if (e.ctrlKey && e.shiftKey && e.which === 73){
+    // Ctrl + Shift + I => toggle right panel
+    if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 73){
       e.preventDefault();
       e.stopImmediatePropagation();
       toggleRightbar();
-      // Ctrl + M => toggle search modes
-    } else if (e.ctrlKey && e.shiftKey && e.which === 77){
+      // Ctrl + Shift + M => toggle search modes
+    } else if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 77){
       e.preventDefault();
       e.stopImmediatePropagation();
       const searchToggle = document.getElementById("search-toggle");
@@ -82,8 +82,8 @@ const shortcutHandler = (e) => {
         }
       } else {
         if(isReadingPaneShown()){
-          // Shift + L => Toggle non-clutter mode
-          if (e.shiftKey && e.ctrlKey && e.which === 76){
+          // Ctrl + Shift + L => Toggle non-clutter mode
+          if (alternativeShortcutKeys && e.shiftKey && e.ctrlKey && e.which === 76){
             togglemainMenu();
           }
           if(alternativeShortcutKeys) {
@@ -119,34 +119,13 @@ const calendarShortcuts = (e) => {
   }
 }
 
-// Space => Toggle the current message, when the "spaceToggle" option is on and a
-// conversation is shown, whichever pane is active. This replaces Fastmail's own
-// Space (scrolling the conversation), so it listens in the capture phase on window
-// (see the bottom of this file) to run before Fastmail's handlers. In the split
-// view it also makes the reading pane the active one, so J / K continue inside
-// the conversation.
-// Space on a focused button, link or similar control keeps its own action. The
-// mailbox list items are links too, and clicking one leaves it focused, so they
-// do not count: Space right after opening a message must still toggle it.
-const INTERACTIVE_TARGETS = 'button, a[href], select, summary, [role="button"], [role="link"], [role="checkbox"], [role="menuitem"], [role="tab"]';
-const isOnControl = (target) =>
-  target instanceof Element && !!target.closest(INTERACTIVE_TARGETS) && !target.closest(SEL.mailboxItem);
-const spaceToggleShortcut = (e) => {
-  const onControl = isOnControl(e.target);
-  if (!(spaceToggle && e.key === ' ' && isPlainKey(e) && !onControl) ||
-      isEditingText() || isComposing() || !isConversationShown()){
+const readingPaneShortcuts = (e) => {
+  // E, Shift + E, Alt + Shift + E and plain Enter are Fastmail's own shortcuts too;
+  // leave them to Fastmail while its shortcuts are on.
+  const fastmailKey = (e.which === 69 && !e.ctrlKey && !e.metaKey) || (e.which === 13 && isPlainKey(e));
+  if (fastmailKey && fastmailShortcutsOn()){
     return;
   }
-  e.preventDefault();
-  e.stopImmediatePropagation();
-  btnToggle.click();
-  if (splitPanes && leftOrRight !== "right"){
-    leftOrRight = "right";
-    indicateLeftRight("right");
-  }
-};
-
-const readingPaneShortcuts = (e) => {
   // Shift + alt + (E or Enter) => Shrink
   if (e.shiftKey && e.altKey && (e.which === 69 || e.which === 13)){
     e.preventDefault();
@@ -176,4 +155,3 @@ const readingPaneShortcuts = (e) => {
 
 // set extra shortcut keys
 document.addEventListener('keydown', shortcutHandler);
-window.addEventListener('keydown', spaceToggleShortcut, true);

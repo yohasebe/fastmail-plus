@@ -259,6 +259,25 @@ const checkFirstTimeReady = () => {
   }, 300);
 }
 
+// Record whether Fastmail's own shortcuts are on, so the options page can show
+// which options they leave out. Pages where it cannot be read (signed out, other
+// fastmail.com pages) keep the last known value.
+const reportFastmailShortcuts = () => {
+  const value = document.documentElement.getAttribute(FASTMAIL_SHORTCUTS_ATTR);
+  if (value !== null) {
+    safeStorageSet({ fastmailShortcuts: value === 'on' });
+  }
+};
+reportFastmailShortcuts();
+new MutationObserver(reportFastmailShortcuts)
+  .observe(document.documentElement, { attributes: true, attributeFilter: [FASTMAIL_SHORTCUTS_ATTR] });
+// With several Fastmail tabs (e.g. two accounts), the tab in front sets the value.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    reportFastmailShortcuts();
+  }
+});
+
 // Content scripts run after the DOM is ready (document_idle); wait only for the
 // settings so that the options below are known before starting.
 settingsLoaded.then(() => {

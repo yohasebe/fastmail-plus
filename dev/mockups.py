@@ -236,8 +236,8 @@ def resizable_compose():
 # ---- options page ---------------------------------------------------------------
 def options():
     items = [(True, 'Use switchable search box'), (True, 'Use ↑/↓/←/→ keys to move focus'),
-             (True, 'Use alternative shortcut keys'), (False, 'Maximize message/compose pane width'),
-             (False, 'Use H/L keys to switch panes'), (False, 'Use Space to open/close messages')]
+             (True, 'Use extra shortcut keys'), (False, 'Maximize message/compose pane width'),
+             (False, 'Use H/L keys like ←/→')]
     p = [f'  <rect width="480" height="330" fill="#ffffff" stroke="{LINE}"/>']
     p.append(f'  <text x="24" y="44" font-size="20" font-weight="700" fill="{INK}">Fastmail Plus Options</text>')
     for i, (on, label) in enumerate(items):

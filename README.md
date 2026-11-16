@@ -44,13 +44,15 @@ https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeo
 
 <img src='images/mockups/options.svg' width="480" />
 
+Fastmail Plus works with Fastmail's own keyboard shortcuts on or off (Fastmail Settings → Display options). While they are on, the keys both use — `J`, `K`, `N`, `P`, `E`, `Enter` in the reading pane, and `H`/`L` — do what Fastmail says, and "Use H/L keys like ←/→" cannot be turned on. The arrow keys and the `Control` shortcuts below work either way.
+
 ## Description/Usage
 
 ### Change Focus Using Up/Down Cursor Keys
 
 When **Show reading pane** is selected in Fastmail Settings:
 
-Press `←` to select mailbox pane, and `→` to select reading pane. With the option "Use H/L keys to switch panes" turned on, `H` and `L` do the same (this replaces Fastmail's own `H` and `L` shortcuts).
+Press `←` to select mailbox pane, and `→` to select reading pane. Inside the reading pane, `→` opens the focused message and `←` closes it; `←` on a closed message (or in a conversation of one message) goes back to the mailbox pane. With the option "Use H/L keys like ←/→" turned on, `H` and `L` do the same as `←` and `→` (this replaces Fastmail's own `H` and `L` shortcuts).
 
 `↑` and `↓` cursor keys can be used (in addition to `J` and `K`) to change focus inside mailbox pane.
 
@@ -96,13 +98,13 @@ An set of extra control buttons are presented on the right-bottom corner of the 
 
 ### Extra Shortcut Keys
 
-If enabled, extra shortcut keys view will be added
+With the option "Use extra shortcut keys" turned on, the following keys are added:
 
 - Switch between search modes: `Control + Shift + M`
 - Toggle uncluttered-view mode: `Control + Shift + L`
 - Toggle show/hide extra control: `Control + ,`
 - Message body text size — larger / smaller / reset: `Control + Shift + +` / `Control + Shift + -` / `Control + Shift + 0`
-- Toggle currently focused message: `Enter` (in addition to the default `E`); also `Space` when the option "Use Space to open/close messages" is on (this replaces scrolling the message with `Space`)
+- Toggle currently focused message: `Enter` (in addition to the default `E`)
 - Ungroup/Expand messages: `Shift + Enter` (in addition to the default `Shift + E`)
 - Collapse messages: `Shift + Option/Alt + Enter` (in addition to the default `Shift + Option/Alt + E`)
 - Show/hide right-hand side panel: `Shift + Control + I` (in addition to the default `Shift + Command + I`)

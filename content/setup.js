@@ -57,12 +57,19 @@ const isEditingText = () => {
   return tag === 'INPUT' || tag === 'TEXTAREA' || el.isContentEditable === true;
 };
 
+// Whether Fastmail's own keyboard shortcuts are on, as reported by
+// fastmail_prefs.js. While they are, the letter keys that Fastmail also uses
+// (J, K, N, P, E, H, L) and Enter in the reading pane are left to Fastmail.
+// When the preference cannot be read, nothing is left to Fastmail.
+const FASTMAIL_SHORTCUTS_ATTR = 'data-fmp-fastmail-shortcuts';
+const fastmailShortcutsOn = () =>
+  document.documentElement.getAttribute(FASTMAIL_SHORTCUTS_ATTR) === 'on';
+
 let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
 let maxMessageWidth;
 let hlPaneKeys;
-let spaceToggle;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
@@ -118,8 +125,7 @@ const keys = [
   "alternativeShortcutKeys",
   "alternativeSearch",
   "maxMessageWidth",
-  "hlPaneKeys",
-  "spaceToggle"
+  "hlPaneKeys"
 ]
 
 const getSyncStorage = (keys) => new Promise(resolve => {
@@ -133,7 +139,6 @@ const settingsLoaded = getSyncStorage().then((vals) => {
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
   maxMessageWidth = vals.maxMessageWidth === true;
   hlPaneKeys = vals.hlPaneKeys === true;
-  spaceToggle = vals.spaceToggle === true;
   bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
   composeWidth = vals.composeWidth === undefined ? null : vals.composeWidth;
   btnControlShown = vals.btnControlShown === undefined ? true : vals.btnControlShown;

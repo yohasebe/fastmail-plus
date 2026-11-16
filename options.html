@@ -22,6 +22,10 @@
         color: #225ae2;
         font-weight: bold;
       }
+      .note {
+        color: #8c8b8b;
+        margin: 2px 0 0 22px;
+      }
       .updated {
         font-weight: bold;
         color: red;
@@ -41,11 +45,11 @@
       </div>
       <div>
         <input type="checkbox" id="use-cusror-keys" name="use-cusror-keys" checked  />
-        <label for="use-cusror-keys">Use ↑/↓/←/→ keys to move focus</label>
+        <label for="use-cusror-keys" title="↑/↓: move between conversations or messages; ←/→: switch panes and open/close messages">Use ↑/↓/←/→ keys to move focus</label>
       </div>
       <div>
         <input type="checkbox" id="alternative-shortcut-keys" name="alternative-shortcut-keys" checked />
-        <label for="alternative-shortcut-keys">Use alternative shortcut keys </label>
+        <label for="alternative-shortcut-keys" title="Enter: open/close a message; Ctrl+Shift+L: uncluttered view; Ctrl+Shift+M: search mode; Ctrl+Shift+I: right panel; Ctrl+Shift+ +/-/0: text size; Ctrl+,: show/hide buttons">Use extra shortcut keys</label>
       </div>
       <div>
         <input type="checkbox" id="max-message-width" name="max-message-width" />
@@ -53,11 +57,8 @@
       </div>
       <div>
         <input type="checkbox" id="hl-pane-keys" name="hl-pane-keys" />
-        <label for="hl-pane-keys" title="Replaces Fastmail's own H and L shortcuts">Use H/L keys to switch panes</label>
-      </div>
-      <div>
-        <input type="checkbox" id="space-toggle" name="space-toggle" />
-        <label for="space-toggle" title="Replaces scrolling the message with Space">Use Space to open/close messages</label>
+        <label for="hl-pane-keys" title="Replaces Fastmail's own H and L shortcuts">Use H/L keys like ←/→</label>
+        <div id="fastmail-shortcuts-on" class="note" hidden>Turn off Fastmail's keyboard shortcuts to use this. Until then, J/K/N/P/E/Enter work as in Fastmail.</div>
       </div>
     </div>
     <p>Press <code>?</code> key to show available shortcut keys</p>

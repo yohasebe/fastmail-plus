@@ -159,11 +159,16 @@ btnCollapse.addEventListener('click', () => {
   qsa(SEL.messageCardExpandedHeader).forEach((header) => header.click());
 });
 
-// Move the is-focused marker from one message card to another and scroll to it.
+// Mark a message card as focused and scroll to it.
+const focusCard = (card) => {
+  card.classList.add("is-focused");
+  card.scrollIntoView({behavior: 'smooth', block: 'start'});
+};
+
+// Move the is-focused marker from one message card to another.
 const moveCardFocus = (from, to) => {
   from.classList.remove("is-focused");
-  to.classList.add("is-focused");
-  to.scrollIntoView({behavior: 'smooth', block: 'start'});
+  focusCard(to);
 };
 
 btnUp.addEventListener('click', () => {

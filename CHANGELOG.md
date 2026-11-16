@@ -6,14 +6,17 @@ Earlier history (before 0.3.0) is available in the git commit log.
 ## [0.5.0] - 2026-11-15
 
 ### Added
-- Option "Use H/L keys to switch panes" (off by default). It replaces Fastmail's own `H` and `L` shortcuts.
-- Option "Use Space to open/close messages" (off by default). It replaces scrolling the message with Space.
+- In the reading pane, `→` opens the focused message and `←` closes it; `←` on a closed message goes back to the list.
+- Option "Use H/L keys like ←/→" (off by default). It replaces Fastmail's own `H` and `L` shortcuts.
 - `J` / `K` move to the next / previous message in the reading pane.
+- While Fastmail's own keyboard shortcuts are on, the keys both use (`J`, `K`, `N`, `P`, `E`, `Enter` in the reading pane, `H`, `L`) do what Fastmail says, and the H/L option cannot be turned on.
 
 ### Changed
 - jQuery and jQuery UI are no longer bundled; the extension now uses only its own code.
 - The package contains only the files the extension uses, so it is much smaller.
 - Lighter background checks while Fastmail is open.
+- Requires Chrome or Edge 111 or later.
+- The option "Use alternative shortcut keys" is now "Use extra shortcut keys". Turning it off also turns off `Control + Shift + M`, `Control + Shift + I` and `Control + Shift + L`.
 - The font-size buttons (A+ / ↺ / A-) open and close without the slide animation.
 
 ### Removed
@@ -21,8 +24,7 @@ Earlier history (before 0.3.0) is available in the git commit log.
 - Reply-to quote folding. Fastmail's own "..." toggle folds quoted text.
 
 ### Fixed
-- Reading-pane buttons, compose/note resizing, and the message-width option work again
-  with Fastmail's current web UI.
+- Reading-pane buttons, compose/note resizing, and the message-width option work again with Fastmail's current web UI.
 - `J` / `K` move through the mailbox list again.
 - Inline replies can be resized like the compose pane, up to the full width of the conversation.
 - "Maximize message/compose pane width" is off by default, as the options page shows.

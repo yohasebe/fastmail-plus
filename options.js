@@ -1,4 +1,17 @@
-chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth", "hlPaneKeys", "spaceToggle", "justUpdated"], (val) => {
+// While Fastmail's own keyboard shortcuts are on, H/L stay Fastmail's
+// (the content scripts enforce this too).
+const showFastmailShortcuts = (value) => {
+  const on = value === true;
+  document.getElementById("hl-pane-keys").disabled = on;
+  document.getElementById("fastmail-shortcuts-on").hidden = !on;
+};
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.fastmailShortcuts) {
+    showFastmailShortcuts(changes.fastmailShortcuts.newValue);
+  }
+});
+
+chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth", "hlPaneKeys", "fastmailShortcuts", "justUpdated"], (val) => {
   // Leave the page's default checkbox state for settings that were never saved.
   const setChecked = (name, value) => {
     if (value !== undefined) {
@@ -10,7 +23,7 @@ chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCu
   setChecked("use-cusror-keys", val.useCursorKeys);
   setChecked("max-message-width", val.maxMessageWidth);
   setChecked("hl-pane-keys", val.hlPaneKeys);
-  setChecked("space-toggle", val.spaceToggle);
+  showFastmailShortcuts(val.fastmailShortcuts);
   document.querySelectorAll('.updated').forEach((el) => {
     el.style.display = val.justUpdated ? '' : 'none';
   });
@@ -25,8 +38,7 @@ const checkboxSettings = {
   "alternative-shortcut-keys": "alternativeShortcutKeys",
   "use-cusror-keys": "useCursorKeys",
   "max-message-width": "maxMessageWidth",
-  "hl-pane-keys": "hlPaneKeys",
-  "space-toggle": "spaceToggle"
+  "hl-pane-keys": "hlPaneKeys"
 };
 Object.entries(checkboxSettings).forEach(([id, key]) => {
   document.getElementById(id).addEventListener("click", (e) => {

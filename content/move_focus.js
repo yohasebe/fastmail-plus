@@ -54,10 +54,12 @@ const syncCursorFromFocus = () => {
 // plain key presses count, so shortcuts such as Ctrl + Shift + L are unaffected.
 const isPlainKey = (e) => !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && !e.isComposing;
 // A letter shortcut (e.g. J) pressed on its own, so Ctrl/Cmd/Shift combinations
-// (Cmd + P to print, Ctrl + J, ...) keep their usual meaning.
-const isLetterKey = (e, code) => e.which === code && isPlainKey(e);
-const isPaneLeftKey = (e) => e.which === 37 || (hlPaneKeys && e.which === 72 && isPlainKey(e));
-const isPaneRightKey = (e) => e.which === 39 || (hlPaneKeys && e.which === 76 && isPlainKey(e));
+// (Cmd + P to print, Ctrl + J, ...) keep their usual meaning. Never true while
+// Fastmail's own shortcuts are on: the letter then does what Fastmail says.
+const isLetterKey = (e, code) => e.which === code && isPlainKey(e) && !fastmailShortcutsOn();
+// Arrows count only on their own too, so Alt + ← (back) and the like keep their meaning.
+const isPaneLeftKey = (e) => (e.which === 37 && isPlainKey(e)) || (hlPaneKeys && isLetterKey(e, 72));
+const isPaneRightKey = (e) => (e.which === 39 && isPlainKey(e)) || (hlPaneKeys && isLetterKey(e, 76));
 
 const moveCursor = (e) => {
   // Enter, → or L
@@ -138,15 +140,34 @@ const messageCursor = (e) => {
 const readingPaneCursor = (e) => {
   if(useCursorKeys){
     if(!isEditingText()) {
+      // → / L and ← / H work like a tree view: → opens the focused message (or
+      // focuses the newest one), ← closes it, and ← on a closed message goes back
+      // to the list. In the split view, ← in a conversation of one message goes
+      // back at once.
       if(isPaneRightKey(e)){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const focused = qs(SEL.messageCardFocused);
+        if(!focused){
+          const cards = qsa(SEL.messageCard);
+          if(cards.length > 0){
+            focusCard(cards[cards.length - 1]);
+          }
+        } else if(focused.matches(SEL.messageCardCollapsed)){
+          btnToggle.click();
+        }
         if(splitPanes){
           leftOrRight = "right";
           indicateLeftRight("right");
-          e.preventDefault();
-          e.stopImmediatePropagation();
         }
       } else if(isPaneLeftKey(e)){
-        if(splitPanes){
+        const focused = qs(SEL.messageCardFocused);
+        const backAtOnce = splitPanes && qsa(SEL.messageCard).length === 1;
+        if(focused && focused.matches(SEL.messageCardExpanded) && !backAtOnce){
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          btnToggle.click();
+        } else if(splitPanes){
           leftOrRight = "left";
           indicateLeftRight("left");
           e.preventDefault();

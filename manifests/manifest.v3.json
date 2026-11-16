@@ -13,7 +13,13 @@
     "default_icon": "images/fastmail-plus-128.png",
     "default_popup": "options.html"
   },
+  "minimum_chrome_version": "111",
   "content_scripts": [
+    {
+      "matches": ["https://*.fastmail.com/*"],
+      "js": ["content/fastmail_prefs.js"],
+      "world": "MAIN"
+    },
     {
       "matches": ["https://*.fastmail.com/*"],
       "js": [
