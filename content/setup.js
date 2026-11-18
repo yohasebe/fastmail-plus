@@ -70,6 +70,7 @@ let alternativeShortcutKeys;
 let alternativeSearch;
 let maxMessageWidth;
 let hlPaneKeys;
+let layoutButton;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
@@ -125,7 +126,8 @@ const keys = [
   "alternativeShortcutKeys",
   "alternativeSearch",
   "maxMessageWidth",
-  "hlPaneKeys"
+  "hlPaneKeys",
+  "layoutButton"
 ]
 
 const getSyncStorage = (keys) => new Promise(resolve => {
@@ -139,6 +141,7 @@ const settingsLoaded = getSyncStorage().then((vals) => {
   alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
   maxMessageWidth = vals.maxMessageWidth === true;
   hlPaneKeys = vals.hlPaneKeys === true;
+  layoutButton = vals.layoutButton === true;
   bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
   composeWidth = vals.composeWidth === undefined ? null : vals.composeWidth;
   btnControlShown = vals.btnControlShown === undefined ? true : vals.btnControlShown;

@@ -197,6 +197,31 @@ const checkSelectors = () => {
   expected.filter((name) => qs(SEL[name]) === null).forEach(warnMissing);
 };
 
+// Whether the reading pane is shown beside the list ("Show reading pane mode").
+// Checked on each page change and after the layout button moves the pane.
+const detectSplitPanes = () => {
+  if(!regexMail.test(location.href)){
+    return;
+  }
+  splitRight = qs(SEL.splitRightInHierarchy);
+  if(splitRight) {
+    splitPanes = true;
+    // addEventListener ignores a second registration of the same function, so
+    // this never stacks up across navigation.
+    document.body.addEventListener("click", paneClickHandler);
+  } else {
+    splitPanes = false;
+    document.body.removeEventListener("click", paneClickHandler);
+  }
+
+  if(leftOrRight == undefined){
+    leftOrRight = "left";
+  }
+  if(splitPanes){
+    indicateLeftRight("left");
+  }
+};
+
 const runOnChange = (url) => {
   clearTimeout(selectorCheckTimer);
   selectorCheckTimer = setTimeout(checkSelectors, SELECTOR_CHECK_DELAY);
@@ -215,24 +240,7 @@ const runOnChange = (url) => {
       cursorPosition = focusedItem.id || undefined;
     }
 
-    // check whether it is "Show reading pane mode"
-    splitRight = qs(SEL.splitRightInHierarchy);
-    if(splitRight) {
-      splitPanes = true;
-      // addEventListener ignores a second registration of the same function, so
-      // this never stacks up across navigation.
-      document.body.addEventListener("click", paneClickHandler);
-    } else {
-      splitPanes = false;
-      document.body.removeEventListener("click", paneClickHandler);
-    }
-
-    if(leftOrRight == undefined){
-      leftOrRight = "left";
-    }
-    if(splitPanes){
-      indicateLeftRight("left");
-    }
+    detectSplitPanes();
   } else {
     document.body.removeEventListener("click", paneClickHandler);
   }
@@ -281,6 +289,9 @@ const checkFirstTimeReady = () => {
         // the URL changes).
         applyReadingPaneState();
         initResizablePanes();
+        if(layoutButton){
+          setLayoutToggle();
+        }
         // Keep the floating buttons positioned while the reading pane is shown
         // (folded into this single poll instead of a separate interval).
         if(readingPaneShown){
@@ -326,6 +337,9 @@ document.addEventListener('visibilitychange', () => {
 settingsLoaded.then(() => {
   if(maxMessageWidth) {
     maximizeMessageWidth();
+  }
+  if(layoutButton) {
+    watchLayout();
   }
   checkFirstTimeReady();
 });

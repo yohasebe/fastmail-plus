@@ -115,6 +115,10 @@ With the option "Use extra shortcut keys" turned on, the following keys are adde
 
 When entering Japanese (or some other language) in Fastmail's search input, using the IME to enter text requires pressing the Enter key before completing the input. Fastmail's Web UI performs the search at the moment the Enter key is hit even though the search string is completed. Fastmail Plus fixes this problem.
 
+### Reading Pane Layout Button
+
+With the option "Show a reading pane layout button" turned on, a button next to the search box switches Fastmail's reading pane between Side, Bottom and Off, the same choice as Fastmail Settings → Display options → Reading pane. The choice is saved to your Fastmail account and synced across devices. This option is disabled by default.
+
 ### Maximize Reading-pane Width
 
 When enabled, the message/compose/note panes are maximized to the actual window width. This option is disabled by default.

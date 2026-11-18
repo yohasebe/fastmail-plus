@@ -11,7 +11,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
   }
 });
 
-chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth", "hlPaneKeys", "fastmailShortcuts", "justUpdated"], (val) => {
+chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth", "hlPaneKeys", "layoutButton", "fastmailShortcuts", "justUpdated"], (val) => {
   // Leave the page's default checkbox state for settings that were never saved.
   const setChecked = (name, value) => {
     if (value !== undefined) {
@@ -23,6 +23,7 @@ chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCu
   setChecked("use-cusror-keys", val.useCursorKeys);
   setChecked("max-message-width", val.maxMessageWidth);
   setChecked("hl-pane-keys", val.hlPaneKeys);
+  setChecked("layout-button", val.layoutButton);
   showFastmailShortcuts(val.fastmailShortcuts);
   document.querySelectorAll('.updated').forEach((el) => {
     el.style.display = val.justUpdated ? '' : 'none';
@@ -38,7 +39,8 @@ const checkboxSettings = {
   "alternative-shortcut-keys": "alternativeShortcutKeys",
   "use-cusror-keys": "useCursorKeys",
   "max-message-width": "maxMessageWidth",
-  "hl-pane-keys": "hlPaneKeys"
+  "hl-pane-keys": "hlPaneKeys",
+  "layout-button": "layoutButton"
 };
 Object.entries(checkboxSettings).forEach(([id, key]) => {
   document.getElementById(id).addEventListener("click", (e) => {

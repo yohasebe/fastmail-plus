@@ -3,6 +3,11 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [Unreleased]
+
+### Added
+- Option "Show a reading pane layout button" (off by default). The button next to the search box switches Fastmail's reading pane between Side, Bottom and Off; the choice is saved to your Fastmail account and synced across devices.
+
 ## [0.5.0] - 2026-11-16
 
 ### Added

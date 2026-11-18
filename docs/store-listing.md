@@ -44,6 +44,7 @@ Features:
 - Resizable compose/note textarea (remembers its size)
 - Adjustable message body text size (zoom the body only, not the whole UI)
 - Optional: H/L keys that work like ←/→
+- Optional: a button next to the search box that switches the reading pane (Side / Bottom / Off)
 
 See README at https://github.com/yohasebe/fastmail-plus
 ```
@@ -76,6 +77,7 @@ Fastmail Plus は個人によるオープンソースのプロジェクトで、
 - メール／ノート編集テキストエリアの幅を調整可能（サイズを記憶）
 - メール本文だけの文字サイズ調整（UI全体ではなく本文のみ拡大/縮小）
 - オプション：←/→と同じ働きをするH/Lキー
+- オプション：閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタン
 
 Github README
 https://github.com/yohasebe/fastmail-plus

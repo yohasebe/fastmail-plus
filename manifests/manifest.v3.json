@@ -28,6 +28,7 @@
         "content/move_focus.js",
         "content/search_fix.js",
         "content/alternative_search.js",
+        "content/layout_toggle.js",
         "content/reading_pane_control.js",
         "content/extra_shortcuts.js",
         "content/maximize_message_width.js",
