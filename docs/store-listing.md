@@ -24,6 +24,7 @@ Fastmail Plus makes the Fastmail (https://fastmail.com) web UI easier to use and
 Fastmail Plus is an independent open-source project and is not affiliated with or endorsed by Fastmail.
 
 Changelog:
+0.6.0 Optional button next to the search box that switches the reading pane (Side / Bottom / Off)
 0.5.0 Works again with Fastmail's current web UI; no bundled libraries (jQuery removed); J/K work in the reading pane; inline replies are resizable; ←/→ open and close messages; optional H/L keys that work like ←/→
 0.4.2 Reading-pane buttons restyled onto a frosted panel (no longer bleed over the message text); steadier bottom-right placement; smoother collapse/expand
 0.4.1 Reliability fixes for the uncluttered view and the reading-pane button icons
@@ -57,6 +58,7 @@ Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅
 Fastmail Plus は個人によるオープンソースのプロジェクトで、Fastmail 社とは関係がなく、同社の公認を受けたものではありません。
 
 変更履歴：
+0.6.0 閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタンをオプションで追加
 0.5.0 現在のFastmailのUIに再対応；外部ライブラリの同梱を廃止（jQueryを削除）；閲覧中のJ/Kでのメール移動；返信欄の幅調整；←/→でのメールの開閉；←/→と同じ働きをするH/Lキーをオプションで追加
 0.4.2 閲覧ペインのボタンをすりガラス調のパネルに変更（本文への映り込みを解消）；右下配置を安定化；折りたたみ／展開アニメを改善
 0.4.1 集中表示と閲覧ペインのボタンアイコンの信頼性を改善
