@@ -131,7 +131,7 @@ Drag the right edge of an open message, the compose pane or a note pane to resiz
 
 Drag the edge back to the default width to return to it: the grip catches there, and letting go restores the default. With "Maximize message/compose pane width" on, the default for compose and note panes is the full width. Fastmail's own full-width conversation view is left as it is, and the grip is not shown there.
 
-<img src='images/mockups/resizable-compose.svg' width="700" />
+<img src='images/mockups/resizable-panes.svg' width="700" />
 
 ### Adjustable Message Body Text Size
 

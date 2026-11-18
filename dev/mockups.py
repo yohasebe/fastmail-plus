@@ -212,26 +212,40 @@ def max_width():
     write('max-width.svg', svg(1000, 330, "\n".join(body), title='Maximized pane width'))
 
 # ---- resizable compose ---------------------------------------------------------
-def resizable_compose():
-    w, h = 900, 340
+def resizable_panes():
+    w, h = 960, 400
     p = [f'  <rect width="{w}" height="{h}" fill="{PAGE}"/>']
-    cw = 560
-    p.append(f'  <rect x="40" y="30" width="{cw+200}" height="280" rx="10" fill="none" stroke="{ACCENT}" stroke-dasharray="6 6"/>')
-    p.append(f'  <rect x="40" y="30" width="{cw}" height="280" rx="10" fill="{CARD}" stroke="{LINE}"/>')
-    p.append(f'  <rect x="60" y="48" width="74" height="28" rx="6" fill="{BLUE}"/>')
-    p.append(f'  <text x="97" y="67" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Send</text>')
-    for i, label in enumerate(['To', 'Subject']):
-        yy = 104 + i * 34
-        p.append(f'  <text x="60" y="{yy}" font-size="13" fill="{SUB}">{label}</text>')
-        p.append(f'  <line x1="120" y1="{yy+6}" x2="{40+cw-24}" y2="{yy+6}" stroke="{LINE}"/>')
+    cw, wide = 480, 640                 # current and dragged-to widths, centred
+    cx = 370                            # centre of the conversation
+    x0, xw = cx - cw / 2, cx - wide / 2
+    p.append(f'  <rect x="{xw}" y="24" width="{wide}" height="352" rx="10" fill="none" stroke="{ACCENT}" stroke-dasharray="6 6"/>')
+    # A closed message, an open one, and an inline reply, all one width.
+    p.append(f'  <rect x="{x0}" y="36" width="{cw}" height="40" rx="8" fill="{CARD}" stroke="{LINE}"/>')
+    p.append(f'  <circle cx="{x0+24}" cy="56" r="10" fill="#c9cfd5"/>')
+    p.append(f'  <rect x="{x0+44}" y="52" width="{cw*0.55}" height="8" rx="4" fill="#e1e4e7"/>')
+    p.append(f'  <rect x="{x0}" y="88" width="{cw}" height="170" rx="8" fill="{CARD}" stroke="{LINE}"/>')
+    p.append(f'  <circle cx="{x0+24}" cy="110" r="10" fill="#c9cfd5"/>')
+    p.append(f'  <rect x="{x0+44}" y="106" width="{cw*0.4}" height="8" rx="4" fill="#c9cfd5"/>')
     for i in range(5):
-        p.append(f'  <rect x="60" y="{176 + i*22}" width="{(cw-60)*(0.9 if i % 2 else 0.75)}" height="8" rx="4" fill="#e1e4e7"/>')
-    gx = 40 + cw - 5
-    p.append(f'  <rect x="{gx-1.5}" y="152" width="3" height="36" rx="1.5" fill="{ACCENT}"/>')
-    p.append(f'  <path d="M{gx+24} 170 h150 M{gx+164} 160 l12 10 -12 10" fill="none" stroke="{ACCENT}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>')
-    p.append(f'  <text x="{gx+30}" y="150" font-size="13" fill="{SUB}">Drag the right edge</text>')
-    p.append(f'  <text x="{gx+30}" y="200" font-size="13" fill="{SUB}">The width is remembered</text>')
-    write('resizable-compose.svg', svg(w, h, "\n".join(p), title='Resizable compose pane'))
+        p.append(f'  <rect x="{x0+24}" y="{140 + i*22}" width="{(cw-48)*(0.9 if i % 2 else 0.75)}" height="8" rx="4" fill="#e1e4e7"/>')
+    p.append(f'  <rect x="{x0}" y="270" width="{cw}" height="96" rx="8" fill="{CARD}" stroke="{LINE}"/>')
+    p.append(f'  <rect x="{x0+20}" y="284" width="64" height="24" rx="6" fill="{BLUE}"/>')
+    p.append(f'  <text x="{x0+52}" y="301" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Send</text>')
+    for i in range(2):
+        p.append(f'  <rect x="{x0+24}" y="{322 + i*20}" width="{(cw-48)*(0.8 if i else 0.6)}" height="8" rx="4" fill="#e1e4e7"/>')
+    # The grip near the top of the open message, and the drag on both sides.
+    gx = x0 + cw - 5
+    p.append(f'  <rect x="{gx-1.5}" y="112" width="3" height="36" rx="1.5" fill="{ACCENT}"/>')
+    arrow = 'fill="none" stroke="{}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"'.format(ACCENT)
+    p.append(f'  <path d="M{gx+12} 130 h{(wide-cw)/2 - 16} m-10 -10 l10 10 -10 10" {arrow}/>')
+    p.append(f'  <path d="M{x0-12} 130 h-{(wide-cw)/2 - 16} m10 -10 l-10 10 10 10" {arrow}/>')
+    tx = xw + wide + 24
+    for i, line in enumerate(['Drag the right edge of an', 'open message, a reply or', 'the compose pane',
+                              '', 'Messages, replies and compose', 'share one width',
+                              '', 'Drag back to the default', 'width to reset']):
+        if line:
+            p.append(f'  <text x="{tx}" y="{120 + i*20}" font-size="13" fill="{SUB}">{line}</text>')
+    write('resizable-panes.svg', svg(w, h, "\n".join(p), title='Resizable message, reply and compose panes'))
 
 # ---- options page ---------------------------------------------------------------
 def options():
@@ -254,6 +268,6 @@ def options():
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     for make in (reading_pane_buttons, search_modes, store_screenshot, banner, promo_small,
-                 max_width, resizable_compose, options):
+                 max_width, resizable_panes, options):
         make()
 

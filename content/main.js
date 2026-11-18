@@ -234,8 +234,8 @@ const paneClickHandler = (e) => {
 // Warn in the console (once per selector) when a selector the extension relies on
 // stops matching, so a Fastmail UI change shows up early, e.g. on
 // app.beta.fastmail.com. Checked a few seconds after each page change, once the
-// page has rendered (a newer page change restarts the wait). Message cards are
-// expected only while a conversation is open.
+// page has rendered (a newer page change restarts the wait). Message cards and
+// the conversation's container are expected only while a conversation is open.
 const SELECTOR_CHECK_DELAY = 3000;
 const missingSelectors = new Set();
 let selectorCheckTimer = null;
@@ -254,7 +254,7 @@ const checkSelectors = () => {
   const conversationOpen = qs(SEL.conversationPane) !== null &&
     qs(`${SEL.conversationPane} ${SEL.empty}`) === null;
   if (conversationOpen) {
-    expected.push('messageCard', 'messageCardHeader');
+    expected.push('messageCard', 'messageCardHeader', 'thread');
   }
   // With the reading pane hidden, an open conversation replaces the list.
   if (!conversationOpen || splitPanes) {

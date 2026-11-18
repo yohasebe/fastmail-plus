@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="400" viewBox="0 0 960 400" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
+  <title>Resizable message, reply and compose panes</title>
+  <rect width="960" height="400" fill="#f3f4f5"/>
+  <rect x="50.0" y="24" width="640" height="352" rx="10" fill="none" stroke="#5b9bd5" stroke-dasharray="6 6"/>
+  <rect x="130.0" y="36" width="480" height="40" rx="8" fill="#ffffff" stroke="#d9dde1"/>
+  <circle cx="154.0" cy="56" r="10" fill="#c9cfd5"/>
+  <rect x="174.0" y="52" width="264.0" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="130.0" y="88" width="480" height="170" rx="8" fill="#ffffff" stroke="#d9dde1"/>
+  <circle cx="154.0" cy="110" r="10" fill="#c9cfd5"/>
+  <rect x="174.0" y="106" width="192.0" height="8" rx="4" fill="#c9cfd5"/>
+  <rect x="154.0" y="140" width="324.0" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="154.0" y="162" width="388.8" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="154.0" y="184" width="324.0" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="154.0" y="206" width="388.8" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="154.0" y="228" width="324.0" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="130.0" y="270" width="480" height="96" rx="8" fill="#ffffff" stroke="#d9dde1"/>
+  <rect x="150.0" y="284" width="64" height="24" rx="6" fill="#0067b9"/>
+  <text x="182.0" y="301" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Send</text>
+  <rect x="154.0" y="322" width="259.2" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="154.0" y="342" width="345.6" height="8" rx="4" fill="#e1e4e7"/>
+  <rect x="603.5" y="112" width="3" height="36" rx="1.5" fill="#5b9bd5"/>
+  <path d="M617.0 130 h64.0 m-10 -10 l10 10 -10 10" fill="none" stroke="#5b9bd5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M118.0 130 h-64.0 m10 -10 l-10 10 10 10" fill="none" stroke="#5b9bd5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="714.0" y="120" font-size="13" fill="#5f6b76">Drag the right edge of an</text>
+  <text x="714.0" y="140" font-size="13" fill="#5f6b76">open message, a reply or</text>
+  <text x="714.0" y="160" font-size="13" fill="#5f6b76">the compose pane</text>
+  <text x="714.0" y="200" font-size="13" fill="#5f6b76">Messages, replies and compose</text>
+  <text x="714.0" y="220" font-size="13" fill="#5f6b76">share one width</text>
+  <text x="714.0" y="260" font-size="13" fill="#5f6b76">Drag back to the default</text>
+  <text x="714.0" y="280" font-size="13" fill="#5f6b76">width to reset</text>
+</svg>
