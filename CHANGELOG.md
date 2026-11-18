@@ -7,6 +7,11 @@ Earlier history (before 0.3.0) is available in the git commit log.
 
 ### Added
 - Option "Show a reading pane layout button" (off by default). The button next to the search box switches Fastmail's reading pane between Side, Bottom and Off; the choice is saved to your Fastmail account and synced across devices.
+- Open messages can be resized by dragging their right edge. In a thread, all messages and inline replies share one width, which compose and note panes also use.
+- Dragging an edge back to the default width snaps to it; letting go there returns to the default.
+
+### Changed
+- The compose pane is centred like the conversation and opens at the conversation's default width.
 
 ## [0.5.0] - 2026-11-16
 

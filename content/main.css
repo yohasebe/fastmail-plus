@@ -104,11 +104,12 @@ button.bfm-Button{
   padding-right: 20px;
 }
 
+/* Centred like the conversation and the toolbar above it. */
 div.v-MessageCard:has(> .v-Compose) {
-  margin-right: 0;
-  margin-left: 0;
+  margin-right: auto;
+  margin-left: auto;
   min-width: 480px;
-  width: 780px;
+  width: 882px;          /* MESSAGE_WIDTH_DEFAULT in main.js: Fastmail's conversation width */
   max-width: 100%;
 }
 
@@ -116,11 +117,16 @@ div.v-MessageCard:has(> .v-Compose) {
   margin-right: 0;
   margin-left: 0;
   min-width: 480px;
-  width: 780px;
+  width: 780px;          /* NOTE_WIDTH_DEFAULT in main.js */
   max-width: 100%;
 }
 
-/* Compose / Note resize handle (east edge), added by makePaneResizable in main.js.
+/* An inline reply takes the conversation's width, so the two change together. */
+.v-Thread div.v-MessageCard:has(> .v-Compose) {
+  width: 100% !important;
+}
+
+/* Compose / Note / message resize handle (east edge), added by makePaneResizable in main.js.
    Keep a 10px-wide hit area while showing only a single short grip bar in the
    center to keep it unobtrusive. It tints on hover. */
 .fmp-resizable {
@@ -154,4 +160,22 @@ div.v-MessageCard:has(> .v-Compose) {
 
 .fmp-resize-handle:hover::after {
   background-color: var(--fmp-accent);
+}
+
+/* At the default width while dragging: the grip grows to show it has caught. */
+.fmp-resize-handle.fmp-snapped::after {
+  width: 5px;
+  height: 56px;
+  background-color: var(--fmp-accent);
+}
+
+/* A message can be taller than the window, so its grip sits near the top. The
+   handle is hidden on closed messages and in Fastmail's full-width view. */
+.v-Thread .v-MessageCard:not(:has(> .v-Compose)) > .fmp-resize-handle::after {
+  top: min(50%, 80px);
+}
+
+.v-MessageCard.is-collapsed > .fmp-resize-handle,
+.v-Thread.is-fullWidth .fmp-resize-handle {
+  display: none;
 }

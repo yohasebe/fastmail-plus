@@ -74,7 +74,7 @@ let layoutButton;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
-let composeWidth = null; // remembered width (px) of the resizable compose/note pane
+let composeWidth = null; // remembered width (px) of the conversation and compose/note panes
 let btnControlShown = true;
 let mainMenuShown = true;
 let splitRight;

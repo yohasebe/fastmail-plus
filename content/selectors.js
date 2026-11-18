@@ -26,6 +26,9 @@ const SEL = {
 
   // --- Conversation / reading pane ---
   conversationPane: '#conversation',
+  // The open conversation; Fastmail's full-width view adds is-fullWidth.
+  thread: '.v-Thread',
+  threadFullWidth: '.is-fullWidth',
   // Anchor on component (v-*) class names only. Layout/utility classes (app-*, u-*)
   // change between Fastmail releases.
   messageCard: 'div.v-MessageCard',

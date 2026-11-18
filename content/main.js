@@ -14,9 +14,44 @@ const checkReadingPaneControlPosition = () => {
   }
 }
 
-// Make a compose/note pane resizable from its right edge. The dragged width is
-// remembered so the next compose/note opens at that size.
+// One width, set by dragging the right edge, is shared by the open conversation
+// (its messages and inline replies) and by the compose/note panes, and is
+// remembered for the next time. Fastmail centres the conversation within the
+// pane using side padding; the injected stylesheet sets that padding instead.
+// Fastmail's own full-width conversation view is left as it is.
 const RESIZABLE_CLASS = 'fmp-resizable';
+const MESSAGE_WIDTH_MIN = 480;
+// Widths with nothing set: Fastmail's conversation width, which main.css also
+// gives the compose pane, and main.css's width for note panes. Dragging close to
+// it snaps there, and letting go there forgets the set width.
+const MESSAGE_WIDTH_DEFAULT = 882;
+const NOTE_WIDTH_DEFAULT = 780;
+const WIDTH_SNAP = 16;
+const SNAPPED_CLASS = 'fmp-snapped';
+const applyMessageWidth = () => {
+  let style = document.getElementById('fmp-message-width');
+  if (!composeWidth) {
+    if (style) {
+      style.remove();
+    }
+    return;
+  }
+  if (!style) {
+    style = document.createElement('style');
+    style.id = 'fmp-message-width';
+    document.head.appendChild(style);
+  }
+  const half = composeWidth / 2;
+  style.textContent = `
+    ${SEL.thread}:not(${SEL.threadFullWidth}) {
+      padding-left: max(0px, 50% - ${half}px) !important;
+      padding-right: max(0px, 50% - ${half}px) !important;
+    }
+    div.v-MessageCard:has(> .v-Compose), .${NOTE_CARD_CLASS} {
+      width: ${composeWidth}px !important;
+    }`;
+};
+
 const makePaneResizable = (pane) => {
   pane.classList.add(RESIZABLE_CLASS);
   const handle = document.createElement('div');
@@ -29,22 +64,56 @@ const makePaneResizable = (pane) => {
     }
     e.preventDefault(); // no text selection while dragging
     const startX = e.clientX;
-    // Computed width follows the pane's box-sizing, so it can be written back as is.
-    const startWidth = parseFloat(getComputedStyle(pane).width);
+    // Width of an element's content box.
+    const contentWidth = (el) => {
+      const cs = getComputedStyle(el);
+      return el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    };
+    // Inside the conversation, the width is that of the conversation's content
+    // (between Fastmail's side padding), which the message may not fill exactly;
+    // at most it is the whole conversation.
+    const thread = pane.closest(SEL.thread);
+    const measure = () => (thread ? contentWidth(thread) : pane.getBoundingClientRect().width);
+    const available = thread ? thread.clientWidth : contentWidth(pane.parentElement);
+    const startWidth = measure();
+    // Messages and compose panes are centred and grow on both sides, so the edge
+    // under the pointer moves by half of the change. Note panes grow to the right.
+    const isNote = pane.classList.contains(NOTE_CARD_CLASS);
+    const factor = isNote ? 1 : 2;
+    // The width shown with nothing set, in this window: the default, limited by
+    // the space there is, or all of it for compose/note with the maximize option.
+    const fillsSpace = maxMessageWidth && !thread;
+    const defaultWidth = fillsSpace ? available
+      : Math.min(available, isNote ? NOTE_WIDTH_DEFAULT : MESSAGE_WIDTH_DEFAULT);
+    const before = composeWidth;
+    let moved = false;
+    let snapped = false;
     handle.setPointerCapture(e.pointerId);
 
     const onMove = (ev) => {
-      pane.style.width = Math.max(0, startWidth + ev.clientX - startX) + 'px';
+      moved = true;
+      const width = Math.min(available,
+        Math.max(MESSAGE_WIDTH_MIN, startWidth + factor * (ev.clientX - startX)));
+      snapped = Math.abs(width - defaultWidth) <= WIDTH_SNAP;
+      handle.classList.toggle(SNAPPED_CLASS, snapped);
+      composeWidth = snapped ? null : Math.round(width);
+      applyMessageWidth();
     };
-    const onEnd = () => {
+    // A click without a drag, or a cancelled drag, keeps the width as it was.
+    const onEnd = (ev) => {
       handle.removeEventListener('pointermove', onMove);
       handle.removeEventListener('pointerup', onEnd);
       handle.removeEventListener('pointercancel', onEnd);
-      if (pane.style.width) {
-        // Save the rendered width, which CSS min-/max-width have already clamped.
-        composeWidth = Math.round(parseFloat(getComputedStyle(pane).width));
-        safeStorageSet({ composeWidth });
+      handle.classList.remove(SNAPPED_CLASS);
+      if (!moved || ev.type === 'pointercancel') {
+        composeWidth = before;
+        applyMessageWidth();
+        return;
       }
+      // Save the rendered width, which the window size may have limited.
+      composeWidth = snapped ? null : Math.max(MESSAGE_WIDTH_MIN, Math.round(measure()));
+      applyMessageWidth();
+      safeStorageSet({ composeWidth });
     };
     handle.addEventListener('pointermove', onMove);
     handle.addEventListener('pointerup', onEnd);
@@ -52,13 +121,17 @@ const makePaneResizable = (pane) => {
   });
 };
 
-// Make every open compose/note pane resizable, including inline replies (which
-// open inside the conversation without changing the URL). Called on each poll
-// tick; it returns at once when no editor is open, and panes already set up are
-// skipped so the handle never flickers. Note cards are also tagged with
-// NOTE_CARD_CLASS for main.css (their wrapper has no stable class of its own).
+// Give every open compose/note pane and every open message in the conversation
+// a resize handle, including inline replies (which open inside the conversation
+// without changing the URL). Called on each poll tick; it returns at once when
+// there is nothing to resize, and panes already set up are skipped so the handle
+// never flickers. Note cards are also tagged with NOTE_CARD_CLASS for main.css
+// (their wrapper has no stable class of its own).
 const NOTE_CARD_CLASS = 'fmp-note-card';
 const initResizablePanes = () => {
+  if (readingPaneShown) {
+    qsa(`${SEL.thread} ${SEL.messageCardExpanded}:not(.${RESIZABLE_CLASS})`).forEach(makePaneResizable);
+  }
   if(!isComposing()){
     return;
   }
@@ -66,14 +139,7 @@ const initResizablePanes = () => {
   notePanes.forEach((pane) => pane && pane.classList.add(NOTE_CARD_CLASS));
   [...composeEditors].map((editor) => editor.parentElement).concat(notePanes)
     .filter((pane) => pane && !pane.classList.contains(RESIZABLE_CLASS))
-    .forEach((pane) => {
-      makePaneResizable(pane);
-      // Apply the remembered width once, on initialization, so a live drag is
-      // never overridden by later ticks.
-      if (composeWidth) {
-        pane.style.width = composeWidth + 'px';
-      }
-    });
+    .forEach(makePaneResizable);
 };
 
 // Whether a conversation (reading pane) is shown. Compose/note are excluded
@@ -341,5 +407,6 @@ settingsLoaded.then(() => {
   if(layoutButton) {
     watchLayout();
   }
+  applyMessageWidth();
   checkFirstTimeReady();
 });

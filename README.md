@@ -23,7 +23,7 @@ under [`dev/`](dev/) (paste them into the browser console) can pinpoint which se
 - [Extra shortcut keys](#extra-shortcut-keys)
 - [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
 - [Maximize reading pane width](#maximize-reading-pane-width) (default: disabled)
-- [Resizable compose/note textarea](#resizable-textarea)
+- [Resizable message, compose and note panes](#resizable-panes)
 - [Adjustable message body text size](#adjustable-message-body-text-size)
 - Light/Dark theme support
 
@@ -125,10 +125,11 @@ When enabled, the message/compose/note panes are maximized to the actual window 
 
 <img src='images/mockups/max-width.svg' width="700" />
 
-### Resizable Textarea
+### Resizable Panes
 
-Drag the right edge of the compose/note pane to resize it. The chosen width is
-remembered and applied to the next compose/note window.
+Drag the right edge of an open message, the compose pane or a note pane to resize it. One width is shared by all of them: in a thread, every message and inline reply changes together, and the next compose or note pane opens at the same width. The width is remembered.
+
+Drag the edge back to the default width to return to it: the grip catches there, and letting go restores the default. With "Maximize message/compose pane width" on, the default for compose and note panes is the full width. Fastmail's own full-width conversation view is left as it is, and the grip is not shown there.
 
 <img src='images/mockups/resizable-compose.svg' width="700" />
 

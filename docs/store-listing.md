@@ -24,7 +24,7 @@ Fastmail Plus makes the Fastmail (https://fastmail.com) web UI easier to use and
 Fastmail Plus is an independent open-source project and is not affiliated with or endorsed by Fastmail.
 
 Changelog:
-0.6.0 Optional button next to the search box that switches the reading pane (Side / Bottom / Off)
+0.6.0 Open messages are resizable and share one width with replies and compose; the compose pane is centred; optional button next to the search box that switches the reading pane (Side / Bottom / Off)
 0.5.0 Works again with Fastmail's current web UI; no bundled libraries (jQuery removed); J/K work in the reading pane; inline replies are resizable; ←/→ open and close messages; optional H/L keys that work like ←/→
 0.4.2 Reading-pane buttons restyled onto a frosted panel (no longer bleed over the message text); steadier bottom-right placement; smoother collapse/expand
 0.4.1 Reliability fixes for the uncluttered view and the reading-pane button icons
@@ -42,7 +42,7 @@ Features:
 - Extra shortcut keys (hover a button to see what it does)
 - Fix the problem with Japanese IME in the default search input
 - Maximize the width of message/compose/note panes (default: disabled)
-- Resizable compose/note textarea (remembers its size)
+- Resizable message, compose and note panes sharing one width (remembers its size)
 - Adjustable message body text size (zoom the body only, not the whole UI)
 - Optional: H/L keys that work like ←/→
 - Optional: a button next to the search box that switches the reading pane (Side / Bottom / Off)
@@ -58,7 +58,7 @@ Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅
 Fastmail Plus は個人によるオープンソースのプロジェクトで、Fastmail 社とは関係がなく、同社の公認を受けたものではありません。
 
 変更履歴：
-0.6.0 閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタンをオプションで追加
+0.6.0 開いたメールの幅をドラッグで調整（返信欄・作成欄と同じ幅を共有）；作成欄を中央に配置；閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタンをオプションで追加
 0.5.0 現在のFastmailのUIに再対応；外部ライブラリの同梱を廃止（jQueryを削除）；閲覧中のJ/Kでのメール移動；返信欄の幅調整；←/→でのメールの開閉；←/→と同じ働きをするH/Lキーをオプションで追加
 0.4.2 閲覧ペインのボタンをすりガラス調のパネルに変更（本文への映り込みを解消）；右下配置を安定化；折りたたみ／展開アニメを改善
 0.4.1 集中表示と閲覧ペインのボタンアイコンの信頼性を改善
@@ -76,7 +76,7 @@ Fastmail Plus は個人によるオープンソースのプロジェクトで、
 - 便利なショートカットキーの追加（各ボタンはホバーで説明を表示）
 - 検索ボックスで日本語IMEを使用する際に生じる不具合解消
 - メール閲覧ボックスとノート作成ボックスの表示幅を画面の最大幅に変更可能（デフォルトはOFF）
-- メール／ノート編集テキストエリアの幅を調整可能（サイズを記憶）
+- メール表示・作成・ノートの幅をドラッグで調整可能（同じ幅を共有し、サイズを記憶）
 - メール本文だけの文字サイズ調整（UI全体ではなく本文のみ拡大/縮小）
 - オプション：←/→と同じ働きをするH/Lキー
 - オプション：閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタン
