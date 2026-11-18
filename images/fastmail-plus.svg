@@ -1,27 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="0 0 128 128" width="128" height="128">
-  <defs/>
-  <g id="Canvas_1" stroke="none" stroke-dasharray="none" fill-opacity="1" fill="none" stroke-opacity="1">
-    <title>Canvas 1</title>
-    <g id="Canvas_1_Layer_1">
-      <title>Layer 1</title>
-      <g id="Graphic_30">
-        <rect x="0" y="0" width="128" height="128" fill="#0067b9"/>
-      </g>
-      <g id="Graphic_31">
-        <text transform="translate(6.749999 -18.2)" fill="white">
-          <tspan font-family="Futura" font-weight="bold" font-size="120" fill="white" x="5115908e-19" y="125">F</tspan>
-        </text>
-      </g>
-      <g id="Group_35">
-        <g id="Graphic_33">
-          <rect x="72.22182" y="88.07643" width="46.77818" height="13.847148" fill="#ffc10e"/>
-        </g>
-        <g id="Graphic_34">
-          <rect x="88.86357" y="71" width="13.494675" height="48" fill="#ffc10e"/>
-        </g>
-      </g>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>Fastmail Plus</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1580d6"/>
+      <stop offset="1" stop-color="#0060ad"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M75.14 42.85H50.6V55.95H72.96V73.21H50.6V104H30.21V25.59H75.14Z" fill="#ffffff"/>
+  <path d="M96 66V102M78 84H114" stroke="#ffc10e" stroke-width="13" stroke-linecap="round"/>
 </svg>

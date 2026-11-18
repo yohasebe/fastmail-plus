@@ -82,6 +82,18 @@ task :store_images do
   end
 end
 
+desc "Render the extension icons from images/fastmail-plus.svg"
+task :icons do
+  # 16 and 48 use the whole square. 128 is also the store icon, which keeps a
+  # 16px transparent margin around a 96px icon.
+  [16, 48].each do |size|
+    sh "rsvg-convert", "-w", size.to_s, "-h", size.to_s, "images/fastmail-plus.svg",
+       "-o", "images/fastmail-plus-#{size}.png"
+  end
+  sh "rsvg-convert", "-w", "96", "-h", "96", "--page-width", "128", "--page-height", "128",
+     "--left", "16", "--top", "16", "images/fastmail-plus.svg", "-o", "images/fastmail-plus-128.png"
+end
+
 desc "Check the built package against the allowlist and HEAD (run before publishing)"
 task :verify do
   verify_chrome_package

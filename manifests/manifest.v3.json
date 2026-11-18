@@ -10,7 +10,11 @@
     "128": "images/fastmail-plus-128.png"
   },
   "action": {
-    "default_icon": "images/fastmail-plus-128.png",
+    "default_icon": {
+      "16": "images/fastmail-plus-16.png",
+      "48": "images/fastmail-plus-48.png",
+      "128": "images/fastmail-plus-128.png"
+    },
     "default_popup": "options.html"
   },
   "minimum_chrome_version": "111",

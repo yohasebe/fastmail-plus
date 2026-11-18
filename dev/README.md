@@ -36,3 +36,9 @@ they never contain real mail. Edit `mockups.py` rather than the SVGs, then run:
 python3 dev/mockups.py
 rake store_images   # PNGs for the store listing, written to build/store/
 ```
+
+## Icons
+
+The extension icons are rendered from [`../images/fastmail-plus.svg`](../images/fastmail-plus.svg).
+Edit the SVG, then run `rake icons` to write the 16, 48 and 128px PNGs. The 128px
+icon is also the store icon, so it keeps a 16px transparent margin.

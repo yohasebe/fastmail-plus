@@ -11,6 +11,7 @@ Earlier history (before 0.3.0) is available in the git commit log.
 - Dragging an edge back to the default width snaps to it; letting go there returns to the default.
 
 ### Changed
+- New extension icon with rounded corners.
 - The compose pane is centred like the conversation and opens at the conversation's default width.
 
 ## [0.5.0] - 2026-11-16
