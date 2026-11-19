@@ -3,6 +3,11 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [Unreleased]
+
+### Fixed
+- The extension also works in a conversation opened in its own window.
+
 ## [0.6.0] - 2026-11-18
 
 ### Added

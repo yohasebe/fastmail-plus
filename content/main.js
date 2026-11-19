@@ -249,16 +249,17 @@ const checkSelectors = () => {
   if (!regexMail.test(location.href) || regexCompose.test(location.href)) {
     return;
   }
-  const expected = ['searchInputAny', 'toolbar', 'pageContent'];
+  const expected = ['toolbar', 'pageContent'];
   // The conversation pane can hold just the "nothing selected" placeholder.
   const conversationOpen = qs(SEL.conversationPane) !== null &&
     qs(`${SEL.conversationPane} ${SEL.empty}`) === null;
   if (conversationOpen) {
     expected.push('messageCard', 'messageCardHeader', 'thread');
   }
-  // With the reading pane hidden, an open conversation replaces the list.
+  // With the reading pane hidden, an open conversation replaces the list. A
+  // conversation opened in its own window has neither the list nor the search box.
   if (!conversationOpen || splitPanes) {
-    expected.push('mailboxPane');
+    expected.push('mailboxPane', 'searchInputAny');
   }
   expected.filter((name) => qs(SEL[name]) === null).forEach(warnMissing);
 };
@@ -317,8 +318,9 @@ const runOnChange = (url) => {
 
 const STARTUP_WARNING_DELAY = 30000;
 const checkFirstTimeReady = () => {
-  // Everything starts from the search box; if it never appears in mail, say so.
-  // (Other fastmail.com pages, such as the sign-in page, have no search box.)
+  // Everything starts once the search box, or a message (a conversation opened in
+  // its own window has no search box), is shown; if neither appears in mail, say
+  // so. (Other fastmail.com pages, such as the sign-in page, have neither.)
   const startupWarning = setTimeout(() => {
     if (regexMail.test(location.href)) {
       warnMissing('searchInputAny');
@@ -329,7 +331,7 @@ const checkFirstTimeReady = () => {
   // is now theme-independent).
 
   let t1 = setInterval(() => {
-    if(qs(SEL.searchInputAny)){
+    if(qs(SEL.searchInputAny) || qs(SEL.messageCard)){
       runOnChange(lastUrl);
 
       clearInterval(t1);
