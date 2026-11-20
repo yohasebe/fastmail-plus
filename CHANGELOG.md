@@ -3,7 +3,7 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
-## [Unreleased]
+## [0.6.2] - 2026-11-20
 
 ### Changed
 - In the options, the two cursor-key options are listed together at the end.
