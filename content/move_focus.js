@@ -116,8 +116,39 @@ const clickItemLabel = async (target) => {
   }
 };
 
+// With the reading pane off, the list and an open conversation take turns on
+// screen, and Fastmail moves the list's cursor itself with ↑ / ↓ (clicking an
+// item would open it). So ↑ / ↓ are left to Fastmail, J / K are passed on to it
+// as ↑ / ↓, and → / L open the conversation under the cursor, as moving right does
+// beside the list. The cursor is the browser focus on an item's link.
+const focusedListLink = () => {
+  const active = document.activeElement;
+  return active && active.matches(`${SEL.mailboxPane} ${SEL.listLink}`) ? active : null;
+};
+const listCursor = (e) => {
+  if(isPaneRightKey(e)){
+    const link = focusedListLink();
+    if(link){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      link.click();
+    }
+  // K or J
+  } else if(isLetterKey(e, 75) || isLetterKey(e, 74)){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const key = e.which === 75 ? 'ArrowUp' : 'ArrowDown';
+    (document.activeElement || document.body).dispatchEvent(
+      new KeyboardEvent('keydown', { key, code: key, bubbles: true, cancelable: true }));
+  }
+};
+
 // Move focus via up/down cursor keys in messages view
 const messageCursor = (e) => {
+  if(qs(SEL.conversationPane) === null){
+    listCursor(e);
+    return;
+  }
   // K or ↑
   if(isLetterKey(e, 75) || e.which === 38){
     e.preventDefault();
@@ -142,8 +173,7 @@ const readingPaneCursor = (e) => {
     if(!isEditingText()) {
       // → / L and ← / H work like a tree view: → opens the focused message (or
       // focuses the newest one), ← closes it, and ← on a closed message goes back
-      // to the list. In the split view, ← in a conversation of one message goes
-      // back at once.
+      // to the list. In a conversation of one message, ← goes back at once.
       if(isPaneRightKey(e)){
         e.preventDefault();
         e.stopImmediatePropagation();
@@ -162,7 +192,10 @@ const readingPaneCursor = (e) => {
         }
       } else if(isPaneLeftKey(e)){
         const focused = qs(SEL.messageCardFocused);
-        const backAtOnce = splitPanes && qsa(SEL.messageCard).length === 1;
+        // With the reading pane off, going back to the list is the conversation's
+        // back link.
+        const back = splitPanes ? null : qs(`${SEL.conversationPane} ${SEL.backLink}`);
+        const backAtOnce = (splitPanes || back) && qsa(SEL.messageCard).length === 1;
         if(focused && focused.matches(SEL.messageCardExpanded) && !backAtOnce){
           e.preventDefault();
           e.stopImmediatePropagation();
@@ -172,6 +205,10 @@ const readingPaneCursor = (e) => {
           indicateLeftRight("left");
           e.preventDefault();
           e.stopImmediatePropagation();
+        } else if(back){
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          back.click();
         }
       // P, K or ↑ => Previous
       } else if (isLetterKey(e, 80) || isLetterKey(e, 75) || e.which === 38){

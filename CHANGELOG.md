@@ -3,6 +3,14 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [Unreleased]
+
+### Fixed
+- With the reading pane off, `↑` / `↓` and `J` / `K` move the cursor in the list without opening conversations; `→` opens the conversation under the cursor, and `←` on a closed message (or in a conversation of one message) goes back to the list.
+
+### Changed
+- In the options, the two cursor-key options are listed together at the end.
+
 ## [0.6.1] - 2026-11-19
 
 ### Fixed

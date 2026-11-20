@@ -26,6 +26,8 @@ const SEL = {
 
   // --- Conversation / reading pane ---
   conversationPane: '#conversation',
+  // The link back to the list, shown above a conversation while the reading pane is off.
+  backLink: 'a.v-Button--back',
   // The open conversation; Fastmail's full-width view adds is-fullWidth.
   thread: '.v-Thread',
   threadFullWidth: '.is-fullWidth',

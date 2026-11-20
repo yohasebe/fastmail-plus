@@ -59,11 +59,11 @@ Press `←` to select mailbox pane, and `→` to select reading pane. Inside the
 `↑` and `↓` cursor keys can be used (in addition to `J`/`K` and `P`/`N`) to change focus inside reading pane.
 
 
-When **Hide reading pane** is selected in Fastmail Settings:
+When **Hide reading pane** is selected in Fastmail Settings, the list and the conversation take turns on screen:
 
-`↑` and `↓` cursor keys can be used (in addition to `J` and `K`) to change focus inside mailbox pane. 
+`↑` and `↓` cursor keys can be used (in addition to `J` and `K`) to change focus inside mailbox pane without opening conversations. Press `→` to open the conversation under the cursor.
 
-`↑` and `↓` cursor keys can be used (in addition to `P` and `N`) to change focus inside reading pane.
+`↑` and `↓` cursor keys can be used (in addition to `J`/`K` and `P`/`N`) to change focus inside the conversation. `→` opens the focused message and `←` closes it; `←` on a closed message (or in a conversation of one message) goes back to the list. With the option "Use H/L keys like ←/→" turned on, `H` and `L` do the same as `←` and `→`.
 
 ### Faster Switch between Search Modes
 
