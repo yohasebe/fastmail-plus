@@ -24,6 +24,7 @@ under [`dev/`](dev/) (paste them into the browser console) can pinpoint which se
 - [Resizable message, compose and note panes](#resizable-panes)
 - [Adjustable message body text size](#adjustable-message-body-text-size)
 - Light/Dark theme support
+- [Options page in the language Fastmail is shown in](#options) (all of Fastmail's 20 languages)
 
 ## Installation
 

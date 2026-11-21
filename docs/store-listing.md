@@ -42,11 +42,12 @@ Features:
 - Change focus using ⬆️ ⬇️ ⬅️ ➡️ cursor keys
 - Faster switch between different search modes 🔁
 - Easier button operation in the reading pane
-- Extra shortcut keys (hover a button to see what it does)
+- Extra shortcut keys (listed on the options page)
 - Resizable message, compose and note panes sharing one width (remembers its size)
 - Adjustable message body text size (zoom the body only, not the whole UI)
 - Optional: H/L keys that work like ←/→
 - Optional: a button next to the search box that switches the reading pane (Side / Bottom / Off)
+- Options page in the language Fastmail is shown in (20 languages); changes apply without reloading
 
 See README at https://github.com/yohasebe/fastmail-plus
 ```
@@ -77,11 +78,12 @@ Fastmail Plus は個人によるオープンソースのプロジェクトで、
 - キーボードのカーソルキー（ ⬆️ ⬇️ ⬅️ ➡️）によるメッセージ選択
 - メール検索の範囲をすばやく変更（全体／件名と本文／件名のみ） 🔁
 - メール閲覧に役立つボタン群（集中モード、折りたたみ、展開、etc.）
-- 便利なショートカットキーの追加（各ボタンはホバーで説明を表示）
+- 便利なショートカットキーの追加（オプション画面に一覧）
 - メール表示・作成・ノートの幅をドラッグで調整可能（同じ幅を共有し、サイズを記憶）
 - メール本文だけの文字サイズ調整（UI全体ではなく本文のみ拡大/縮小）
 - オプション：←/→と同じ働きをするH/Lキー
 - オプション：閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタン
+- オプション画面はFastmailの表示言語で表示（20言語）、変更は再読み込みなしで反映
 
 Github README
 https://github.com/yohasebe/fastmail-plus
