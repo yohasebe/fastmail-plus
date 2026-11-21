@@ -1,5 +1,119 @@
 {
   "extensionName": {
     "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "FastmailのウェブUIをより使いやすく、効率的にします。"
+  },
+  "version": {
+    "message": "バージョン"
+  },
+  "updated": {
+    "message": "更新"
+  },
+  "openFastmail": {
+    "message": "Fastmailを開く"
+  },
+  "optionsHeading": {
+    "message": "オプション"
+  },
+  "altSearch": {
+    "message": "切り替え式の検索ボックスを使う"
+  },
+  "altSearchDesc": {
+    "message": "全体、件名と本文、件名のみを切り替えて検索します。"
+  },
+  "shortcutKeys": {
+    "message": "追加のショートカットキーを使う"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter、Ctrl + Shift + L / M / I など（「キー」を参照）。"
+  },
+  "layoutButton": {
+    "message": "閲覧ペインの配置ボタンを表示する"
+  },
+  "layoutButtonDesc": {
+    "message": "右・下・なしを切り替え、アカウントに保存します。"
+  },
+  "cursorKeys": {
+    "message": "↑/↓/←/→キーで移動する"
+  },
+  "cursorKeysDesc": {
+    "message": "一覧の中と、一覧と会話の間を移動します。"
+  },
+  "hlKeys": {
+    "message": "H/Lキーを←/→と同じに使う"
+  },
+  "hlKeysDesc": {
+    "message": "FastmailのHとLの働きを置き換えます。"
+  },
+  "fastmailShortcutsOn": {
+    "message": "使うにはFastmailのキーボードショートカットをオフにしてください。それまでJ/K/N/P/E/EnterはFastmailの働きをします。"
+  },
+  "liveHint": {
+    "message": "変更は開いているFastmailのタブにすぐ反映されます。"
+  },
+  "keysHeading": {
+    "message": "キー"
+  },
+  "keysWithCursor": {
+    "message": "「↑/↓/←/→キーで移動する」がオンのとき"
+  },
+  "keysWithShortcuts": {
+    "message": "「追加のショートカットキーを使う」がオンのとき"
+  },
+  "keysWithLayout": {
+    "message": "「閲覧ペインの配置ボタンを表示する」がオンのとき"
+  },
+  "keyOr": {
+    "message": "または"
+  },
+  "keyUpDown": {
+    "message": "一覧の中やメールの間を移動"
+  },
+  "keyLeftRight": {
+    "message": "一覧と会話を切り替え、メールを開閉"
+  },
+  "keyHL": {
+    "message": "← → と同じ（「H/Lキーを←/→と同じに使う」がオンのとき）"
+  },
+  "keyEnter": {
+    "message": "選択中のメールを開閉"
+  },
+  "keyExpandAll": {
+    "message": "すべてのメールを展開"
+  },
+  "keyCollapseAll": {
+    "message": "すべてのメールを折りたたむ"
+  },
+  "keyUncluttered": {
+    "message": "集中表示"
+  },
+  "keySearchMode": {
+    "message": "検索モードを切り替え"
+  },
+  "keyRightPanel": {
+    "message": "右パネルの表示切替"
+  },
+  "keyTextSize": {
+    "message": "本文の文字サイズ：拡大、縮小、元に戻す"
+  },
+  "keyButtons": {
+    "message": "閲覧ペインのボタンの表示切替"
+  },
+  "keyCalendar": {
+    "message": "カレンダーで前へ・次へ"
+  },
+  "keyLayout": {
+    "message": "次の配置へ：右、下、なし"
+  },
+  "readme": {
+    "message": "GitHubのREADME"
+  },
+  "signUp": {
+    "message": "Fastmailに登録"
+  },
+  "signUpNote": {
+    "message": "（1年間10%割引）"
   }
 }

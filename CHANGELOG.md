@@ -3,6 +3,27 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
+## [Unreleased]
+
+### Added
+- `Control + Shift + P` switches the reading pane layout, like the layout button (with that option on).
+- Double-clicking a resize grip returns to the default width.
+- The options page lists the keys the extension adds.
+- The options page is shown in Japanese when Fastmail is shown in Japanese.
+
+### Changed
+- The options page has a clearer layout, a short description under each option, and a dark theme.
+- Changed options take effect in open Fastmail tabs without reloading.
+- A width or text size changed in one Fastmail tab is applied in the others too.
+
+### Removed
+- The option "Maximize message/compose pane width". Drag the right edge of a message or the compose pane to set its width, or use Fastmail's own full-width view for conversations.
+- The fix for Enter while typing with an input method (IME) in Fastmail's own search box.
+- `Command + →` is no longer blocked; it works as the browser's Forward again.
+
+### Fixed
+- After Fastmail redraws its toolbar, one click of the search mode button moves exactly one mode.
+
 ## [0.6.2] - 2026-11-20
 
 ### Changed

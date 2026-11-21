@@ -56,7 +56,15 @@ const makePaneResizable = (pane) => {
   pane.classList.add(RESIZABLE_CLASS);
   const handle = document.createElement('div');
   handle.className = 'fmp-resize-handle';
+  handle.title = 'Drag to resize; double-click for the default width';
   pane.appendChild(handle);
+
+  // Back to the default width (nothing set), as when letting go at it.
+  handle.addEventListener('dblclick', () => {
+    composeWidth = null;
+    applyMessageWidth();
+    safeStorageSet({ composeWidth });
+  });
 
   handle.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) {
@@ -81,10 +89,8 @@ const makePaneResizable = (pane) => {
     const isNote = pane.classList.contains(NOTE_CARD_CLASS);
     const factor = isNote ? 1 : 2;
     // The width shown with nothing set, in this window: the default, limited by
-    // the space there is, or all of it for compose/note with the maximize option.
-    const fillsSpace = maxMessageWidth && !thread;
-    const defaultWidth = fillsSpace ? available
-      : Math.min(available, isNote ? NOTE_WIDTH_DEFAULT : MESSAGE_WIDTH_DEFAULT);
+    // the space there is.
+    const defaultWidth = Math.min(available, isNote ? NOTE_WIDTH_DEFAULT : MESSAGE_WIDTH_DEFAULT);
     const before = composeWidth;
     let moved = false;
     let snapped = false;
@@ -382,33 +388,35 @@ const checkFirstTimeReady = () => {
 }
 
 // Record whether Fastmail's own shortcuts are on, so the options page can show
-// which options they leave out. Pages where it cannot be read (signed out, other
-// fastmail.com pages) keep the last known value.
-const reportFastmailShortcuts = () => {
-  const value = document.documentElement.getAttribute(FASTMAIL_SHORTCUTS_ATTR);
-  if (value !== null) {
-    safeStorageSet({ fastmailShortcuts: value === 'on' });
+// which options they leave out, and the language Fastmail is shown in, which the
+// options page uses. Pages where they cannot be read (signed out, other
+// fastmail.com pages) keep the last known values.
+const reportFastmailPrefs = () => {
+  const root = document.documentElement;
+  const shortcuts = root.getAttribute(FASTMAIL_SHORTCUTS_ATTR);
+  if (shortcuts !== null) {
+    safeStorageSet({ fastmailShortcuts: shortcuts === 'on' });
+  }
+  const language = root.getAttribute(FASTMAIL_LANGUAGE_ATTR);
+  if (language !== null) {
+    safeStorageSet({ fastmailLanguage: language });
   }
 };
-reportFastmailShortcuts();
-new MutationObserver(reportFastmailShortcuts)
-  .observe(document.documentElement, { attributes: true, attributeFilter: [FASTMAIL_SHORTCUTS_ATTR] });
-// With several Fastmail tabs (e.g. two accounts), the tab in front sets the value.
+reportFastmailPrefs();
+new MutationObserver(reportFastmailPrefs)
+  .observe(document.documentElement, { attributes: true, attributeFilter: [FASTMAIL_SHORTCUTS_ATTR, FASTMAIL_LANGUAGE_ATTR] });
+// With several Fastmail tabs (e.g. two accounts), the tab in front sets the values.
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
-    reportFastmailShortcuts();
+    reportFastmailPrefs();
   }
 });
 
 // Content scripts run after the DOM is ready (document_idle); wait only for the
 // settings so that the options below are known before starting.
 settingsLoaded.then(() => {
-  if(maxMessageWidth) {
-    maximizeMessageWidth();
-  }
-  if(layoutButton) {
-    watchLayout();
-  }
+  watchLayout();
   applyMessageWidth();
   checkFirstTimeReady();
+  chrome.storage.onChanged.addListener(onSettingsChanged);
 });

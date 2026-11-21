@@ -64,11 +64,12 @@ const isEditingText = () => {
 const FASTMAIL_SHORTCUTS_ATTR = 'data-fmp-fastmail-shortcuts';
 const fastmailShortcutsOn = () =>
   document.documentElement.getAttribute(FASTMAIL_SHORTCUTS_ATTR) === 'on';
+// The language Fastmail is shown in, also reported by fastmail_prefs.js.
+const FASTMAIL_LANGUAGE_ATTR = 'data-fmp-fastmail-language';
 
 let useCursorKeys;
 let alternativeShortcutKeys;
 let alternativeSearch;
-let maxMessageWidth;
 let hlPaneKeys;
 let layoutButton;
 
@@ -119,31 +120,41 @@ const setBodyFontScale = (scale) => {
 const bumpBodyFontScale = (delta) => setBodyFontScale(bodyFontScale + delta);
 const resetBodyFontScale = () => setBodyFontScale(1.0);
 
-// Set Parameters retrieved from Chrome storage
-
-const keys = [
-  "useCursorKeys",
-  "alternativeShortcutKeys",
-  "alternativeSearch",
-  "maxMessageWidth",
-  "hlPaneKeys",
-  "layoutButton"
-]
-
-const getSyncStorage = (keys) => new Promise(resolve => {
-  chrome.storage.local.get(keys, resolve);
-});
+// The stored settings: the value used while nothing is stored, how to keep it,
+// and how to show a change made while Fastmail is open (an option changed on the
+// options page, or the width or text size changed in another Fastmail tab). The
+// functions used by "apply" are defined in the content scripts loaded later.
+const SETTINGS = {
+  useCursorKeys: { initial: true, set: (v) => { useCursorKeys = v; }, apply: () => splitPanes && indicateLeftRight() },
+  alternativeShortcutKeys: { initial: true, set: (v) => { alternativeShortcutKeys = v; }, apply: () => {} },
+  hlPaneKeys: { initial: false, set: (v) => { hlPaneKeys = v; }, apply: () => {} },
+  alternativeSearch: {
+    initial: true,
+    set: (v) => { alternativeSearch = v; },
+    apply: () => (alternativeSearch ? document.getElementById("alt-search") || setAltSearch() : removeAltSearch()),
+  },
+  layoutButton: { initial: false, set: (v) => { layoutButton = v; }, apply: () => (layoutButton ? setLayoutToggle() : layoutToggle.remove()) },
+  composeWidth: { initial: null, set: (v) => { composeWidth = v; }, apply: () => applyMessageWidth() },
+  bodyFontScale: { initial: 1.0, set: (v) => { bodyFontScale = v; }, apply: () => applyBodyFontScale() },
+};
+const setSetting = (key, value) => SETTINGS[key].set(value === undefined ? SETTINGS[key].initial : value);
 
 // Resolves once the settings are loaded; main.js starts the extension after it.
-const settingsLoaded = getSyncStorage().then((vals) => {
-  useCursorKeys = vals.useCursorKeys === undefined ? true : vals.useCursorKeys;
-  alternativeShortcutKeys = vals.alternativeShortcutKeys === undefined ? true : vals.alternativeShortcutKeys;
-  alternativeSearch = vals.alternativeSearch === undefined ? true : vals.alternativeSearch;
-  maxMessageWidth = vals.maxMessageWidth === true;
-  hlPaneKeys = vals.hlPaneKeys === true;
-  layoutButton = vals.layoutButton === true;
-  bodyFontScale = vals.bodyFontScale === undefined ? 1.0 : vals.bodyFontScale;
-  composeWidth = vals.composeWidth === undefined ? null : vals.composeWidth;
+const settingsLoaded = new Promise((resolve) => {
+  chrome.storage.local.get(null, resolve);
+}).then((vals) => {
+  Object.keys(SETTINGS).forEach((key) => setSetting(key, vals[key]));
   btnControlShown = vals.btnControlShown === undefined ? true : vals.btnControlShown;
   applyBodyFontScale();
 });
+
+// Registered by main.js once the extension has started.
+const onSettingsChanged = (changes, area) => {
+  if (area !== "local" || !isExtensionAlive()) {
+    return;
+  }
+  Object.keys(changes).filter((key) => Object.hasOwn(SETTINGS, key)).forEach((key) => {
+    setSetting(key, changes[key].newValue);
+    SETTINGS[key].apply();
+  });
+};

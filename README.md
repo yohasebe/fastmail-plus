@@ -21,8 +21,6 @@ under [`dev/`](dev/) (paste them into the browser console) can pinpoint which se
 - [Faster switch between different search modes](#faster-switch-between-search-modes) (anywhere/subject and body/subject only)
 - [Easier button operation in reading pane](#easier-button-operation-in-reading-pane)
 - [Extra shortcut keys](#extra-shortcut-keys)
-- [Fix problem with IME in default search input](#fix-problem-in-using-ime-inside-search-box)
-- [Maximize reading pane width](#maximize-reading-pane-width) (default: disabled)
 - [Resizable message, compose and note panes](#resizable-panes)
 - [Adjustable message body text size](#adjustable-message-body-text-size)
 - Light/Dark theme support
@@ -43,6 +41,8 @@ https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeo
 ## Options
 
 <img src='images/mockups/options.svg' width="480" />
+
+Changes take effect at once in open Fastmail tabs. The options page also lists the keys the extension adds, and is shown in English or Japanese following the language Fastmail is shown in.
 
 Fastmail Plus works with Fastmail's own keyboard shortcuts on or off (Fastmail Settings → Display options). While they are on, the keys both use — `J`, `K`, `N`, `P`, `E`, `Enter` in the reading pane, and `H`/`L` — do what Fastmail says, and "Use H/L keys like ←/→" cannot be turned on. The arrow keys and the `Control` shortcuts below work either way.
 
@@ -111,25 +111,15 @@ With the option "Use extra shortcut keys" turned on, the following keys are adde
 - Prev in Calendar view: `Control + ↑` (in addition to `K`)
 - Next in Calendar view: `Control + ↓` (in addition to `J`)
 
-### Fix Problem in Using IME inside Search Box
-
-When entering Japanese (or some other language) in Fastmail's search input, using the IME to enter text requires pressing the Enter key before completing the input. Fastmail's Web UI performs the search at the moment the Enter key is hit even though the search string is completed. Fastmail Plus fixes this problem.
-
 ### Reading Pane Layout Button
 
-With the option "Show a reading pane layout button" turned on, a button next to the search box switches Fastmail's reading pane between Side, Bottom and Off, the same choice as Fastmail Settings → Display options → Reading pane. The choice is saved to your Fastmail account and synced across devices. This option is disabled by default.
-
-### Maximize Reading-pane Width
-
-When enabled, the message/compose/note panes are maximized to the actual window width. This option is disabled by default.
-
-<img src='images/mockups/max-width.svg' width="700" />
+With the option "Show a reading pane layout button" turned on, a button next to the search box switches Fastmail's reading pane between Side, Bottom and Off, the same choice as Fastmail Settings → Display options → Reading pane. `Control + Shift + P` does the same as the button. The choice is saved to your Fastmail account and synced across devices. This option is disabled by default.
 
 ### Resizable Panes
 
 Drag the right edge of an open message, the compose pane or a note pane to resize it. One width is shared by all of them: in a thread, every message and inline reply changes together, and the next compose or note pane opens at the same width. The width is remembered.
 
-Drag the edge back to the default width to return to it: the grip catches there, and letting go restores the default. With "Maximize message/compose pane width" on, the default for compose and note panes is the full width. Fastmail's own full-width conversation view is left as it is, and the grip is not shown there.
+Drag the edge back to the default width to return to it: the grip catches there, and letting go restores the default. Double-clicking the grip also restores it. Fastmail's own full-width conversation view is left as it is, and the grip is not shown there.
 
 <img src='images/mockups/resizable-panes.svg' width="700" />
 

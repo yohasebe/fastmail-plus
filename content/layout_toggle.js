@@ -19,9 +19,11 @@ const LAYOUTS = {
 const NEXT_LAYOUT = { right: 'below', below: 'off', off: 'right' };
 
 const layoutToggle = htmlToElement('<button id="layout-toggle" class="v-Button v-Button--standard v-Button--sizeM v-Button--iconOnly has-icon" style="margin-left:8px;"></button>');
-layoutToggle.addEventListener('click', () => {
+// Also bound to Control + Shift + P (see extra_shortcuts.js).
+const nextLayout = () => {
   document.dispatchEvent(new CustomEvent(LAYOUT_EVENT));
-});
+};
+layoutToggle.addEventListener('click', nextLayout);
 
 // Show the current position on the button, or hide it when it is unknown.
 const showLayout = () => {
@@ -29,7 +31,7 @@ const showLayout = () => {
   layoutToggle.hidden = !layout;
   if (layout) {
     layoutToggle.innerHTML = layout.icon;
-    layoutToggle.title = `Reading pane: ${layout.name} (click for ${LAYOUTS[NEXT_LAYOUT[readingPanePosition()]].name})`;
+    layoutToggle.title = `Reading pane: ${layout.name} (click for ${LAYOUTS[NEXT_LAYOUT[readingPanePosition()]].name}; Shortcut: Ctrl + Shift + P)`;
   }
 };
 
@@ -65,6 +67,8 @@ const followLayout = () => {
     }
   }, LAYOUT_CHECK_INTERVAL);
 };
+// Started once whether or not the button is shown, since the position can also
+// be changed in Fastmail's settings.
 const watchLayout = () => {
   new MutationObserver(() => {
     showLayout();

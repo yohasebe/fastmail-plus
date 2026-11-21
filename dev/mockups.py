@@ -192,25 +192,6 @@ def promo_small():
     body.append(f'  <text x="220" y="240" font-size="17" fill="#ffffff" text-anchor="middle">Make the Fastmail web UI more productive</text>')
     write('promo-small.svg', svg(440, 280, "\n".join(body), title='Fastmail Plus'))
 
-# ---- max width ---------------------------------------------------------------
-def pane_mock(x, y, w, h, card_w, label):
-    p = [f'<g transform="translate({x} {y})">']
-    p.append(f'  <text x="0" y="-12" font-size="14" font-weight="600" fill="{SUB}">{label}</text>')
-    p.append(f'  <rect width="{w}" height="{h}" rx="8" fill="{PAGE}" stroke="#c9ced3"/>')
-    cx = (w - card_w) / 2
-    p.append(f'  <rect x="{cx}" y="20" width="{card_w}" height="{h-40}" rx="8" fill="{CARD}" stroke="{LINE}"/>')
-    p.append(f'  <rect x="{cx+16}" y="38" width="{card_w*0.45}" height="10" rx="5" fill="{BLUE}" fill-opacity="0.75"/>')
-    for i in range(7):
-        p.append(f'  <rect x="{cx+16}" y="{66 + i*22}" width="{(card_w-32)*(0.95 if i % 3 else 0.7)}" height="8" rx="4" fill="#e1e4e7"/>')
-    p.append('</g>')
-    return "\n".join('  ' + q for q in p)
-
-def max_width():
-    body = [f'  <rect width="1000" height="330" fill="#ffffff"/>']
-    body.append(pane_mock(20, 44, 470, 260, 300, 'Default'))
-    body.append(pane_mock(510, 44, 470, 260, 430, 'Maximize message/compose pane width'))
-    write('max-width.svg', svg(1000, 330, "\n".join(body), title='Maximized pane width'))
-
 # ---- resizable compose ---------------------------------------------------------
 def resizable_panes():
     w, h = 960, 400
@@ -250,7 +231,7 @@ def resizable_panes():
 # ---- options page ---------------------------------------------------------------
 def options():
     items = [(True, 'Use switchable search box'), (True, 'Use extra shortcut keys'),
-             (False, 'Maximize message/compose pane width'), (False, 'Show a reading pane layout button'),
+             (False, 'Show a reading pane layout button'),
              (True, 'Use ↑/↓/←/→ keys to move focus'), (False, 'Use H/L keys like ←/→')]
     p = [f'  <rect width="480" height="330" fill="#ffffff" stroke="{LINE}"/>']
     p.append(f'  <text x="24" y="44" font-size="20" font-weight="700" fill="{INK}">Fastmail Plus Options</text>')
@@ -262,12 +243,12 @@ def options():
         else:
             p.append(f'  <rect x="24.5" y="{yy+0.5}" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>')
         p.append(f'  <text x="54" y="{yy+14}" font-size="16" fill="{INK}">{label}</text>')
-    p.append(f'  <text x="24" y="300" font-size="14" font-style="italic" fill="{SUB}">Reload page to reflect changes</text>')
+    p.append(f'  <text x="24" y="300" font-size="14" font-style="italic" fill="{SUB}">Changes take effect in open Fastmail tabs at once.</text>')
     write('options.svg', svg(480, 330, "\n".join(p), title='Options'))
 
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     for make in (reading_pane_buttons, search_modes, store_screenshot, banner, promo_small,
-                 max_width, resizable_panes, options):
+                 resizable_panes, options):
         make()
 

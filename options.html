@@ -3,88 +3,271 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" />
+    <title>Fastmail Plus</title>
     <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #f6f7f9;
+        --ink: #1d2330;
+        --sub: #5f6877;
+        --line: #e2e5ea;
+        --accent: #2f6fde;
+        --key-bg: #ffffff;
+        --key-line: #c9ced6;
+        --new: #d93025;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #1f2228;
+          --panel: #272b33;
+          --ink: #e6e8ec;
+          --sub: #a3aab6;
+          --line: #363b45;
+          --accent: #6c9cf0;
+          --key-bg: #2f343d;
+          --key-line: #4a505c;
+          --new: #f28b82;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
       body {
         width: 400px;
-        font-family: system-ui, sans-serif;
-        font-size: 12px
-      }
-      hr {
-        height: 0;
         margin: 0;
-        padding: 0;
-        border: 0;
-        border-top: 1px solid #8c8b8b;
+        padding: 16px 18px 14px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 1.45;
       }
-      a {
-        text-decoration: none;
-        color: #225ae2;
-        font-weight: bold;
+      header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
       }
-      .note {
-        color: #8c8b8b;
-        margin: 2px 0 0 22px;
+      header img {
+        width: 36px;
+        height: 36px;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      header .meta {
+        color: var(--sub);
+        font-size: 12px;
+      }
+      header button {
+        margin-left: auto;
+        padding: 5px 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--panel);
+        color: var(--ink);
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      header button:hover {
+        border-color: var(--accent);
       }
       .updated {
-        font-weight: bold;
-        color: red;
+        margin-left: 6px;
+        color: var(--new);
+        font-weight: 600;
+      }
+      h2,
+      summary {
+        margin: 0 0 6px;
+        color: var(--sub);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      summary {
+        cursor: pointer;
+      }
+      .panel {
+        margin-bottom: 8px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+      .option {
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        column-gap: 10px;
+        padding: 9px 12px;
+      }
+      .option + .option {
+        border-top: 1px solid var(--line);
+      }
+      .option input {
+        width: 16px;
+        height: 16px;
+        margin: 2px 0 0;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
+      .option label {
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .option input:disabled + label {
+        color: var(--sub);
+        cursor: default;
+      }
+      .desc,
+      .note {
+        grid-column: 2;
+        color: var(--sub);
+        font-size: 12px;
+      }
+      .note {
+        margin-top: 2px;
+        color: var(--new);
+      }
+      .hint {
+        margin: 0 0 16px;
+        color: var(--sub);
+        font-size: 12px;
+      }
+      details {
+        margin-bottom: 16px;
+      }
+      .keys {
+        padding: 4px 12px 12px;
+      }
+      .keys .group {
+        grid-column: 1 / -1;
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .keys dl {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 5px 12px;
+        margin: 0;
+      }
+      .keys dt {
+        white-space: nowrap;
+      }
+      .keys dd {
+        margin: 0;
+        color: var(--sub);
+        font-size: 12px;
+      }
+      kbd {
+        display: inline-block;
+        min-width: 20px;
+        padding: 0 5px;
+        border: 1px solid var(--key-line);
+        border-bottom-width: 2px;
+        border-radius: 4px;
+        background: var(--key-bg);
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 11px;
+        line-height: 18px;
+        text-align: center;
+      }
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        font-size: 12px;
+      }
+      footer a {
+        color: var(--accent);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      footer .sub {
+        color: var(--sub);
+        font-weight: normal;
       }
     </style>
   </head>
   <body>
-    <div>
-      <span style="font-weight: bold;">Go to</span>
-      <button id="go-to-fastmail">fastmail.com</button>
-    </div>
-    <h3>Fastmail Plus Options</h3>
-    <div>
+    <header>
+      <img src="images/fastmail-plus-48.png" alt="" />
       <div>
-        <input type="checkbox" id="alternative-search" name="alternative-search" checked />
-        <label for="alternative-search">Use switchable search box</label>
+        <h1>Fastmail Plus</h1>
+        <div class="meta"><span data-i18n="version"></span> <span class='version'>0.6.2</span><span class='updated' data-i18n="updated"></span></div>
       </div>
-      <div>
-        <input type="checkbox" id="alternative-shortcut-keys" name="alternative-shortcut-keys" checked />
-        <label for="alternative-shortcut-keys" title="Enter: open/close a message; Ctrl+Shift+L: uncluttered view; Ctrl+Shift+M: search mode; Ctrl+Shift+I: right panel; Ctrl+Shift+ +/-/0: text size; Ctrl+,: show/hide buttons">Use extra shortcut keys</label>
-      </div>
-      <div>
-        <input type="checkbox" id="max-message-width" name="max-message-width" />
-        <label for="max-message-width">Maximize message/compose pane width </label>
-      </div>
-      <div>
-        <input type="checkbox" id="layout-button" name="layout-button" />
-        <label for="layout-button" title="Moves Fastmail's reading pane: Side, Bottom, Off. The change is saved to your Fastmail account and synced across devices.">Show a reading pane layout button</label>
-      </div>
-      <div>
-        <input type="checkbox" id="use-cusror-keys" name="use-cusror-keys" checked  />
-        <label for="use-cusror-keys" title="↑/↓: move between conversations or messages; ←/→: switch panes and open/close messages">Use ↑/↓/←/→ keys to move focus</label>
-      </div>
-      <div>
-        <input type="checkbox" id="hl-pane-keys" name="hl-pane-keys" />
-        <label for="hl-pane-keys" title="Replaces Fastmail's own H and L shortcuts">Use H/L keys like ←/→</label>
-        <div id="fastmail-shortcuts-on" class="note" hidden>Turn off Fastmail's keyboard shortcuts to use this. Until then, J/K/N/P/E/Enter work as in Fastmail.</div>
-      </div>
-    </div>
-    <p><i>Reload page to reflect changes</i></p>
+      <button id="go-to-fastmail" data-i18n="openFastmail"></button>
+    </header>
 
-    <hr />
-    <h4>Development/README</h4>
-    <div>
-      <p>
-        <a id="github-repo" href='https://github.com/yohasebe/fastmail-plus'>https://github.com/yohasebe/fastmail-plus</a>
-      </p>
+    <h2 data-i18n="optionsHeading"></h2>
+    <div class="panel">
+      <div class="option">
+        <input type="checkbox" id="alternative-search" name="alternative-search" checked />
+        <label for="alternative-search" data-i18n="altSearch"></label>
+        <div class="desc" data-i18n="altSearchDesc"></div>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="alternative-shortcut-keys" name="alternative-shortcut-keys" checked />
+        <label for="alternative-shortcut-keys" data-i18n="shortcutKeys"></label>
+        <div class="desc" data-i18n="shortcutKeysDesc"></div>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="layout-button" name="layout-button" />
+        <label for="layout-button" data-i18n="layoutButton"></label>
+        <div class="desc" data-i18n="layoutButtonDesc"></div>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="use-cusror-keys" name="use-cusror-keys" checked />
+        <label for="use-cusror-keys" data-i18n="cursorKeys"></label>
+        <div class="desc" data-i18n="cursorKeysDesc"></div>
+      </div>
+      <div class="option">
+        <input type="checkbox" id="hl-pane-keys" name="hl-pane-keys" />
+        <label for="hl-pane-keys" data-i18n="hlKeys"></label>
+        <div class="desc" data-i18n="hlKeysDesc"></div>
+        <div id="fastmail-shortcuts-on" class="note" data-i18n="fastmailShortcutsOn" hidden></div>
+      </div>
     </div>
-    <hr />
-    <div>
-      <p>Use this link to get 10% off for one year </p>
-      <p>
-        <a id="sign-up-with-fastmail" href='https://ref.fm/u27773408'>Fastmail Sign Up</a>
-      </p>
-    </div>
-    <hr />
-    <div>
-      <p>Fastmail Plus Version: <span class='version'>0.6.2</span> <span class='updated'>New</span></p>
-    </div>
+    <p class="hint" data-i18n="liveHint"></p>
+
+    <details>
+      <summary data-i18n="keysHeading"></summary>
+      <div class="panel keys">
+        <dl>
+          <dt class="group" data-i18n="keysWithCursor"></dt>
+          <dt><kbd>↑</kbd> <kbd>↓</kbd> <span data-i18n="keyOr"></span> <kbd>K</kbd> <kbd>J</kbd></dt><dd data-i18n="keyUpDown"></dd>
+          <dt><kbd>←</kbd> <kbd>→</kbd></dt><dd data-i18n="keyLeftRight"></dd>
+          <dt><kbd>H</kbd> <kbd>L</kbd></dt><dd data-i18n="keyHL"></dd>
+          <dt class="group" data-i18n="keysWithShortcuts"></dt>
+          <dt><kbd>Enter</kbd></dt><dd data-i18n="keyEnter"></dd>
+          <dt><kbd>Shift</kbd> <kbd>Enter</kbd></dt><dd data-i18n="keyExpandAll"></dd>
+          <dt><kbd>Shift</kbd> <kbd>Alt</kbd> <kbd>Enter</kbd></dt><dd data-i18n="keyCollapseAll"></dd>
+          <dt><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>L</kbd></dt><dd data-i18n="keyUncluttered"></dd>
+          <dt><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>M</kbd></dt><dd data-i18n="keySearchMode"></dd>
+          <dt><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd></dt><dd data-i18n="keyRightPanel"></dd>
+          <dt><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>-</kbd> <kbd>0</kbd></dt><dd data-i18n="keyTextSize"></dd>
+          <dt><kbd>Ctrl</kbd> <kbd>,</kbd></dt><dd data-i18n="keyButtons"></dd>
+          <dt><kbd>Ctrl</kbd> <kbd>↑</kbd> <kbd>↓</kbd></dt><dd data-i18n="keyCalendar"></dd>
+          <dt class="group" data-i18n="keysWithLayout"></dt>
+          <dt><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>P</kbd></dt><dd data-i18n="keyLayout"></dd>
+        </dl>
+      </div>
+    </details>
+
+    <footer>
+      <a id="github-repo" href='https://github.com/yohasebe/fastmail-plus' data-i18n="readme"></a>
+      <a id="sign-up-with-fastmail" href='https://ref.fm/u27773408'><span data-i18n="signUp"></span> <span class="sub" data-i18n="signUpNote"></span></a>
+    </footer>
     <script src="options.js"></script>
   </body>
 </html>

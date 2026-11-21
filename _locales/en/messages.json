@@ -1,6 +1,119 @@
 {
   "extensionName": {
     "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Makes the Fastmail web UI easier to use and more productive."
+  },
+  "version": {
+    "message": "Version"
+  },
+  "updated": {
+    "message": "New"
+  },
+  "openFastmail": {
+    "message": "Open Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Options"
+  },
+  "altSearch": {
+    "message": "Use switchable search box"
+  },
+  "altSearchDesc": {
+    "message": "Search anywhere, in subject and body, or in subject only."
+  },
+  "shortcutKeys": {
+    "message": "Use extra shortcut keys"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I and more (see Keys)."
+  },
+  "layoutButton": {
+    "message": "Show a reading pane layout button"
+  },
+  "layoutButtonDesc": {
+    "message": "Side, Bottom or Off; saved to your Fastmail account."
+  },
+  "cursorKeys": {
+    "message": "Use ↑/↓/←/→ keys to move focus"
+  },
+  "cursorKeysDesc": {
+    "message": "Move in the list and between list and conversation."
+  },
+  "hlKeys": {
+    "message": "Use H/L keys like ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Replaces Fastmail's own H and L."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Turn off Fastmail's keyboard shortcuts to use this. Until then, J/K/N/P/E/Enter work as in Fastmail."
+  },
+  "liveHint": {
+    "message": "Changes take effect in open Fastmail tabs at once."
+  },
+  "keysHeading": {
+    "message": "Keys"
+  },
+  "keysWithCursor": {
+    "message": "With “Use ↑/↓/←/→ keys to move focus”"
+  },
+  "keysWithShortcuts": {
+    "message": "With “Use extra shortcut keys”"
+  },
+  "keysWithLayout": {
+    "message": "With “Show a reading pane layout button”"
+  },
+  "keyOr": {
+    "message": "or"
+  },
+  "keyUpDown": {
+    "message": "Move in the list, or between messages"
+  },
+  "keyLeftRight": {
+    "message": "Switch between the list and the conversation; open or close a message"
+  },
+  "keyHL": {
+    "message": "Same as ← →, with “Use H/L keys like ←/→”"
+  },
+  "keyEnter": {
+    "message": "Open or close the focused message"
+  },
+  "keyExpandAll": {
+    "message": "Expand all messages"
+  },
+  "keyCollapseAll": {
+    "message": "Collapse all messages"
+  },
+  "keyUncluttered": {
+    "message": "Uncluttered view"
+  },
+  "keySearchMode": {
+    "message": "Switch the search mode"
+  },
+  "keyRightPanel": {
+    "message": "Show or hide the right panel"
+  },
+  "keyTextSize": {
+    "message": "Message text size: larger, smaller, reset"
+  },
+  "keyButtons": {
+    "message": "Show or hide the reading pane buttons"
+  },
+  "keyCalendar": {
+    "message": "Previous or next in Calendar"
+  },
+  "keyLayout": {
+    "message": "Next layout: Side, Bottom, Off"
+  },
+  "readme": {
+    "message": "README on GitHub"
+  },
+  "signUp": {
+    "message": "Fastmail Sign Up"
+  },
+  "signUpNote": {
+    "message": "(10% off for one year)"
   }
 }
-

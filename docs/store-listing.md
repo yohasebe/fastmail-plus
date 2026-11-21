@@ -9,8 +9,8 @@ Update both the version number in the changelog block **and** the feature list w
 the extension changes.
 
 The short **"Summary from package"** shown in the dashboard is not edited here — it
-comes from the `description` field in `manifests/manifest.v3.json`.
-Change it there and re-run `rake upload`.
+comes from `extensionDescription` in `_locales/en/messages.json` and
+`_locales/ja/messages.json`. Change it there and re-run `rake upload`.
 
 The listing images (screenshot 1280×800, marquee 1400×560, small promo tile 440×280)
 are rendered from the SVG mockups in `images/mockups/` with `rake store_images`
@@ -42,8 +42,6 @@ Features:
 - Faster switch between different search modes 🔁
 - Easier button operation in the reading pane
 - Extra shortcut keys (hover a button to see what it does)
-- Fix the problem with Japanese IME in the default search input
-- Maximize the width of message/compose/note panes (default: disabled)
 - Resizable message, compose and note panes sharing one width (remembers its size)
 - Adjustable message body text size (zoom the body only, not the whole UI)
 - Optional: H/L keys that work like ←/→
@@ -78,8 +76,6 @@ Fastmail Plus は個人によるオープンソースのプロジェクトで、
 - メール検索の範囲をすばやく変更（全体／件名と本文／件名のみ） 🔁
 - メール閲覧に役立つボタン群（集中モード、折りたたみ、展開、etc.）
 - 便利なショートカットキーの追加（各ボタンはホバーで説明を表示）
-- 検索ボックスで日本語IMEを使用する際に生じる不具合解消
-- メール閲覧ボックスとノート作成ボックスの表示幅を画面の最大幅に変更可能（デフォルトはOFF）
 - メール表示・作成・ノートの幅をドラッグで調整可能（同じ幅を共有し、サイズを記憶）
 - メール本文だけの文字サイズ調整（UI全体ではなく本文のみ拡大/縮小）
 - オプション：←/→と同じ働きをするH/Lキー

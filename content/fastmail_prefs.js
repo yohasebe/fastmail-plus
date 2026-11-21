@@ -1,14 +1,16 @@
 // Runs in the page itself (the manifest's "MAIN" world), where Fastmail's own
-// objects are visible; the other content scripts cannot see them. It exposes two
-// of Fastmail's preferences as attributes on <html> (removed when they cannot be
+// objects are visible; the other content scripts cannot see them. It exposes three
+// of Fastmail's settings as attributes on <html> (removed when they cannot be
 // read):
 //   data-fmp-fastmail-shortcuts: whether Fastmail's keyboard shortcuts are on ("on" / "off")
 //   data-fmp-reading-pane: where the reading pane is ("right" / "below" / "off")
+//   data-fmp-fastmail-language: the language Fastmail is shown in ("en", "ja", ...)
 // and changes one of them on request: the reading pane position, when the
 // layout button (see layout_toggle.js) sends LAYOUT_EVENT. Nothing else is written.
 (() => {
   const SHORTCUTS_ATTR = 'data-fmp-fastmail-shortcuts';
   const PANE_ATTR = 'data-fmp-reading-pane';
+  const LANGUAGE_ATTR = 'data-fmp-fastmail-language';
   const LAYOUT_EVENT = 'fmp-next-reading-pane';
   // Each position and the two Fastmail preferences that make it.
   const PANE_PREFS = {
@@ -42,6 +44,16 @@
     }
   };
 
+  // Fastmail names the file of its interface text after the language, e.g. "ja.mod.js".
+  const readLanguage = () => {
+    try {
+      const match = /^([a-z]{2,3}(?:-[a-z0-9]+)*)\.mod\.js$/i.exec(window.FastMail.language);
+      return match ? match[1].toLowerCase() : null;
+    } catch (_e) {
+      return null;
+    }
+  };
+
   const setAttr = (name, value) => {
     const root = document.documentElement;
     if (value === null) {
@@ -53,6 +65,7 @@
   const update = () => {
     setAttr(SHORTCUTS_ATTR, readShortcuts());
     setAttr(PANE_ATTR, readPane());
+    setAttr(LANGUAGE_ATTR, readLanguage());
   };
 
   // Move the reading pane to the next position, but only when the current one is

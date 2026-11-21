@@ -1,3 +1,19 @@
+// The page's text comes from _locales, in the language Fastmail is shown in (as
+// last seen by the extension), else in the browser's language, else in English.
+const PAGE_LANGUAGES = ["en", "ja"]; // the folders in _locales
+const pageLanguage = (...codes) =>
+  codes.map((code) => (code || "").toLowerCase().split(/[-_]/)[0])
+    .find((code) => PAGE_LANGUAGES.includes(code)) || "en";
+chrome.storage.local.get("fastmailLanguage", async ({ fastmailLanguage }) => {
+  const language = pageLanguage(fastmailLanguage, chrome.i18n.getUILanguage());
+  const response = await fetch(chrome.runtime.getURL(`_locales/${language}/messages.json`));
+  const messages = await response.json();
+  document.documentElement.lang = language;
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = messages[el.dataset.i18n].message;
+  });
+});
+
 // While Fastmail's own keyboard shortcuts are on, H/L stay Fastmail's
 // (the content scripts enforce this too).
 const showFastmailShortcuts = (value) => {
@@ -11,7 +27,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
   }
 });
 
-chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "maxMessageWidth", "hlPaneKeys", "layoutButton", "fastmailShortcuts", "justUpdated"], (val) => {
+chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCursorKeys", "hlPaneKeys", "layoutButton", "fastmailShortcuts", "justUpdated"], (val) => {
   // Leave the page's default checkbox state for settings that were never saved.
   const setChecked = (name, value) => {
     if (value !== undefined) {
@@ -21,7 +37,6 @@ chrome.storage.local.get(["alternativeSearch", "alternativeShortcutKeys", "useCu
   setChecked("alternative-search", val.alternativeSearch);
   setChecked("alternative-shortcut-keys", val.alternativeShortcutKeys);
   setChecked("use-cusror-keys", val.useCursorKeys);
-  setChecked("max-message-width", val.maxMessageWidth);
   setChecked("hl-pane-keys", val.hlPaneKeys);
   setChecked("layout-button", val.layoutButton);
   showFastmailShortcuts(val.fastmailShortcuts);
@@ -38,7 +53,6 @@ const checkboxSettings = {
   "alternative-search": "alternativeSearch",
   "alternative-shortcut-keys": "alternativeShortcutKeys",
   "use-cusror-keys": "useCursorKeys",
-  "max-message-width": "maxMessageWidth",
   "hl-pane-keys": "hlPaneKeys",
   "layout-button": "layoutButton"
 };

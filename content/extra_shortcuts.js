@@ -32,16 +32,16 @@ const shortcutHandler = (e) => {
     if(regexMail.test(lastUrl)){
       if (e.ctrlKey && e.which === 82){
         window.location.reload();
-      // Command + right (for mac) is ignored because the original behavior of going forward could make some users confused
-      } else if(e.metaKey && e.which == 39) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return true;
       // J / K are handled below like ↓ / ↑ (moveCursor, messageCursor). In the
       // uncluttered view, also keep Fastmail's own J / K away from the hidden list.
       } else if ((isLetterKey(e, 74) || isLetterKey(e, 75)) && !mainMenuShown){
         e.preventDefault();
         e.stopImmediatePropagation();
+      // ^⇧P => next reading pane layout, like the layout button
+      } else if (layoutButton && e.ctrlKey && e.shiftKey && !e.altKey && !e.metaKey && e.which === 80){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        nextLayout();
       // ^⇧+ / ^⇧- / ^⇧0 => body text size: larger / smaller / reset
       } else if (alternativeShortcutKeys && e.ctrlKey && e.shiftKey && e.which === 187){
         e.preventDefault();

@@ -4,15 +4,18 @@
 // color matches the other UI tweaks (blue).
 const PANE_ACCENT = '#5b9bd5'; // mirrors --fmp-accent in content/main.css
 const indicateLeftRight = () => {
-  if(!useCursorKeys){
-    return;
-  }
   const list = qsa(`${SEL.mailboxPane} ${SEL.toolbar}`);
   const conv = qsa(`${SEL.conversationPane} ${SEL.toolbar}`);
   const paint = (els, shadow) => els.forEach((el) => {
     el.style.boxShadow = shadow;
     el.style.transition = '';
   });
+  // With the cursor keys turned off, leave the toolbars as Fastmail draws them.
+  if(!useCursorKeys){
+    paint(list, '');
+    paint(conv, '');
+    return;
+  }
   // A compose/reply editor lives inside #conversation, so painting the indicator
   // would leave a stray blue bar on its toolbar. Clear and skip while composing.
   if(isComposing()){
