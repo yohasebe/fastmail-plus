@@ -1,20 +1,24 @@
 // The page's text comes from _locales, in the language Fastmail is shown in (as
 // last seen by the extension), else in the browser's language, else in English.
-// Language codes (Fastmail's, e.g. "zh-tw", or the browser's, e.g. "pt-BR") and
-// the _locales folder for each. A code is looked up whole, then by its language
-// alone, so "en-gb" uses "en" and "zh-hk" uses "zh_TW".
+// Language codes (Fastmail's, e.g. "zh-tw", or the browser's, e.g. "pt-BR" or
+// "zh-Hant-HK") and the _locales folder for each. A code is looked up whole, then
+// with its last part dropped, and so on, so "en-gb" uses "en" and "zh-hant-hk"
+// uses "zh-hant".
 const PAGE_LANGUAGES = {
   cs: "cs", da: "da", de: "de", en: "en", es: "es", fi: "fi", fr: "fr", hu: "hu",
   it: "it", ja: "ja", nb: "no", no: "no", nl: "nl", pl: "pl", pt: "pt_BR",
   ru: "ru", sv: "sv", tr: "tr", uk: "uk",
-  zh: "zh_CN", "zh-cn": "zh_CN", "zh-tw": "zh_TW", "zh-hk": "zh_TW",
+  zh: "zh_CN", "zh-cn": "zh_CN", "zh-hans": "zh_CN",
+  "zh-tw": "zh_TW", "zh-hk": "zh_TW", "zh-mo": "zh_TW", "zh-hant": "zh_TW",
 };
 const pageLanguage = (...codes) => {
   for (const code of codes) {
-    const full = (code || "").toLowerCase().replace("_", "-");
-    const folder = PAGE_LANGUAGES[full] || PAGE_LANGUAGES[full.split("-")[0]];
-    if (folder) {
-      return folder;
+    const parts = (code || "").toLowerCase().replace(/_/g, "-").split("-");
+    for (let n = parts.length; n > 0; n--) {
+      const key = parts.slice(0, n).join("-");
+      if (Object.hasOwn(PAGE_LANGUAGES, key)) {
+        return PAGE_LANGUAGES[key];
+      }
     }
   }
   return "en";

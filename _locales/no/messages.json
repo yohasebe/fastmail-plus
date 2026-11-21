@@ -81,10 +81,10 @@
     "message": "Åpne eller lukk den valgte meldingen"
   },
   "keyExpandAll": {
-    "message": "Vis alle meldinger"
+    "message": "Fold ut alle meldinger"
   },
   "keyCollapseAll": {
-    "message": "Skjul alle meldinger"
+    "message": "Fold sammen alle meldinger"
   },
   "keyUncluttered": {
     "message": "Ryddig visning"
