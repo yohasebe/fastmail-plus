@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Rende l’interfaccia web di Fastmail più semplice e produttiva."
+  },
+  "version": {
+    "message": "Versione"
+  },
+  "updated": {
+    "message": "Nuovo"
+  },
+  "openFastmail": {
+    "message": "Apri Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Opzioni"
+  },
+  "altSearch": {
+    "message": "Usa la casella di ricerca commutabile"
+  },
+  "altSearchDesc": {
+    "message": "Cerca ovunque, in oggetto e testo o solo nell’oggetto."
+  },
+  "shortcutKeys": {
+    "message": "Usa scorciatoie da tastiera aggiuntive"
+  },
+  "shortcutKeysDesc": {
+    "message": "Invio, Ctrl + Maiusc + L / M / I e altro (vedi Tasti)."
+  },
+  "layoutButton": {
+    "message": "Mostra un pulsante per la disposizione del riquadro di lettura"
+  },
+  "layoutButtonDesc": {
+    "message": "A lato, in basso o nascosto; salvato nel tuo account Fastmail."
+  },
+  "cursorKeys": {
+    "message": "Usa ↑/↓/←/→ per spostare il focus"
+  },
+  "cursorKeysDesc": {
+    "message": "Muoviti nell’elenco e tra elenco e conversazione."
+  },
+  "hlKeys": {
+    "message": "Usa H/L come ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Sostituisce i tasti H e L di Fastmail."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Per usarlo, disattiva le scorciatoie da tastiera di Fastmail. Fino ad allora J/K/N/P/E/Invio funzionano come in Fastmail."
+  },
+  "liveHint": {
+    "message": "Le modifiche si applicano subito nelle schede di Fastmail aperte."
+  },
+  "keysHeading": {
+    "message": "Tasti"
+  },
+  "keysWithCursor": {
+    "message": "Con «Usa ↑/↓/←/→ per spostare il focus»"
+  },
+  "keysWithShortcuts": {
+    "message": "Con «Usa scorciatoie da tastiera aggiuntive»"
+  },
+  "keysWithLayout": {
+    "message": "Con «Mostra un pulsante per la disposizione del riquadro di lettura»"
+  },
+  "keyOr": {
+    "message": "o"
+  },
+  "keyUpDown": {
+    "message": "Muoviti nell’elenco o tra i messaggi"
+  },
+  "keyLeftRight": {
+    "message": "Passa tra elenco e conversazione; apri o chiudi un messaggio"
+  },
+  "keyHL": {
+    "message": "Come ← →, con «Usa H/L come ←/→»"
+  },
+  "keyEnter": {
+    "message": "Apri o chiudi il messaggio selezionato"
+  },
+  "keyExpandAll": {
+    "message": "Espandi tutti i messaggi"
+  },
+  "keyCollapseAll": {
+    "message": "Comprimi tutti i messaggi"
+  },
+  "keyUncluttered": {
+    "message": "Vista essenziale"
+  },
+  "keySearchMode": {
+    "message": "Cambia modalità di ricerca"
+  },
+  "keyRightPanel": {
+    "message": "Mostra o nascondi il pannello destro"
+  },
+  "keyTextSize": {
+    "message": "Dimensione del testo: più grande, più piccolo, ripristina"
+  },
+  "keyButtons": {
+    "message": "Mostra o nascondi i pulsanti del riquadro di lettura"
+  },
+  "keyCalendar": {
+    "message": "Precedente o successivo nel calendario"
+  },
+  "keyLayout": {
+    "message": "Disposizione successiva: a lato, in basso, nascosto"
+  },
+  "readme": {
+    "message": "README su GitHub"
+  },
+  "signUp": {
+    "message": "Iscriviti a Fastmail"
+  },
+  "signUpNote": {
+    "message": "(10% di sconto per un anno)"
+  }
+}

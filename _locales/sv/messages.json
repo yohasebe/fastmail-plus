@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Gör Fastmails webbgränssnitt enklare och effektivare."
+  },
+  "version": {
+    "message": "Version"
+  },
+  "updated": {
+    "message": "Ny"
+  },
+  "openFastmail": {
+    "message": "Öppna Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Inställningar"
+  },
+  "altSearch": {
+    "message": "Använd växlingsbar sökruta"
+  },
+  "altSearchDesc": {
+    "message": "Sök överallt, i ämne och brödtext eller bara i ämnet."
+  },
+  "shortcutKeys": {
+    "message": "Använd extra kortkommandon"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Skift + L / M / I med mera (se Tangenter)."
+  },
+  "layoutButton": {
+    "message": "Visa en knapp för läsfönstrets placering"
+  },
+  "layoutButtonDesc": {
+    "message": "Vid sidan, nedtill eller av; sparas i ditt Fastmail-konto."
+  },
+  "cursorKeys": {
+    "message": "Använd ↑/↓/←/→ för att flytta fokus"
+  },
+  "cursorKeysDesc": {
+    "message": "Flytta i listan och mellan listan och konversationen."
+  },
+  "hlKeys": {
+    "message": "Använd H/L som ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Ersätter Fastmails egna H- och L-tangenter."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Stäng av Fastmails kortkommandon för att använda detta. Tills dess fungerar J/K/N/P/E/Enter som i Fastmail."
+  },
+  "liveHint": {
+    "message": "Ändringar gäller direkt i öppna Fastmail-flikar."
+  },
+  "keysHeading": {
+    "message": "Tangenter"
+  },
+  "keysWithCursor": {
+    "message": "Med ”Använd ↑/↓/←/→ för att flytta fokus”"
+  },
+  "keysWithShortcuts": {
+    "message": "Med ”Använd extra kortkommandon”"
+  },
+  "keysWithLayout": {
+    "message": "Med ”Visa en knapp för läsfönstrets placering”"
+  },
+  "keyOr": {
+    "message": "eller"
+  },
+  "keyUpDown": {
+    "message": "Flytta i listan eller mellan meddelanden"
+  },
+  "keyLeftRight": {
+    "message": "Växla mellan listan och konversationen; öppna eller stäng ett meddelande"
+  },
+  "keyHL": {
+    "message": "Som ← →, med ”Använd H/L som ←/→”"
+  },
+  "keyEnter": {
+    "message": "Öppna eller stäng det valda meddelandet"
+  },
+  "keyExpandAll": {
+    "message": "Expandera alla meddelanden"
+  },
+  "keyCollapseAll": {
+    "message": "Fäll ihop alla meddelanden"
+  },
+  "keyUncluttered": {
+    "message": "Avskalad vy"
+  },
+  "keySearchMode": {
+    "message": "Byt sökläge"
+  },
+  "keyRightPanel": {
+    "message": "Visa eller dölj högerpanelen"
+  },
+  "keyTextSize": {
+    "message": "Textstorlek: större, mindre, återställ"
+  },
+  "keyButtons": {
+    "message": "Visa eller dölj knapparna i läsfönstret"
+  },
+  "keyCalendar": {
+    "message": "Föregående eller nästa i kalendern"
+  },
+  "keyLayout": {
+    "message": "Nästa placering: sidan, nedtill, av"
+  },
+  "readme": {
+    "message": "README på GitHub"
+  },
+  "signUp": {
+    "message": "Registrera dig hos Fastmail"
+  },
+  "signUpNote": {
+    "message": "(10 % rabatt i ett år)"
+  }
+}

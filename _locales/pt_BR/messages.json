@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Torna a interface web do Fastmail mais fácil de usar e mais produtiva."
+  },
+  "version": {
+    "message": "Versão"
+  },
+  "updated": {
+    "message": "Novo"
+  },
+  "openFastmail": {
+    "message": "Abrir o Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Opções"
+  },
+  "altSearch": {
+    "message": "Usar caixa de pesquisa alternável"
+  },
+  "altSearchDesc": {
+    "message": "Pesquisar em tudo, no assunto e no corpo, ou só no assunto."
+  },
+  "shortcutKeys": {
+    "message": "Usar atalhos de teclado extras"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I e mais (veja Teclas)."
+  },
+  "layoutButton": {
+    "message": "Mostrar um botão de layout do painel de leitura"
+  },
+  "layoutButtonDesc": {
+    "message": "Lateral, inferior ou desativado; salvo na sua conta do Fastmail."
+  },
+  "cursorKeys": {
+    "message": "Usar ↑/↓/←/→ para mover o foco"
+  },
+  "cursorKeysDesc": {
+    "message": "Mover-se na lista e entre a lista e a conversa."
+  },
+  "hlKeys": {
+    "message": "Usar H/L como ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Substitui as teclas H e L do próprio Fastmail."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Para usar, desative os atalhos de teclado do Fastmail. Até lá, J/K/N/P/E/Enter funcionam como no Fastmail."
+  },
+  "liveHint": {
+    "message": "As alterações valem na hora nas abas abertas do Fastmail."
+  },
+  "keysHeading": {
+    "message": "Teclas"
+  },
+  "keysWithCursor": {
+    "message": "Com “Usar ↑/↓/←/→ para mover o foco”"
+  },
+  "keysWithShortcuts": {
+    "message": "Com “Usar atalhos de teclado extras”"
+  },
+  "keysWithLayout": {
+    "message": "Com “Mostrar um botão de layout do painel de leitura”"
+  },
+  "keyOr": {
+    "message": "ou"
+  },
+  "keyUpDown": {
+    "message": "Mover-se na lista ou entre mensagens"
+  },
+  "keyLeftRight": {
+    "message": "Alternar entre a lista e a conversa; abrir ou fechar uma mensagem"
+  },
+  "keyHL": {
+    "message": "Igual a ← →, com “Usar H/L como ←/→”"
+  },
+  "keyEnter": {
+    "message": "Abrir ou fechar a mensagem selecionada"
+  },
+  "keyExpandAll": {
+    "message": "Expandir todas as mensagens"
+  },
+  "keyCollapseAll": {
+    "message": "Recolher todas as mensagens"
+  },
+  "keyUncluttered": {
+    "message": "Visualização limpa"
+  },
+  "keySearchMode": {
+    "message": "Trocar o modo de pesquisa"
+  },
+  "keyRightPanel": {
+    "message": "Mostrar ou ocultar o painel direito"
+  },
+  "keyTextSize": {
+    "message": "Tamanho do texto: maior, menor, redefinir"
+  },
+  "keyButtons": {
+    "message": "Mostrar ou ocultar os botões do painel de leitura"
+  },
+  "keyCalendar": {
+    "message": "Anterior ou próximo no calendário"
+  },
+  "keyLayout": {
+    "message": "Próximo layout: lateral, inferior, desativado"
+  },
+  "readme": {
+    "message": "README no GitHub"
+  },
+  "signUp": {
+    "message": "Cadastre-se no Fastmail"
+  },
+  "signUpNote": {
+    "message": "(10% de desconto por um ano)"
+  }
+}

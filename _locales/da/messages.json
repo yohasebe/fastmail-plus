@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Gør Fastmails webbrugerflade nemmere og mere effektiv."
+  },
+  "version": {
+    "message": "Version"
+  },
+  "updated": {
+    "message": "Ny"
+  },
+  "openFastmail": {
+    "message": "Åbn Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Indstillinger"
+  },
+  "altSearch": {
+    "message": "Brug skiftbart søgefelt"
+  },
+  "altSearchDesc": {
+    "message": "Søg overalt, i emne og brødtekst eller kun i emnet."
+  },
+  "shortcutKeys": {
+    "message": "Brug ekstra tastaturgenveje"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I og mere (se Taster)."
+  },
+  "layoutButton": {
+    "message": "Vis en knap til læseruden"
+  },
+  "layoutButtonDesc": {
+    "message": "Til siden, nederst eller fra; gemmes på din Fastmail-konto."
+  },
+  "cursorKeys": {
+    "message": "Brug ↑/↓/←/→ til at flytte fokus"
+  },
+  "cursorKeysDesc": {
+    "message": "Flyt rundt i listen og mellem listen og samtalen."
+  },
+  "hlKeys": {
+    "message": "Brug H/L som ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Erstatter Fastmails egne H- og L-taster."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Slå Fastmails tastaturgenveje fra for at bruge dette. Indtil da virker J/K/N/P/E/Enter som i Fastmail."
+  },
+  "liveHint": {
+    "message": "Ændringer træder i kraft med det samme i åbne Fastmail-faner."
+  },
+  "keysHeading": {
+    "message": "Taster"
+  },
+  "keysWithCursor": {
+    "message": "Med »Brug ↑/↓/←/→ til at flytte fokus«"
+  },
+  "keysWithShortcuts": {
+    "message": "Med »Brug ekstra tastaturgenveje«"
+  },
+  "keysWithLayout": {
+    "message": "Med »Vis en knap til læseruden«"
+  },
+  "keyOr": {
+    "message": "eller"
+  },
+  "keyUpDown": {
+    "message": "Flyt i listen eller mellem beskeder"
+  },
+  "keyLeftRight": {
+    "message": "Skift mellem listen og samtalen; åbn eller luk en besked"
+  },
+  "keyHL": {
+    "message": "Som ← →, med »Brug H/L som ←/→«"
+  },
+  "keyEnter": {
+    "message": "Åbn eller luk den valgte besked"
+  },
+  "keyExpandAll": {
+    "message": "Udvid alle beskeder"
+  },
+  "keyCollapseAll": {
+    "message": "Fold alle beskeder sammen"
+  },
+  "keyUncluttered": {
+    "message": "Ryddet visning"
+  },
+  "keySearchMode": {
+    "message": "Skift søgetilstand"
+  },
+  "keyRightPanel": {
+    "message": "Vis eller skjul højre panel"
+  },
+  "keyTextSize": {
+    "message": "Tekststørrelse: større, mindre, nulstil"
+  },
+  "keyButtons": {
+    "message": "Vis eller skjul knapperne i læseruden"
+  },
+  "keyCalendar": {
+    "message": "Forrige eller næste i kalenderen"
+  },
+  "keyLayout": {
+    "message": "Næste layout: siden, nederst, fra"
+  },
+  "readme": {
+    "message": "README på GitHub"
+  },
+  "signUp": {
+    "message": "Opret konto hos Fastmail"
+  },
+  "signUpNote": {
+    "message": "(10 % rabat i et år)"
+  }
+}

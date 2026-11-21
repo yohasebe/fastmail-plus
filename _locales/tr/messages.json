@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Fastmail web arayüzünü daha kolay ve verimli hale getirir."
+  },
+  "version": {
+    "message": "Sürüm"
+  },
+  "updated": {
+    "message": "Yeni"
+  },
+  "openFastmail": {
+    "message": "Fastmail'i aç"
+  },
+  "optionsHeading": {
+    "message": "Seçenekler"
+  },
+  "altSearch": {
+    "message": "Değiştirilebilir arama kutusunu kullan"
+  },
+  "altSearchDesc": {
+    "message": "Her yerde, konu ve gövdede ya da yalnızca konuda ara."
+  },
+  "shortcutKeys": {
+    "message": "Ek klavye kısayollarını kullan"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I ve daha fazlası (bkz. Tuşlar)."
+  },
+  "layoutButton": {
+    "message": "Okuma bölmesi düzen düğmesini göster"
+  },
+  "layoutButtonDesc": {
+    "message": "Yanda, altta veya kapalı; Fastmail hesabınıza kaydedilir."
+  },
+  "cursorKeys": {
+    "message": "Odağı ↑/↓/←/→ tuşlarıyla taşı"
+  },
+  "cursorKeysDesc": {
+    "message": "Listede ve liste ile konuşma arasında gezinin."
+  },
+  "hlKeys": {
+    "message": "H/L tuşlarını ←/→ gibi kullan"
+  },
+  "hlKeysDesc": {
+    "message": "Fastmail'in kendi H ve L tuşlarının yerini alır."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Bunu kullanmak için Fastmail'in klavye kısayollarını kapatın. O zamana kadar J/K/N/P/E/Enter Fastmail'deki gibi çalışır."
+  },
+  "liveHint": {
+    "message": "Değişiklikler açık Fastmail sekmelerinde hemen geçerli olur."
+  },
+  "keysHeading": {
+    "message": "Tuşlar"
+  },
+  "keysWithCursor": {
+    "message": "“Odağı ↑/↓/←/→ tuşlarıyla taşı” açıkken"
+  },
+  "keysWithShortcuts": {
+    "message": "“Ek klavye kısayollarını kullan” açıkken"
+  },
+  "keysWithLayout": {
+    "message": "“Okuma bölmesi düzen düğmesini göster” açıkken"
+  },
+  "keyOr": {
+    "message": "veya"
+  },
+  "keyUpDown": {
+    "message": "Listede veya iletiler arasında gezin"
+  },
+  "keyLeftRight": {
+    "message": "Liste ile konuşma arasında geçiş yap; iletiyi aç veya kapat"
+  },
+  "keyHL": {
+    "message": "← → ile aynı (“H/L tuşlarını ←/→ gibi kullan” açıkken)"
+  },
+  "keyEnter": {
+    "message": "Seçili iletiyi aç veya kapat"
+  },
+  "keyExpandAll": {
+    "message": "Tüm iletileri genişlet"
+  },
+  "keyCollapseAll": {
+    "message": "Tüm iletileri daralt"
+  },
+  "keyUncluttered": {
+    "message": "Sade görünüm"
+  },
+  "keySearchMode": {
+    "message": "Arama modunu değiştir"
+  },
+  "keyRightPanel": {
+    "message": "Sağ paneli göster veya gizle"
+  },
+  "keyTextSize": {
+    "message": "Metin boyutu: büyüt, küçült, sıfırla"
+  },
+  "keyButtons": {
+    "message": "Okuma bölmesi düğmelerini göster veya gizle"
+  },
+  "keyCalendar": {
+    "message": "Takvimde önceki veya sonraki"
+  },
+  "keyLayout": {
+    "message": "Sonraki düzen: yanda, altta, kapalı"
+  },
+  "readme": {
+    "message": "GitHub'daki README"
+  },
+  "signUp": {
+    "message": "Fastmail'e kaydol"
+  },
+  "signUpNote": {
+    "message": "(bir yıl boyunca %10 indirim)"
+  }
+}

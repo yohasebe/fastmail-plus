@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "让 Fastmail 网页界面更易用、更高效。"
+  },
+  "version": {
+    "message": "版本"
+  },
+  "updated": {
+    "message": "新"
+  },
+  "openFastmail": {
+    "message": "打开 Fastmail"
+  },
+  "optionsHeading": {
+    "message": "选项"
+  },
+  "altSearch": {
+    "message": "使用可切换的搜索框"
+  },
+  "altSearchDesc": {
+    "message": "在全部内容、主题和正文或仅主题中搜索。"
+  },
+  "shortcutKeys": {
+    "message": "使用额外的快捷键"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter、Ctrl + Shift + L / M / I 等（见“按键”）。"
+  },
+  "layoutButton": {
+    "message": "显示阅读窗格布局按钮"
+  },
+  "layoutButtonDesc": {
+    "message": "右侧、底部或关闭；保存到你的 Fastmail 账户。"
+  },
+  "cursorKeys": {
+    "message": "使用 ↑/↓/←/→ 键移动焦点"
+  },
+  "cursorKeysDesc": {
+    "message": "在列表中移动，并在列表和对话之间切换。"
+  },
+  "hlKeys": {
+    "message": "将 H/L 键用作 ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "替换 Fastmail 自带的 H 和 L 键。"
+  },
+  "fastmailShortcutsOn": {
+    "message": "要使用此项，请关闭 Fastmail 的键盘快捷键。在此之前，J/K/N/P/E/Enter 仍按 Fastmail 的方式工作。"
+  },
+  "liveHint": {
+    "message": "更改会立即应用到已打开的 Fastmail 标签页。"
+  },
+  "keysHeading": {
+    "message": "按键"
+  },
+  "keysWithCursor": {
+    "message": "开启“使用 ↑/↓/←/→ 键移动焦点”时"
+  },
+  "keysWithShortcuts": {
+    "message": "开启“使用额外的快捷键”时"
+  },
+  "keysWithLayout": {
+    "message": "开启“显示阅读窗格布局按钮”时"
+  },
+  "keyOr": {
+    "message": "或"
+  },
+  "keyUpDown": {
+    "message": "在列表中或邮件之间移动"
+  },
+  "keyLeftRight": {
+    "message": "在列表和对话之间切换；展开或收起邮件"
+  },
+  "keyHL": {
+    "message": "与 ← → 相同（开启“将 H/L 键用作 ←/→”时）"
+  },
+  "keyEnter": {
+    "message": "展开或收起当前邮件"
+  },
+  "keyExpandAll": {
+    "message": "展开所有邮件"
+  },
+  "keyCollapseAll": {
+    "message": "收起所有邮件"
+  },
+  "keyUncluttered": {
+    "message": "简洁视图"
+  },
+  "keySearchMode": {
+    "message": "切换搜索模式"
+  },
+  "keyRightPanel": {
+    "message": "显示或隐藏右侧面板"
+  },
+  "keyTextSize": {
+    "message": "正文字号：放大、缩小、重置"
+  },
+  "keyButtons": {
+    "message": "显示或隐藏阅读窗格按钮"
+  },
+  "keyCalendar": {
+    "message": "日历中的上一个或下一个"
+  },
+  "keyLayout": {
+    "message": "下一种布局：右侧、底部、关闭"
+  },
+  "readme": {
+    "message": "GitHub 上的 README"
+  },
+  "signUp": {
+    "message": "注册 Fastmail"
+  },
+  "signUpNote": {
+    "message": "（一年九折）"
+  }
+}

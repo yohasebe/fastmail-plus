@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Usnadňuje práci s webovým rozhraním Fastmailu a zvyšuje produktivitu."
+  },
+  "version": {
+    "message": "Verze"
+  },
+  "updated": {
+    "message": "Novinka"
+  },
+  "openFastmail": {
+    "message": "Otevřít Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Možnosti"
+  },
+  "altSearch": {
+    "message": "Používat přepínatelné vyhledávací pole"
+  },
+  "altSearchDesc": {
+    "message": "Hledat všude, v předmětu a textu, nebo jen v předmětu."
+  },
+  "shortcutKeys": {
+    "message": "Používat další klávesové zkratky"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I a další (viz Klávesy)."
+  },
+  "layoutButton": {
+    "message": "Zobrazit tlačítko rozložení podokna čtení"
+  },
+  "layoutButtonDesc": {
+    "message": "Vpravo, dole nebo vypnuto; ukládá se do vašeho účtu Fastmail."
+  },
+  "cursorKeys": {
+    "message": "Přesouvat výběr klávesami ↑/↓/←/→"
+  },
+  "cursorKeysDesc": {
+    "message": "Pohyb v seznamu a mezi seznamem a konverzací."
+  },
+  "hlKeys": {
+    "message": "Používat H/L jako ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Nahrazuje vlastní klávesy H a L ve Fastmailu."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Chcete-li tuto volbu použít, vypněte klávesové zkratky Fastmailu. Do té doby fungují J/K/N/P/E/Enter jako ve Fastmailu."
+  },
+  "liveHint": {
+    "message": "Změny se ihned projeví v otevřených kartách Fastmailu."
+  },
+  "keysHeading": {
+    "message": "Klávesy"
+  },
+  "keysWithCursor": {
+    "message": "S volbou „Přesouvat výběr klávesami ↑/↓/←/→“"
+  },
+  "keysWithShortcuts": {
+    "message": "S volbou „Používat další klávesové zkratky“"
+  },
+  "keysWithLayout": {
+    "message": "S volbou „Zobrazit tlačítko rozložení podokna čtení“"
+  },
+  "keyOr": {
+    "message": "nebo"
+  },
+  "keyUpDown": {
+    "message": "Pohyb v seznamu nebo mezi zprávami"
+  },
+  "keyLeftRight": {
+    "message": "Přepnout mezi seznamem a konverzací; otevřít nebo zavřít zprávu"
+  },
+  "keyHL": {
+    "message": "Totéž co ← →, s volbou „Používat H/L jako ←/→“"
+  },
+  "keyEnter": {
+    "message": "Otevřít nebo zavřít vybranou zprávu"
+  },
+  "keyExpandAll": {
+    "message": "Rozbalit všechny zprávy"
+  },
+  "keyCollapseAll": {
+    "message": "Sbalit všechny zprávy"
+  },
+  "keyUncluttered": {
+    "message": "Zjednodušené zobrazení"
+  },
+  "keySearchMode": {
+    "message": "Přepnout režim hledání"
+  },
+  "keyRightPanel": {
+    "message": "Zobrazit nebo skrýt pravý panel"
+  },
+  "keyTextSize": {
+    "message": "Velikost textu: větší, menší, výchozí"
+  },
+  "keyButtons": {
+    "message": "Zobrazit nebo skrýt tlačítka podokna čtení"
+  },
+  "keyCalendar": {
+    "message": "Předchozí nebo další v kalendáři"
+  },
+  "keyLayout": {
+    "message": "Další rozložení: vpravo, dole, vypnuto"
+  },
+  "readme": {
+    "message": "README na GitHubu"
+  },
+  "signUp": {
+    "message": "Zaregistrovat se u Fastmailu"
+  },
+  "signUpNote": {
+    "message": "(sleva 10 % na rok)"
+  }
+}

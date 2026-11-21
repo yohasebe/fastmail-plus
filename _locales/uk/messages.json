@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Робить вебінтерфейс Fastmail зручнішим і продуктивнішим."
+  },
+  "version": {
+    "message": "Версія"
+  },
+  "updated": {
+    "message": "Нове"
+  },
+  "openFastmail": {
+    "message": "Відкрити Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Налаштування"
+  },
+  "altSearch": {
+    "message": "Перемикане поле пошуку"
+  },
+  "altSearchDesc": {
+    "message": "Шукати всюди, у темі й тексті або лише в темі."
+  },
+  "shortcutKeys": {
+    "message": "Додаткові сполучення клавіш"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I та інші (див. «Клавіші»)."
+  },
+  "layoutButton": {
+    "message": "Кнопка розташування панелі читання"
+  },
+  "layoutButtonDesc": {
+    "message": "Збоку, знизу або вимкнено; зберігається в обліковому записі Fastmail."
+  },
+  "cursorKeys": {
+    "message": "Переміщати фокус клавішами ↑/↓/←/→"
+  },
+  "cursorKeysDesc": {
+    "message": "Переміщення списком і між списком та листуванням."
+  },
+  "hlKeys": {
+    "message": "Клавіші H/L як ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Замінює власні клавіші H і L у Fastmail."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Щоб скористатися цим, вимкніть сполучення клавіш Fastmail. Доти J/K/N/P/E/Enter працюють як у Fastmail."
+  },
+  "liveHint": {
+    "message": "Зміни одразу застосовуються у відкритих вкладках Fastmail."
+  },
+  "keysHeading": {
+    "message": "Клавіші"
+  },
+  "keysWithCursor": {
+    "message": "З увімкненим «Переміщати фокус клавішами ↑/↓/←/→»"
+  },
+  "keysWithShortcuts": {
+    "message": "З увімкненим «Додаткові сполучення клавіш»"
+  },
+  "keysWithLayout": {
+    "message": "З увімкненою «Кнопка розташування панелі читання»"
+  },
+  "keyOr": {
+    "message": "або"
+  },
+  "keyUpDown": {
+    "message": "Переміщення списком або між листами"
+  },
+  "keyLeftRight": {
+    "message": "Перемикання між списком і листуванням; відкрити або закрити лист"
+  },
+  "keyHL": {
+    "message": "Те саме, що ← →, з увімкненим «Клавіші H/L як ←/→»"
+  },
+  "keyEnter": {
+    "message": "Відкрити або закрити вибраний лист"
+  },
+  "keyExpandAll": {
+    "message": "Розгорнути всі листи"
+  },
+  "keyCollapseAll": {
+    "message": "Згорнути всі листи"
+  },
+  "keyUncluttered": {
+    "message": "Спрощений вигляд"
+  },
+  "keySearchMode": {
+    "message": "Змінити режим пошуку"
+  },
+  "keyRightPanel": {
+    "message": "Показати або сховати праву панель"
+  },
+  "keyTextSize": {
+    "message": "Розмір тексту: більше, менше, скинути"
+  },
+  "keyButtons": {
+    "message": "Показати або сховати кнопки панелі читання"
+  },
+  "keyCalendar": {
+    "message": "Назад або вперед у календарі"
+  },
+  "keyLayout": {
+    "message": "Наступне розташування: збоку, знизу, вимк."
+  },
+  "readme": {
+    "message": "README на GitHub"
+  },
+  "signUp": {
+    "message": "Реєстрація у Fastmail"
+  },
+  "signUpNote": {
+    "message": "(знижка 10% на рік)"
+  }
+}

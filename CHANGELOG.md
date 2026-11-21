@@ -9,7 +9,7 @@ Earlier history (before 0.3.0) is available in the git commit log.
 - `Control + Shift + P` switches the reading pane layout, like the layout button (with that option on).
 - Double-clicking a resize grip returns to the default width.
 - The options page lists the keys the extension adds.
-- The options page is shown in Japanese when Fastmail is shown in Japanese.
+- The options page is shown in the language Fastmail is shown in (all of Fastmail's languages).
 
 ### Changed
 - The options page has a clearer layout, a short description under each option, and a dark theme.

@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Maakt de webinterface van Fastmail eenvoudiger en productiever."
+  },
+  "version": {
+    "message": "Versie"
+  },
+  "updated": {
+    "message": "Nieuw"
+  },
+  "openFastmail": {
+    "message": "Fastmail openen"
+  },
+  "optionsHeading": {
+    "message": "Opties"
+  },
+  "altSearch": {
+    "message": "Omschakelbaar zoekveld gebruiken"
+  },
+  "altSearchDesc": {
+    "message": "Overal zoeken, in onderwerp en tekst, of alleen in het onderwerp."
+  },
+  "shortcutKeys": {
+    "message": "Extra sneltoetsen gebruiken"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I en meer (zie Toetsen)."
+  },
+  "layoutButton": {
+    "message": "Knop voor de indeling van het leesvenster tonen"
+  },
+  "layoutButtonDesc": {
+    "message": "Rechts, onder of uit; opgeslagen in je Fastmail-account."
+  },
+  "cursorKeys": {
+    "message": "↑/↓/←/→ gebruiken om de focus te verplaatsen"
+  },
+  "cursorKeysDesc": {
+    "message": "Door de lijst bewegen en tussen lijst en gesprek wisselen."
+  },
+  "hlKeys": {
+    "message": "H/L gebruiken als ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Vervangt de eigen H- en L-toetsen van Fastmail."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Zet de sneltoetsen van Fastmail uit om dit te gebruiken. Tot dan werken J/K/N/P/E/Enter zoals in Fastmail."
+  },
+  "liveHint": {
+    "message": "Wijzigingen gelden meteen in geopende Fastmail-tabbladen."
+  },
+  "keysHeading": {
+    "message": "Toetsen"
+  },
+  "keysWithCursor": {
+    "message": "Met ‘↑/↓/←/→ gebruiken om de focus te verplaatsen’"
+  },
+  "keysWithShortcuts": {
+    "message": "Met ‘Extra sneltoetsen gebruiken’"
+  },
+  "keysWithLayout": {
+    "message": "Met ‘Knop voor de indeling van het leesvenster tonen’"
+  },
+  "keyOr": {
+    "message": "of"
+  },
+  "keyUpDown": {
+    "message": "Door de lijst of tussen berichten bewegen"
+  },
+  "keyLeftRight": {
+    "message": "Wisselen tussen lijst en gesprek; een bericht openen of sluiten"
+  },
+  "keyHL": {
+    "message": "Zelfde als ← →, met ‘H/L gebruiken als ←/→’"
+  },
+  "keyEnter": {
+    "message": "Geselecteerd bericht openen of sluiten"
+  },
+  "keyExpandAll": {
+    "message": "Alle berichten uitklappen"
+  },
+  "keyCollapseAll": {
+    "message": "Alle berichten inklappen"
+  },
+  "keyUncluttered": {
+    "message": "Opgeruimde weergave"
+  },
+  "keySearchMode": {
+    "message": "Zoekmodus wisselen"
+  },
+  "keyRightPanel": {
+    "message": "Rechterpaneel tonen of verbergen"
+  },
+  "keyTextSize": {
+    "message": "Tekstgrootte: groter, kleiner, standaard"
+  },
+  "keyButtons": {
+    "message": "Knoppen in het leesvenster tonen of verbergen"
+  },
+  "keyCalendar": {
+    "message": "Vorige of volgende in de agenda"
+  },
+  "keyLayout": {
+    "message": "Volgende indeling: rechts, onder, uit"
+  },
+  "readme": {
+    "message": "README op GitHub"
+  },
+  "signUp": {
+    "message": "Aanmelden bij Fastmail"
+  },
+  "signUpNote": {
+    "message": "(10% korting voor een jaar)"
+  }
+}

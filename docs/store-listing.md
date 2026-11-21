@@ -9,8 +9,8 @@ Update both the version number in the changelog block **and** the feature list w
 the extension changes.
 
 The short **"Summary from package"** shown in the dashboard is not edited here — it
-comes from `extensionDescription` in `_locales/en/messages.json` and
-`_locales/ja/messages.json`. Change it there and re-run `rake upload`.
+comes from `extensionDescription` in `_locales/*/messages.json` (one per language).
+Change it there and re-run `rake upload`.
 
 The listing images (screenshot 1280×800, marquee 1400×560, small promo tile 440×280)
 are rendered from the SVG mockups in `images/mockups/` with `rake store_images`
@@ -24,7 +24,7 @@ Fastmail Plus makes the Fastmail (https://fastmail.com) web UI easier to use and
 Fastmail Plus is an independent open-source project and is not affiliated with or endorsed by Fastmail.
 
 Changelog:
-0.6.3 Options apply without reloading; redesigned options page with a key list (English or Japanese, following Fastmail's language); Ctrl+Shift+P switches the reading pane layout; double-click a resize grip to reset the width; the maximize width option is removed
+0.6.3 Options apply without reloading; redesigned options page with a key list (in Fastmail's language); Ctrl+Shift+P switches the reading pane layout; double-click a resize grip to reset the width; the maximize width option is removed
 0.6.2 With the reading pane off, ↑/↓ and J/K move through the list without opening messages; → opens and ← goes back to the list
 0.6.1 Also works in a conversation opened in its own window
 0.6.0 Open messages are resizable and share one width with replies and compose; the compose pane is centred; optional button next to the search box that switches the reading pane (Side / Bottom / Off)
@@ -59,7 +59,7 @@ Fastmail (https://fastmail.com) のウェブ・インターフェイスを大幅
 Fastmail Plus は個人によるオープンソースのプロジェクトで、Fastmail 社とは関係がなく、同社の公認を受けたものではありません。
 
 変更履歴：
-0.6.3 オプションの変更を再読み込みなしで反映；オプション画面を一新しキー一覧を追加（Fastmailの言語に合わせて英語／日本語で表示）；Ctrl+Shift+Pで閲覧ペインの配置を切り替え；幅のつまみのダブルクリックで元の幅に戻す；幅を最大にするオプションを廃止
+0.6.3 オプションの変更を再読み込みなしで反映；オプション画面を一新しキー一覧を追加（Fastmailの表示言語に合わせて表示）；Ctrl+Shift+Pで閲覧ペインの配置を切り替え；幅のつまみのダブルクリックで元の幅に戻す；幅を最大にするオプションを廃止
 0.6.2 閲覧ペインがオフのとき、↑/↓とJ/Kでメールを開かずに一覧を移動し、→で開いて←で一覧に戻るよう修正
 0.6.1 別ウィンドウで開いた会話でも動作するよう修正
 0.6.0 開いたメールの幅をドラッグで調整（返信欄・作成欄と同じ幅を共有）；作成欄を中央に配置；閲覧ペインの位置（右／下／なし）を切り替える検索ボックス横のボタンをオプションで追加

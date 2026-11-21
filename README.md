@@ -42,7 +42,7 @@ https://chrome.google.com/webstore/detail/fastmail-plus/ibgnnkojbkconppocnmdobeo
 
 <img src='images/mockups/options.svg' width="480" />
 
-Changes take effect at once in open Fastmail tabs. The options page also lists the keys the extension adds, and is shown in English or Japanese following the language Fastmail is shown in.
+Changes take effect at once in open Fastmail tabs. The options page also lists the keys the extension adds, and is shown in the language Fastmail is shown in. Corrections to the translations (`_locales/*/messages.json`) are welcome.
 
 Fastmail Plus works with Fastmail's own keyboard shortcuts on or off (Fastmail Settings → Display options). While they are on, the keys both use — `J`, `K`, `N`, `P`, `E`, `Enter` in the reading pane, and `H`/`L` — do what Fastmail says, and "Use H/L keys like ←/→" cannot be turned on. The arrow keys and the `Control` shortcuts below work either way.
 

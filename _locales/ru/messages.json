@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Делает веб-интерфейс Fastmail удобнее и продуктивнее."
+  },
+  "version": {
+    "message": "Версия"
+  },
+  "updated": {
+    "message": "Новое"
+  },
+  "openFastmail": {
+    "message": "Открыть Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Настройки"
+  },
+  "altSearch": {
+    "message": "Переключаемое поле поиска"
+  },
+  "altSearchDesc": {
+    "message": "Искать везде, в теме и тексте или только в теме."
+  },
+  "shortcutKeys": {
+    "message": "Дополнительные сочетания клавиш"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I и другие (см. «Клавиши»)."
+  },
+  "layoutButton": {
+    "message": "Кнопка расположения панели чтения"
+  },
+  "layoutButtonDesc": {
+    "message": "Сбоку, снизу или выключена; сохраняется в аккаунте Fastmail."
+  },
+  "cursorKeys": {
+    "message": "Перемещать фокус клавишами ↑/↓/←/→"
+  },
+  "cursorKeysDesc": {
+    "message": "Перемещение по списку и между списком и перепиской."
+  },
+  "hlKeys": {
+    "message": "Клавиши H/L как ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Заменяет собственные клавиши H и L в Fastmail."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Чтобы использовать это, отключите сочетания клавиш Fastmail. До этого J/K/N/P/E/Enter работают как в Fastmail."
+  },
+  "liveHint": {
+    "message": "Изменения сразу применяются в открытых вкладках Fastmail."
+  },
+  "keysHeading": {
+    "message": "Клавиши"
+  },
+  "keysWithCursor": {
+    "message": "С включённым «Перемещать фокус клавишами ↑/↓/←/→»"
+  },
+  "keysWithShortcuts": {
+    "message": "С включённым «Дополнительные сочетания клавиш»"
+  },
+  "keysWithLayout": {
+    "message": "С включённой «Кнопка расположения панели чтения»"
+  },
+  "keyOr": {
+    "message": "или"
+  },
+  "keyUpDown": {
+    "message": "Перемещение по списку или между письмами"
+  },
+  "keyLeftRight": {
+    "message": "Переключение между списком и перепиской; открыть или закрыть письмо"
+  },
+  "keyHL": {
+    "message": "То же, что ← →, с включённым «Клавиши H/L как ←/→»"
+  },
+  "keyEnter": {
+    "message": "Открыть или закрыть выбранное письмо"
+  },
+  "keyExpandAll": {
+    "message": "Развернуть все письма"
+  },
+  "keyCollapseAll": {
+    "message": "Свернуть все письма"
+  },
+  "keyUncluttered": {
+    "message": "Упрощённый вид"
+  },
+  "keySearchMode": {
+    "message": "Сменить режим поиска"
+  },
+  "keyRightPanel": {
+    "message": "Показать или скрыть правую панель"
+  },
+  "keyTextSize": {
+    "message": "Размер текста: больше, меньше, сбросить"
+  },
+  "keyButtons": {
+    "message": "Показать или скрыть кнопки панели чтения"
+  },
+  "keyCalendar": {
+    "message": "Назад или вперёд в календаре"
+  },
+  "keyLayout": {
+    "message": "Следующее расположение: сбоку, снизу, выкл."
+  },
+  "readme": {
+    "message": "README на GitHub"
+  },
+  "signUp": {
+    "message": "Регистрация в Fastmail"
+  },
+  "signUpNote": {
+    "message": "(скидка 10% на год)"
+  }
+}

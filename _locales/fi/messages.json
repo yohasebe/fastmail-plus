@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Tekee Fastmailin verkkokäyttöliittymästä helpomman ja tehokkaamman."
+  },
+  "version": {
+    "message": "Versio"
+  },
+  "updated": {
+    "message": "Uusi"
+  },
+  "openFastmail": {
+    "message": "Avaa Fastmail"
+  },
+  "optionsHeading": {
+    "message": "Asetukset"
+  },
+  "altSearch": {
+    "message": "Käytä vaihdettavaa hakukenttää"
+  },
+  "altSearchDesc": {
+    "message": "Hae kaikkialta, aiheesta ja tekstistä tai vain aiheesta."
+  },
+  "shortcutKeys": {
+    "message": "Käytä lisäpikanäppäimiä"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Vaihto + L / M / I ja muita (katso Näppäimet)."
+  },
+  "layoutButton": {
+    "message": "Näytä lukuruudun asettelupainike"
+  },
+  "layoutButtonDesc": {
+    "message": "Sivulla, alhaalla tai pois; tallennetaan Fastmail-tiliisi."
+  },
+  "cursorKeys": {
+    "message": "Siirrä kohdistusta näppäimillä ↑/↓/←/→"
+  },
+  "cursorKeysDesc": {
+    "message": "Liiku luettelossa sekä luettelon ja keskustelun välillä."
+  },
+  "hlKeys": {
+    "message": "Käytä H/L-näppäimiä kuin ←/→"
+  },
+  "hlKeysDesc": {
+    "message": "Korvaa Fastmailin omat H- ja L-näppäimet."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Poista Fastmailin pikanäppäimet käytöstä käyttääksesi tätä. Siihen asti J/K/N/P/E/Enter toimivat kuten Fastmailissa."
+  },
+  "liveHint": {
+    "message": "Muutokset tulevat heti voimaan avoimissa Fastmail-välilehdissä."
+  },
+  "keysHeading": {
+    "message": "Näppäimet"
+  },
+  "keysWithCursor": {
+    "message": "Kun ”Siirrä kohdistusta näppäimillä ↑/↓/←/→” on päällä"
+  },
+  "keysWithShortcuts": {
+    "message": "Kun ”Käytä lisäpikanäppäimiä” on päällä"
+  },
+  "keysWithLayout": {
+    "message": "Kun ”Näytä lukuruudun asettelupainike” on päällä"
+  },
+  "keyOr": {
+    "message": "tai"
+  },
+  "keyUpDown": {
+    "message": "Liiku luettelossa tai viestien välillä"
+  },
+  "keyLeftRight": {
+    "message": "Vaihda luettelon ja keskustelun välillä; avaa tai sulje viesti"
+  },
+  "keyHL": {
+    "message": "Sama kuin ← →, kun ”Käytä H/L-näppäimiä kuin ←/→” on päällä"
+  },
+  "keyEnter": {
+    "message": "Avaa tai sulje valittu viesti"
+  },
+  "keyExpandAll": {
+    "message": "Laajenna kaikki viestit"
+  },
+  "keyCollapseAll": {
+    "message": "Tiivistä kaikki viestit"
+  },
+  "keyUncluttered": {
+    "message": "Pelkistetty näkymä"
+  },
+  "keySearchMode": {
+    "message": "Vaihda hakutilaa"
+  },
+  "keyRightPanel": {
+    "message": "Näytä tai piilota oikea paneeli"
+  },
+  "keyTextSize": {
+    "message": "Tekstin koko: suurempi, pienempi, palauta"
+  },
+  "keyButtons": {
+    "message": "Näytä tai piilota lukuruudun painikkeet"
+  },
+  "keyCalendar": {
+    "message": "Edellinen tai seuraava kalenterissa"
+  },
+  "keyLayout": {
+    "message": "Seuraava asettelu: sivu, alhaalla, pois"
+  },
+  "readme": {
+    "message": "README GitHubissa"
+  },
+  "signUp": {
+    "message": "Rekisteröidy Fastmailiin"
+  },
+  "signUpNote": {
+    "message": "(10 % alennus vuodeksi)"
+  }
+}

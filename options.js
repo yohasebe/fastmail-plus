@@ -1,9 +1,24 @@
 // The page's text comes from _locales, in the language Fastmail is shown in (as
 // last seen by the extension), else in the browser's language, else in English.
-const PAGE_LANGUAGES = ["en", "ja"]; // the folders in _locales
-const pageLanguage = (...codes) =>
-  codes.map((code) => (code || "").toLowerCase().split(/[-_]/)[0])
-    .find((code) => PAGE_LANGUAGES.includes(code)) || "en";
+// Language codes (Fastmail's, e.g. "zh-tw", or the browser's, e.g. "pt-BR") and
+// the _locales folder for each. A code is looked up whole, then by its language
+// alone, so "en-gb" uses "en" and "zh-hk" uses "zh_TW".
+const PAGE_LANGUAGES = {
+  cs: "cs", da: "da", de: "de", en: "en", es: "es", fi: "fi", fr: "fr", hu: "hu",
+  it: "it", ja: "ja", nb: "no", no: "no", nl: "nl", pl: "pl", pt: "pt_BR",
+  ru: "ru", sv: "sv", tr: "tr", uk: "uk",
+  zh: "zh_CN", "zh-cn": "zh_CN", "zh-tw": "zh_TW", "zh-hk": "zh_TW",
+};
+const pageLanguage = (...codes) => {
+  for (const code of codes) {
+    const full = (code || "").toLowerCase().replace("_", "-");
+    const folder = PAGE_LANGUAGES[full] || PAGE_LANGUAGES[full.split("-")[0]];
+    if (folder) {
+      return folder;
+    }
+  }
+  return "en";
+};
 // Text that cannot be read from that file comes from Chrome's own choice of locale.
 const readMessages = async (language) => {
   try {
@@ -16,7 +31,7 @@ const readMessages = async (language) => {
 chrome.storage.local.get("fastmailLanguage", async ({ fastmailLanguage }) => {
   const language = pageLanguage(fastmailLanguage, chrome.i18n.getUILanguage());
   const messages = await readMessages(language);
-  document.documentElement.lang = language;
+  document.documentElement.lang = language.replace("_", "-");
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.dataset.i18n;
     el.textContent = (messages[key] && messages[key].message) || chrome.i18n.getMessage(key);

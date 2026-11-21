@@ -1,0 +1,119 @@
+{
+  "extensionName": {
+    "message": "Fastmail Plus"
+  },
+  "extensionDescription": {
+    "message": "Könnyebbé és hatékonyabbá teszi a Fastmail webes felületét."
+  },
+  "version": {
+    "message": "Verzió"
+  },
+  "updated": {
+    "message": "Új"
+  },
+  "openFastmail": {
+    "message": "Fastmail megnyitása"
+  },
+  "optionsHeading": {
+    "message": "Beállítások"
+  },
+  "altSearch": {
+    "message": "Váltható keresőmező használata"
+  },
+  "altSearchDesc": {
+    "message": "Keresés mindenhol, a tárgyban és a szövegben, vagy csak a tárgyban."
+  },
+  "shortcutKeys": {
+    "message": "További billentyűparancsok használata"
+  },
+  "shortcutKeysDesc": {
+    "message": "Enter, Ctrl + Shift + L / M / I és mások (lásd: Billentyűk)."
+  },
+  "layoutButton": {
+    "message": "Az olvasóablak elrendezésgombjának megjelenítése"
+  },
+  "layoutButtonDesc": {
+    "message": "Oldalt, alul vagy kikapcsolva; a Fastmail-fiókjába mentve."
+  },
+  "cursorKeys": {
+    "message": "Fókusz mozgatása a ↑/↓/←/→ billentyűkkel"
+  },
+  "cursorKeysDesc": {
+    "message": "Mozgás a listában, valamint a lista és a beszélgetés között."
+  },
+  "hlKeys": {
+    "message": "H/L használata ←/→ helyett"
+  },
+  "hlKeysDesc": {
+    "message": "Felülírja a Fastmail saját H és L billentyűit."
+  },
+  "fastmailShortcutsOn": {
+    "message": "Ehhez kapcsolja ki a Fastmail billentyűparancsait. Addig a J/K/N/P/E/Enter úgy működik, mint a Fastmailben."
+  },
+  "liveHint": {
+    "message": "A módosítások azonnal érvényesek a megnyitott Fastmail-lapokon."
+  },
+  "keysHeading": {
+    "message": "Billentyűk"
+  },
+  "keysWithCursor": {
+    "message": "Ha be van kapcsolva: „Fókusz mozgatása a ↑/↓/←/→ billentyűkkel”"
+  },
+  "keysWithShortcuts": {
+    "message": "Ha be van kapcsolva: „További billentyűparancsok használata”"
+  },
+  "keysWithLayout": {
+    "message": "Ha be van kapcsolva: „Az olvasóablak elrendezésgombjának megjelenítése”"
+  },
+  "keyOr": {
+    "message": "vagy"
+  },
+  "keyUpDown": {
+    "message": "Mozgás a listában vagy az üzenetek között"
+  },
+  "keyLeftRight": {
+    "message": "Váltás a lista és a beszélgetés között; üzenet megnyitása vagy bezárása"
+  },
+  "keyHL": {
+    "message": "Ugyanaz, mint a ← →, ha be van kapcsolva a „H/L használata ←/→ helyett”"
+  },
+  "keyEnter": {
+    "message": "A kijelölt üzenet megnyitása vagy bezárása"
+  },
+  "keyExpandAll": {
+    "message": "Minden üzenet kibontása"
+  },
+  "keyCollapseAll": {
+    "message": "Minden üzenet összecsukása"
+  },
+  "keyUncluttered": {
+    "message": "Letisztult nézet"
+  },
+  "keySearchMode": {
+    "message": "Keresési mód váltása"
+  },
+  "keyRightPanel": {
+    "message": "A jobb oldali panel megjelenítése vagy elrejtése"
+  },
+  "keyTextSize": {
+    "message": "Szövegméret: nagyobb, kisebb, alaphelyzet"
+  },
+  "keyButtons": {
+    "message": "Az olvasóablak gombjainak megjelenítése vagy elrejtése"
+  },
+  "keyCalendar": {
+    "message": "Előző vagy következő a naptárban"
+  },
+  "keyLayout": {
+    "message": "Következő elrendezés: oldalt, alul, ki"
+  },
+  "readme": {
+    "message": "README a GitHubon"
+  },
+  "signUp": {
+    "message": "Regisztráció a Fastmailnél"
+  },
+  "signUpNote": {
+    "message": "(10% kedvezmény egy évig)"
+  }
+}
