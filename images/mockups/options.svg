@@ -1,19 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="330" viewBox="0 0 480 330" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="426" viewBox="0 0 400 426" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
   <title>Options</title>
-  <rect width="480" height="330" fill="#ffffff" stroke="#d9dde1"/>
-  <text x="24" y="44" font-size="20" font-weight="700" fill="#1b1e20">Fastmail Plus Options</text>
-  <rect x="24" y="76" width="18" height="18" rx="4" fill="#2f6fde"/>
-  <path d="M28 85 l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="54" y="90" font-size="16" fill="#1b1e20">Use switchable search box</text>
-  <rect x="24" y="110" width="18" height="18" rx="4" fill="#2f6fde"/>
-  <path d="M28 119 l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="54" y="124" font-size="16" fill="#1b1e20">Use extra shortcut keys</text>
-  <rect x="24.5" y="144.5" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>
-  <text x="54" y="158" font-size="16" fill="#1b1e20">Show a reading pane layout button</text>
-  <rect x="24" y="178" width="18" height="18" rx="4" fill="#2f6fde"/>
-  <path d="M28 187 l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="54" y="192" font-size="16" fill="#1b1e20">Use ↑/↓/←/→ keys to move focus</text>
-  <rect x="24.5" y="212.5" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>
-  <text x="54" y="226" font-size="16" fill="#1b1e20">Use H/L keys like ←/→</text>
-  <text x="24" y="300" font-size="14" font-style="italic" fill="#5f6b76">Changes take effect in open Fastmail tabs at once.</text>
+  <rect width="400" height="426" fill="#ffffff" stroke="#d9dde1"/>
+  <svg x="18" y="16" width="36" height="36" viewBox="0 0 128 128">
+  
+  <defs>
+    <linearGradient id="logo-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1580d6"/>
+      <stop offset="1" stop-color="#0060ad"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#logo-bg)"/>
+  <path d="M75.14 42.85H50.6V55.95H72.96V73.21H50.6V104H30.21V25.59H75.14Z" fill="#ffffff"/>
+  <path d="M96 66V102M78 84H114" stroke="#ffc10e" stroke-width="13" stroke-linecap="round"/>
+
+</svg>
+  <text x="64" y="40" font-size="16" font-weight="700" fill="#1d2330">Fastmail Plus</text>
+  <rect x="284.5" y="20.5" width="98" height="27" rx="6" fill="#f6f7f9" stroke="#e2e5ea"/>
+  <text x="333.0" y="38" font-size="12" text-anchor="middle" fill="#1d2330">Open Fastmail</text>
+  <text x="18" y="82" font-size="11" font-weight="600" letter-spacing="0.7" fill="#5f6877">OPTIONS</text>
+  <rect x="18.5" y="90.5" width="363" height="266" rx="8" fill="#f6f7f9" stroke="#e2e5ea"/>
+  <rect x="30" y="101" width="16" height="16" rx="3" fill="#2f6fde"/>
+  <path d="M33.5 109 l3 3 6 -6.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="58" y="114" font-size="13" font-weight="600" fill="#1d2330">Use switchable search box</text>
+  <text x="58" y="131" font-size="12" fill="#5f6877">Search anywhere, in subject and body, or in subject</text>
+  <text x="58" y="147" font-size="12" fill="#5f6877">only.</text>
+  <line x1="19" y1="156" x2="381" y2="156" stroke="#e2e5ea"/>
+  <rect x="30" y="167" width="16" height="16" rx="3" fill="#2f6fde"/>
+  <path d="M33.5 175 l3 3 6 -6.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="58" y="180" font-size="13" font-weight="600" fill="#1d2330">Use extra shortcut keys</text>
+  <text x="58" y="197" font-size="12" fill="#5f6877">Enter, Ctrl + Shift + L / M / I and more (see Keys).</text>
+  <line x1="19" y1="206" x2="381" y2="206" stroke="#e2e5ea"/>
+  <rect x="30.5" y="217.5" width="15" height="15" rx="3" fill="#ffffff" stroke="#8a929a"/>
+  <text x="58" y="230" font-size="13" font-weight="600" fill="#1d2330">Show a reading pane layout button</text>
+  <text x="58" y="247" font-size="12" fill="#5f6877">Side, Bottom or Off; saved to your Fastmail account.</text>
+  <line x1="19" y1="256" x2="381" y2="256" stroke="#e2e5ea"/>
+  <rect x="30" y="267" width="16" height="16" rx="3" fill="#2f6fde"/>
+  <path d="M33.5 275 l3 3 6 -6.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="58" y="280" font-size="13" font-weight="600" fill="#1d2330">Use ↑/↓/←/→ keys to move focus</text>
+  <text x="58" y="297" font-size="12" fill="#5f6877">Move in the list and between list and conversation.</text>
+  <line x1="19" y1="306" x2="381" y2="306" stroke="#e2e5ea"/>
+  <rect x="30.5" y="317.5" width="15" height="15" rx="3" fill="#ffffff" stroke="#8a929a"/>
+  <text x="58" y="330" font-size="13" font-weight="600" fill="#1d2330">Use H/L keys like ←/→</text>
+  <text x="58" y="347" font-size="12" fill="#5f6877">Replaces Fastmail's own H and L.</text>
+  <text x="18" y="380" font-size="12" fill="#5f6877">Changes take effect in open Fastmail tabs at once.</text>
+  <text x="18" y="408" font-size="11" font-weight="600" letter-spacing="0.7" fill="#5f6877">▸ KEYS</text>
 </svg>

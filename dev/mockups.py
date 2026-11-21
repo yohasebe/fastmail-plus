@@ -229,22 +229,61 @@ def resizable_panes():
     write('resizable-panes.svg', svg(w, h, "\n".join(p), title='Resizable message, reply and compose panes'))
 
 # ---- options page ---------------------------------------------------------------
+# Drawn from the real page: the options, their order and default state come from
+# options.html, the text from _locales/en/messages.json and the icon from
+# images/fastmail-plus.svg. The version is left out so the image does not age.
 def options():
-    items = [(True, 'Use switchable search box'), (True, 'Use extra shortcut keys'),
-             (False, 'Show a reading pane layout button'),
-             (True, 'Use ↑/↓/←/→ keys to move focus'), (False, 'Use H/L keys like ←/→')]
-    p = [f'  <rect width="480" height="330" fill="#ffffff" stroke="{LINE}"/>']
-    p.append(f'  <text x="24" y="44" font-size="20" font-weight="700" fill="{INK}">Fastmail Plus Options</text>')
-    for i, (on, label) in enumerate(items):
-        yy = 76 + i * 34
-        if on:
-            p.append(f'  <rect x="24" y="{yy}" width="18" height="18" rx="4" fill="#2f6fde"/>')
-            p.append(f'  <path d="M28 {yy+9} l4 4 7 -8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')
+    import json
+    read = lambda *path: open(os.path.join(ROOT, *path)).read()
+    messages = {k: v['message'] for k, v in json.loads(read('_locales', 'en', 'messages.json')).items()}
+    rows = re.findall(r'<input type="checkbox"[^>]*?( checked)?\s*/>\s*<label[^>]*data-i18n="(\w+)"></label>\s*'
+                      r'<div class="desc" data-i18n="(\w+)"></div>', read('options.html'))
+    logo = re.sub(r'</?svg[^>]*>|<title>.*?</title>', '', read('images', 'fastmail-plus.svg')).replace('"bg"', '"logo-bg"').replace('#bg', '#logo-bg')
+
+    def wrap(text, chars=54):
+        lines, line = [], ''
+        for word in text.split():
+            if line and len(line) + 1 + len(word) > chars:
+                lines.append(line)
+                line = word
+            else:
+                line = f'{line} {word}'.strip()
+        return lines + [line]
+
+    W, X = 400, 18
+    PANEL = "#f6f7f9"; LINE2 = "#e2e5ea"; SUB2 = "#5f6877"; INK2 = "#1d2330"; CHECK = "#2f6fde"
+    p = []
+    p.append(f'  <svg x="{X}" y="16" width="36" height="36" viewBox="0 0 128 128">{logo}</svg>')
+    p.append(f'  <text x="{X+46}" y="40" font-size="16" font-weight="700" fill="{INK2}">{messages["extensionName"]}</text>')
+    bw = 98
+    p.append(f'  <rect x="{W-X-bw+0.5}" y="20.5" width="{bw}" height="27" rx="6" fill="{PANEL}" stroke="{LINE2}"/>')
+    p.append(f'  <text x="{W-X-bw/2}" y="38" font-size="12" text-anchor="middle" fill="{INK2}">{messages["openFastmail"]}</text>')
+    y = 82
+    p.append(f'  <text x="{X}" y="{y}" font-size="11" font-weight="600" letter-spacing="0.7" fill="{SUB2}">{messages["optionsHeading"].upper()}</text>')
+    y += 8
+    heights = [34 + 16 * len(wrap(messages[d])) for _, _, d in rows]
+    p.append(f'  <rect x="{X+0.5}" y="{y+0.5}" width="{W-2*X-1}" height="{sum(heights)}" rx="8" fill="{PANEL}" stroke="{LINE2}"/>')
+    for i, ((checked, label, desc), h) in enumerate(zip(rows, heights)):
+        if i:
+            p.append(f'  <line x1="{X+1}" y1="{y}" x2="{W-X-1}" y2="{y}" stroke="{LINE2}"/>')
+        bx, by = X + 12, y + 11
+        if checked:
+            p.append(f'  <rect x="{bx}" y="{by}" width="16" height="16" rx="3" fill="{CHECK}"/>')
+            p.append(f'  <path d="M{bx+3.5} {by+8} l3 3 6 -6.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')
         else:
-            p.append(f'  <rect x="24.5" y="{yy+0.5}" width="17" height="17" rx="4" fill="#ffffff" stroke="#8a929a"/>')
-        p.append(f'  <text x="54" y="{yy+14}" font-size="16" fill="{INK}">{label}</text>')
-    p.append(f'  <text x="24" y="300" font-size="14" font-style="italic" fill="{SUB}">Changes take effect in open Fastmail tabs at once.</text>')
-    write('options.svg', svg(480, 330, "\n".join(p), title='Options'))
+            p.append(f'  <rect x="{bx+0.5}" y="{by+0.5}" width="15" height="15" rx="3" fill="#ffffff" stroke="#8a929a"/>')
+        tx = bx + 28
+        p.append(f'  <text x="{tx}" y="{y+24}" font-size="13" font-weight="600" fill="{INK2}">{messages[label]}</text>')
+        for j, line in enumerate(wrap(messages[desc])):
+            p.append(f'  <text x="{tx}" y="{y+41+16*j}" font-size="12" fill="{SUB2}">{line}</text>')
+        y += h
+    y += 24
+    p.append(f'  <text x="{X}" y="{y}" font-size="12" fill="{SUB2}">{messages["liveHint"]}</text>')
+    y += 28
+    p.append(f'  <text x="{X}" y="{y}" font-size="11" font-weight="600" letter-spacing="0.7" fill="{SUB2}">▸ {messages["keysHeading"].upper()}</text>')
+    H = y + 18
+    body = [f'  <rect width="{W}" height="{H}" fill="#ffffff" stroke="{LINE}"/>'] + p
+    write('options.svg', svg(W, H, "\n".join(body), title='Options'))
 
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
