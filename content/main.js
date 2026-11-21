@@ -61,7 +61,7 @@ const makePaneResizable = (pane) => {
 
   // Back to the default width (nothing set), as when letting go at it.
   handle.addEventListener('dblclick', () => {
-    composeWidth = null;
+    composeWidth = savedComposeWidth = null;
     applyMessageWidth();
     safeStorageSet({ composeWidth });
   });
@@ -91,10 +91,10 @@ const makePaneResizable = (pane) => {
     // The width shown with nothing set, in this window: the default, limited by
     // the space there is.
     const defaultWidth = Math.min(available, isNote ? NOTE_WIDTH_DEFAULT : MESSAGE_WIDTH_DEFAULT);
-    const before = composeWidth;
     let moved = false;
     let snapped = false;
     handle.setPointerCapture(e.pointerId);
+    resizingWidth = true;
 
     const onMove = (ev) => {
       moved = true;
@@ -105,19 +105,21 @@ const makePaneResizable = (pane) => {
       composeWidth = snapped ? null : Math.round(width);
       applyMessageWidth();
     };
-    // A click without a drag, or a cancelled drag, keeps the width as it was.
+    // A click without a drag, or a cancelled drag, goes back to the saved width
+    // (which another tab may have changed meanwhile).
     const onEnd = (ev) => {
       handle.removeEventListener('pointermove', onMove);
       handle.removeEventListener('pointerup', onEnd);
       handle.removeEventListener('pointercancel', onEnd);
       handle.classList.remove(SNAPPED_CLASS);
+      resizingWidth = false;
       if (!moved || ev.type === 'pointercancel') {
-        composeWidth = before;
+        composeWidth = savedComposeWidth;
         applyMessageWidth();
         return;
       }
       // Save the rendered width, which the window size may have limited.
-      composeWidth = snapped ? null : Math.max(MESSAGE_WIDTH_MIN, Math.round(measure()));
+      composeWidth = savedComposeWidth = snapped ? null : Math.max(MESSAGE_WIDTH_MIN, Math.round(measure()));
       applyMessageWidth();
       safeStorageSet({ composeWidth });
     };
@@ -298,9 +300,6 @@ const detectSplitPanes = () => {
 const runOnChange = (url) => {
   clearTimeout(selectorCheckTimer);
   selectorCheckTimer = setTimeout(checkSelectors, SELECTOR_CHECK_DELAY);
-  if(alternativeSearch && !document.getElementById("alt-search")) {
-    setAltSearch();
-  }
 
   // currently in mail mode
   if(regexMail.test(url)){
@@ -363,6 +362,10 @@ const checkFirstTimeReady = () => {
         // the URL changes).
         applyReadingPaneState();
         initResizablePanes();
+        // Fastmail can build or rebuild the toolbar at any time.
+        if(alternativeSearch && !document.getElementById("alt-search")){
+          setAltSearch();
+        }
         if(layoutButton){
           setLayoutToggle();
         }

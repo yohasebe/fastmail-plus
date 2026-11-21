@@ -4,13 +4,22 @@ const PAGE_LANGUAGES = ["en", "ja"]; // the folders in _locales
 const pageLanguage = (...codes) =>
   codes.map((code) => (code || "").toLowerCase().split(/[-_]/)[0])
     .find((code) => PAGE_LANGUAGES.includes(code)) || "en";
+// Text that cannot be read from that file comes from Chrome's own choice of locale.
+const readMessages = async (language) => {
+  try {
+    const response = await fetch(chrome.runtime.getURL(`_locales/${language}/messages.json`));
+    return await response.json();
+  } catch (_e) {
+    return {};
+  }
+};
 chrome.storage.local.get("fastmailLanguage", async ({ fastmailLanguage }) => {
   const language = pageLanguage(fastmailLanguage, chrome.i18n.getUILanguage());
-  const response = await fetch(chrome.runtime.getURL(`_locales/${language}/messages.json`));
-  const messages = await response.json();
+  const messages = await readMessages(language);
   document.documentElement.lang = language;
   document.querySelectorAll("[data-i18n]").forEach((el) => {
-    el.textContent = messages[el.dataset.i18n].message;
+    const key = el.dataset.i18n;
+    el.textContent = (messages[key] && messages[key].message) || chrome.i18n.getMessage(key);
   });
 });
 

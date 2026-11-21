@@ -75,7 +75,11 @@ let layoutButton;
 
 let lastUrl = "https://fastmail.com";
 let searchMode = "anywhere";
-let composeWidth = null; // remembered width (px) of the conversation and compose/note panes
+let composeWidth = null; // width (px) shown for the conversation and compose/note panes
+// The width last saved (in any tab). It is shown except while a resize grip is
+// held here, when the drag decides the width.
+let savedComposeWidth = null;
+let resizingWidth = false;
 let btnControlShown = true;
 let mainMenuShown = true;
 let splitRight;
@@ -131,10 +135,20 @@ const SETTINGS = {
   alternativeSearch: {
     initial: true,
     set: (v) => { alternativeSearch = v; },
-    apply: () => (alternativeSearch ? document.getElementById("alt-search") || setAltSearch() : removeAltSearch()),
+    // Turning it on is left to the main poll, which puts the box in once the toolbar is there.
+    apply: () => alternativeSearch || removeAltSearch(),
   },
   layoutButton: { initial: false, set: (v) => { layoutButton = v; }, apply: () => (layoutButton ? setLayoutToggle() : layoutToggle.remove()) },
-  composeWidth: { initial: null, set: (v) => { composeWidth = v; }, apply: () => applyMessageWidth() },
+  composeWidth: {
+    initial: null,
+    set: (v) => {
+      savedComposeWidth = v;
+      if (!resizingWidth) {
+        composeWidth = v;
+      }
+    },
+    apply: () => applyMessageWidth(),
+  },
   bodyFontScale: { initial: 1.0, set: (v) => { bodyFontScale = v; }, apply: () => applyBodyFontScale() },
 };
 const setSetting = (key, value) => SETTINGS[key].set(value === undefined ? SETTINGS[key].initial : value);
