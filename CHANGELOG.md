@@ -3,7 +3,7 @@
 All notable changes to this project are documented here.
 Earlier history (before 0.3.0) is available in the git commit log.
 
-## [Unreleased]
+## [0.6.3] - 2026-11-21
 
 ### Added
 - `Control + Shift + P` switches the reading pane layout, like the layout button (with that option on).
